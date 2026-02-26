@@ -1,0 +1,7 @@
+import { useEnvironmentContext } from '@ark-ui/ripple/environment'
+
+export component Usage() {
+  const environment = useEnvironmentContext()
+
+  <pre>{JSON.stringify(@environment.getRootNode(), null, 2)}</pre>
+}

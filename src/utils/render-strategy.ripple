@@ -1,0 +1,17 @@
+import { Context } from 'ripple'
+import { createSplitProps } from './create-split-props.ripple'
+
+export interface RenderStrategyProps {
+  lazyMount?: boolean
+  unmountOnExit?: boolean
+}
+
+const splitRenderStrategy = createSplitProps<RenderStrategyProps>()
+
+export function splitRenderStrategyProps<T extends RenderStrategyProps>(props: T) {
+  return splitRenderStrategy(props, ['lazyMount', 'unmountOnExit'])
+}
+
+export const RenderStrategyContext = new Context<RenderStrategyProps>({ lazyMount: false, unmountOnExit: false })
+
+export const useRenderStrategyContext = (): RenderStrategyProps => RenderStrategyContext.get()

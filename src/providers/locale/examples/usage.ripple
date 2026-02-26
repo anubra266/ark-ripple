@@ -1,0 +1,7 @@
+import { useLocaleContext } from '@ark-ui/ripple/locale'
+
+export component Usage() {
+  const locale = useLocaleContext()
+
+  <pre>{JSON.stringify(@locale, null, 2)}</pre>
+}

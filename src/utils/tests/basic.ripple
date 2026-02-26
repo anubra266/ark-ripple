@@ -1,0 +1,30 @@
+import { track } from 'ripple'
+import { createSplitProps } from '../create-split-props.ripple'
+
+interface ItemProps {
+  value?: string
+  disabled?: boolean
+}
+
+const splitItemProps = createSplitProps<ItemProps>()
+
+component Inner(props: ItemProps & Record<string, any>) {
+  const [matched, rest] = splitItemProps(props, ['value', 'disabled'])
+  const { value, disabled } = matched
+
+  <div {...@rest}>
+    <span data-testid="value">{@value}</span>
+    <span data-testid="disabled">{String(@disabled)}</span>
+  </div>
+}
+
+export component ComponentUnderTest(props: Record<string, any>) {
+  let value = track('initial')
+  let disabled = track(false)
+
+  <div>
+    <button onclick={() => { @value = 'updated' }}>{'Change Value'}</button>
+    <button onclick={() => { @disabled = true }}>{'Disable'}</button>
+    <Inner value={@value} disabled={@disabled} data-extra="rest-prop" />
+  </div>
+}

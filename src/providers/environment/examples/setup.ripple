@@ -1,0 +1,9 @@
+import { EnvironmentProvider } from '@ark-ui/ripple/environment'
+
+export component Setup() {
+  <iframe title="IFrame Context">
+    <EnvironmentProvider>
+      {'/* Your App */'}
+    </EnvironmentProvider>
+  </iframe>
+}

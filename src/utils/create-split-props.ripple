@@ -1,0 +1,18 @@
+import { trackSplit } from 'ripple'
+
+export function createSplitProps<Target extends Record<string, any>>() {
+  return function <Props extends Target & Record<string, any>>(
+    props: Props,
+    keys: (keyof Target)[],
+  ): [Target, Omit<Props, keyof Target>] {
+    const vals = trackSplit(props, keys as any) as any[]
+    const rest = vals[vals.length - 1]
+    const matched: any = {}
+    for (let i = 0; i < keys.length; i++) {
+      if(@(vals[i]) !== undefined) {
+        matched[keys[i] as string] = vals[i]
+      }
+    }
+    return [matched, rest]
+  }
+}

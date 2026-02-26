@@ -1,0 +1,7 @@
+import { LocaleProvider } from '@ark-ui/ripple/locale'
+
+export component App() {
+  <LocaleProvider locale="de-DE">
+    {'/* Your App */'}
+  </LocaleProvider>
+}
