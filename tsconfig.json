@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext", "DOM"],
-    "target": "ESNext",
+    "target": "ES2022",
     "module": "ESNext",
-    "moduleDetection": "force",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "noEmit": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
+    "jsx": "preserve",
+    "jsxImportSource": "ripple",
+    "plugins": [{ "name": "@ripple-ts/typescript-plugin" }],
     "types": ["vitest/globals"]
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "dist"]
 }

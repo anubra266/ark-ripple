@@ -1,1 +1,1 @@
-export type { RippleFramework } from './preview'
+export type { RippleFramework } from './preview';
