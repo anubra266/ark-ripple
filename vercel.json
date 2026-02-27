@@ -1,0 +1,6 @@
+{
+  "buildCommand": "bun run sync && cd ark/website && bun run build",
+  "installCommand": "git submodule update --init && bun install && cd ark && bun install",
+  "framework": "nextjs",
+  "outputDirectory": "ark/website/.next"
+}
