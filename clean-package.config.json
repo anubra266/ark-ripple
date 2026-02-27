@@ -1,0 +1,67 @@
+{
+  "replace": {
+    "exports": {
+      ".": {
+        "import": {
+          "types": "./dist/index.d.ts",
+          "default": "./dist/index.js"
+        },
+        "require": {
+          "types": "./dist/index.d.cts",
+          "default": "./dist/index.cjs"
+        }
+      },
+      "./anatomy": {
+        "import": {
+          "types": "./dist/components/anatomy.d.ts",
+          "default": "./dist/components/anatomy.js"
+        },
+        "require": {
+          "types": "./dist/components/anatomy.d.cts",
+          "default": "./dist/components/anatomy.cjs"
+        }
+      },
+      "./environment": {
+        "import": {
+          "types": "./dist/providers/environment/index.d.ts",
+          "default": "./dist/providers/environment/index.js"
+        },
+        "require": {
+          "types": "./dist/providers/environment/index.d.cts",
+          "default": "./dist/providers/environment/index.cjs"
+        }
+      },
+      "./locale": {
+        "import": {
+          "types": "./dist/providers/locale/index.d.ts",
+          "default": "./dist/providers/locale/index.js"
+        },
+        "require": {
+          "types": "./dist/providers/locale/index.d.cts",
+          "default": "./dist/providers/locale/index.cjs"
+        }
+      },
+      "./*": {
+        "import": {
+          "types": "./dist/components/*/index.d.ts",
+          "default": "./dist/components/*/index.js"
+        },
+        "require": {
+          "types": "./dist/components/*/index.d.cts",
+          "default": "./dist/components/*/index.cjs"
+        }
+      },
+      "./utils": {
+        "import": {
+          "types": "./dist/utils/index.d.ts",
+          "default": "./dist/utils/index.js"
+        },
+        "require": {
+          "types": "./dist/utils/index.d.cts",
+          "default": "./dist/utils/index.cjs"
+        }
+      },
+      "./package.json": "./package.json"
+    }
+  }
+}

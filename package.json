@@ -48,7 +48,12 @@
   "bugs": {
     "url": "https://github.com/chakra-ui/ark/issues"
   },
+  "files": [
+    "dist"
+  ],
   "exports": {
+    ".": "./src/index.ts",
+    "./anatomy": "./src/components/anatomy.ts",
     "./environment": "./src/providers/environment/index.ts",
     "./locale": "./src/providers/locale/index.ts",
     "./*": "./src/components/*/index.ts"
@@ -60,12 +65,14 @@
     "ark:diff": "bun scripts/diff.ts",
     "dev": "bun run storybook",
     "site": "bun run sync && cd ark && bun install && cd website && bun run dev",
-    "build": "echo 'Build not configured yet'",
+    "build": "vite build",
     "storybook": "storybook dev -p 6006",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest --run",
-    "typecheck": "echo 'Typecheck not configured yet'"
+    "typecheck": "echo 'Typecheck not configured yet'",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore"
   },
   "sideEffects": false,
   "dependencies": {
@@ -139,14 +146,17 @@
     "@testing-library/jest-dom": "^6.6.0",
     "@testing-library/user-event": "^14.6.0",
     "@vitest/coverage-v8": "^4.0.0",
+    "clean-package": "^2.2.0",
+    "globby": "^16.1.1",
     "jsdom": "^26.0.0",
     "lucide-ripple": "0.0.7",
-    "next": "^16.1.6",
+    "next": "15.5.12",
     "resize-observer-polyfill": "^1.5.1",
     "ripple": "latest",
     "storybook": "10.2.10",
     "typescript": "5.9.3",
     "vite": "7.3.0",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.0",
     "vitest-axe": "^1.0.0-pre.5"
   },
