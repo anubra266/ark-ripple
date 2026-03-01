@@ -14,16 +14,16 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/ark-ripple">
-    <img alt="npm version" src="https://img.shields.io/npm/v/ark-ripple?style=flat-square&color=f43f5e&label=npm">
+    <img alt="npm version" src="https://img.shields.io/npm/v/ark-ripple?style=for-the-badge&color=f43f5e&label=npm">
   </a>
   <a href="https://bundlephobia.com/package/ark-ripple">
-    <img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/ark-ripple?style=flat-square&color=6366f1&label=bundle">
+    <img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/ark-ripple?style=for-the-badge&color=6366f1&label=bundle">
   </a>
   <a href="https://github.com/chakra-ui/ark/blob/main/LICENSE">
-    <img alt="license" src="https://img.shields.io/npm/l/ark-ripple?style=flat-square&color=0ea5e9">
+    <img alt="license" src="https://img.shields.io/npm/l/ark-ripple?style=for-the-badge&color=0ea5e9">
   </a>
   <a href="https://github.com/chakra-ui/ark">
-    <img alt="GitHub stars" src="https://img.shields.io/github/stars/chakra-ui/ark?style=flat-square&color=f59e0b">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/chakra-ui/ark?style=for-the-badge&color=f59e0b">
   </a>
 </p>
 
