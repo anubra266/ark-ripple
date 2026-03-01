@@ -163,6 +163,19 @@ For components where other frameworks have too few test cases, write additional 
 - Hook files: `use-component.ripple`
 - Props split: `split-component-props.ripple`
 
+### Barrel exports and anatomy
+
+When developing a new component, **always** update these files:
+- `src/components/index.ts` — add the component's public export
+- `src/components/anatomy.ts` — add the component's anatomy export
+
+### Export parity with React
+
+The Ripple component must export the same public API as the React version:
+- All sub-components (e.g. `Dialog.Root`, `Dialog.Trigger`, `Dialog.Content`, etc.)
+- All types (props types, context types, etc.) with matching names and JSDoc comments
+- Check `ark/packages/react/src/components/[component]/` for the full list of exports and types
+
 ### Context pattern
 
 ```typescript

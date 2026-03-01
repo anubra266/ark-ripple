@@ -3,9 +3,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ripple } from '@ripple-ts/vite-plugin';
 import { globbySync } from 'globby';
+import { loadEnv } from 'vite';
 import dts from 'vite-plugin-dts';
 import { defineConfig } from 'vitest/config';
-import { loadEnv } from 'vite';
 import pkg from './package.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
