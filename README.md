@@ -31,10 +31,14 @@
 
 ## Features
 
-- **Headless** — Zero styling opinions. Bring your own CSS, Tailwind, modules, or design system.
-- **Accessible** — WAI-ARIA compliant with full keyboard navigation out of the box.
-- **State machines** — Powered by [Zag.js](https://zagjs.com) for predictable, framework-agnostic component logic.
-- **Composable** — Fine-grained parts API — use only what you need, nest however you like.
+- **Headless** — Zero styling opinions. Bring your own CSS, Tailwind, modules, or
+  design system.
+- **Accessible** — WAI-ARIA compliant with full keyboard navigation out of the
+  box.
+- **State machines** — Powered by [Zag.js](https://zagjs.com) for predictable,
+  framework-agnostic component logic.
+- **Composable** — Fine-grained parts API — use only what you need, nest however
+  you like.
 - **SSR-ready** — Works with server-side rendering environments.
 
 ## Installation
@@ -46,7 +50,7 @@ npm install ark-ripple
 ## Quick Start
 
 ```ripple
-import { Accordion } from 'ark-ripple/accordion'
+import { Accordion } from 'ark-ripple/accordion';
 
 export component Demo() {
   <Accordion.Root collapsible>
@@ -65,7 +69,7 @@ export component Demo() {
 Every component follows a consistent parts-based API:
 
 ```ripple
-import { Dialog } from 'ark-ripple/dialog'
+import { Dialog } from 'ark-ripple/dialog';
 
 export component MyDialog() {
   <Dialog.Root>
@@ -87,14 +91,17 @@ export component MyDialog() {
 Access component state from any descendant using the Context part:
 
 ```ripple
-import { Dialog } from 'ark-ripple/dialog'
+import { Dialog } from 'ark-ripple/dialog';
 
 export component DialogStatus() {
   <Dialog.Root>
     <Dialog.Trigger>{'Toggle'}</Dialog.Trigger>
     <Dialog.Context>
       component children({ context }) {
-        <span>{'Dialog is '}{@context.open ? 'open' : 'closed'}</span>
+        <span>
+          {'Dialog is '}
+          {@context.open ? 'open' : 'closed'}
+        </span>
       }
     </Dialog.Context>
   </Dialog.Root>
@@ -103,7 +110,8 @@ export component DialogStatus() {
 
 ## Documentation
 
-Visit [ark-ui.com](https://ark-ui.com) for full documentation, examples, and API reference.
+Visit [ark-ui.com](https://ark-ui.com) for full documentation, examples, and API
+reference.
 
 ## Development
 

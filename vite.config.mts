@@ -108,7 +108,11 @@ export default defineConfig(({ mode }) => {
 						const srcFile = dtsFile.replace(/^dist\//, 'src/').replace(/\.d\.ts$/, '.ts');
 						if (!existsSync(srcFile)) continue;
 						const srcContent = readFileSync(srcFile, 'utf8');
-						const rippleImports = [...srcContent.matchAll(/^import\s+type\s+\{[^}]+\}\s+from\s+['"][^'"]*\.ripple['"];?\s*$/gm)];
+						const rippleImports = [
+							...srcContent.matchAll(
+								/^import\s+type\s+\{[^}]+\}\s+from\s+['"][^'"]*\.ripple['"];?\s*$/gm,
+							),
+						];
 						if (rippleImports.length === 0) continue;
 						const dtsContent = readFileSync(dtsFile, 'utf8');
 						const missing = rippleImports.filter((m) => !dtsContent.includes(m[0]));

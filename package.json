@@ -177,5 +177,6 @@
   },
   "peerDependencies": {
     "ripple": ">=0.2.0"
-  }
+  },
+  "packageManager": "bun@1.2.1"
 }
