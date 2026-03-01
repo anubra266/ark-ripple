@@ -40,7 +40,9 @@ export interface UseSwapReturn {
 
 export function useSwap(props: Tracked<UseSwapProps> = {}) {
 	const [swap, lazyMount, unmountOnExit] = trackSplit(props, [
-		'swap', 'lazyMount', 'unmountOnExit',
+		'swap',
+		'lazyMount',
+		'unmountOnExit',
 	]);
 
 	const presenceProps = {

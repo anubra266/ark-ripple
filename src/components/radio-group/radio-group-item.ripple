@@ -16,7 +16,10 @@ export type RadioGroupItemProps = RadioGroupItemBaseProps;
 
 export component RadioGroupItem(props: RadioGroupItemProps) {
 	const [children, value, disabled, invalid, localProps] = trackSplit(props, [
-		'children', 'value', 'disabled', 'invalid',
+		'children',
+		'value',
+		'disabled',
+		'invalid',
 	]);
 	const radioGroup = useRadioGroupContext();
 

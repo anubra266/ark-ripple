@@ -14,7 +14,9 @@ export type ColorPickerChannelSliderProps = ColorPickerChannelSliderBaseProps;
 
 export component ColorPickerChannelSlider(props: ColorPickerChannelSliderProps) {
 	const [children, channel, orientation, localProps] = trackSplit(props, [
-		'children', 'channel', 'orientation',
+		'children',
+		'channel',
+		'orientation',
 	]);
 
 	const colorPicker = useColorPickerContext();

@@ -16,7 +16,9 @@ export type AccordionItemProps = AccordionItemBaseProps;
 
 export component AccordionItem(props: AccordionItemProps) {
 	const [children, value, disabled, localProps] = trackSplit(props, [
-		'children', 'value', 'disabled',
+		'children',
+		'value',
+		'disabled',
 	]);
 
 	const accordion = useAccordionContext();

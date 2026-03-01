@@ -11,9 +11,9 @@ import pkg from './package.json';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ mode }) => {
-	const env = loadEnv(mode, process.cwd(), '')
+	const env = loadEnv(mode, process.cwd(), '');
 
-	return ({
+	return {
 		logLevel: 'warn',
 		plugins: [
 			{
@@ -106,5 +106,5 @@ export default defineConfig(({ mode }) => {
 				}),
 			},
 		},
-	})
+	};
 });

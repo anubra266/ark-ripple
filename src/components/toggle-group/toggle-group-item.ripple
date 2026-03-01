@@ -13,7 +13,9 @@ export type ToggleGroupItemProps = ToggleGroupItemBaseProps;
 
 export component ToggleGroupItem(props: ToggleGroupItemProps) {
 	const [value, disabled, children, localProps] = trackSplit(props, [
-		'value', 'disabled', 'children',
+		'value',
+		'disabled',
+		'children',
 	]);
 	const toggleGroup = useToggleGroupContext();
 

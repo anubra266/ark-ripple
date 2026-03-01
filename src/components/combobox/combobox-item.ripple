@@ -14,7 +14,10 @@ export type ComboboxItemProps = ComboboxItemBaseProps;
 
 export component ComboboxItem(props: ComboboxItemProps) {
 	const [item, persistFocus, disabled, children, rest] = trackSplit(props, [
-		'item', 'persistFocus', 'disabled', 'children',
+		'item',
+		'persistFocus',
+		'disabled',
+		'children',
 	]);
 	const combobox = useComboboxContext();
 

@@ -12,7 +12,9 @@ export type DatePickerWeekNumberCellProps = DatePickerWeekNumberCellBaseProps;
 
 export component DatePickerWeekNumberCell(props: DatePickerWeekNumberCellProps) {
 	const [children, weekIndex, week, localProps] = trackSplit(props, [
-		'children', 'weekIndex', 'week',
+		'children',
+		'weekIndex',
+		'week',
 	]);
 	const datePicker = useDatePickerContext();
 

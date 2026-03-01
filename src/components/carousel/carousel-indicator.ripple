@@ -11,7 +11,9 @@ export type CarouselIndicatorProps = CarouselIndicatorBaseProps;
 
 export component CarouselIndicator(props: CarouselIndicatorProps) {
 	const [index, readOnly, children, localProps] = trackSplit(props, [
-		'index', 'readOnly', 'children',
+		'index',
+		'readOnly',
+		'children',
 	]);
 	const carousel = useCarouselContext();
 

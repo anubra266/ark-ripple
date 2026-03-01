@@ -98,7 +98,9 @@ export interface UseListCollectionReturn<T> {
 
 export function useListCollection<T>(props: UseListCollectionProps<T>): () => UseListCollectionReturn<T> {
 	const [initialItems, filterProp, limitProp, collectionOptions] = trackSplit(props, [
-		'initialItems', 'filter', 'limit',
+		'initialItems',
+		'filter',
+		'limit',
 	]);
 	const localProps = track(
 		() => ({

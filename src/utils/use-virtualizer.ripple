@@ -12,7 +12,6 @@ import {
 	type VirtualizerOptions,
 } from '@tanstack/virtual-core';
 
-
 type Defaults<TScrollElement extends Element | Window, TItemElement extends Element> = Partial<VirtualizerOptions<TScrollElement, TItemElement>>;
 
 function createVirtualizerBase<TScrollElement extends Element | Window, TItemElement extends Element>(

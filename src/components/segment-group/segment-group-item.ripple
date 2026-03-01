@@ -16,7 +16,10 @@ export type SegmentGroupItemProps = SegmentGroupItemBaseProps;
 
 export component SegmentGroupItem(props: SegmentGroupItemProps) {
 	const [children, value, disabled, invalid, localProps] = trackSplit(props, [
-		'children', 'value', 'disabled', 'invalid',
+		'children',
+		'value',
+		'disabled',
+		'invalid',
 	]);
 	const segmentGroup = useSegmentGroupContext();
 

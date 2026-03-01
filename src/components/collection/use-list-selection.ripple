@@ -104,7 +104,10 @@ export interface UseListSelectionReturn {
 export function useListSelection<T extends CollectionItem>(props: UseListSelectionProps<T>): () => UseListSelectionReturn {
 	const [collectionProp, selectionModeProp, deselectableProp, initialSelectedValuesProp, resetOnCollectionChangeProp] =
 		trackSplit(props, [
-			'collection', 'selectionMode', 'deselectable', 'initialSelectedValues',
+			'collection',
+			'selectionMode',
+			'deselectable',
+			'initialSelectedValues',
 			'resetOnCollectionChange',
 		]);
 

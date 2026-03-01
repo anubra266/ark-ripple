@@ -13,7 +13,9 @@ export type ColorPickerSwatchTriggerProps = ColorPickerSwatchTriggerBaseProps;
 
 export component ColorPickerSwatchTrigger(props: ColorPickerSwatchTriggerProps) {
 	const [children, value, disabled, localProps] = trackSplit(props, [
-		'children', 'value', 'disabled',
+		'children',
+		'value',
+		'disabled',
 	]);
 	const colorPicker = useColorPickerContext();
 

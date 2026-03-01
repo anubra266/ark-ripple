@@ -20,7 +20,11 @@ export type DownloadTriggerProps = DownloadTriggerBaseProps;
 
 export component DownloadTrigger(props: DownloadTriggerProps) {
 	const [children, fileName, data, mimeType, onClick, restProps] = trackSplit(props, [
-		'children', 'fileName', 'data', 'mimeType', 'onClick',
+		'children',
+		'fileName',
+		'data',
+		'mimeType',
+		'onClick',
 	]);
 
 	const env = useEnvironmentContext();
