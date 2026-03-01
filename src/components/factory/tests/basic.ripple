@@ -10,7 +10,7 @@ export component ArkDiv(props: { id?: string; class?: string; [key: string]: any
 
 export component ArkButton(props: { type?: string; children?: any; [key: string]: any }) {
 	<ark.button type={props.type}>
-		<@props.children />
+		<props.children />
 	</ark.button>
 }
 
