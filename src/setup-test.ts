@@ -19,10 +19,10 @@ if (!global.PointerEvent) {
 
 global.document.execCommand = () => true;
 global.URL.createObjectURL = () => 'https://i.pravatar.cc/300';
-global.URL.revokeObjectURL = () => { };
+global.URL.revokeObjectURL = () => {};
 
-global.Element.prototype.scrollIntoView = () => { };
-Element.prototype.scrollTo = () => { };
+global.Element.prototype.scrollIntoView = () => {};
+Element.prototype.scrollTo = () => {};
 
 let now = 1000;
 vi.spyOn(globalThis.performance, 'now').mockImplementation(() => now);

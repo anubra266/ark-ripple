@@ -1,6 +1,6 @@
 import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
-import {  ark } from '../';
+import { ark } from '../';
 
 // ── Static rendering ─────────────────────────────────────────────────────────
 

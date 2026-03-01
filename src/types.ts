@@ -1,4 +1,4 @@
-import type { Component } from 'ripple';
+import type { Component, Tracked } from 'ripple';
 
 export type Assign<T, U> = Omit<T, keyof U> & U;
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
@@ -30,5 +30,5 @@ export type PolymorphicProps<E extends ElementType> = {
 };
 
 export type MaybeTracked<T> = {
-	[K in keyof T]?: T[K] | Tracked<T[K]>
-  }
+	[K in keyof T]?: T[K] | Tracked<T[K]>;
+};
