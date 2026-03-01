@@ -10,6 +10,7 @@ import pkg from './package.json';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// @ts-expect-error
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
 
@@ -102,7 +103,7 @@ export default defineConfig(({ mode }) => {
 			alias: {
 				styles: path.resolve(__dirname, './ark/.storybook/modules'),
 				...(mode !== 'production' && {
-					'zag-ripple': env.VITE_ZAG_RIPPLE_PATH,
+					'zag-ripple': env.VITE_ZAG_RIPPLE_PATH
 				}),
 			},
 		},

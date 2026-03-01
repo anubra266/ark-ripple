@@ -1,6 +1,5 @@
-import { mergeProps } from 'zag-ripple';
-import { trackSplit, track, effect } from 'ripple';
-import type { Component } from 'solid-js';
+import { mergeProps } from './merge-props';
+import { trackSplit } from 'ripple';
 import type { PolymorphicProps } from '../../types';
 
 export interface ArkProps<E extends ElementType> extends PolymorphicProps<E> {

@@ -4,7 +4,7 @@ import { splitPresenceProps } from './split-presence-props.ripple';
 import { usePresence } from './use-presence.ripple';
 import { ark } from '../factory';
 
-export interface PresenceBaseProps {
+export interface PresenceBaseProps { 
 	children?: any;
 	[key: string]: any;
 }

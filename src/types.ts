@@ -4,6 +4,10 @@ export type Assign<T, U> = Omit<T, keyof U> & U;
 export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 export type Accessor<T> = () => T;
 
+export type JsxElements = {
+	[E in keyof HTMLElementTagNameMap]: (props: Record<string, any> & PolymorphicProps<E>) => any;
+};
+
 export type ElementType = keyof JSX.IntrinsicElements;
 
 export type HTMLProps<E extends ElementType> = JSX.IntrinsicElements[E];
