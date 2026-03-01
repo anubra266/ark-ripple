@@ -15,11 +15,11 @@
   <a href="https://bundlephobia.com/package/ark-ripple">
     <img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/ark-ripple?style=for-the-badge&color=6366f1&label=bundle">
   </a>
-  <a href="https://github.com/chakra-ui/ark/blob/main/LICENSE">
+  <a href="https://github.com/anubra66/ark-ripple/blob/main/LICENSE">
     <img alt="license" src="https://img.shields.io/npm/l/ark-ripple?style=for-the-badge&color=0ea5e9">
   </a>
-  <a href="https://github.com/chakra-ui/ark">
-    <img alt="GitHub stars" src="https://img.shields.io/github/stars/chakra-ui/ark?style=for-the-badge&color=f59e0b">
+  <a href="https://github.com/anubra266/ark-ripple">
+    <img alt="GitHub stars" src="https://img.shields.io/github/stars/anubra266/ark-ripple?style=for-the-badge&color=f59e0b">
   </a>
 </p>
 
