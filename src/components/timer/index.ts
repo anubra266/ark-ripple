@@ -11,7 +11,7 @@ export {
   export { TimerSeparator, type TimerSeparatorBaseProps, type TimerSeparatorProps } from './timer-separator.ripple'
   export { timerAnatomy } from './timer.anatomy'
   export { useTimer, type UseTimerProps, type UseTimerReturn } from './use-timer.ripple'
-  export { useTimerContext, type UseTimerContext } from './use-timer-context.ripple'
+  export { useTimerContext, type UseTimerContext } from './use-timer-context'
   
   export * as Timer from './timer'
   
