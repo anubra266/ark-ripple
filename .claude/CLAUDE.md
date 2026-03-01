@@ -207,16 +207,27 @@ For components where other frameworks have too few test cases, write additional 
 
 ### Component props type structure
 
-Each component defines two interfaces: a `BaseProps` that extends `PolymorphicProps<tag>`, and the actual `Props` that extends both `HTMLProps<tag>` and the base. Component-specific props go on `BaseProps`; `HTMLProps` provides standard HTML attributes and `PolymorphicProps` provides `children` and `asChild`.
+Each component defines two interfaces and wraps the final props with `MaybeTracked`:
+
+1. `BaseProps` extends `PolymorphicProps<tag>` — component-specific props + `children`/`asChild`
+2. `Props` extends `HTMLProps<tag>` + `BaseProps` — adds standard HTML attributes
+3. The component parameter uses `MaybeTracked<Props>` — allows props to be tracked or plain
+
+All three types (`HTMLProps`, `PolymorphicProps`, `MaybeTracked`) are imported from `../../types`.
 
 ```typescript
-import type { HTMLProps, PolymorphicProps } from '../factory'
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types'
 
-// BaseProps — component-specific props + PolymorphicProps (includes children)
+// 1. BaseProps — component-specific props + PolymorphicProps (includes children)
 export interface FileUploadItemPreviewImageBaseProps extends PolymorphicProps<'img'> {}
 
-// Props — combines HTML attributes with base props
+// 2. Props — combines HTML attributes with base props
 export interface FileUploadItemPreviewImageProps extends HTMLProps<'img'>, FileUploadItemPreviewImageBaseProps {}
+
+// 3. Component uses MaybeTracked<Props>
+export component FileUploadItemPreviewImage(props: MaybeTracked<FileUploadItemPreviewImageProps>) {
+  // ...
+}
 
 // With component-specific props:
 export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> {
@@ -224,6 +235,10 @@ export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> 
   type?: string | undefined
 }
 export interface FileUploadItemPreviewProps extends HTMLProps<'div'>, FileUploadItemPreviewBaseProps {}
+
+export component FileUploadItemPreview(props: MaybeTracked<FileUploadItemPreviewProps>) {
+  // ...
+}
 ```
 
 ### Barrel exports and anatomy
