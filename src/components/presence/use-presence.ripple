@@ -1,7 +1,7 @@
 import * as presence from '@zag-js/presence';
 import { useMachine, normalizeProps } from 'zag-ripple';
 import { track, effect } from 'ripple';
-import type { Optional } from '../../types';
+import type { Optional, MaybeTracked } from '../../types';
 import { splitRenderStrategyProps } from '../../utils/render-strategy.ripple';
 
 export interface UsePresenceProps extends Optional<presence.Props, 'present'>, RenderStrategyProps {
@@ -19,7 +19,7 @@ export interface UsePresenceProps extends Optional<presence.Props, 'present'> {
 
 export type UsePresenceReturn = ReturnType<typeof usePresence>;
 
-export function usePresence(props: UsePresenceProps = {}) {
+export function usePresence(props: MaybeTracked<UsePresenceProps> = {}) {
 	const [renderStrategyProps, machineProps] = splitRenderStrategyProps(@props);
 
 	const service = useMachine(presence.machine, machineProps);
@@ -48,9 +48,9 @@ export function usePresence(props: UsePresenceProps = {}) {
 			present: @api.present,
 			setNode,
 			getPresenceProps: () => ({
-				'data-state': @api.skip && @machineProps.skipAnimationOnMount
+				'data-state': @api.skip && @machineProps.@skipAnimationOnMount
 					? undefined
-					: @machineProps.present
+					: @machineProps.@present
 						? 'open'
 						: 'closed',
 				hidden: !@api.present,

@@ -1,4 +1,4 @@
-import { Context } from 'ripple';
+import { Context, type Tracked } from 'ripple';
 import { createSplitProps } from './create-split-props.ripple';
 
 export interface RenderStrategyProps {
@@ -17,4 +17,4 @@ export const RenderStrategyContext = new Context<RenderStrategyProps>({
 	unmountOnExit: false,
 });
 
-export const useRenderStrategyContext = (): RenderStrategyProps => RenderStrategyContext.get();
+export const useRenderStrategyContext = (): Tracked<RenderStrategyProps> => RenderStrategyContext.get();

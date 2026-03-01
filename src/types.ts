@@ -28,3 +28,7 @@ export type PolymorphicProps<E extends ElementType> = {
 	 */
 	element?: E;
 };
+
+export type MaybeTracked<T> = {
+	[K in keyof T]?: T[K] | Tracked<T[K]>
+  }

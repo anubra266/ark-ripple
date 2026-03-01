@@ -1,5 +1,5 @@
 import { mergeProps } from './merge-props';
-import { trackSplit } from 'ripple';
+import { track, trackSplit } from 'ripple';
 import type { PolymorphicProps } from '../../types';
 
 export interface ArkProps<E extends ElementType> extends PolymorphicProps<E> {
@@ -9,12 +9,20 @@ export interface ArkProps<E extends ElementType> extends PolymorphicProps<E> {
 export component Ark<E extends ElementType>(props: ArkProps<E>) {
 	const [element, asChild, children] = trackSplit(props, ['element', 'asChild', 'children']);
 
-	const propsFn = (userProps?: any) => mergeProps(props, userProps ?? {});
+	const renderProps = track(
+		() => ({
+			...props,
+			asChild: undefined,
+			element: undefined,
+		}),
+	);
+
+	const propsFn = (userProps?: any) => mergeProps(@renderProps, userProps ?? {});
 
 	if (@asChild) {
 		<@asChild {propsFn} />
 	} else {
-		<@element {...props}>
+		<@element {...@renderProps} element={undefined}>
 			<@children />
 		</@element>
 	}
