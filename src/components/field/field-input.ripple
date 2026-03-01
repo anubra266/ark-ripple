@@ -1,0 +1,18 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFieldContext } from './use-field-context';
+import { ark } from '../factory';
+
+export interface FieldInputBaseProps {
+	[key: string]: any;
+}
+export type FieldInputProps = FieldInputBaseProps;
+
+export component FieldInput(props: FieldInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const field = useFieldContext();
+
+	let mergedProps = track(() => mergeProps(@field?.getInputProps(), @localProps));
+
+	<ark.input {...@mergedProps} />
+}

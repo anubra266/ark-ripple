@@ -1,0 +1,16 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseScrollAreaProps } from './use-scroll-area.ripple';
+
+const splitProps = createSplitProps<UseScrollAreaProps>();
+
+export function splitScrollAreaProps<T extends UseScrollAreaProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'id',
+		'ids',
+		'dir',
+		'onScrollPositionChange',
+		'scrollbarSize',
+		'scrollHideDelay',
+		'type',
+	]);
+}

@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useToggleContext, type UseToggleContext } from './use-toggle-context';
+
+export interface ToggleContextProps {
+	children: (context: UseToggleContext) => any;
+}
+
+export component ToggleContext(props: ToggleContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useToggleContext();
+
+	<@children {context} />
+}

@@ -1,0 +1,22 @@
+import { Clipboard } from 'ark-ripple/clipboard';
+import { Check, Copy } from 'lucide-ripple';
+import styles from 'styles/clipboard.module.css';
+import button from 'styles/button.module.css';
+
+export component Context() {
+	<Clipboard.Root class={styles.Root} value="https://ark-ui.com">
+		<Clipboard.Label class={styles.Label}>{'Copy this link'}</Clipboard.Label>
+		<Clipboard.Context>
+			component children({ context }) {
+				<button class={button.Root} onClick={() => @context.copy()}>
+					if (@context.copied) {
+						<Check />
+					} else {
+						<Copy />
+					}
+					{@context.copied ? 'Copied!' : 'Copy'}
+				</button>
+			}
+		</Clipboard.Context>
+	</Clipboard.Root>
+}

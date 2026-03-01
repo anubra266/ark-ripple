@@ -1,0 +1,25 @@
+import { SegmentGroup, useSegmentGroup } from 'ark-ripple/segment-group';
+import styles from 'styles/segment-group.module.css';
+
+const frameworks = ['React', 'Solid', 'Vue'];
+
+export component RootProvider() {
+	const segmentGroup = useSegmentGroup({ defaultValue: 'React' });
+
+	<div class="stack">
+		<SegmentGroup.RootProvider class={styles.Root} value={segmentGroup}>
+			<SegmentGroup.Indicator class={styles.Indicator} />
+			for (const framework of frameworks; key framework) {
+				<SegmentGroup.Item class={styles.Item} value={framework}>
+					<SegmentGroup.ItemText class={styles.ItemText}>{framework}</SegmentGroup.ItemText>
+					<SegmentGroup.ItemControl class={styles.ItemControl} />
+					<SegmentGroup.ItemHiddenInput />
+				</SegmentGroup.Item>
+			}
+		</SegmentGroup.RootProvider>
+		<output>
+			{'selected: '}
+			{@segmentGroup.value}
+		</output>
+	</div>
+}

@@ -1,0 +1,44 @@
+import { type FocusTrapOptions, trapFocus } from '@zag-js/focus-trap';
+import { track, trackSplit, effect } from 'ripple';
+import { mergeProps } from 'zag-ripple';
+import { splitFocusTrapProps } from './split-focus-trap-props.ripple';
+import { ark } from '../factory';
+
+export interface TrapOptions extends Pick<
+	FocusTrapOptions,
+	'onActivate' | 'onDeactivate' | 'initialFocus' | 'fallbackFocus' | 'returnFocusOnDeactivate' | 'setReturnFocus'
+> {
+	/**
+ * Whether the focus trap is disabled.
+ */
+	disabled?: boolean;
+}
+
+export interface FocusTrapBaseProps extends TrapOptions {
+	children?: any;
+	[key: string]: any;
+}
+
+export type FocusTrapProps = FocusTrapBaseProps;
+
+export component FocusTrap(props: FocusTrapProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [trapProps, localProps] = splitFocusTrapProps(@rest);
+
+	let elem = track<HTMLDivElement | null>(null);
+
+	effect(() => {
+		const node = @elem;
+		if (!node || @trapProps.disabled) return;
+		return trapFocus(node, mergeProps(@trapProps));
+	});
+
+	<ark.div
+		{...@localProps}
+		{ref (el: HTMLDivElement | null) => {
+			@elem = el;
+		}}
+	>
+		<@children />
+	</ark.div>
+}

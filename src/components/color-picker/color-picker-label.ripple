@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerLabelProps = ColorPickerLabelBaseProps;
+
+export component ColorPickerLabel(props: ColorPickerLabelProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getLabelProps(), @localProps));
+
+	<ark.label {...@mergedProps}>
+		<@children />
+	</ark.label>
+}

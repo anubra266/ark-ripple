@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { useColorPickerAreaPropsContext } from './use-color-picker-area-props-context';
+import { ark } from '../factory';
+
+export interface ColorPickerAreaBackgroundBaseProps {
+	[key: string]: any;
+}
+export type ColorPickerAreaBackgroundProps = ColorPickerAreaBackgroundBaseProps;
+
+export component ColorPickerAreaBackground(props: ColorPickerAreaBackgroundProps) {
+	const colorPicker = useColorPickerContext();
+	const areaProps = useColorPickerAreaPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@colorPicker.getAreaBackgroundProps(@areaProps), @props),
+	);
+
+	<ark.div {...@mergedProps} />
+}

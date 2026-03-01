@@ -1,0 +1,21 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseSignaturePadProps } from './use-signature-pad.ripple';
+
+const splitProps = createSplitProps<UseSignaturePadProps>();
+
+export function splitSignaturePadProps<T extends UseSignaturePadProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'id',
+		'ids',
+		'defaultPaths',
+		'drawing',
+		'disabled',
+		'readOnly',
+		'name',
+		'onDraw',
+		'onDrawEnd',
+		'paths',
+		'required',
+		'translations',
+	]);
+}

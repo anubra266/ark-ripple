@@ -1,5 +1,5 @@
 import { mount } from 'ripple';
-import type { RenderContext } from '@storybook/html';
+import type { RenderContext } from '@storybook/html-vite';
 
 export type RippleFramework = {
 	component: any;

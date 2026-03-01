@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDialogContext } from './use-dialog-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+
+export interface DialogPositionerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DialogPositionerProps = DialogPositionerBaseProps;
+
+export component DialogPositioner(props: DialogPositionerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const dialog = useDialogContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(() => mergeProps(@dialog.getPositionerProps(), @localProps));
+
+	if (!@presence.unmounted) {
+		<ark.div {...@mergedProps}>
+			<@children />
+		</ark.div>
+	}
+}

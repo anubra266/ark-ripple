@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSegmentGroupContext } from './use-segment-group-context';
+import { ark } from '../factory';
+
+export interface SegmentGroupLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SegmentGroupLabelProps = SegmentGroupLabelBaseProps;
+
+export component SegmentGroupLabel(props: SegmentGroupLabelProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const segmentGroup = useSegmentGroupContext();
+
+	let mergedProps = track(() => mergeProps(@segmentGroup.getLabelProps(), @localProps));
+
+	<ark.label {...@mergedProps}>
+		<@children />
+	</ark.label>
+}

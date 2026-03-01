@@ -1,0 +1,16 @@
+import { trackSplit } from 'ripple';
+import {
+	useRatingGroupItemContext,
+	type UseRatingGroupItemContext,
+} from './use-rating-group-item-context';
+
+export interface RatingGroupItemContextProps {
+	children: (context: UseRatingGroupItemContext) => any;
+}
+
+export component RatingGroupItemContext(props: RatingGroupItemContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useRatingGroupItemContext();
+
+	<@children {context} />
+}

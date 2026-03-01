@@ -1,0 +1,25 @@
+import { Swap } from 'ark-ripple/swap';
+import { Volume2, VolumeX } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/swap.module.css';
+
+export component Scale() {
+	let swapped = track(false);
+
+	<button
+		type="button"
+		class={styles.Button}
+		onClick={() => {
+			@swapped = !@swapped;
+		}}
+	>
+		<Swap.Root swap={@swapped}>
+			<Swap.Indicator type="on" class={styles.ScaleIndicator}>
+				<Volume2 />
+			</Swap.Indicator>
+			<Swap.Indicator type="off" class={styles.ScaleIndicator}>
+				<VolumeX />
+			</Swap.Indicator>
+		</Swap.Root>
+	</button>
+}

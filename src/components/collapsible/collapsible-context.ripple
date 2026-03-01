@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useCollapsibleContext, type UseCollapsibleContext } from './use-collapsible-context';
+
+export interface CollapsibleContextProps {
+	children: (context: UseCollapsibleContext) => any;
+}
+
+export component CollapsibleContext(props: CollapsibleContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useCollapsibleContext();
+
+	<@children {context} />
+}

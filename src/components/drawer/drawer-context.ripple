@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useDrawerContext, type UseDrawerContext } from './use-drawer-context';
+
+export interface DrawerContextProps {
+	children: (context: UseDrawerContext) => any;
+}
+
+export component DrawerContext(props: DrawerContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useDrawerContext();
+
+	<@children {context} />
+}

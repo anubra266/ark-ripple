@@ -1,0 +1,27 @@
+import { Highlight } from 'ark-ripple/highlight';
+import { track } from 'ripple';
+import field from 'styles/field.module.css';
+import styles from 'styles/highlight.module.css';
+
+export component DynamicQuery() {
+	const query = track('component');
+
+	<div class={styles.Root}>
+		<input
+			class={field.Input}
+			type="text"
+			placeholder="Search text..."
+			value={@query}
+			onInput={(e) => {
+				@query = (e.target as HTMLInputElement).value;
+			}}
+		/>
+		<p class={styles.Text}>
+			<Highlight
+				class={styles.Mark}
+				{@query}
+				text="With Ark UI, you can build accessible, custom components. Each component is fully typed and works seamlessly with React, Solid, Svelte, and Vue."
+			/>
+		</p>
+	</div>
+}

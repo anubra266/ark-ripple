@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useStepsContext } from './use-steps-context';
+import { useStepsItemPropsContext } from './use-steps-item-props-context';
+import { ark } from '../factory';
+
+export interface StepsTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type StepsTriggerProps = StepsTriggerBaseProps;
+
+export component StepsTrigger(props: StepsTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const stepsApi = useStepsContext();
+	const itemProps = useStepsItemPropsContext();
+
+	let mergedProps = track(() => mergeProps(@stepsApi.getTriggerProps(@itemProps), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

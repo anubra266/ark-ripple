@@ -1,0 +1,30 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { useStepsContext } from './use-steps-context';
+import { StepsItemApiContext } from './use-steps-item-context';
+import { StepsItemPropsContext } from './use-steps-item-props-context';
+import type { ItemProps } from '@zag-js/steps';
+import { ark } from '../factory';
+
+export interface StepsItemBaseProps extends ItemProps {
+	children?: any;
+	[key: string]: any;
+}
+export type StepsItemProps = StepsItemBaseProps;
+
+export component StepsItem(props: StepsItemProps) {
+	const [children, index, localProps] = trackSplit(props, ['children', 'index']);
+	const stepsApi = useStepsContext();
+
+	const stepsItemProps = track(() => ({ index: @index }));
+	const itemState = track(() => @stepsApi.getItemState(@stepsItemProps));
+	let mergedProps = track(() => mergeProps(@stepsApi.getItemProps(@stepsItemProps), @localProps));
+
+	StepsItemPropsContext.set(stepsItemProps);
+	StepsItemApiContext.set(itemState);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

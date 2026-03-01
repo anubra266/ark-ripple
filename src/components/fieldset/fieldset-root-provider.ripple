@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { track, trackSplit } from 'ripple';
+import { FieldsetApiContext } from './use-fieldset-context';
+import type { UseFieldsetReturn } from './use-fieldset.ripple';
+import { ark } from '../factory';
+
+export interface FieldsetRootProviderBaseProps {
+	value: UseFieldsetReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type FieldsetRootProviderProps = FieldsetRootProviderBaseProps;
+
+export component FieldsetRootProvider(props: FieldsetRootProviderProps) {
+	const [fieldset, children, rest] = trackSplit(props, ['value', 'children']);
+
+	FieldsetApiContext.set(fieldset);
+
+	let mergedProps = track(() => mergeProps(@fieldset.getRootProps(), @rest));
+
+	<ark.fieldset {...@mergedProps}>
+		<@children />
+	</ark.fieldset>
+}

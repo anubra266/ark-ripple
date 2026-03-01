@@ -1,0 +1,53 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { DateValue } from '@zag-js/date-picker';
+import { useDatePickerContext } from './use-date-picker-context';
+import { useDatePickerViewPropsContext } from './use-date-picker-view-props-context';
+import {
+	DatePickerTableCellPropsContext,
+	type DatePickerTableCellPropsContext as CellPropsContext,
+} from './use-date-picker-table-cell-props-context';
+import { ark } from '../factory';
+
+export interface DatePickerTableCellBaseProps extends CellPropsContext {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerTableCellProps = DatePickerTableCellBaseProps;
+
+export component DatePickerTableCell(props: DatePickerTableCellProps) {
+	const [children, value, disabled, visibleRange, columns, localProps] = trackSplit(props, [
+		'children',
+		'value',
+		'disabled',
+		'visibleRange',
+		'columns',
+	]);
+	const datePicker = useDatePickerContext();
+	const viewProps = useDatePickerViewPropsContext();
+
+	const cellProps = track(
+		() => ({
+			value: @value as DateValue,
+			disabled: @disabled,
+			visibleRange: @visibleRange,
+			columns: @columns,
+		}),
+	);
+
+	const tableCellProps = track(() => {
+		const view = @viewProps.view;
+		const cp = @cellProps;
+		if (view === 'day') return @datePicker.getDayTableCellProps(cp as any);
+		if (view === 'month') return @datePicker.getMonthTableCellProps(cp as any);
+		return @datePicker.getYearTableCellProps(cp as any);
+	});
+
+	let mergedProps = track(() => mergeProps(@tableCellProps, @localProps));
+
+	DatePickerTableCellPropsContext.set(cellProps);
+
+	<ark.td {...@mergedProps}>
+		<@children />
+	</ark.td>
+}

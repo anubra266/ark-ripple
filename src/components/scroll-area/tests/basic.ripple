@@ -1,0 +1,18 @@
+import { ScrollArea, type ScrollAreaRootProps } from 'ark-ripple/scroll-area';
+
+export component ComponentUnderTest(props: ScrollAreaRootProps) {
+	<ScrollArea.Root {...props}>
+		<ScrollArea.Viewport>
+			<ScrollArea.Content>
+				<p>{'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'}</p>
+			</ScrollArea.Content>
+		</ScrollArea.Viewport>
+		<ScrollArea.Scrollbar orientation="vertical">
+			<ScrollArea.Thumb />
+		</ScrollArea.Scrollbar>
+		<ScrollArea.Scrollbar orientation="horizontal">
+			<ScrollArea.Thumb />
+		</ScrollArea.Scrollbar>
+		<ScrollArea.Corner />
+	</ScrollArea.Root>
+}

@@ -1,0 +1,30 @@
+import * as angleSlider from '@zag-js/angle-slider';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import type { Optional } from '../../types';
+
+export interface UseAngleSliderProps extends Optional<
+	Omit<angleSlider.Props, 'dir' | 'getRootNode'>,
+	'id'
+> {}
+
+export type UseAngleSliderReturn = ReturnType<typeof useAngleSlider>;
+
+export function useAngleSlider(props: UseAngleSliderProps = {}) {
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+
+	const machineProps = track(
+		() => ({
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(angleSlider.machine, machineProps);
+
+	return track(() => angleSlider.connect(service, normalizeProps));
+}

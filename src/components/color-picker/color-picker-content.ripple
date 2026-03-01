@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { usePresenceContext } from '../presence';
+import { ark } from '../factory';
+
+export interface ColorPickerContentBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerContentProps = ColorPickerContentBaseProps;
+
+export component ColorPickerContent(props: ColorPickerContentProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const colorPicker = useColorPickerContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(
+		() => mergeProps(@colorPicker.getContentProps(), @presence.getPresenceProps(), @localProps),
+	);
+
+	if (!@presence.unmounted) {
+		<ark.div
+			{...@mergedProps}
+			{ref (el: HTMLDivElement) => {
+				@presence.setNode(el);
+			}}
+		>
+			<@children />
+		</ark.div>
+	}
+}

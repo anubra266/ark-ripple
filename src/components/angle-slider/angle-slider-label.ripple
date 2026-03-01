@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AngleSliderLabelProps = AngleSliderLabelBaseProps;
+
+export component AngleSliderLabel(props: AngleSliderLabelProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(() => mergeProps(@angleSlider.getLabelProps(), @rest));
+
+	<ark.label {...@mergedProps}>
+		<@children />
+	</ark.label>
+}

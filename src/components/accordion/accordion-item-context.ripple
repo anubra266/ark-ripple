@@ -1,0 +1,16 @@
+import { trackSplit } from 'ripple';
+import {
+	useAccordionItemContext,
+	type UseAccordionItemContext,
+} from './use-accordion-item-context';
+
+export interface AccordionItemContextProps {
+	children: (context: UseAccordionItemContext) => any;
+}
+
+export component AccordionItemContext(props: AccordionItemContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useAccordionItemContext();
+
+	<@children {context} />
+}

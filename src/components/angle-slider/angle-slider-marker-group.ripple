@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderMarkerGroupBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AngleSliderMarkerGroupProps = AngleSliderMarkerGroupBaseProps;
+
+export component AngleSliderMarkerGroup(props: AngleSliderMarkerGroupProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(() => mergeProps(@angleSlider.getMarkerGroupProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

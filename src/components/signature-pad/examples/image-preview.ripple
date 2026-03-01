@@ -1,0 +1,31 @@
+import { SignaturePad } from 'ark-ripple/signature-pad';
+import { track } from 'ripple';
+import styles from 'styles/signature-pad.module.css';
+
+export component ImagePreview() {
+	let imageUrl = track('');
+
+	<div class="stack">
+		<SignaturePad.Root
+			class={styles.Root}
+			onDrawEnd={(details) => {
+				details.getDataUrl('image/png').then((url) => {
+					@imageUrl = url;
+				});
+			}}
+		>
+			<SignaturePad.Label class={styles.Label}>{'Sign below'}</SignaturePad.Label>
+			<SignaturePad.Control class={styles.Control}>
+				<SignaturePad.Segment class={styles.Segment} />
+				<SignaturePad.ClearTrigger class={styles.ClearTrigger}>{'↺'}</SignaturePad.ClearTrigger>
+				<SignaturePad.Guide class={styles.Guide} />
+			</SignaturePad.Control>
+		</SignaturePad.Root>
+		<div class="stack">
+			<span>{'Image Preview'}</span>
+			if (@imageUrl) {
+				<img src={@imageUrl} alt="Signature" class={styles.Image} />
+			}
+		</div>
+	</div>
+}

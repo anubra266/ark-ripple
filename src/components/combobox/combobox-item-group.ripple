@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useId } from '../../utils/use-id';
+import { useComboboxContext } from './use-combobox-context';
+import { ComboboxItemGroupPropsContext } from './use-combobox-item-group-props-context';
+import { ark } from '../factory';
+
+export interface ComboboxItemGroupBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ComboboxItemGroupProps = ComboboxItemGroupBaseProps;
+
+export component ComboboxItemGroup(props: ComboboxItemGroupProps) {
+	const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
+	const id = useId();
+	const combobox = useComboboxContext();
+
+	const groupProps = track(() => ({ id: @propId ?? id }));
+	let mergedProps = track(() => mergeProps(@combobox.getItemGroupProps(groupProps), @localProps));
+
+	ComboboxItemGroupPropsContext.set(groupProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

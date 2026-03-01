@@ -1,0 +1,19 @@
+import { Collapsible } from 'ark-ripple/collapsible';
+import { ChevronRight } from 'lucide-ripple';
+import styles from 'styles/collapsible.module.css';
+
+export component InitialOpen() {
+	<Collapsible.Root class={styles.Root} defaultOpen>
+		<Collapsible.Trigger class={styles.Trigger}>
+			{'What is Ark UI?'}
+			<Collapsible.Indicator class={styles.Indicator}>
+				<ChevronRight />
+			</Collapsible.Indicator>
+		</Collapsible.Trigger>
+		<Collapsible.Content class={styles.Content}>
+			<div class={styles.Body}>
+				{'Ark UI is a headless component library that works across React, Solid, Vue, and Svelte frameworks.'}
+			</div>
+		</Collapsible.Content>
+	</Collapsible.Root>
+}

@@ -1,0 +1,24 @@
+import { Dialog } from 'ark-ripple/dialog';
+import { Portal } from 'ark-ripple/portal';
+
+export component ComponentUnderTest(props: {
+	open?: boolean;
+	lazyMount?: boolean;
+	unmountOnExit?: boolean;
+	onOpenChange?: (details: { open: boolean }) => void;
+	[key: string]: any;
+}) {
+	<Dialog.Root {...props}>
+		<Dialog.Trigger>{'Open Dialog'}</Dialog.Trigger>
+		<Portal>
+			<Dialog.Backdrop />
+			<Dialog.Positioner data-testid="positioner">
+				<Dialog.Content>
+					<Dialog.Title>{'Dialog Title'}</Dialog.Title>
+					<Dialog.Description>{'Dialog Description'}</Dialog.Description>
+					<Dialog.CloseTrigger>{'Close'}</Dialog.CloseTrigger>
+				</Dialog.Content>
+			</Dialog.Positioner>
+		</Portal>
+	</Dialog.Root>
+}

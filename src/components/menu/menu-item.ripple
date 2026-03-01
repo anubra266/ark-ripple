@@ -1,0 +1,48 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track, effect } from 'ripple';
+import type { ItemProps } from '@zag-js/menu';
+import { useMenuContext } from './use-menu-context';
+import { MenuItemContext } from './use-menu-item-context';
+import { MenuItemPropsContext } from './use-menu-item-props-context';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { ark } from '../factory';
+
+interface ItemBaseProps extends ItemProps {
+	/**
+ * The function to call when the item is selected
+ */
+	onSelect?: VoidFunction;
+}
+
+export interface MenuItemBaseProps extends ItemBaseProps {
+	children?: any;
+}
+export type MenuItemProps = MenuItemBaseProps;
+
+export component MenuItem(props: MenuItemProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [itemProps, localProps] = createSplitProps<ItemBaseProps>()(@rest, [
+		'value',
+		'disabled',
+		'valueText',
+		'closeOnSelect',
+		'onSelect',
+	]);
+
+	const menu = useMenuContext();
+
+	let mergedProps = track(() => mergeProps(@menu.getItemProps(@itemProps), @localProps));
+	const itemState = track(() => @menu.getItemState(@itemProps));
+
+	effect(() => {
+		const cleanup = @menu.addItemListener({ id: @itemState.id, onSelect: @itemProps.onSelect });
+		return cleanup;
+	});
+
+	MenuItemPropsContext.set(itemProps);
+	MenuItemContext.set(itemState);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

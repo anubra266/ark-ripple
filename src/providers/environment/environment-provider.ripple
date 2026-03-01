@@ -1,32 +1,39 @@
-import { getDocument, getWindow } from '@zag-js/dom-query'
-import { trackSplit, track } from 'ripple'
-import { runIfFn } from '../../utils/run-if-fn'
-import { EnvironmentContext, type RootNode } from './use-environment-context'
+import { getDocument, getWindow } from '@zag-js/dom-query';
+import { trackSplit, track } from 'ripple';
+import { runIfFn } from '../../utils/run-if-fn';
+import { EnvironmentContext, type RootNode } from './use-environment-context';
 
 export interface EnvironmentProviderProps {
-  children?: any
-  value?: RootNode | (() => RootNode)
+	children?: any;
+	value?: RootNode | (() => RootNode);
 }
 
 export component EnvironmentProvider(props: EnvironmentProviderProps) {
-  const [children, value] = trackSplit(props, ['children','value'])
-  let spanRef = track<HTMLSpanElement | null>(null)
+	const [children, value] = trackSplit(props, ['children', 'value']);
+	let spanRef = track<HTMLSpanElement | null>(null);
 
-  const getRootNode =  () => runIfFn(@value) ?? @spanRef?.getRootNode() ?? document
+	const getRootNode = () => runIfFn(@value) ?? @spanRef?.getRootNode() ?? document;
 
-  const environment = track(() => ({
-    getRootNode,
-    getDocument: () => getDocument(getRootNode()),
-    getWindow: () => getWindow(getRootNode()),
-  }))
+	const environment = track(
+		() => ({
+			getRootNode,
+			getDocument: () => getDocument(getRootNode()),
+			getWindow: () => getWindow(getRootNode()),
+		}),
+	);
 
-  EnvironmentContext.set(environment)
+	EnvironmentContext.set(environment);
 
-  <@children />
-  if (!@value) {
-    <span hidden {ref (el: HTMLSpanElement) => {
-      @spanRef = el
-      return () => { @spanRef = null }
-    }} />
-  }
+	<@children />
+	if (!@value) {
+		<span
+			hidden
+			{ref (el: HTMLSpanElement) => {
+				@spanRef = el;
+				return () => {
+					@spanRef = null;
+				};
+			}}
+		/>
+	}
 }

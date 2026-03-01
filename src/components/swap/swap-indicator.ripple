@@ -1,0 +1,34 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSwapContext } from './use-swap-context';
+import { ark } from '../factory';
+
+export interface SwapIndicatorBaseProps {
+	type: 'on' | 'off';
+	children?: any;
+	[key: string]: any;
+}
+export type SwapIndicatorProps = SwapIndicatorBaseProps;
+
+export component SwapIndicator(props: SwapIndicatorProps) {
+	const [type, children, localProps] = trackSplit(props, ['type', 'children']);
+
+	const swap = useSwapContext();
+
+	const presence = track(() => @type === 'on' ? @swap.onPresence : @swap.offPresence);
+
+	if (@presence.unmounted) {
+		return;
+	}
+
+	let mergedProps = track(() => mergeProps(@swap.getIndicatorProps({ type: @type }), @localProps));
+
+	<ark.span
+		{...@mergedProps}
+		{ref (el: HTMLSpanElement | null) => {
+			@presence.setNode(el);
+		}}
+	>
+		<@children />
+	</ark.span>
+}

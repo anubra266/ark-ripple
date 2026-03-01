@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useFieldsetContext, type UseFieldsetContext } from './use-fieldset-context';
+
+export interface FieldsetContextProps {
+	children: (context: UseFieldsetContext) => any;
+}
+
+export component FieldsetContext(props: FieldsetContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useFieldsetContext();
+
+	<@children {context} />
+}

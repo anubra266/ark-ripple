@@ -1,0 +1,25 @@
+import { Toggle } from 'ark-ripple/toggle';
+import { Heart } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/toggle.module.css';
+
+export component Controlled() {
+	let pressed = track(false);
+
+	<Toggle.Root
+		class={styles.Root}
+		{@pressed}
+		onPressedChange={(value) => {
+			@pressed = value;
+		}}
+	>
+		<Toggle.Indicator
+			class={styles.Indicator}
+			fallback={component() {
+				<Heart />
+			}}
+		>
+			<Heart fill="currentColor" />
+		</Toggle.Indicator>
+	</Toggle.Root>
+}

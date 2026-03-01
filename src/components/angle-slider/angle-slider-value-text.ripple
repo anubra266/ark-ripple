@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderValueTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AngleSliderValueTextProps = AngleSliderValueTextBaseProps;
+
+export component AngleSliderValueText(props: AngleSliderValueTextProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(() => mergeProps(@angleSlider.getValueTextProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		if (@children) {
+			<@children />
+		} else {
+			{@angleSlider.valueAsDegree}
+		}
+	</ark.div>
+}

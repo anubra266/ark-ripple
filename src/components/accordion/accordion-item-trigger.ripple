@@ -1,0 +1,35 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCollapsibleContext } from '../collapsible/use-collapsible-context';
+import { useAccordionContext } from './use-accordion-context';
+import { useAccordionItemPropsContext } from './use-accordion-item-props-context';
+import { ark } from '../factory';
+
+export interface AccordionItemTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AccordionItemTriggerProps = AccordionItemTriggerBaseProps;
+
+export component AccordionItemTrigger(props: AccordionItemTriggerProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const accordion = useAccordionContext();
+	const itemProps = useAccordionItemPropsContext();
+
+	const collapsible = useCollapsibleContext();
+
+	const triggerProps = track(() => @accordion.getItemTriggerProps(@itemProps));
+	let mergedProps = track(
+		() => mergeProps(
+			{
+				...@triggerProps,
+				'aria-controls': @collapsible.unmounted ? undefined : @triggerProps['aria-controls'],
+			},
+			@rest,
+		),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

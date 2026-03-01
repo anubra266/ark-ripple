@@ -1,0 +1,38 @@
+import { Carousel } from 'ark-ripple/carousel';
+import styles from 'styles/carousel.module.css';
+
+const items = [
+	{ id: '1', width: '120px', label: 'Small', index: 0 },
+	{ id: '2', width: '200px', label: 'Medium Size', index: 1 },
+	{ id: '3', width: '80px', label: 'XS', index: 2 },
+	{ id: '4', width: '250px', label: 'Large Content Here', index: 3 },
+	{ id: '5', width: '150px', label: 'Regular', index: 4 },
+];
+
+export component VariableSize() {
+	<Carousel.Root class={styles.Root} slideCount={items.length} autoSize spacing="8px">
+		<Carousel.Control class={styles.Control}>
+			<Carousel.PrevTrigger class={styles.Trigger}>{'←'}</Carousel.PrevTrigger>
+			<Carousel.NextTrigger class={styles.Trigger}>{'→'}</Carousel.NextTrigger>
+		</Carousel.Control>
+		<Carousel.ItemGroup class={styles.ItemGroup}>
+			for (const item of items; key item.id) {
+				<Carousel.Item index={item.index} snapAlign="center">
+					<div class={styles.Slide} style={{ width: item.width, height: '6rem' }}>{item.label}</div>
+				</Carousel.Item>
+			}
+		</Carousel.ItemGroup>
+		<Carousel.Context>
+			component children({ context }) {
+				<Carousel.IndicatorGroup class={styles.IndicatorGroup}>
+					for (const snapPoint of @context.pageSnapPoints; key snapPoint) {
+						<Carousel.Indicator
+							class={styles.Indicator}
+							index={@context.pageSnapPoints.indexOf(snapPoint)}
+						/>
+					}
+				</Carousel.IndicatorGroup>
+			}
+		</Carousel.Context>
+	</Carousel.Root>
+}

@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { AvatarApiContext } from './use-avatar-context';
+import type { UseAvatarReturn } from './use-avatar.ripple';
+import { ark } from '../factory';
+
+export interface AvatarRootProviderBaseProps {
+	value: UseAvatarReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type AvatarRootProviderProps = AvatarRootProviderBaseProps;
+
+export component AvatarRootProvider(props: AvatarRootProviderProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const avatarApi = props.value;
+
+	AvatarApiContext.set(avatarApi);
+
+	let mergedProps = track(() => mergeProps(@avatarApi.getRootProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

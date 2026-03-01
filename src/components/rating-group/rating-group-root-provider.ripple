@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { RatingGroupApiContext } from './use-rating-group-context';
+import type { UseRatingGroupReturn } from './use-rating-group.ripple';
+import { ark } from '../factory';
+
+export interface RatingGroupRootProviderBaseProps {
+	value: UseRatingGroupReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type RatingGroupRootProviderProps = RatingGroupRootProviderBaseProps;
+
+export component RatingGroupRootProvider(props: RatingGroupRootProviderProps) {
+	const [ratingGroup, children, rest] = trackSplit(props, ['value', 'children']);
+
+	RatingGroupApiContext.set(ratingGroup);
+
+	let mergedProps = track(() => mergeProps(@ratingGroup.getRootProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

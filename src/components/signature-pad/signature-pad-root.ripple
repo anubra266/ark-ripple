@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { SignaturePadApiContext } from './use-signature-pad-context';
+import { useSignaturePad, type UseSignaturePadProps } from './use-signature-pad.ripple';
+import { splitSignaturePadProps } from './split-signature-pad-props.ripple';
+import { ark } from '../factory';
+
+export interface SignaturePadRootBaseProps extends UseSignaturePadProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SignaturePadRootProps = SignaturePadRootBaseProps;
+
+export component SignaturePadRoot(props: SignaturePadRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [signaturePadProps, localProps] = splitSignaturePadProps(@rest);
+	const signaturePad = useSignaturePad(signaturePadProps);
+
+	SignaturePadApiContext.set(signaturePad);
+
+	let mergedProps = track(() => mergeProps(@signaturePad.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

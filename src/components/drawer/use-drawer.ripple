@@ -1,0 +1,33 @@
+import * as drawer from '@zag-js/drawer';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+import { useDrawerStackStoreContext } from './use-drawer-stack-store-context';
+
+export interface UseDrawerProps extends Optional<Omit<drawer.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export type UseDrawerReturn = ReturnType<typeof useDrawer>;
+
+export function useDrawer(props: UseDrawerProps = {}) {
+	const locale = useLocaleContext();
+	const env = useEnvironmentContext();
+	const id = useId();
+	const stack = useDrawerStackStoreContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @env.getRootNode,
+			stack: @stack ?? undefined,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(drawer.machine, machineProps);
+	const api = track(() => drawer.connect(service, normalizeProps));
+
+	return api;
+}

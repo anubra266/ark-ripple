@@ -1,0 +1,13 @@
+import { ClientOnly } from '../index';
+
+export component BasicTest() {
+	<ClientOnly>
+		<div>{'Client Content'}</div>
+	</ClientOnly>
+}
+
+export component WithFallbackTest() {
+	<ClientOnly fallback="Loading...">
+		<div>{'Client Content'}</div>
+	</ClientOnly>
+}

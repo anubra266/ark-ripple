@@ -1,0 +1,22 @@
+import { Menu } from 'ark-ripple/menu';
+import { ChevronDown } from 'lucide-ripple';
+import styles from 'styles/menu.module.css';
+
+export component Basic() {
+	<Menu.Root>
+		<Menu.Trigger class={styles.Trigger}>
+			{'File'}
+			<Menu.Indicator class={styles.Indicator}>
+				<ChevronDown />
+			</Menu.Indicator>
+		</Menu.Trigger>
+		<Menu.Positioner>
+			<Menu.Content class={styles.Content}>
+				<Menu.Item class={styles.Item} value="new-file">{'New File'}</Menu.Item>
+				<Menu.Item class={styles.Item} value="open">{'Open...'}</Menu.Item>
+				<Menu.Item class={styles.Item} value="save">{'Save'}</Menu.Item>
+				<Menu.Item class={styles.Item} value="save-as">{'Save As...'}</Menu.Item>
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

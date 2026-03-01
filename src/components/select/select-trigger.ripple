@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSelectContext } from './use-select-context';
+import { ark } from '../factory';
+
+export interface SelectTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SelectTriggerProps = SelectTriggerBaseProps;
+
+export component SelectTrigger(props: SelectTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const select = useSelectContext();
+
+	let mergedProps = track(() => mergeProps(@select.getTriggerProps(), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

@@ -1,0 +1,29 @@
+import { Dialog, useDialog } from 'ark-ripple/dialog';
+import { Portal } from 'ark-ripple/portal';
+import button from 'styles/button.module.css';
+import styles from 'styles/dialog.module.css';
+
+export component RootProvider() {
+	const dialog = useDialog();
+
+	<div class="stack">
+		<button class={button.Root} onClick={() => @dialog.setOpen(true)}>
+			{'Dialog is '}
+			{@dialog.open ? 'open' : 'closed'}
+		</button>
+		<Dialog.RootProvider value={dialog}>
+			<Portal>
+				<Dialog.Backdrop class={styles.Backdrop} />
+				<Dialog.Positioner class={styles.Positioner}>
+					<Dialog.Content class={styles.Content}>
+						<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+						<Dialog.Title class={styles.Title}>{'Controlled Externally'}</Dialog.Title>
+						<Dialog.Description class={styles.Description}>
+							{'This dialog is controlled via the useDialog hook.'}
+						</Dialog.Description>
+					</Dialog.Content>
+				</Dialog.Positioner>
+			</Portal>
+		</Dialog.RootProvider>
+	</div>
+}

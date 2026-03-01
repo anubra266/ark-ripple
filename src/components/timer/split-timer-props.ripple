@@ -1,0 +1,18 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseTimerProps } from './use-timer.ripple';
+
+const splitProps = createSplitProps<UseTimerProps>();
+
+export function splitTimerProps<T extends UseTimerProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'id',
+		'ids',
+		'autoStart',
+		'interval',
+		'countdown',
+		'startMs',
+		'targetMs',
+		'onComplete',
+		'onTick',
+	]);
+}

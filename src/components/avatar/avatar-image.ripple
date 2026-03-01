@@ -1,0 +1,18 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAvatarContext } from './use-avatar-context';
+import { ark } from '../factory';
+
+export interface AvatarImageBaseProps {
+	[key: string]: any;
+}
+export type AvatarImageProps = AvatarImageBaseProps;
+
+export component AvatarImage(props: AvatarImageProps) {
+	const [localProps] = trackSplit(props, []);
+	const avatarApi = useAvatarContext();
+
+	let mergedProps = track(() => mergeProps(@avatarApi.getImageProps(), @localProps));
+
+	<ark.img {...@mergedProps} />
+}

@@ -1,0 +1,30 @@
+import { Portal as RipplePortal, type Component, trackSplit, type Tracked, track } from 'ripple';
+
+export interface PortalProps {
+	/**
+ * If true, the portal will not be rendered.
+ */
+	disabled?: boolean;
+	/**
+ * The container to render the portal into.
+ */
+	container?: Tracked<HTMLElement> | HTMLElement;
+	/**
+ * The children to render in the portal.
+ */
+	children: Component;
+}
+
+export component Portal(props: PortalProps) {
+	const [children, disabled, container] = trackSplit(props, ['children', 'disabled', 'container']);
+
+	const target = track(() => @container ?? globalThis.document?.body);
+
+	if (@disabled) {
+		<@children />
+	} else if (@target) {
+		<RipplePortal {@target}>
+			<@children />
+		</RipplePortal>
+	}
+}

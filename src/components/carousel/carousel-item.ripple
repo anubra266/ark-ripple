@@ -1,0 +1,25 @@
+import type { ItemProps } from '@zag-js/carousel';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCarouselContext } from './use-carousel-context';
+import { ark } from '../factory';
+
+export interface CarouselItemBaseProps extends ItemProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CarouselItemProps = CarouselItemBaseProps;
+
+export component CarouselItem(props: CarouselItemProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [index, snapAlign, localProps] = trackSplit(@rest, ['index', 'snapAlign']);
+	const carousel = useCarouselContext();
+
+	let mergedProps = track(
+		() => mergeProps(@carousel.getItemProps({ index: @index, snapAlign: @snapAlign }), @localProps),
+	);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

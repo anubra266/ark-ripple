@@ -1,0 +1,27 @@
+import { normalizeProps, useMachine } from 'zag-ripple';
+import * as slider from '@zag-js/slider';
+import { track } from 'ripple';
+import { useId } from '../../utils/use-id';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+
+export interface UseSliderProps extends Partial<Omit<slider.Props, 'dir' | 'getRootNode' | 'id'>> {}
+export interface UseSliderReturn extends slider.Api {}
+
+export function useSlider(props: UseSliderProps = {}): UseSliderReturn {
+	const id = useId();
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(slider.machine, machineProps);
+	return track(() => slider.connect(service, normalizeProps));
+}

@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { MarkerProps } from '@zag-js/slider';
+import { useSliderContext } from './use-slider-context';
+import { ark } from '../factory';
+
+export interface SliderMarkerBaseProps extends MarkerProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SliderMarkerProps = SliderMarkerBaseProps;
+
+export component SliderMarker(props: SliderMarkerProps) {
+	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+	const slider = useSliderContext();
+
+	let mergedProps = track(() => mergeProps(@slider.getMarkerProps({ value: @value }), @localProps));
+
+	<ark.span {...@mergedProps}>
+		<@children />
+	</ark.span>
+}

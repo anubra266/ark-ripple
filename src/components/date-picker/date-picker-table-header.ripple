@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { useDatePickerTablePropsContext } from './use-date-picker-table-props-context';
+import { ark } from '../factory';
+
+export interface DatePickerTableHeaderBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerTableHeaderProps = DatePickerTableHeaderBaseProps;
+
+export component DatePickerTableHeader(props: DatePickerTableHeaderProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const datePicker = useDatePickerContext();
+	const tableProps = useDatePickerTablePropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@datePicker.getTableHeaderProps(@tableProps), @localProps),
+	);
+
+	<ark.th {...@mergedProps}>
+		<@children />
+	</ark.th>
+}

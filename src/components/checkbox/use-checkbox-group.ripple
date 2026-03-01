@@ -1,0 +1,127 @@
+import { track, trackSplit, untrack } from 'ripple';
+import { useFieldsetContext } from '../fieldset/use-fieldset-context';
+
+export interface UseCheckboxGroupProps {
+	/**
+ * The initial value of `value` when uncontrolled
+ */
+	defaultValue?: string[];
+	/**
+ * The controlled value of the checkbox group
+ */
+	value?: string[];
+	/**
+ * The name of the input fields in the checkbox group
+ * (Useful for form submission).
+ */
+	name?: string;
+	/**
+ * The callback to call when the value changes
+ */
+	onValueChange?: (value: string[]) => void;
+	/**
+ * If `true`, the checkbox group is disabled
+ */
+	disabled?: boolean;
+	/**
+ * If `true`, the checkbox group is read-only
+ */
+	readOnly?: boolean;
+	/**
+ * If `true`, the checkbox group is invalid
+ */
+	invalid?: boolean;
+	/**
+ * The maximum number of selected values
+ */
+	maxSelectedValues?: number;
+}
+
+export interface CheckboxGroupItemProps {
+	value: string | undefined;
+}
+
+export function useCheckboxGroup(props: UseCheckboxGroupProps = {}) {
+	const fieldset = useFieldsetContext();
+
+	const [controlledValue, defaultValue, onValueChange, propDisabled, readOnly, propInvalid, name, maxSelectedValues] =
+		trackSplit(props, [
+			'value',
+			'defaultValue',
+			'onValueChange',
+			'disabled',
+			'readOnly',
+			'invalid',
+			'name',
+			'maxSelectedValues',
+		]);
+
+	let valueState = track(() => untrack(() => @defaultValue) ?? []);
+	const value = track(() => @controlledValue !== undefined ? @controlledValue : @valueState);
+
+	const disabled = track(() => @propDisabled ?? @fieldset?.disabled);
+	const invalid = track(() => @propInvalid ?? @fieldset?.invalid);
+	const isAtMax = track(() => @maxSelectedValues != null && @value.length >= @maxSelectedValues);
+	const interactive = track(() => !(@disabled || @readOnly));
+
+	const setValue = (newValue: string[]) => {
+		if (@controlledValue === undefined) {
+			@valueState = newValue;
+		}
+		@onValueChange?.(newValue);
+	};
+
+	const isChecked = (val: string | undefined) => {
+		return @value.some((v) => String(v) === String(val));
+	};
+
+	const addValue = (val: string) => {
+		if (!@interactive) return;
+		if (isChecked(val)) return;
+		if (@isAtMax) return;
+		setValue([...@value, val]);
+	};
+
+	const removeValue = (val: string) => {
+		if (!@interactive) return;
+		setValue(@value.filter((v) => String(v) !== String(val)));
+	};
+
+	const toggleValue = (val: string) => {
+		isChecked(val) ? removeValue(val) : addValue(val);
+	};
+
+	const getItemProps = (itemProps: CheckboxGroupItemProps) => {
+		const checked =
+			itemProps.value != null ? isChecked(itemProps.value) : undefined;
+		return {
+			checked,
+			onCheckedChange() {
+				if (itemProps.value != null) {
+					toggleValue(itemProps.value);
+				}
+			},
+			name: @name,
+			disabled: !!@disabled || @isAtMax && !checked,
+			readOnly: !!@readOnly,
+			invalid: !!@invalid,
+		};
+	};
+
+	return track(
+		() => ({
+			isChecked,
+			value: @value,
+			name: @name,
+			disabled: !!@disabled,
+			readOnly: !!@readOnly,
+			invalid: !!@invalid,
+			setValue,
+			addValue,
+			toggleValue,
+			getItemProps,
+		}),
+	);
+}
+
+export type UseCheckboxGroupReturn = ReturnType<typeof useCheckboxGroup>;

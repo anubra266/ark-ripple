@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { useTimerContext } from './use-timer-context';
+import type { ActionTriggerProps } from '@zag-js/timer';
+import { ark } from '../factory';
+
+const splitActionTriggerProps = createSplitProps<ActionTriggerProps>();
+
+export interface TimerActionTriggerBaseProps extends ActionTriggerProps {
+	children?: any;
+	[key: string]: any;
+}
+export type TimerActionTriggerProps = TimerActionTriggerBaseProps;
+
+export component TimerActionTrigger(props: TimerActionTriggerProps) {
+	const [children, action, localProps] = trackSplit(props, ['children', 'action']);
+	const timer = useTimerContext();
+
+	let mergedProps = track(
+		() => mergeProps(@timer.getActionTriggerProps({ action: @action }), @localProps),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

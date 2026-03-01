@@ -1,0 +1,20 @@
+import { Format } from 'ark-ripple/format';
+import styles from 'styles/format.module.css';
+
+const unitDisplays = ['narrow', 'short', 'long'] as const;
+
+export component ByteWithUnitDisplay() {
+	<div class={styles.List}>
+		for (const unitDisplay of unitDisplays; key unitDisplay) {
+			<div class={styles.ListItem}>
+				<span class={styles.InlineLabel}>
+					{unitDisplay}
+					{':'}
+				</span>
+				<span class={styles.Value}>
+					<Format.Byte value={50345.53} {unitDisplay} />
+				</span>
+			</div>
+		}
+	</div>
+}

@@ -1,0 +1,42 @@
+import { mergeProps } from 'zag-ripple';
+import { track, trackSplit } from 'ripple';
+import { FieldsetApiContext } from './use-fieldset-context';
+import { useFieldset, type UseFieldsetProps } from './use-fieldset.ripple';
+import { splitFieldsetProps } from './split-fieldset-props.ripple';
+import { useId } from '../../utils/use-id';
+import { ark } from '../factory';
+
+export interface FieldsetRootBaseProps extends UseFieldsetProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FieldsetRootProps = FieldsetRootBaseProps;
+
+export component FieldsetRoot(props: FieldsetRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [useFieldsetProps, localProps] = splitFieldsetProps(@rest);
+
+	const providedId = useId();
+
+	const fieldsetProps = track(
+		() => ({
+			...@useFieldsetProps,
+			id: @useFieldsetProps.id ?? providedId,
+		}),
+	);
+
+	const fieldset = useFieldset(fieldsetProps);
+
+	FieldsetApiContext.set(fieldset);
+
+	let mergedProps = track(() => mergeProps(@fieldset.getRootProps(), @localProps));
+
+	<ark.fieldset
+		{...@mergedProps}
+		{ref (el: HTMLFieldSetElement) => {
+			@fieldset.setRootRef(el);
+		}}
+	>
+		<@children />
+	</ark.fieldset>
+}

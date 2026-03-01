@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDrawerContext } from './use-drawer-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+
+export interface DrawerPositionerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DrawerPositionerProps = DrawerPositionerBaseProps;
+
+export component DrawerPositioner(props: DrawerPositionerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const drawer = useDrawerContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(() => mergeProps(@drawer.getPositionerProps(), @localProps));
+
+	if (!@presence.unmounted) {
+		<ark.div {...@mergedProps}>
+			<@children />
+		</ark.div>
+	}
+}

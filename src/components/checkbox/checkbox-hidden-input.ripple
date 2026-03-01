@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFieldContext } from '../field/use-field-context';
+import { useCheckboxContext } from './use-checkbox-context';
+import { ark } from '../factory';
+
+export interface CheckboxHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type CheckboxHiddenInputProps = CheckboxHiddenInputBaseProps;
+
+export component CheckboxHiddenInput(props: CheckboxHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const checkbox = useCheckboxContext();
+	const field = useFieldContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@checkbox.getHiddenInputProps(),
+			{ 'aria-describedby': @field?.ariaDescribedby },
+			@localProps,
+		),
+	);
+
+	<ark.input {...@mergedProps} />
+}

@@ -1,0 +1,22 @@
+import type { MarkerProps } from '@zag-js/angle-slider';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderMarkerBaseProps extends MarkerProps {
+	[key: string]: any;
+}
+export type AngleSliderMarkerProps = AngleSliderMarkerBaseProps;
+
+export component AngleSliderMarker(props: AngleSliderMarkerProps) {
+	const [value, localProps] = trackSplit(props, ['value']);
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(
+		() => mergeProps(@angleSlider.getMarkerProps({ value: @value }), @localProps),
+	);
+
+	<ark.div {...@mergedProps} />
+}

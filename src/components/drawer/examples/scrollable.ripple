@@ -1,0 +1,28 @@
+import { Drawer } from 'ark-ripple/drawer';
+import styles from 'styles/drawer.module.css';
+
+const items = Array.from({ length: 50 }, (_, i) => i + 1);
+
+export component Scrollable() {
+	<Drawer.Root>
+		<Drawer.Trigger class={styles.Trigger}>{'Open'}</Drawer.Trigger>
+		<Drawer.Backdrop class={styles.Backdrop} />
+		<Drawer.Positioner class={styles.Positioner}>
+			<Drawer.Content class={styles.Content}>
+				<Drawer.Grabber class={styles.Grabber}>
+					<Drawer.GrabberIndicator class={styles.GrabberIndicator} />
+				</Drawer.Grabber>
+				<Drawer.Title class={styles.Title}>{'Scrollable Drawer'}</Drawer.Title>
+				<Drawer.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Drawer.CloseTrigger>
+				<div class={styles.Scrollable}>
+					for (const item of items; key item) {
+						<div class={styles.ScrollableItem}>
+							{'Item '}
+							{item}
+						</div>
+					}
+				</div>
+			</Drawer.Content>
+		</Drawer.Positioner>
+	</Drawer.Root>
+}

@@ -1,0 +1,25 @@
+import { Swap } from 'ark-ripple/swap';
+import { Pause, Play } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/swap.module.css';
+
+export component Flip() {
+	let swapped = track(false);
+
+	<button
+		type="button"
+		class={styles.Button}
+		onClick={() => {
+			@swapped = !@swapped;
+		}}
+	>
+		<Swap.Root swap={@swapped} style={{ perspective: '200px' }}>
+			<Swap.Indicator type="on" class={styles.FlipIndicator}>
+				<Play />
+			</Swap.Indicator>
+			<Swap.Indicator type="off" class={styles.FlipIndicator}>
+				<Pause />
+			</Swap.Indicator>
+		</Swap.Root>
+	</button>
+}

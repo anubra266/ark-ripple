@@ -1,0 +1,89 @@
+import { Dialog, useDialog } from 'ark-ripple/dialog';
+import { Portal } from 'ark-ripple/portal';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import field from 'styles/field.module.css';
+import styles from 'styles/dialog.module.css';
+
+export component Confirmation() {
+	let formContent = track('');
+	let isParentDialogOpen = track(false);
+
+	const confirmDialog = useDialog();
+
+	let parentDialogProps = track(
+		() => ({
+			open: isParentDialogOpen,
+			onOpenChange: (details) => {
+				if (!details.open && @formContent.trim()) {
+					@confirmDialog.setOpen(true);
+				} else {
+					@isParentDialogOpen = details.open;
+				}
+			},
+		}),
+	);
+
+	const parentDialog = useDialog(parentDialogProps);
+
+	const handleConfirmClose = () => {
+		@formContent = '';
+		const childSetter = @confirmDialog.setOpen;
+		const parentSetter = @parentDialog.setOpen;
+		childSetter(false);
+		parentSetter(false);
+	};
+
+	<div class="stack">
+		<button class={button.Root} onClick={() => @parentDialog.setOpen(true)}>{'Open Form'}</button>
+
+		<Dialog.RootProvider value={parentDialog}>
+			<Portal>
+				<Dialog.Backdrop class={styles.Backdrop} />
+				<Dialog.Positioner class={styles.Positioner}>
+					<Dialog.Content class={styles.Content}>
+						<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+						<Dialog.Title class={styles.Title}>{'Edit Content'}</Dialog.Title>
+						<Dialog.Description class={styles.Description}>
+							{'Make changes to your content. You\'ll be asked to confirm before closing if there are unsaved changes.'}
+						</Dialog.Description>
+						<div class={styles.Body}>
+							<textarea
+								class={field.Textarea}
+								value={@formContent}
+								onInput={(e) => {
+									@formContent = e.target.value;
+								}}
+								placeholder="Enter some text..."
+								rows={4}
+							/>
+						</div>
+					</Dialog.Content>
+				</Dialog.Positioner>
+			</Portal>
+		</Dialog.RootProvider>
+
+		<Dialog.RootProvider value={confirmDialog}>
+			<Portal>
+				<Dialog.Backdrop class={styles.Backdrop} />
+				<Dialog.Positioner class={styles.Positioner}>
+					<Dialog.Content class={styles.Content}>
+						<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+						<Dialog.Title class={styles.Title}>{'Unsaved Changes'}</Dialog.Title>
+						<Dialog.Description class={styles.Description}>
+							{'You have unsaved changes. Are you sure you want to close without saving?'}
+						</Dialog.Description>
+						<div class={styles.Actions}>
+							<button class={button.Root} onClick={() => @confirmDialog.setOpen(false)}>
+								{'Keep Editing'}
+							</button>
+							<button class={button.Root} data-variant="solid" onClick={handleConfirmClose}>
+								{'Discard Changes'}
+							</button>
+						</div>
+					</Dialog.Content>
+				</Dialog.Positioner>
+			</Portal>
+		</Dialog.RootProvider>
+	</div>
+}

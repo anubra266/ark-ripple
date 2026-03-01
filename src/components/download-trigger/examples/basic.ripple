@@ -1,0 +1,19 @@
+import { DownloadTrigger } from 'ark-ripple/download-trigger';
+import { Download, File } from 'lucide-ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/download-trigger.module.css';
+
+const content = 'Hello, World! This is a sample text file.';
+
+export component Basic() {
+	<div class={styles.Root}>
+		<div class={styles.Preview}>
+			<File />
+			<span class={styles.PreviewText}>{content}</span>
+		</div>
+		<DownloadTrigger class={button.Root} data={content} fileName="hello.txt" mimeType="text/plain">
+			<Download />
+			{' Download txt'}
+		</DownloadTrigger>
+	</div>
+}

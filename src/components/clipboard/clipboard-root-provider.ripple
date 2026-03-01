@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { track, trackSplit } from 'ripple';
+import { ClipboardApiContext } from './use-clipboard-context';
+import type { UseClipboardReturn } from './use-clipboard.ripple';
+import { ark } from '../factory';
+
+export interface ClipboardRootProviderBaseProps {
+	/** The clipboard machine api */
+	value: UseClipboardReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type ClipboardRootProviderProps = ClipboardRootProviderBaseProps;
+
+export component ClipboardRootProvider(props: ClipboardRootProviderProps) {
+	const [clipboard, children, rest] = trackSplit(props, ['value', 'children']);
+
+	ClipboardApiContext.set(clipboard);
+
+	const mergedProps = track(() => mergeProps(@clipboard.getRootProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

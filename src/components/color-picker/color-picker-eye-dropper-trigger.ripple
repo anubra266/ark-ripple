@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerEyeDropperTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerEyeDropperTriggerProps = ColorPickerEyeDropperTriggerBaseProps;
+
+export component ColorPickerEyeDropperTrigger(props: ColorPickerEyeDropperTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getEyeDropperTriggerProps(), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

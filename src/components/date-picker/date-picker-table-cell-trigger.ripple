@@ -1,0 +1,33 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { useDatePickerViewPropsContext } from './use-date-picker-view-props-context';
+import { useDatePickerTableCellPropsContext } from './use-date-picker-table-cell-props-context';
+import { ark } from '../factory';
+
+export interface DatePickerTableCellTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerTableCellTriggerProps = DatePickerTableCellTriggerBaseProps;
+
+export component DatePickerTableCellTrigger(props: DatePickerTableCellTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const datePicker = useDatePickerContext();
+	const viewProps = useDatePickerViewPropsContext();
+	const tableCellProps = useDatePickerTableCellPropsContext();
+
+	const triggerProps = track(() => {
+		const view = @viewProps.view;
+		const cp = @tableCellProps;
+		if (view === 'day') return @datePicker.getDayTableCellTriggerProps(cp as any);
+		if (view === 'month') return @datePicker.getMonthTableCellTriggerProps(cp as any);
+		return @datePicker.getYearTableCellTriggerProps(cp as any);
+	});
+
+	let mergedProps = track(() => mergeProps(@triggerProps, @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

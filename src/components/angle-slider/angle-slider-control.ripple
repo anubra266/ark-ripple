@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderControlBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AngleSliderControlProps = AngleSliderControlBaseProps;
+
+export component AngleSliderControl(props: AngleSliderControlProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(() => mergeProps(@angleSlider.getControlProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDialogContext } from './use-dialog-context';
+import { ark } from '../factory';
+
+export interface DialogDescriptionBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DialogDescriptionProps = DialogDescriptionBaseProps;
+
+export component DialogDescription(props: DialogDescriptionProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const dialog = useDialogContext();
+
+	let mergedProps = track(() => mergeProps(@dialog.getDescriptionProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,40 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
+import { CollapsibleRoot } from '../collapsible/collapsible-root.ripple';
+import { useAccordionContext } from './use-accordion-context';
+import { AccordionItemApiContext } from './use-accordion-item-context';
+import { AccordionItemPropsContext } from './use-accordion-item-props-context';
+
+export interface AccordionItemBaseProps {
+	value: string;
+	disabled?: boolean;
+	children?: any;
+	[key: string]: any;
+}
+export type AccordionItemProps = AccordionItemBaseProps;
+
+export component AccordionItem(props: AccordionItemProps) {
+	const [children, value, disabled, localProps] = trackSplit(props, [
+		'children', 'value', 'disabled',
+	]);
+
+	const accordion = useAccordionContext();
+	const renderStrategy = useRenderStrategyContext();
+
+	const itemProps = track(() => ({ value: @value, disabled: @disabled }));
+	const itemState = track(() => @accordion.getItemState(@itemProps));
+	let mergedProps = track(() => mergeProps(@accordion.getItemProps(@itemProps), @localProps));
+
+	const itemContentProps = track(() => @accordion.getItemContentProps(@itemProps));
+
+	AccordionItemPropsContext.set(itemProps);
+	AccordionItemApiContext.set(itemState);
+
+	const open = track(() => @itemState.expanded);
+	const ids = track(() => ({ content: @itemContentProps.id }));
+
+	<CollapsibleRoot {open} {ids} {...@renderStrategy} {...@mergedProps}>
+		<@children />
+	</CollapsibleRoot>
+}

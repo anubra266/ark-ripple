@@ -1,0 +1,9 @@
+import { Toggle } from 'ark-ripple/toggle';
+import { Bold } from 'lucide-ripple';
+import styles from 'styles/toggle.module.css';
+
+export component Disabled() {
+	<Toggle.Root class={styles.Root} disabled>
+		<Bold />
+	</Toggle.Root>
+}

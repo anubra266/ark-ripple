@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useAvatarContext, type UseAvatarContext } from './use-avatar-context';
+
+export interface AvatarContextProps {
+	children: (context: UseAvatarContext) => any;
+}
+
+export component AvatarContext(props: AvatarContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useAvatarContext();
+
+	<@children {context} />
+}

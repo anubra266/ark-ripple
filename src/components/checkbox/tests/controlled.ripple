@@ -1,0 +1,19 @@
+import { track } from 'ripple';
+import { Checkbox } from 'ark-ripple/checkbox';
+import { ComponentUnderTest } from './basic.ripple';
+
+export component ControlledComponentUnderTest(props: Checkbox.RootProps) {
+	let checked = track(false);
+
+	<div>
+		<button
+			type="button"
+			onClick={() => {
+				@checked = true;
+			}}
+		>
+			{'set checked'}
+		</button>
+		<ComponentUnderTest {...props} {@checked} />
+	</div>
+}

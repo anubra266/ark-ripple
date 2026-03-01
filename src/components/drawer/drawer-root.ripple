@@ -1,0 +1,34 @@
+import { trackSplit, track } from 'ripple';
+import { DrawerApiContext } from './use-drawer-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import { useDrawer, type UseDrawerProps } from './use-drawer.ripple';
+import { splitDrawerProps } from './split-drawer-props.ripple';
+import {
+	splitRenderStrategyProps,
+	RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+export interface DrawerRootBaseProps extends UseDrawerProps, UsePresenceProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DrawerRootProps = DrawerRootBaseProps;
+
+export component DrawerRoot(props: DrawerRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [presenceProps, localProps] = splitPresenceProps(@rest);
+	const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+	const [drawerProps] = splitDrawerProps(@localProps);
+
+	const drawerApi = useDrawer(drawerProps);
+	const present = track(() => @drawerApi.open);
+	const presence = usePresence({ present, ...@presenceProps });
+
+	DrawerApiContext.set(drawerApi);
+	RenderStrategyContext.set(renderStrategyProps);
+	PresenceApiContext.set(presence);
+
+	<@children />
+}

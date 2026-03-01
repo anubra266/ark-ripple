@@ -1,0 +1,19 @@
+import { Clipboard } from '../index';
+import { Check, Copy } from 'lucide-ripple';
+
+export component ClipboardBasicTest() {
+	<Clipboard.Root value="https://ark-ui.com">
+		<Clipboard.Label>{'Copy this link'}</Clipboard.Label>
+		<Clipboard.Control>
+			<Clipboard.Input />
+			<Clipboard.Trigger>
+				<Clipboard.Indicator>
+					component copied() {
+						<Check data-testid="check-icon" />
+					}
+					<Copy data-testid="copy-icon" />
+				</Clipboard.Indicator>
+			</Clipboard.Trigger>
+		</Clipboard.Control>
+	</Clipboard.Root>
+}

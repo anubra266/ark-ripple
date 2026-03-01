@@ -1,0 +1,21 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseRadioGroupProps } from './use-radio-group.ripple';
+
+const splitProps = createSplitProps<UseRadioGroupProps>();
+
+export function splitRadioGroupProps<T extends UseRadioGroupProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'defaultValue',
+		'disabled',
+		'form',
+		'id',
+		'ids',
+		'invalid',
+		'name',
+		'onValueChange',
+		'orientation',
+		'readOnly',
+		'required',
+		'value',
+	]);
+}

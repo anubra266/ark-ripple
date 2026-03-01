@@ -1,0 +1,20 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSliderContext } from './use-slider-context';
+import { useSliderThumbPropsContext } from './use-slider-thumb-props-context';
+import { ark } from '../factory';
+
+export interface SliderHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type SliderHiddenInputProps = SliderHiddenInputBaseProps;
+
+export component SliderHiddenInput(props: SliderHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const slider = useSliderContext();
+	const thumbProps = useSliderThumbPropsContext();
+
+	let mergedProps = track(() => mergeProps(@slider.getHiddenInputProps(@thumbProps), @localProps));
+
+	<ark.input {...@mergedProps} />
+}

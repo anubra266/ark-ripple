@@ -1,0 +1,54 @@
+import * as select from '@zag-js/select';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { splitRenderStrategyProps } from '../../utils/render-strategy.ripple';
+import { useId } from '../../utils/use-id';
+import { useFieldContext } from '../field/use-field-context';
+import type { Optional, Accessor } from '../../types';
+import type { CollectionItem, ListCollection } from '../collection';
+
+export interface UseSelectProps<T extends CollectionItem> extends Optional<
+	Omit<select.Props<T>, 'dir' | 'getRootNode'>,
+	'id'
+> {
+	/**
+ * The collection of items
+ */
+	collection: ListCollection<T>;
+}
+
+export interface UseSelectReturn<T extends CollectionItem> extends Accessor<
+	select.Api<PropTypes, T>
+> {}
+
+export function useSelect<T extends CollectionItem>(props: Tracked<UseSelectProps<T>>): UseSelectReturn<T> {
+	const locale = useLocaleContext();
+	const env = useEnvironmentContext();
+	const field = useFieldContext();
+
+	const id = useId();
+
+	const machineProps = track(
+		() => ({
+			id,
+			ids: {
+				label: @field?.ids.label,
+				hiddenSelect: @field?.ids.control,
+			},
+			dir: @locale.dir,
+			getRootNode: @env.getRootNode,
+			disabled: @field?.disabled,
+			readOnly: @field?.readOnly,
+			invalid: @field?.invalid,
+			required: @field?.required,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(select.machine, machineProps);
+	const api = track(() => select.connect(service, normalizeProps));
+
+	return api;
+}

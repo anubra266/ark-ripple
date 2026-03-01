@@ -1,0 +1,17 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useMenuContext } from './use-menu-context';
+import { ark } from '../factory';
+
+export interface MenuSeparatorBaseProps {
+	[key: string]: any;
+}
+export type MenuSeparatorProps = MenuSeparatorBaseProps;
+
+export component MenuSeparator(props: MenuSeparatorProps) {
+	const menu = useMenuContext();
+
+	let mergedProps = track(() => mergeProps(@menu.getSeparatorProps(), props));
+
+	<ark.hr {...@mergedProps} />
+}

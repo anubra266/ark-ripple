@@ -1,0 +1,18 @@
+import { mergeProps } from 'zag-ripple';
+import { track, trackSplit } from 'ripple';
+import { useClipboardContext } from './use-clipboard-context';
+import { ark } from '../factory';
+
+export interface ClipboardInputBaseProps {
+	[key: string]: any;
+}
+export type ClipboardInputProps = ClipboardInputBaseProps;
+
+export component ClipboardInput(props: ClipboardInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const clipboard = useClipboardContext();
+
+	const mergedProps = track(() => mergeProps(@clipboard.getInputProps(), @localProps));
+
+	<ark.input {...@mergedProps} />
+}

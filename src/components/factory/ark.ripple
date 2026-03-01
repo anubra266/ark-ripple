@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track, effect } from 'ripple';
+import type { Component } from 'solid-js';
+import type { PolymorphicProps } from '../../types';
+
+export interface ArkProps<E extends ElementType> extends PolymorphicProps<E> {
+	element?: E;
+}
+
+export component Ark<E extends ElementType>(props: ArkProps<E>) {
+	const [element, asChild, children] = trackSplit(props, ['element', 'asChild', 'children']);
+
+	const propsFn = (userProps?: any) => mergeProps(props, userProps ?? {});
+
+	if (@asChild) {
+		<@asChild {propsFn} />
+	} else {
+		<@element {...props}>
+			<@children />
+		</@element>
+	}
+}

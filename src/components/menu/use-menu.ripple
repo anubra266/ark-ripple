@@ -1,0 +1,34 @@
+import * as menu from '@zag-js/menu';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseMenuProps extends Optional<Omit<menu.Props, 'dir' | 'getRootNode'>, 'id'> {}
+
+export interface UseMenuReturn {
+	api: menu.Api<PropTypes>;
+	service: menu.Service;
+}
+
+export function useMenu(props: UseMenuProps = {}): UseMenuReturn {
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+	const id = useId();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(menu.machine, machineProps);
+	const api = track(() => menu.connect(service, normalizeProps));
+
+	return { api, service };
+}

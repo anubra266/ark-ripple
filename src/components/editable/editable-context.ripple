@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useEditableContext, type UseEditableContext } from './use-editable-context';
+
+export interface EditableContextProps {
+	children: (context: UseEditableContext) => any;
+}
+
+export component EditableContext(props: EditableContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useEditableContext();
+
+	<@children {context} />
+}

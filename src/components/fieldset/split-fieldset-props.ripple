@@ -1,0 +1,8 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseFieldsetProps } from './use-fieldset.ripple';
+
+const splitProps = createSplitProps<UseFieldsetProps>();
+
+export function splitFieldsetProps<T extends UseFieldsetProps & Record<string, any>>(props: T) {
+	return splitProps(props, ['id', 'disabled', 'invalid']);
+}

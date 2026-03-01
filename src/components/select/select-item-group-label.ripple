@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSelectContext } from './use-select-context';
+import { useSelectItemGroupPropsContext } from './use-select-item-group-props-context';
+import { ark } from '../factory';
+
+export interface SelectItemGroupLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SelectItemGroupLabelProps = SelectItemGroupLabelBaseProps;
+
+export component SelectItemGroupLabel(props: SelectItemGroupLabelProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const select = useSelectContext();
+	const itemGroupProps = useSelectItemGroupPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@select.getItemGroupLabelProps({ htmlFor: @itemGroupProps.id }), @localProps),
+	);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

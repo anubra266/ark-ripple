@@ -1,0 +1,24 @@
+import { trackSplit } from 'ripple';
+import { CheckboxGroupApiContext } from './use-checkbox-group-context';
+import type { UseCheckboxGroupReturn } from './use-checkbox-group.ripple';
+import { checkboxAnatomy } from './checkbox.anatomy';
+import { ark } from '../factory';
+
+export interface CheckboxGroupProviderBaseProps {
+	value: UseCheckboxGroupReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type CheckboxGroupProviderProps = CheckboxGroupProviderBaseProps;
+
+export component CheckboxGroupProvider(props: CheckboxGroupProviderProps) {
+	const [group, children, localProps] = trackSplit(props, ['value', 'children']);
+
+	CheckboxGroupApiContext.set(group);
+
+	const parts = checkboxAnatomy.build();
+
+	<ark.div role="group" {...@localProps} {...parts.group.attrs}>
+		<@children />
+	</ark.div>
+}

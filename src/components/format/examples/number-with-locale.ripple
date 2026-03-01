@@ -1,0 +1,11 @@
+import { Format } from 'ark-ripple/format';
+import { LocaleProvider } from 'ark-ripple/locale';
+import styles from 'styles/format.module.css';
+
+export component NumberWithLocale() {
+	<LocaleProvider locale="de-DE">
+		<span class={styles.Value}>
+			<Format.Number value={1450.45} />
+		</span>
+	</LocaleProvider>
+}

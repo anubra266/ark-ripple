@@ -1,0 +1,35 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDrawerContext } from './use-drawer-context';
+import { usePresence } from '../presence/use-presence.ripple';
+import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
+import { ark } from '../factory';
+
+export interface DrawerBackdropBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DrawerBackdropProps = DrawerBackdropBaseProps;
+
+export component DrawerBackdrop(props: DrawerBackdropProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const drawer = useDrawerContext();
+	const renderStrategy = useRenderStrategyContext();
+	const present = track(() => @drawer.open);
+	const presence = usePresence({ present, ...renderStrategy });
+
+	let mergedProps = track(
+		() => mergeProps(@drawer.getBackdropProps(), @presence.getPresenceProps(), @localProps),
+	);
+
+	if (!@presence.unmounted) {
+		<ark.div
+			{...@mergedProps}
+			{ref (el: HTMLDivElement) => {
+				@presence.setNode(el);
+			}}
+		>
+			<@children />
+		</ark.div>
+	}
+}

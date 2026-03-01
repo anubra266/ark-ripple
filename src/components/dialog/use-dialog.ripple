@@ -1,0 +1,30 @@
+import * as dialog from '@zag-js/dialog';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseDialogProps extends Optional<Omit<dialog.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export type UseDialogReturn = ReturnType<typeof useDialog>;
+
+export function useDialog(props: UseDialogProps = {}) {
+	const locale = useLocaleContext();
+	const env = useEnvironmentContext();
+	const id = useId();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @env.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(dialog.machine, machineProps);
+	const api = track(() => dialog.connect(service, normalizeProps));
+
+	return api;
+}

@@ -1,0 +1,19 @@
+import * as toggle from '@zag-js/toggle';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+
+export interface UseToggleProps extends toggle.Props {}
+
+export type UseToggleReturn = ReturnType<typeof useToggle>;
+
+export function useToggle(ownProps: UseToggleProps = {}) {
+	const machineProps = track(
+		() => ({
+			...@ownProps,
+		}),
+	);
+
+	const service = useMachine(toggle.machine, machineProps);
+
+	return track(() => toggle.connect(service, normalizeProps));
+}

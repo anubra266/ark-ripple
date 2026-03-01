@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { CheckboxApiContext } from './use-checkbox-context';
+import { useCheckbox, type UseCheckboxProps } from './use-checkbox.ripple';
+import { splitCheckboxProps } from './split-checkbox-props.ripple';
+import { ark } from '../factory';
+
+export interface CheckboxRootBaseProps extends UseCheckboxProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CheckboxRootProps = CheckboxRootBaseProps;
+
+export component CheckboxRoot(props: CheckboxRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [useCheckboxProps, localProps] = splitCheckboxProps(@rest);
+	const checkbox = useCheckbox(useCheckboxProps);
+
+	CheckboxApiContext.set(checkbox);
+
+	let mergedProps = track(() => mergeProps(@checkbox.getRootProps(), @localProps));
+
+	<ark.label {...@mergedProps}>
+		<@children />
+	</ark.label>
+}

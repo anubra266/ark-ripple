@@ -1,0 +1,20 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFieldContext } from './use-field-context';
+import { ark } from '../factory';
+
+export interface FieldHelperTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FieldHelperTextProps = FieldHelperTextBaseProps;
+
+export component FieldHelperText(props: FieldHelperTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const field = useFieldContext();
+	const mergedProps = track(() => mergeProps(@field?.getHelperTextProps(), @localProps));
+
+	<ark.span {...@mergedProps}>
+		<@children />
+	</ark.span>
+}

@@ -1,0 +1,19 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseAccordionProps } from './use-accordion.ripple';
+
+const splitProps = createSplitProps<UseAccordionProps>();
+
+export function splitAccordionProps<T extends UseAccordionProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'collapsible',
+		'defaultValue',
+		'disabled',
+		'id',
+		'ids',
+		'multiple',
+		'onFocusChange',
+		'onValueChange',
+		'orientation',
+		'value',
+	]);
+}

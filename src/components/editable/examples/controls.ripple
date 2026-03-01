@@ -1,0 +1,31 @@
+import { Editable } from 'ark-ripple/editable';
+import { Check, Pencil, X } from 'lucide-ripple';
+import styles from 'styles/editable.module.css';
+
+export component Controls() {
+	<Editable.Root class={styles.Root} defaultValue="Click edit to start">
+		<Editable.Label class={styles.Label}>{'Label'}</Editable.Label>
+		<Editable.Area class={styles.Area}>
+			<Editable.Input class={styles.Input} />
+			<Editable.Preview class={styles.Preview} />
+		</Editable.Area>
+		<Editable.Context>
+			component children({ context }) {
+				<Editable.Control class={styles.Control}>
+					if (@context.editing) {
+						<Editable.SubmitTrigger class={styles.SubmitTrigger}>
+							<Check />
+						</Editable.SubmitTrigger>
+						<Editable.CancelTrigger class={styles.CancelTrigger}>
+							<X />
+						</Editable.CancelTrigger>
+					} else {
+						<Editable.EditTrigger class={styles.EditTrigger}>
+							<Pencil />
+						</Editable.EditTrigger>
+					}
+				</Editable.Control>
+			}
+		</Editable.Context>
+	</Editable.Root>
+}

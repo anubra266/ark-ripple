@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSelectContext } from './use-select-context';
+import { usePresenceContext } from '../presence';
+import { ark } from '../factory';
+
+export interface SelectPositionerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SelectPositionerProps = SelectPositionerBaseProps;
+
+export component SelectPositioner(props: SelectPositionerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const select = useSelectContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(() => mergeProps(@select.getPositionerProps(), @localProps));
+
+	if (!@presence.unmounted) {
+		<ark.div {...@mergedProps}>
+			<@children />
+		</ark.div>
+	}
+}

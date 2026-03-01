@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { EditableApiContext } from './use-editable-context';
+import { useEditable, type UseEditableProps } from './use-editable.ripple';
+import { splitEditableProps } from './split-editable-props.ripple';
+import { ark } from '../factory';
+
+export interface EditableRootBaseProps extends UseEditableProps {
+	children?: any;
+	[key: string]: any;
+}
+export type EditableRootProps = EditableRootBaseProps;
+
+export component EditableRoot(props: EditableRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [editableProps, localProps] = splitEditableProps(@rest);
+	const editable = useEditable(editableProps);
+
+	EditableApiContext.set(editable);
+
+	let mergedProps = track(() => mergeProps(@editable.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { usePresenceContext } from '../presence';
+import { ark } from '../factory';
+
+export interface DatePickerContentBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerContentProps = DatePickerContentBaseProps;
+
+export component DatePickerContent(props: DatePickerContentProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const datePicker = useDatePickerContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(
+		() => mergeProps(@datePicker.getContentProps(), @presence.getPresenceProps(), @localProps),
+	);
+
+	if (!@presence.unmounted) {
+		<ark.div
+			{...@mergedProps}
+			{ref (el: HTMLDivElement) => {
+				@presence.setNode(el);
+			}}
+		>
+			<@children />
+		</ark.div>
+	}
+}

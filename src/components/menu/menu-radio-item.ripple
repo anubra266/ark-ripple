@@ -1,0 +1,47 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { OptionItemProps } from '@zag-js/menu';
+import { useMenuContext } from './use-menu-context';
+import { useMenuItemGroupContext } from './use-menu-item-group-context';
+import { MenuItemContext } from './use-menu-item-context';
+import { MenuItemPropsContext } from './use-menu-item-props-context';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { ark } from '../factory';
+
+type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
+
+export interface MenuRadioItemBaseProps extends PartialOptionItemProps {
+	children?: any;
+}
+export type MenuRadioItemProps = MenuRadioItemProps;
+
+export component MenuRadioItem(props: MenuRadioItemProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [partialItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
+		'closeOnSelect', 'disabled', 'value', 'valueText',
+	]);
+
+	const menu = useMenuContext();
+	const itemGroup = useMenuItemGroupContext();
+
+	const optionItemProps = track(
+		() => ({
+			...partialItemProps,
+			type: 'radio',
+			checked: @itemGroup.value === partialItemProps.value,
+			onCheckedChange: () => @itemGroup.onValueChange?.({ value: partialItemProps.value }),
+		}),
+	) as OptionItemProps;
+
+	let mergedProps = track(
+		() => mergeProps(@menu.getOptionItemProps(@optionItemProps), @localProps),
+	);
+	const itemState = track(() => @menu.getOptionItemState(@optionItemProps));
+
+	MenuItemPropsContext.set(optionItemProps);
+	MenuItemContext.set(itemState);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

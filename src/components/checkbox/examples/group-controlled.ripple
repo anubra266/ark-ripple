@@ -1,0 +1,42 @@
+import { Checkbox } from 'ark-ripple/checkbox';
+import styles from 'styles/checkbox.module.css';
+import { track } from 'ripple';
+import { Check } from 'lucide-ripple';
+
+export component GroupControlled() {
+	let value = track(['react']);
+
+	<div class="vstack">
+		<output>
+			{'value: '}
+			{JSON.stringify(@value)}
+		</output>
+		<Checkbox.Group
+			class={styles.Group}
+			{value}
+			name="framework"
+			onValueChange={(v) => {
+				@value = v;
+				console.log(v);
+			}}
+		>
+			for (const item of items; key item.value) {
+				<Checkbox.Root class={styles.Root} value={item.value}>
+					<Checkbox.Control class={styles.Control}>
+						<Checkbox.Indicator class={styles.Indicator}>
+							<Check />
+						</Checkbox.Indicator>
+					</Checkbox.Control>
+					<Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
+					<Checkbox.HiddenInput />
+				</Checkbox.Root>
+			}
+		</Checkbox.Group>
+	</div>
+}
+
+const items = [
+	{ label: 'React', value: 'react' },
+	{ label: 'Solid', value: 'solid' },
+	{ label: 'Vue', value: 'vue' },
+];

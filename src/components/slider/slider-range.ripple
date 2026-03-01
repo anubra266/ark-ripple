@@ -1,0 +1,18 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSliderContext } from './use-slider-context';
+import { ark } from '../factory';
+
+export interface SliderRangeBaseProps {
+	[key: string]: any;
+}
+export type SliderRangeProps = SliderRangeBaseProps;
+
+export component SliderRange(props: SliderRangeProps) {
+	const [localProps] = trackSplit(props, []);
+	const slider = useSliderContext();
+
+	let mergedProps = track(() => mergeProps(@slider.getRangeProps(), @localProps));
+
+	<ark.div {...@mergedProps} />
+}

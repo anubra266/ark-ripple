@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useAccordionContext } from './use-accordion-context';
+import { useAccordionItemPropsContext } from './use-accordion-item-props-context';
+import { ark } from '../factory';
+
+export interface AccordionItemIndicatorBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type AccordionItemIndicatorProps = AccordionItemIndicatorBaseProps;
+
+export component AccordionItemIndicator(props: AccordionItemIndicatorProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const accordion = useAccordionContext();
+	const itemProps = useAccordionItemPropsContext();
+
+	let mergedProps = track(() => mergeProps(@accordion.getItemIndicatorProps(@itemProps), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

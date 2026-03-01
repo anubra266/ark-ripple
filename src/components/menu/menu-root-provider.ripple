@@ -1,0 +1,49 @@
+import { trackSplit, track } from 'ripple';
+import { MenuApiContext, useMenuContext } from './use-menu-context';
+import { MenuMachineContext, useMenuMachineContext } from './use-menu-machine-context';
+import { MenuTriggerItemContext } from './use-menu-trigger-item-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import type { UseMenuReturn } from './use-menu.ripple';
+import { onMount } from 'zag-ripple';
+
+interface RootProviderProps {
+	value: UseMenuReturn;
+}
+
+export interface MenuRootProviderBaseProps extends RootProviderProps, UsePresenceProps {
+	children?: any;
+}
+export type MenuRootProviderProps = MenuRootProviderBaseProps;
+
+export component MenuRootProvider(props: MenuRootProviderProps) {
+	const [children, value, rest] = trackSplit(props, ['children', 'value']);
+	const [presenceProps, localProps] = splitPresenceProps(@rest);
+
+	const parentApi = useMenuContext();
+	const parentMachine = useMenuMachineContext();
+
+	const api = track(() => @value.@api);
+	const service = track(() => @value.service);
+
+	const present = track(() => @api.open);
+	const presence = usePresence({ present, ...@presenceProps });
+
+	// Connect parent-child relationship for nested menus
+	onMount(() => {
+		if (!@parentMachine) return;
+		if (!@parentApi) return;
+
+		@parentApi.setChild(@service)(@api).setParent(@parentMachine);
+	});
+
+	const triggerItemContext = () => @parentApi?.getTriggerItemProps(@api);
+
+	MenuTriggerItemContext.set(triggerItemContext);
+	MenuMachineContext.set(service);
+	MenuApiContext.set(api);
+	PresenceApiContext.set(presence);
+
+	<@children />
+}

@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useRadioGroupContext, type UseRadioGroupContext } from './use-radio-group-context';
+
+export interface RadioGroupContextProps {
+	children: (context: UseRadioGroupContext) => any;
+}
+
+export component RadioGroupContext(props: RadioGroupContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useRadioGroupContext();
+
+	<@children {context} />
+}

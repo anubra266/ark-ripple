@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSliderContext } from './use-slider-context';
+import { ark } from '../factory';
+
+export interface SliderValueTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SliderValueTextProps = SliderValueTextBaseProps;
+
+export component SliderValueText(props: SliderValueTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const slider = useSliderContext();
+
+	let mergedProps = track(() => mergeProps(@slider.getValueTextProps(), @localProps));
+
+	<ark.span {...@mergedProps}>{@children ?? @slider.value.join(', ')}</ark.span>
+}

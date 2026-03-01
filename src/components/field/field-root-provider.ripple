@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { FieldApiContext } from './use-field-context';
+import type { UseFieldReturn } from './use-field.ripple';
+import { ark } from '../factory';
+
+export interface FieldRootProviderBaseProps {
+	value: UseFieldReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type FieldRootProviderProps = FieldRootProviderBaseProps;
+
+export component FieldRootProvider(props: FieldRootProviderProps) {
+	const [field, children, rest] = trackSplit(props, ['value', 'children']);
+
+	FieldApiContext.set(field);
+
+	let mergedProps = track(() => mergeProps(@field.getRootProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useStepsContext } from './use-steps-context';
+import { ark } from '../factory';
+
+export interface StepsCompletedContentBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type StepsCompletedContentProps = StepsCompletedContentBaseProps;
+
+export component StepsCompletedContent(props: StepsCompletedContentProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const stepsApi = useStepsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@stepsApi.getContentProps({ index: @stepsApi.count }), @localProps),
+	);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

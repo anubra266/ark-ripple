@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+
+export interface ColorPickerHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type ColorPickerHiddenInputProps = ColorPickerHiddenInputBaseProps;
+
+export component ColorPickerHiddenInput(props: ColorPickerHiddenInputProps) {
+	const colorPicker = useColorPickerContext();
+	const field = useFieldContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@colorPicker.getHiddenInputProps(),
+			{ 'aria-describedby': @field?.ariaDescribedby },
+			@props,
+		),
+	);
+
+	<ark.input {...@mergedProps} />
+}

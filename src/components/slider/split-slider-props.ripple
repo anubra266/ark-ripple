@@ -1,0 +1,33 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseSliderProps } from './use-slider.ripple';
+
+const splitProps = createSplitProps<UseSliderProps>();
+
+export function splitSliderProps<T extends UseSliderProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'aria-label',
+		'aria-labelledby',
+		'defaultValue',
+		'disabled',
+		'form',
+		'getAriaValueText',
+		'id',
+		'ids',
+		'invalid',
+		'max',
+		'min',
+		'minStepsBetweenThumbs',
+		'name',
+		'onFocusChange',
+		'onValueChange',
+		'onValueChangeEnd',
+		'orientation',
+		'origin',
+		'readOnly',
+		'step',
+		'thumbAlignment',
+		'thumbCollisionBehavior',
+		'thumbSize',
+		'value',
+	]);
+}

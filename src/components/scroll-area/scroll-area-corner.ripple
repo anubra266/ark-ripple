@@ -1,0 +1,18 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useScrollAreaContext } from './use-scroll-area-context';
+import { ark } from '../factory';
+
+export interface ScrollAreaCornerBaseProps {
+	[key: string]: any;
+}
+export type ScrollAreaCornerProps = ScrollAreaCornerBaseProps;
+
+export component ScrollAreaCorner(props: ScrollAreaCornerProps) {
+	const [localProps] = trackSplit(props, []);
+	const scrollArea = useScrollAreaContext();
+
+	let mergedProps = track(() => mergeProps(@scrollArea.getCornerProps(), @localProps));
+
+	<ark.div {...@mergedProps} />
+}

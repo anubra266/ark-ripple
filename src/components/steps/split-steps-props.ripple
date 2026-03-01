@@ -1,0 +1,21 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseStepsProps } from './use-steps.ripple';
+
+const splitProps = createSplitProps<UseStepsProps>();
+
+export function splitStepsProps<T extends UseStepsProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'id',
+		'ids',
+		'count',
+		'defaultStep',
+		'isStepSkippable',
+		'isStepValid',
+		'linear',
+		'onStepChange',
+		'onStepComplete',
+		'onStepInvalid',
+		'orientation',
+		'step',
+	]);
+}

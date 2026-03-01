@@ -1,0 +1,20 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { InputProps } from '@zag-js/date-picker';
+import { useDatePickerContext } from './use-date-picker-context';
+import { ark } from '../factory';
+
+export interface DatePickerInputBaseProps extends InputProps {
+	[key: string]: any;
+}
+export type DatePickerInputProps = DatePickerInputBaseProps;
+
+export component DatePickerInput(props: DatePickerInputProps) {
+	const [index, fixOnBlur, localProps] = trackSplit(props, ['index', 'fixOnBlur']);
+	const datePicker = useDatePickerContext();
+
+	const inputProps = track(() => ({ index: @index, fixOnBlur: @fixOnBlur }));
+	let mergedProps = track(() => mergeProps(@datePicker.getInputProps(@inputProps), @localProps));
+
+	<ark.input {...@mergedProps} />
+}

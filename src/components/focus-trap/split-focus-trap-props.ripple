@@ -1,0 +1,16 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { TrapOptions } from './focus-trap.ripple';
+
+const splitProps = createSplitProps<TrapOptions>();
+
+export function splitFocusTrapProps<T extends TrapOptions & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'disabled',
+		'onActivate',
+		'onDeactivate',
+		'initialFocus',
+		'fallbackFocus',
+		'returnFocusOnDeactivate',
+		'setReturnFocus',
+	]);
+}

@@ -1,0 +1,16 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseClipboardProps } from './use-clipboard.ripple';
+
+const splitProps = createSplitProps<UseClipboardProps>();
+
+export function splitClipboardProps<T extends UseClipboardProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'defaultValue',
+		'id',
+		'ids',
+		'onStatusChange',
+		'onValueChange',
+		'timeout',
+		'value',
+	]);
+}

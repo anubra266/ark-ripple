@@ -1,0 +1,34 @@
+import { Menu } from 'ark-ripple/menu';
+import { ChevronDown } from 'lucide-ripple';
+import styles from 'styles/menu.module.css';
+
+const items = [
+	{ value: 'profile', label: 'My Profile' },
+	{ value: 'settings', label: 'Settings' },
+	{ value: 'billing', label: 'Billing' },
+	{ value: 'logout', label: 'Log Out' },
+];
+
+export component SelectEvent() {
+	<Menu.Root onSelect={(e) => console.log('Selected:', e.value)}>
+		<Menu.Trigger class={styles.Trigger}>
+			{'Account'}
+			<Menu.Indicator class={styles.Indicator}>
+				<ChevronDown />
+			</Menu.Indicator>
+		</Menu.Trigger>
+		<Menu.Positioner>
+			<Menu.Content class={styles.Content}>
+				for (const item of items; key item.value) {
+					<Menu.Item
+						class={styles.Item}
+						value={item.value}
+						onSelect={() => console.log('Item selected:', item.label)}
+					>
+						{item.label}
+					</Menu.Item>
+				}
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

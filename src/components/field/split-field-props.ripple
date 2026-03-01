@@ -1,0 +1,8 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseFieldProps } from './use-field.ripple';
+
+const splitProps = createSplitProps<UseFieldProps>();
+
+export function splitFieldProps<T extends UseFieldProps & Record<string, any>>(props: T) {
+	return splitProps(props, ['id', 'ids', 'disabled', 'invalid', 'readOnly', 'required']);
+}

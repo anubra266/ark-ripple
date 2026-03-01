@@ -1,0 +1,27 @@
+import * as timer from '@zag-js/timer';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseTimerProps extends Optional<Omit<timer.Props, 'dir' | 'getRootNode'>, 'id'> {}
+
+export type UseTimerReturn = ReturnType<typeof useTimer>;
+
+export function useTimer(ownProps: UseTimerProps = {}) {
+	const id = useId();
+	const environment = useEnvironmentContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			getRootNode: @environment.getRootNode,
+			...@ownProps,
+		}),
+	);
+
+	const service = useMachine(timer.machine, machineProps);
+
+	return track(() => timer.connect(service, normalizeProps));
+}

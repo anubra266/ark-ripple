@@ -1,0 +1,31 @@
+import { Menu } from 'ark-ripple/menu';
+import { ChevronDown } from 'lucide-ripple';
+import styles from 'styles/menu.module.css';
+
+export component ItemContext() {
+	<Menu.Root>
+		<Menu.Trigger class={styles.Trigger}>
+			{'Settings'}
+			<Menu.Indicator class={styles.Indicator}>
+				<ChevronDown />
+			</Menu.Indicator>
+		</Menu.Trigger>
+		<Menu.Positioner>
+			<Menu.Content class={styles.Content}>
+				<Menu.Item class={styles.Item} value="profile">
+					<Menu.ItemContext>
+						component children({ context }) {
+							<span style={`font-weight: ${@context.highlighted ? 600 : 400}`}>
+								{'Profile Settings'}
+							</span>
+						}
+					</Menu.ItemContext>
+				</Menu.Item>
+				<Menu.Item class={styles.Item} value="preferences">{'Preferences'}</Menu.Item>
+				<Menu.Item class={styles.Item} value="notifications">{'Notifications'}</Menu.Item>
+				<Menu.Separator class={styles.Separator} />
+				<Menu.Item class={styles.Item} value="logout">{'Log Out'}</Menu.Item>
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

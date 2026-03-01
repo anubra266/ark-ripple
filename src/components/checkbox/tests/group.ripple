@@ -1,0 +1,18 @@
+import { Checkbox } from 'ark-ripple/checkbox';
+
+export component GroupUnderTest(props: Checkbox.GroupProps) {
+	<Checkbox.Group {...props}>
+		<Checkbox.Root value="one">
+			<Checkbox.Label>{'One'}</Checkbox.Label>
+			<Checkbox.HiddenInput />
+		</Checkbox.Root>
+		<Checkbox.Root value="two">
+			<Checkbox.Label>{'Two'}</Checkbox.Label>
+			<Checkbox.HiddenInput />
+		</Checkbox.Root>
+		<Checkbox.Root value="three">
+			<Checkbox.Label>{'Three'}</Checkbox.Label>
+			<Checkbox.HiddenInput />
+		</Checkbox.Root>
+	</Checkbox.Group>
+}

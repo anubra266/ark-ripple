@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { ToggleGroupApiContext } from './use-toggle-group-context';
+import { useToggleGroup, type UseToggleGroupProps } from './use-toggle-group.ripple';
+import { splitToggleGroupProps } from './split-toggle-group-props.ripple';
+import { ark } from '../factory';
+
+export interface ToggleGroupRootBaseProps extends UseToggleGroupProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ToggleGroupRootProps = ToggleGroupRootBaseProps;
+
+export component ToggleGroupRoot(props: ToggleGroupRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [toggleGroupProps, localProps] = splitToggleGroupProps(@rest);
+	const toggleGroup = useToggleGroup(toggleGroupProps);
+
+	ToggleGroupApiContext.set(toggleGroup);
+
+	let mergedProps = track(() => mergeProps(@toggleGroup.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

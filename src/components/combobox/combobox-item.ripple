@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { ItemProps } from '@zag-js/combobox';
+import { useComboboxContext } from './use-combobox-context';
+import { ComboboxItemApiContext } from './use-combobox-item-context';
+import { ComboboxItemPropsContext } from './use-combobox-item-props-context';
+import { ark } from '../factory';
+
+export interface ComboboxItemBaseProps extends ItemProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ComboboxItemProps = ComboboxItemBaseProps;
+
+export component ComboboxItem(props: ComboboxItemProps) {
+	const [item, persistFocus, disabled, children, rest] = trackSplit(props, [
+		'item', 'persistFocus', 'disabled', 'children',
+	]);
+	const combobox = useComboboxContext();
+
+	const itemProps = track(
+		() => ({ item: @item, persistFocus: @persistFocus, disabled: @disabled }),
+	);
+	let mergedProps = track(() => mergeProps(@combobox.getItemProps(@itemProps), @rest));
+
+	ComboboxItemApiContext.set(track(() => @combobox.getItemState(@itemProps)));
+	ComboboxItemPropsContext.set(itemProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

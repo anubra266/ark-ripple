@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDrawerContext } from './use-drawer-context';
+import { ark } from '../factory';
+
+export interface DrawerTitleBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DrawerTitleProps = DrawerTitleBaseProps;
+
+export component DrawerTitle(props: DrawerTitleProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const drawer = useDrawerContext();
+
+	let mergedProps = track(() => mergeProps(@drawer.getTitleProps(), @localProps));
+
+	<ark.h2 {...@mergedProps}>
+		<@children />
+	</ark.h2>
+}

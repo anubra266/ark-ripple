@@ -1,2 +1,2 @@
-export * from './environment'
-export * from './locale'
+export * from './environment';
+export * from './locale';

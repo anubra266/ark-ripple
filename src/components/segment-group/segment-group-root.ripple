@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { SegmentGroupApiContext } from './use-segment-group-context';
+import { useSegmentGroup, type UseSegmentGroupProps } from './use-segment-group.ripple';
+import { splitSegmentGroupProps } from './split-segment-group-props.ripple';
+import { ark } from '../factory';
+
+export interface SegmentGroupRootBaseProps extends UseSegmentGroupProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SegmentGroupRootProps = SegmentGroupRootBaseProps;
+
+export component SegmentGroupRoot(props: SegmentGroupRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [segmentGroupProps, localProps] = splitSegmentGroupProps(@rest);
+	const segmentGroup = useSegmentGroup(segmentGroupProps);
+
+	SegmentGroupApiContext.set(segmentGroup);
+
+	let mergedProps = track(() => mergeProps(@segmentGroup.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

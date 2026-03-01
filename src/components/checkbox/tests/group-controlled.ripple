@@ -1,0 +1,29 @@
+import { track } from 'ripple';
+import { Checkbox } from 'ark-ripple/checkbox';
+
+export component GroupControlledUnderTest() {
+	let value = track(['one']);
+
+	<div>
+		<output data-testid="output">{JSON.stringify(@value)}</output>
+		<Checkbox.Group
+			{value}
+			onValueChange={(v) => {
+				@value = v;
+			}}
+		>
+			<Checkbox.Root value="one">
+				<Checkbox.Label>{'One'}</Checkbox.Label>
+				<Checkbox.HiddenInput />
+			</Checkbox.Root>
+			<Checkbox.Root value="two">
+				<Checkbox.Label>{'Two'}</Checkbox.Label>
+				<Checkbox.HiddenInput />
+			</Checkbox.Root>
+			<Checkbox.Root value="three">
+				<Checkbox.Label>{'Three'}</Checkbox.Label>
+				<Checkbox.HiddenInput />
+			</Checkbox.Root>
+		</Checkbox.Group>
+	</div>
+}

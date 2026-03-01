@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useToggleGroupContext } from './use-toggle-group-context';
+import { ark } from '../factory';
+
+export interface ToggleGroupItemBaseProps {
+	value: string;
+	disabled?: boolean | undefined;
+	children?: any;
+	[key: string]: any;
+}
+export type ToggleGroupItemProps = ToggleGroupItemBaseProps;
+
+export component ToggleGroupItem(props: ToggleGroupItemProps) {
+	const [value, disabled, children, localProps] = trackSplit(props, [
+		'value', 'disabled', 'children',
+	]);
+	const toggleGroup = useToggleGroupContext();
+
+	const itemProps = track(() => ({ value: @value, disabled: @disabled }));
+
+	let mergedProps = track(() => mergeProps(@toggleGroup.getItemProps(@itemProps), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

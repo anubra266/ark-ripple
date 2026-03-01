@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { useColorPickerAreaPropsContext } from './use-color-picker-area-props-context';
+import { ark } from '../factory';
+
+export interface ColorPickerAreaThumbBaseProps {
+	[key: string]: any;
+}
+export type ColorPickerAreaThumbProps = ColorPickerAreaThumbBaseProps;
+
+export component ColorPickerAreaThumb(props: ColorPickerAreaThumbProps) {
+	const colorPicker = useColorPickerContext();
+	const areaProps = useColorPickerAreaPropsContext();
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getAreaThumbProps(@areaProps), @props));
+
+	<ark.div {...@mergedProps} />
+}

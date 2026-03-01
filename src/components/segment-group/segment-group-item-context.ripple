@@ -1,0 +1,16 @@
+import { trackSplit } from 'ripple';
+import {
+	useSegmentGroupItemContext,
+	type UseSegmentGroupItemContext,
+} from './use-segment-group-item-context';
+
+export interface SegmentGroupItemContextProps {
+	children: (context: UseSegmentGroupItemContext) => any;
+}
+
+export component SegmentGroupItemContext(props: SegmentGroupItemContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useSegmentGroupItemContext();
+
+	<@children {context} />
+}

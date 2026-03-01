@@ -1,0 +1,20 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useComboboxContext } from './use-combobox-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+
+export interface ComboboxInputBaseProps {
+	[key: string]: any;
+}
+export type ComboboxInputProps = ComboboxInputBaseProps;
+
+export component ComboboxInput(props: ComboboxInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const combobox = useComboboxContext();
+	const field = useFieldContext();
+
+	let mergedProps = track(() => mergeProps(@combobox.getInputProps(), @localProps));
+
+	<ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+}

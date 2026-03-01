@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useComboboxContext } from './use-combobox-context';
+import { usePresenceContext } from '../presence';
+import { ark } from '../factory';
+
+export interface ComboboxContentBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ComboboxContentProps = ComboboxContentBaseProps;
+
+export component ComboboxContent(props: ComboboxContentProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const combobox = useComboboxContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(
+		() => mergeProps(@combobox.getContentProps(), @presence.getPresenceProps(), @localProps),
+	);
+
+	if (!@presence.unmounted) {
+		<ark.div
+			{...@mergedProps}
+			{ref (el: HTMLDivElement) => {
+				@presence.setNode(el);
+			}}
+		>
+			<@children />
+		</ark.div>
+	}
+}

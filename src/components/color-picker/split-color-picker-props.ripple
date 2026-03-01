@@ -1,0 +1,34 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseColorPickerProps } from './use-color-picker.ripple';
+
+const splitProps = createSplitProps<UseColorPickerProps>();
+
+export function splitColorPickerProps<T extends UseColorPickerProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'closeOnSelect',
+		'defaultOpen',
+		'defaultValue',
+		'defaultFormat',
+		'disabled',
+		'format',
+		'id',
+		'ids',
+		'initialFocusEl',
+		'invalid',
+		'name',
+		'onFocusOutside',
+		'onFormatChange',
+		'onInteractOutside',
+		'onOpenChange',
+		'onPointerDownOutside',
+		'onValueChange',
+		'onValueChangeEnd',
+		'open',
+		'openAutoFocus',
+		'positioning',
+		'readOnly',
+		'required',
+		'inline',
+		'value',
+	]);
+}

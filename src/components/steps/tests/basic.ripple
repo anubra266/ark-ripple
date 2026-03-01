@@ -1,0 +1,35 @@
+import { Steps, type StepsRootProps } from 'ark-ripple/steps';
+
+const items = [
+	{ value: 'first', title: 'First' },
+	{ value: 'second', title: 'Second' },
+	{ value: 'third', title: 'Third' },
+];
+
+export component ComponentUnderTest(props: StepsRootProps) {
+	<Steps.Root count={items.length} {...props}>
+		<Steps.List>
+			for (const item of items; index index; key item.value) {
+				<Steps.Item {index}>
+					<Steps.Trigger>
+						<Steps.Indicator>{index + 1}</Steps.Indicator>
+						<span>{item.title}</span>
+					</Steps.Trigger>
+					<Steps.Separator />
+				</Steps.Item>
+			}
+		</Steps.List>
+
+		for (const item of items; index index; key item.value) {
+			<Steps.Content {index}>
+				{'Content: '}
+				{item.title}
+			</Steps.Content>
+		}
+
+		<Steps.CompletedContent>{'Complete'}</Steps.CompletedContent>
+
+		<Steps.PrevTrigger>{'Back'}</Steps.PrevTrigger>
+		<Steps.NextTrigger>{'Next'}</Steps.NextTrigger>
+	</Steps.Root>
+}

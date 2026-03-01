@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useScrollAreaContext } from './use-scroll-area-context';
+import { useScrollAreaScrollbarContext } from './use-scroll-area-scrollbar-context';
+import { ark } from '../factory';
+
+export interface ScrollAreaThumbBaseProps {
+	[key: string]: any;
+}
+export type ScrollAreaThumbProps = ScrollAreaThumbBaseProps;
+
+export component ScrollAreaThumb(props: ScrollAreaThumbProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const scrollArea = useScrollAreaContext();
+	const scrollbarProps = useScrollAreaScrollbarContext();
+
+	let mergedProps = track(
+		() => mergeProps(@scrollArea.getThumbProps(@scrollbarProps), @localProps),
+	);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSelectContext } from './use-select-context';
+import { ark } from '../factory';
+
+export interface SelectControlBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SelectControlProps = SelectControlBaseProps;
+
+export component SelectControl(props: SelectControlProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const select = useSelectContext();
+
+	let mergedProps = track(() => mergeProps(@select.getControlProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

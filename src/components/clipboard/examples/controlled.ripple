@@ -1,0 +1,37 @@
+import { Clipboard } from 'ark-ripple/clipboard';
+import { track } from 'ripple';
+import styles from 'styles/clipboard.module.css';
+import button from 'styles/button.module.css';
+import { Check, Copy } from 'lucide-ripple';
+
+export component Controlled() {
+	const url = track('https://ark-ui.com');
+
+	<div class="stack">
+		<Clipboard.Root
+			class={styles.Root}
+			value={@url}
+			onValueChange={(details) => {
+				@url = details.value;
+			}}
+		>
+			<Clipboard.Label class={styles.Label}>{'Copy this link'}</Clipboard.Label>
+			<Clipboard.Control class={styles.Control}>
+				<Clipboard.Input class={styles.Input} />
+				<Clipboard.Trigger class={styles.Trigger}>
+					<Clipboard.Indicator class={styles.Indicator} copied={Check}>
+						<Copy />
+					</Clipboard.Indicator>
+				</Clipboard.Trigger>
+			</Clipboard.Control>
+		</Clipboard.Root>
+		<button
+			class={button.Root}
+			onClick={() => {
+				@url = 'https://chakra-ui.com';
+			}}
+		>
+			{'Change Url'}
+		</button>
+	</div>
+}

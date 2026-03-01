@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { ark } from '../factory';
+
+export interface DatePickerMonthSelectBaseProps {
+	[key: string]: any;
+}
+export type DatePickerMonthSelectProps = DatePickerMonthSelectBaseProps;
+
+export component DatePickerMonthSelect(props: DatePickerMonthSelectProps) {
+	const [localProps] = trackSplit(props, []);
+	const datePicker = useDatePickerContext();
+
+	let mergedProps = track(() => mergeProps(@datePicker.getMonthSelectProps(), @localProps));
+
+	<ark.select {...@mergedProps}>
+		for (const month of @datePicker.getMonths()) {
+			<option value={month.value}>{month.label}</option>
+		}
+	</ark.select>
+}

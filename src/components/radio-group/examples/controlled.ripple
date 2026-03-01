@@ -1,0 +1,26 @@
+import { RadioGroup } from 'ark-ripple/radio-group';
+import { track } from 'ripple';
+import styles from 'styles/radio-group.module.css';
+
+const frameworks = ['React', 'Solid', 'Vue'];
+
+export component Controlled() {
+	let value = track<string | null>(null);
+
+	<RadioGroup.Root
+		class={styles.Root}
+		{@value}
+		onValueChange={(e) => {
+			@value = e.value;
+		}}
+	>
+		<RadioGroup.Label class={styles.Label}>{'Framework'}</RadioGroup.Label>
+		for (const framework of frameworks; key framework) {
+			<RadioGroup.Item class={styles.Item} value={framework}>
+				<RadioGroup.ItemControl class={styles.ItemControl} />
+				<RadioGroup.ItemText class={styles.ItemText}>{framework}</RadioGroup.ItemText>
+				<RadioGroup.ItemHiddenInput />
+			</RadioGroup.Item>
+		}
+	</RadioGroup.Root>
+}

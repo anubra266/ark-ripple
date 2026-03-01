@@ -1,0 +1,28 @@
+import type { IndicatorProps } from '@zag-js/carousel';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCarouselContext } from './use-carousel-context';
+import { ark } from '../factory';
+
+export interface CarouselIndicatorBaseProps extends IndicatorProps {
+	[key: string]: any;
+}
+export type CarouselIndicatorProps = CarouselIndicatorBaseProps;
+
+export component CarouselIndicator(props: CarouselIndicatorProps) {
+	const [index, readOnly, children, localProps] = trackSplit(props, [
+		'index', 'readOnly', 'children',
+	]);
+	const carousel = useCarouselContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@carousel.getIndicatorProps({ index: @index, readOnly: @readOnly }),
+			@localProps,
+		),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

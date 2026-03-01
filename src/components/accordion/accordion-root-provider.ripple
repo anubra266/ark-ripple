@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import {
+	splitRenderStrategyProps,
+	RenderStrategyContext,
+	type RenderStrategyProps,
+} from '../../utils/render-strategy.ripple';
+import { AccordionApiContext } from './use-accordion-context';
+import type { UseAccordionReturn } from './use-accordion.ripple';
+import { ark } from '../factory';
+
+export interface AccordionRootProviderBaseProps extends RenderStrategyProps {
+	value: UseAccordionReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type AccordionRootProviderProps = AccordionRootProviderBaseProps;
+
+export component AccordionRootProvider(props: AccordionRootProviderProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [renderStrategyProps, localProps] = splitRenderStrategyProps(@rest);
+	const accordion = props.value;
+
+	AccordionApiContext.set(accordion);
+	RenderStrategyContext.set(renderStrategyProps);
+
+	let mergedProps = track(() => mergeProps(@accordion.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

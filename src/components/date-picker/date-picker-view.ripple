@@ -1,0 +1,29 @@
+import { trackSplit, track } from 'ripple';
+import type { ViewProps } from '@zag-js/date-picker';
+import { DatePickerViewPropsContext } from './use-date-picker-view-props-context';
+import { useDatePickerContext } from './use-date-picker-context';
+import { datePickerAnatomy } from './date-picker.anatomy';
+import { ark } from '../factory';
+
+export interface DatePickerViewBaseProps extends Required<ViewProps> {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerViewProps = DatePickerViewBaseProps;
+
+export component DatePickerView(props: DatePickerViewProps) {
+	const [children, view, localProps] = trackSplit(props, ['children', 'view']);
+	const datePicker = useDatePickerContext();
+
+	const viewProps = track(() => ({ view: @view }));
+
+	DatePickerViewPropsContext.set(viewProps);
+
+	<ark.div
+		hidden={@datePicker.view !== @view}
+		{...datePickerAnatomy.build().view.attrs}
+		{...@localProps}
+	>
+		<@children />
+	</ark.div>
+}

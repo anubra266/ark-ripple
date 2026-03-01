@@ -1,0 +1,41 @@
+import { Checkbox, useCheckbox } from 'ark-ripple/checkbox';
+import styles from 'styles/checkbox.module.css';
+import button from 'styles/button.module.css';
+import { Check } from 'lucide-ripple';
+
+export component RootProvider() {
+	const checkbox = useCheckbox();
+
+	<div class="vstack">
+		<Checkbox.RootProvider class={styles.Root} value={checkbox}>
+			<Checkbox.Control class={styles.Control}>
+				<Checkbox.Indicator class={styles.Indicator}>
+					<Check />
+				</Checkbox.Indicator>
+			</Checkbox.Control>
+			<Checkbox.Label class={styles.Label}>{'Checkbox'}</Checkbox.Label>
+			<Checkbox.HiddenInput />
+		</Checkbox.RootProvider>
+		if (@checkbox.checked) {
+			<button
+				type="button"
+				onClick={() => {
+					@checkbox.setChecked(false);
+				}}
+				class={button.Root}
+			>
+				{'Uncheck'}
+			</button>
+		} else {
+			<button
+				type="button"
+				onClick={() => {
+					@checkbox.setChecked(true);
+				}}
+				class={button.Root}
+			>
+				{'Check'}
+			</button>
+		}
+	</div>
+}

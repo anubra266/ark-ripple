@@ -1,0 +1,39 @@
+import { RatingGroup, useRatingGroup } from 'ark-ripple/rating-group';
+import { Star } from 'lucide-ripple';
+import styles from 'styles/rating-group.module.css';
+
+export component RootProvider() {
+	const ratingGroup = useRatingGroup({ count: 5, defaultValue: 3 });
+
+	<div class="stack">
+		<output>
+			{'value: '}
+			{@ratingGroup.value}
+		</output>
+		<RatingGroup.RootProvider class={styles.Root} value={ratingGroup}>
+			<RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
+			<RatingGroup.Control class={styles.Control}>
+				<RatingGroup.Context>
+					component children({ context }) {
+						for (const item of @context.items; key item) {
+							<RatingGroup.Item class={styles.Item} index={item}>
+								<RatingGroup.ItemContext>
+									component children({ context }) {
+										<span
+											class={styles.ItemIndicator}
+											data-highlighted={@context.highlighted ? '' : undefined}
+										>
+											<Star data-bg="" />
+											<Star data-fg="" fill="currentColor" />
+										</span>
+									}
+								</RatingGroup.ItemContext>
+							</RatingGroup.Item>
+						}
+					}
+				</RatingGroup.Context>
+				<RatingGroup.HiddenInput />
+			</RatingGroup.Control>
+		</RatingGroup.RootProvider>
+	</div>
+}

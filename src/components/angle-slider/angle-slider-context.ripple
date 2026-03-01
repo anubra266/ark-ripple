@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useAngleSliderContext, type UseAngleSliderContext } from './use-angle-slider-context';
+
+export interface AngleSliderContextProps {
+	children: (context: UseAngleSliderContext) => any;
+}
+
+export component AngleSliderContext(props: AngleSliderContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useAngleSliderContext();
+
+	<@children {context} />
+}

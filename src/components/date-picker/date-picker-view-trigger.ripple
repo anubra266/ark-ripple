@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { useDatePickerViewPropsContext } from './use-date-picker-view-props-context';
+import { ark } from '../factory';
+
+export interface DatePickerViewTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerViewTriggerProps = DatePickerViewTriggerBaseProps;
+
+export component DatePickerViewTrigger(props: DatePickerViewTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const datePicker = useDatePickerContext();
+	const viewProps = useDatePickerViewPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@datePicker.getViewTriggerProps(@viewProps), @localProps),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

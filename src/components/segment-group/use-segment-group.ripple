@@ -1,0 +1,40 @@
+import * as radio from '@zag-js/radio-group';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useFieldsetContext } from '../fieldset/use-fieldset-context';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseSegmentGroupProps extends Optional<
+	Omit<radio.Props, 'dir' | 'getRootNode'>,
+	'id'
+> {}
+
+export type UseSegmentGroupReturn = ReturnType<typeof useSegmentGroup>;
+
+export function useSegmentGroup(props: UseSegmentGroupProps = {}) {
+	const id = useId();
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+	const fieldset = useFieldsetContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			ids: {
+				label: @fieldset?.ids?.legend,
+			},
+			dir: @locale.dir,
+			disabled: @fieldset?.disabled,
+			invalid: @fieldset?.invalid,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(radio.machine, machineProps);
+
+	return track(() => radio.connect(service, normalizeProps));
+}

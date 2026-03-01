@@ -1,0 +1,27 @@
+import * as avatar from '@zag-js/avatar';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import type { Optional } from '../../types';
+
+export interface UseAvatarProps extends Optional<Omit<avatar.Props, 'dir' | 'getRootNode'>, 'id'> {}
+
+export type UseAvatarReturn = ReturnType<typeof useAvatar>;
+
+export function useAvatar(props: UseAvatarProps = {}) {
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+
+	const machineProps = track(
+		() => ({
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(avatar.machine, machineProps);
+
+	return track(() => avatar.connect(service, normalizeProps));
+}

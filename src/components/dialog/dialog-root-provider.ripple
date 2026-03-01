@@ -1,0 +1,32 @@
+import { trackSplit, track } from 'ripple';
+import { DialogApiContext } from './use-dialog-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import type { UseDialogReturn } from './use-dialog.ripple';
+import {
+	splitRenderStrategyProps,
+	RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+export interface DialogRootProviderBaseProps extends UsePresenceProps {
+	value: UseDialogReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type DialogRootProviderProps = DialogRootProviderBaseProps;
+
+export component DialogRootProvider(props: DialogRootProviderProps) {
+	const [children, value, rest] = trackSplit(props, ['children', 'value']);
+	const [presenceProps] = splitPresenceProps(@rest);
+	const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+
+	const present = track(() => @value.open);
+	const presence = usePresence({ present, ...@presenceProps });
+
+	DialogApiContext.set(value);
+	RenderStrategyContext.set(renderStrategyProps);
+	PresenceApiContext.set(presence);
+
+	<@children />
+}

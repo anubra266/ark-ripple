@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { DateValue, WeekNumberCellProps } from '@zag-js/date-picker';
+import { useDatePickerContext } from './use-date-picker-context';
+import { ark } from '../factory';
+
+export interface DatePickerWeekNumberCellBaseProps extends WeekNumberCellProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DatePickerWeekNumberCellProps = DatePickerWeekNumberCellBaseProps;
+
+export component DatePickerWeekNumberCell(props: DatePickerWeekNumberCellProps) {
+	const [children, weekIndex, week, localProps] = trackSplit(props, [
+		'children', 'weekIndex', 'week',
+	]);
+	const datePicker = useDatePickerContext();
+
+	const cellProps = track(() => ({ weekIndex: @weekIndex, week: @week as DateValue[] }));
+	let mergedProps = track(
+		() => mergeProps(@datePicker.getWeekNumberCellProps(@cellProps), @localProps),
+	);
+
+	<ark.td {...@mergedProps}>
+		<@children />
+	</ark.td>
+}

@@ -1,0 +1,14 @@
+import * as Collapsible from '../collapsible';
+
+export component ComponentUnderTest(props: {
+	lazyMount?: boolean;
+	unmountOnExit?: boolean;
+	open?: boolean;
+	defaultOpen?: boolean;
+	[key: string]: any;
+}) {
+	<Collapsible.Root {...props}>
+		<Collapsible.Trigger>{'Toggle'}</Collapsible.Trigger>
+		<Collapsible.Content>{'Content'}</Collapsible.Content>
+	</Collapsible.Root>
+}

@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerSwatchGroupBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerSwatchGroupProps = ColorPickerSwatchGroupBaseProps;
+
+export component ColorPickerSwatchGroup(props: ColorPickerSwatchGroupProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getSwatchGroupProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

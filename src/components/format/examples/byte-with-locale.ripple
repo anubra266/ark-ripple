@@ -1,0 +1,23 @@
+import { Format } from 'ark-ripple/format';
+import { LocaleProvider } from 'ark-ripple/locale';
+import styles from 'styles/format.module.css';
+
+const locales = ['de-DE', 'zh-CN'];
+
+export component ByteWithLocale() {
+	<div class={styles.List}>
+		for (const locale of locales; key locale) {
+			<LocaleProvider {locale}>
+				<div class={styles.ListItem}>
+					<span class={styles.InlineLabel}>
+						{locale}
+						{':'}
+					</span>
+					<span class={styles.Value}>
+						<Format.Byte value={1450.45} />
+					</span>
+				</div>
+			</LocaleProvider>
+		}
+	</div>
+}

@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCollapsibleContext } from './use-collapsible-context';
+import { ark } from '../factory';
+
+export interface CollapsibleIndicatorBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CollapsibleIndicatorProps = CollapsibleIndicatorBaseProps;
+
+export component CollapsibleIndicator(props: CollapsibleIndicatorProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const collapsible = useCollapsibleContext();
+
+	let mergedProps = track(() => mergeProps(@collapsible.getIndicatorProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

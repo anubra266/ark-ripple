@@ -1,0 +1,17 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useAngleSliderContext } from './use-angle-slider-context';
+import { ark } from '../factory';
+
+export interface AngleSliderThumbBaseProps {
+	[key: string]: any;
+}
+export type AngleSliderThumbProps = AngleSliderThumbBaseProps;
+
+export component AngleSliderThumb(props: AngleSliderThumbProps) {
+	const angleSlider = useAngleSliderContext();
+
+	let mergedProps = track(() => mergeProps(@angleSlider.getThumbProps(), props));
+
+	<ark.div {...@mergedProps} />
+}

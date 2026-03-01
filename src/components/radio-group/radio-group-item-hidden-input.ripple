@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useRadioGroupContext } from './use-radio-group-context';
+import { useRadioGroupItemPropsContext } from './use-radio-group-item-props-context';
+import { ark } from '../factory';
+
+export interface RadioGroupItemHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type RadioGroupItemHiddenInputProps = RadioGroupItemHiddenInputBaseProps;
+
+export component RadioGroupItemHiddenInput(props: RadioGroupItemHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const radioGroup = useRadioGroupContext();
+	const itemProps = useRadioGroupItemPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@radioGroup.getItemHiddenInputProps(@itemProps), @localProps),
+	);
+
+	<ark.input {...@mergedProps} />
+}

@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSignaturePadContext } from './use-signature-pad-context';
+import { ark } from '../factory';
+
+export interface SignaturePadSegmentBaseProps {
+	[key: string]: any;
+}
+export type SignaturePadSegmentProps = SignaturePadSegmentBaseProps;
+
+export component SignaturePadSegment(props: SignaturePadSegmentProps) {
+	const [localProps] = trackSplit(props, []);
+	const signaturePad = useSignaturePadContext();
+
+	let mergedProps = track(() => mergeProps(@signaturePad.getSegmentProps(), @localProps));
+
+	<ark.svg {...@mergedProps}>
+		<title>{'Signature'}</title>
+		for (const path of @signaturePad.paths; key path) {
+			<path {...@signaturePad.getSegmentPathProps({ path })} />
+		}
+		if (@signaturePad.currentPath) {
+			<path {...@signaturePad.getSegmentPathProps({ path: @signaturePad.currentPath })} />
+		}
+	</ark.svg>
+}

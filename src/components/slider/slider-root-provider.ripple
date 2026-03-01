@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { SliderApiContext } from './use-slider-context';
+import type { UseSliderReturn } from './use-slider.ripple';
+import { ark } from '../factory';
+
+export interface SliderRootProviderBaseProps {
+	value: UseSliderReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type SliderRootProviderProps = SliderRootProviderBaseProps;
+
+export component SliderRootProvider(props: SliderRootProviderProps) {
+	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+	SliderApiContext.set(value);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

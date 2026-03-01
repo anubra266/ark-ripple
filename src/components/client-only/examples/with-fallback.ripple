@@ -1,0 +1,7 @@
+import { ClientOnly } from 'ark-ripple/client-only';
+
+export component WithFallback() {
+	<ClientOnly fallback="Loading...">
+		<div>{'This content is only rendered on the client side.'}</div>
+	</ClientOnly>
+}

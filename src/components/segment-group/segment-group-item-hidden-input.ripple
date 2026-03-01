@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSegmentGroupContext } from './use-segment-group-context';
+import { useSegmentGroupItemPropsContext } from './use-segment-group-item-props-context';
+import { ark } from '../factory';
+
+export interface SegmentGroupItemHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type SegmentGroupItemHiddenInputProps = SegmentGroupItemHiddenInputBaseProps;
+
+export component SegmentGroupItemHiddenInput(props: SegmentGroupItemHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const segmentGroup = useSegmentGroupContext();
+	const itemProps = useSegmentGroupItemPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@segmentGroup.getItemHiddenInputProps(@itemProps), @localProps),
+	);
+
+	<ark.input {...@mergedProps} />
+}

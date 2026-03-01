@@ -1,26 +1,26 @@
+import type { Component } from 'ripple';
 
-import type { Component } from 'ripple'
+export type Assign<T, U> = Omit<T, keyof U> & U;
+export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+export type Accessor<T> = () => T;
 
-export type Assign<T, U> = Omit<T, keyof U> & U
-export type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>
-export type Accessor<T> = () => T
+export type ElementType = keyof JSX.IntrinsicElements;
 
-export type HTMLTag = any
-export type PropsFn<T extends HTMLTag> = (props?: HTMLProps<T>) => any
+export type HTMLProps<E extends ElementType> = JSX.IntrinsicElements[E];
 
-export type HTMLProps<T extends HTMLTag> = any
+type ParentProps<E extends ElementType> = (userProps?: JSX.IntrinsicElements[E]) => HTMLProps<E>;
 
-export type PolymorphicProps<T extends HTMLTag> = {
-  /**
-   * The children snippet of the component.
-   */
-  children?: Component
-  /**
-   * Use the provided child element as the default rendered element, combining their props and behavior.
-   */
-  asChild?: Component
-}
-
-export interface RefAttribute<T extends Element = Element> {
-  ref?: T | null | undefined
-}
+export type PolymorphicProps<E extends ElementType> = {
+	/**
+	 * The children snippet of the component.
+	 */
+	children?: Component;
+	/**
+	 * Use the provided child element as the default rendered element, combining their props and behavior.
+	 */
+	asChild?: Component<ParentProps<E>>;
+	/**
+	 * The element to render.
+	 */
+	element?: E;
+};

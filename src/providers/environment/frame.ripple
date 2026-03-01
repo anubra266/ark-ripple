@@ -1,56 +1,55 @@
-import { Portal } from 'ripple'
-import { trackSplit, track } from 'ripple'
+import { Portal } from 'ripple';
+import { trackSplit, track } from 'ripple';
 
-const INITIAL_CONTENT =
-  '<!DOCTYPE html><html><head></head><body><div class="frame-root"></div></body></html>'
+const INITIAL_CONTENT = '<!DOCTYPE html><html><head></head><body><div class="frame-root"></div></body></html>';
 
 function copyStyles(sourceDoc: Document, targetDoc: Document) {
-  sourceDoc.querySelectorAll('style').forEach((style) => {
-    const newStyle = targetDoc.createElement('style')
-    newStyle.textContent = style.textContent
-    targetDoc.head.appendChild(newStyle)
-  })
-  sourceDoc.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-    const newLink = targetDoc.createElement('link')
-    newLink.rel = 'stylesheet'
-    newLink.href = (link as HTMLLinkElement).href
-    targetDoc.head.appendChild(newLink)
-  })
+	sourceDoc.querySelectorAll('style').forEach((style) => {
+		const newStyle = targetDoc.createElement('style');
+		newStyle.textContent = style.textContent;
+		targetDoc.head.appendChild(newStyle);
+	});
+	sourceDoc.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
+		const newLink = targetDoc.createElement('link');
+		newLink.rel = 'stylesheet';
+		newLink.href = (link as HTMLLinkElement).href;
+		targetDoc.head.appendChild(newLink);
+	});
 }
 
 export interface FrameProps {
-  children?: any
-  title?: string
-  width?: string
-  height?: string
+	children?: any;
+	title?: string;
+	width?: string;
+	height?: string;
 }
 
 export component Frame(props: FrameProps) {
-  const [children, localProps] = trackSplit(props, ['children'])
-  let mountTarget = track<HTMLElement | null>(null)
+	const [children, localProps] = trackSplit(props, ['children']);
+	let mountTarget = track<HTMLElement | null>(null);
 
-  <iframe
-    srcdoc={INITIAL_CONTENT}
-    title={@localProps.title}
-    width={@localProps.width ?? '100%'}
-    height={@localProps.height ?? '300px'}
-    {ref (el: HTMLIFrameElement) => {
-      const onLoad = () => {
-        const doc = el.contentDocument
-        if (!doc) return
-        copyStyles(document, doc)
-        @mountTarget = doc.querySelector('.frame-root') as HTMLElement
-      }
-      el.addEventListener('load', onLoad)
-      return () => {
-        el.removeEventListener('load', onLoad)
-        @mountTarget = null
-      }
-    }}
-  />
-  if (@mountTarget) {
-    <Portal container={@mountTarget}>
-      <@children />
-    </Portal>
-  }
+	<iframe
+		srcdoc={INITIAL_CONTENT}
+		title={@localProps.title}
+		width={@localProps.width ?? '100%'}
+		height={@localProps.height ?? '300px'}
+		{ref (el: HTMLIFrameElement) => {
+			const onLoad = () => {
+				const doc = el.contentDocument;
+				if (!doc) return;
+				copyStyles(document, doc);
+				@mountTarget = doc.querySelector('.frame-root') as HTMLElement;
+			};
+			el.addEventListener('load', onLoad);
+			return () => {
+				el.removeEventListener('load', onLoad);
+				@mountTarget = null;
+			};
+		}}
+	/>
+	if (@mountTarget) {
+		<Portal container={@mountTarget}>
+			<@children />
+		</Portal>
+	}
 }

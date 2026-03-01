@@ -1,0 +1,8 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseAvatarProps } from './use-avatar.ripple';
+
+const splitProps = createSplitProps<UseAvatarProps>();
+
+export function splitAvatarProps<T extends UseAvatarProps & Record<string, any>>(props: T) {
+	return splitProps(props, ['id', 'ids', 'onStatusChange']);
+}

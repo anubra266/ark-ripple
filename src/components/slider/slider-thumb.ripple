@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { ThumbProps } from '@zag-js/slider';
+import { useSliderContext } from './use-slider-context';
+import { SliderThumbPropsContext } from './use-slider-thumb-props-context';
+import { ark } from '../factory';
+
+export interface SliderThumbBaseProps extends ThumbProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SliderThumbProps = SliderThumbBaseProps;
+
+export component SliderThumb(props: SliderThumbProps) {
+	const [children, index, name, localProps] = trackSplit(props, ['children', 'index', 'name']);
+	const slider = useSliderContext();
+
+	const thumbProps = track(() => ({ index: @index, name: @name }));
+	let mergedProps = track(() => mergeProps(@slider.getThumbProps(@thumbProps), @localProps));
+
+	SliderThumbPropsContext.set(thumbProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

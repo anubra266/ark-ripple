@@ -1,0 +1,32 @@
+import * as clipboard from '@zag-js/clipboard';
+import { normalizeProps, useMachine } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseClipboardProps extends Optional<
+	Omit<clipboard.Props, 'dir' | 'getRootNode'>,
+	'id'
+> {}
+export type UseClipboardReturn = ReturnType<typeof useClipboard>;
+
+export function useClipboard(props: UseClipboardProps = {}) {
+	const id = useId();
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(clipboard.machine, machineProps);
+
+	return track(() => clipboard.connect(service, normalizeProps));
+}

@@ -1,0 +1,54 @@
+import { useListCollection } from 'ark-ripple/collection';
+
+export component ListCollectionTest() {
+	let { collection, filter, clear, reset, append } = useListCollection(
+		{
+			initialItems: [
+				{ label: 'React', value: 'react' },
+				{ label: 'Solid', value: 'solid' },
+				{ label: 'Vue', value: 'vue' },
+			],
+		},
+	);
+
+	<div>
+		<div data-testid="items">
+			for (const item of @collection.items; key item.value) {
+				<span data-testid="item">{item.label}</span>
+			}
+		</div>
+		<button data-testid="filter" onClick={() => filter('Re')}>{'Filter'}</button>
+		<button data-testid="reset" onClick={reset}>{'Reset'}</button>
+		<button data-testid="clear" onClick={clear}>{'Clear'}</button>
+		<button data-testid="append" onClick={() => append({ label: 'Svelte', value: 'svelte' })}>
+			{'Append'}
+		</button>
+	</div>
+}
+
+export component FilteredListCollectionTest() {
+	let { collection, filter } = useListCollection(
+		{
+			initialItems: [
+				{ label: 'React', value: 'react' },
+				{ label: 'Solid', value: 'solid' },
+				{ label: 'Vue', value: 'vue' },
+				{ label: 'Svelte', value: 'svelte' },
+			],
+			filter: (itemText, filterText) => itemText.toLowerCase().includes(filterText.toLowerCase()),
+		},
+	);
+
+	<div>
+		<input
+			data-testid="search"
+			type="text"
+			onInput={(e) => filter((e.target as HTMLInputElement).value)}
+		/>
+		<div data-testid="items">
+			for (const item of @collection.items; key item.value) {
+				<span data-testid="item">{item.label}</span>
+			}
+		</div>
+	</div>
+}

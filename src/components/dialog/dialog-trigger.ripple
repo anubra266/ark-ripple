@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDialogContext } from './use-dialog-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+
+export interface DialogTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DialogTriggerProps = DialogTriggerBaseProps;
+
+export component DialogTrigger(props: DialogTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const dialog = useDialogContext();
+	const presence = usePresenceContext();
+
+	let triggerBaseProps = track(() => @dialog.getTriggerProps());
+	let mergedProps = track(
+		() => mergeProps(
+			{
+				...@triggerBaseProps,
+				'aria-controls': @presence.unmounted ? undefined : @triggerBaseProps['aria-controls'],
+			},
+			@localProps,
+		),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

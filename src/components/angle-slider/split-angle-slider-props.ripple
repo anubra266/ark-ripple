@@ -1,0 +1,22 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseAngleSliderProps } from './use-angle-slider.ripple';
+
+const splitProps = createSplitProps<UseAngleSliderProps>();
+
+export function splitAngleSliderProps<T extends UseAngleSliderProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'aria-label',
+		'aria-labelledby',
+		'defaultValue',
+		'disabled',
+		'id',
+		'ids',
+		'invalid',
+		'name',
+		'onValueChange',
+		'onValueChangeEnd',
+		'readOnly',
+		'step',
+		'value',
+	]);
+}

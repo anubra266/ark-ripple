@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { TimerApiContext } from './use-timer-context';
+import type { UseTimerReturn } from './use-timer.ripple';
+import { ark } from '../factory';
+
+export interface TimerRootProviderBaseProps {
+	value: UseTimerReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type TimerRootProviderProps = TimerRootProviderBaseProps;
+
+export component TimerRootProvider(props: TimerRootProviderProps) {
+	const [timer, children, localProps] = trackSplit(props, ['value', 'children']);
+
+	TimerApiContext.set(timer);
+
+	let mergedProps = track(() => mergeProps(@timer.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

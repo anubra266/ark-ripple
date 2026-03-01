@@ -1,0 +1,72 @@
+import { Combobox, useListCollection } from 'ark-ripple/combobox';
+import { useFilter } from 'ark-ripple/locale';
+import { Portal } from 'ark-ripple/portal';
+import { Check, ChevronsUpDown } from 'lucide-ripple';
+import styles from 'styles/combobox.module.css';
+
+export component Multiple() {
+	const filterApi = useFilter({ sensitivity: 'base' });
+
+	let { collection, filter, remove } = useListCollection(
+		{
+			initialItems: [
+				{ label: 'JavaScript', value: 'js' },
+				{ label: 'TypeScript', value: 'ts' },
+				{ label: 'Python', value: 'python' },
+				{ label: 'Go', value: 'go' },
+				{ label: 'Rust', value: 'rust' },
+				{ label: 'Java', value: 'java' },
+			],
+			filter: @filterApi.contains,
+		},
+	);
+
+	<Combobox.Root
+		class={styles.Root}
+		{collection}
+		onInputValueChange={(details) => {
+			filter(details.inputValue);
+		}}
+		onValueChange={(details) => {
+			remove(...details.value);
+		}}
+		multiple
+	>
+		<Combobox.Label class={styles.Label}>{'Skills'}</Combobox.Label>
+		<Combobox.Context>
+			component children({ context }) {
+				<div class={styles.Tags}>
+					if (@context.selectedItems.length === 0) {
+						<span class={styles.TagPlaceholder}>{'None selected'}</span>
+					}
+					for (const item of @context.selectedItems; key item.value) {
+						<span class={styles.Tag}>{item.label}</span>
+					}
+				</div>
+			}
+		</Combobox.Context>
+		<Combobox.Control class={styles.Control}>
+			<Combobox.Input class={styles.Input} placeholder="e.g. JavaScript" />
+			<div class={styles.Indicators}>
+				<Combobox.Trigger class={styles.Trigger}>
+					<ChevronsUpDown />
+				</Combobox.Trigger>
+			</div>
+		</Combobox.Control>
+		<Portal>
+			<Combobox.Positioner>
+				<Combobox.Content class={styles.Content}>
+					<Combobox.Empty class={styles.Item}>{'No skills found'}</Combobox.Empty>
+					for (const item of @collection.items; key item.value) {
+						<Combobox.Item class={styles.Item} {item}>
+							<Combobox.ItemText class={styles.ItemText}>{item.label}</Combobox.ItemText>
+							<Combobox.ItemIndicator class={styles.ItemIndicator}>
+								<Check />
+							</Combobox.ItemIndicator>
+						</Combobox.Item>
+					}
+				</Combobox.Content>
+			</Combobox.Positioner>
+		</Portal>
+	</Combobox.Root>
+}

@@ -1,12 +1,12 @@
-import type { Meta } from '@storybook/html'
-import { Basic as BasicExample } from './examples/basic.ripple'
+import type { Meta } from '@storybook/html-vite';
+import { Basic as BasicExample } from './examples/basic.ripple';
 
 const meta: Meta = {
-  title: 'Utilities / Locale',
-}
+	title: 'Utilities / Locale',
+};
 
-export default meta
+export default meta;
 
 export const Basic = {
-  render: () => ({ Component: BasicExample }),
-}
+	render: () => ({ Component: BasicExample }),
+};

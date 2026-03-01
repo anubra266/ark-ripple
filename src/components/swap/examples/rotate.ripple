@@ -1,0 +1,25 @@
+import { Swap } from 'ark-ripple/swap';
+import { Moon, Sun } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/swap.module.css';
+
+export component Rotate() {
+	let swapped = track(false);
+
+	<button
+		type="button"
+		class={styles.Button}
+		onClick={() => {
+			@swapped = !@swapped;
+		}}
+	>
+		<Swap.Root swap={@swapped}>
+			<Swap.Indicator type="on" class={styles.RotateIndicator}>
+				<Sun />
+			</Swap.Indicator>
+			<Swap.Indicator type="off" class={styles.RotateIndicator}>
+				<Moon />
+			</Swap.Indicator>
+		</Swap.Root>
+	</button>
+}

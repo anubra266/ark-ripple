@@ -1,0 +1,9 @@
+import { type HighlightWordProps, highlightWord } from '@zag-js/highlight-word';
+import { track, trackSplit, type Tracked } from 'ripple';
+import { mergeProps } from 'zag-ripple';
+
+export interface UseHighlightProps extends HighlightWordProps {}
+
+export function useHighlight(props: Tracked<UseHighlightProps>) {
+	return track(() => highlightWord(mergeProps(@props)));
+}

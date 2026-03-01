@@ -1,0 +1,16 @@
+import { formatRelativeTime } from '@zag-js/i18n-utils';
+import { trackSplit, track } from 'ripple';
+import { useLocaleContext } from '../../providers/locale';
+
+export interface FormatRelativeTimeProps extends Intl.RelativeTimeFormatOptions {
+	value: Date;
+}
+
+export component FormatRelativeTime(props: FormatRelativeTimeProps) {
+	const [value, intlOptions] = trackSplit(props, ['value']);
+	const locale = useLocaleContext();
+
+	const text = track(() => formatRelativeTime(@value, @locale.locale, @intlOptions));
+
+	{@text}
+}

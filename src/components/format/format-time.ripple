@@ -1,0 +1,19 @@
+import { formatTime, type FormatTimeOptions } from '@zag-js/i18n-utils';
+import { trackSplit, track } from 'ripple';
+import { useLocaleContext } from '../../providers/locale';
+
+export interface FormatTimeProps extends FormatTimeOptions {
+	/**
+ * The time to format
+ */
+	value: string | Date;
+}
+
+export component FormatTime(props: FormatNumberProps) {
+	const [value, intlOptions] = trackSplit(props, ['value']);
+	const locale = useLocaleContext();
+
+	const text = track(() => formatTime(@value, @locale.locale, @intlOptions));
+
+	{@text}
+}

@@ -1,0 +1,17 @@
+import { Clipboard } from 'ark-ripple/clipboard';
+import { Check, Copy } from 'lucide-ripple';
+import styles from 'styles/clipboard.module.css';
+
+export component Timeout() {
+	<Clipboard.Root class={styles.Root} value="https://ark-ui.com" timeout={5000}>
+		<Clipboard.Label class={styles.Label}>{'Copy this link (5 second timeout)'}</Clipboard.Label>
+		<Clipboard.Control class={styles.Control}>
+			<Clipboard.Input class={styles.Input} />
+			<Clipboard.Trigger class={styles.Trigger}>
+				<Clipboard.Indicator class={styles.Indicator} copied={Check}>
+					<Copy />
+				</Clipboard.Indicator>
+			</Clipboard.Trigger>
+		</Clipboard.Control>
+	</Clipboard.Root>
+}

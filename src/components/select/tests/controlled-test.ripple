@@ -1,0 +1,43 @@
+import { Select, createListCollection } from 'ark-ripple/select';
+import { track } from 'ripple';
+
+const items = [
+	{ label: 'React', value: 'react' },
+	{ label: 'Solid', value: 'solid' },
+	{ label: 'Vue', value: 'vue' },
+];
+
+const collection = createListCollection({ items });
+
+export component ControlledSelectTest() {
+	let value = track<string[]>([]);
+
+	<Select.Root
+		{collection}
+		multiple
+		{value}
+		onValueChange={(details) => {
+			@value = details.value;
+		}}
+	>
+		<Select.Label>{'Framework'}</Select.Label>
+		<Select.Control>
+			<Select.Trigger>
+				<Select.ValueText data-testid="value-text" placeholder="Select a Framework" />
+				<Select.Indicator>{'▼'}</Select.Indicator>
+			</Select.Trigger>
+		</Select.Control>
+		<Select.Positioner>
+			<Select.Content>
+				<Select.ItemGroup>
+					for (const item of collection.items; key item.value) {
+						<Select.Item {item}>
+							<Select.ItemText>{item.label}</Select.ItemText>
+						</Select.Item>
+					}
+				</Select.ItemGroup>
+			</Select.Content>
+		</Select.Positioner>
+		<Select.HiddenSelect />
+	</Select.Root>
+}

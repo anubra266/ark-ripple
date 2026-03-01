@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { CarouselApiContext } from './use-carousel-context';
+import { useCarousel, type UseCarouselProps } from './use-carousel.ripple';
+import { splitCarouselProps } from './split-carousel-props.ripple';
+import { ark } from '../factory';
+
+export interface CarouselRootBaseProps extends UseCarouselProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CarouselRootProps = CarouselRootBaseProps;
+
+export component CarouselRoot(props: CarouselRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [useCarouselProps, localProps] = splitCarouselProps(@rest);
+	const carousel = useCarousel(useCarouselProps);
+
+	CarouselApiContext.set(carousel);
+
+	let mergedProps = track(() => mergeProps(@carousel.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

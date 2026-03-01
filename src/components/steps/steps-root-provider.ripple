@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { StepsApiContext } from './use-steps-context';
+import type { UseStepsReturn } from './use-steps.ripple';
+import { ark } from '../factory';
+
+export interface StepsRootProviderBaseProps {
+	value: UseStepsReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type StepsRootProviderProps = StepsRootProviderBaseProps;
+
+export component StepsRootProvider(props: StepsRootProviderProps) {
+	const [stepsApi, children, localProps] = trackSplit(props, ['value', 'children']);
+
+	StepsApiContext.set(stepsApi);
+
+	let mergedProps = track(() => mergeProps(@stepsApi.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

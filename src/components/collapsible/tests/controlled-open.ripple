@@ -1,0 +1,26 @@
+import { track } from 'ripple';
+import * as Collapsible from '../collapsible';
+
+/**
+ * Simulates what AccordionItem does: a parent holds a reactive `open` signal
+ * and passes it to CollapsibleRoot as a controlled prop.
+ * This tests whether CollapsibleRoot reacts to external `open` changes.
+ */
+export component ControlledOpenTest() {
+	let open = track(false);
+
+	<div>
+		<button
+			data-testid="toggle"
+			onClick={() => {
+				@open = !@open;
+			}}
+		>
+			{'Toggle'}
+		</button>
+		<span data-testid="open-state">{String(@open)}</span>
+		<Collapsible.Root {@open}>
+			<Collapsible.Content data-testid="content">{'Content'}</Collapsible.Content>
+		</Collapsible.Root>
+	</div>
+}

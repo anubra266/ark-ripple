@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { RadioGroupApiContext } from './use-radio-group-context';
+import { useRadioGroup, type UseRadioGroupProps } from './use-radio-group.ripple';
+import { splitRadioGroupProps } from './split-radio-group-props.ripple';
+import { ark } from '../factory';
+
+export interface RadioGroupRootBaseProps extends UseRadioGroupProps {
+	children?: any;
+	[key: string]: any;
+}
+export type RadioGroupRootProps = RadioGroupRootBaseProps;
+
+export component RadioGroupRoot(props: RadioGroupRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [radioGroupProps, localProps] = splitRadioGroupProps(@rest);
+	const radioGroup = useRadioGroup(radioGroupProps);
+
+	RadioGroupApiContext.set(radioGroup);
+
+	let mergedProps = track(() => mergeProps(@radioGroup.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

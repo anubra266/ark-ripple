@@ -1,0 +1,35 @@
+import { track } from 'ripple';
+import { Portal } from 'ark-ripple/portal';
+import { Field } from 'ark-ripple/field';
+import { EnvironmentProvider } from 'ark-ripple/environment';
+
+export component ShadowDom() {
+	<Host el="div">
+		<EnvironmentProvider>
+			<Field.Root invalid>
+				<Field.Label>{'Email'}</Field.Label>
+				<Field.Input placeholder="me@example.com" />
+				<Field.ErrorText>{'This is an error text'}</Field.ErrorText>
+			</Field.Root>
+		</EnvironmentProvider>
+	</Host>
+}
+
+component Host(props) {
+	let shadowRoot = track<globalThis.ShadowRoot | null>(null);
+
+	<@props.el
+		{ref (el: HTMLDivElement) => {
+			@shadowRoot = el.attachShadow({ mode: 'open' });
+			return () => {
+				@shadowRoot = null;
+			};
+		}}
+	/>
+
+	if (@shadowRoot) {
+		<Portal container={shadowRoot}>
+			<props.children />
+		</Portal>
+	}
+}

@@ -1,0 +1,25 @@
+import { Swap } from 'ark-ripple/swap';
+import { Check, X } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/swap.module.css';
+
+export component Fade() {
+	let swapped = track(false);
+
+	<button
+		type="button"
+		class={styles.Button}
+		onClick={() => {
+			@swapped = !@swapped;
+		}}
+	>
+		<Swap.Root swap={@swapped}>
+			<Swap.Indicator type="on" class={styles.FadeIndicator}>
+				<Check />
+			</Swap.Indicator>
+			<Swap.Indicator type="off" class={styles.FadeIndicator}>
+				<X />
+			</Swap.Indicator>
+		</Swap.Root>
+	</button>
+}

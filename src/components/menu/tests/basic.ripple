@@ -1,0 +1,65 @@
+import { Menu } from 'ark-ripple/menu';
+import { track } from 'ripple';
+
+export component ComponentUnderTest(props: {
+	open?: boolean | undefined;
+	lazyMount?: boolean | undefined;
+	unmountOnExit?: boolean | undefined;
+	onValueChange?: ((e: { value: string }) => void) | undefined;
+	contextMenu?: boolean | undefined;
+	[key: string]: any;
+}) {
+	const { onValueChange, contextMenu, ...rest } = props;
+	let selectedFramework = track('react');
+	<Menu.Root {...rest}>
+		<Menu.Trigger>
+			{'Open menu'}
+			<Menu.Indicator />
+		</Menu.Trigger>
+		if (contextMenu) {
+			<Menu.ContextTrigger>{'Open Context Menu'}</Menu.ContextTrigger>
+		}
+		<Menu.Positioner data-testid="positioner">
+			<Menu.Content>
+				<Menu.Arrow>
+					<Menu.ArrowTip />
+				</Menu.Arrow>
+				<Menu.ItemGroup>
+					<Menu.ItemGroupLabel>{'Ark UI'}</Menu.ItemGroupLabel>
+					<Menu.Item value="dialog" disabled>{'Dialog'}</Menu.Item>
+				</Menu.ItemGroup>
+				<Menu.Separator />
+				<Menu.CheckboxItem checked value="checked">
+					<Menu.ItemIndicator>{'✅'}</Menu.ItemIndicator>
+					<Menu.ItemText>{'Check me'}</Menu.ItemText>
+				</Menu.CheckboxItem>
+				<Menu.Separator />
+				<Menu.RadioItemGroup
+					value={@selectedFramework}
+					onValueChange={(e) => {
+						@selectedFramework = e.value;
+						onValueChange?.(e);
+					}}
+				>
+					<Menu.ItemGroupLabel>{'JS Frameworks'}</Menu.ItemGroupLabel>
+					for (const framework of ['react', 'solid', 'vue', 'svelte']; key framework) {
+						<Menu.RadioItem value={framework} disabled={framework === 'svelte'}>
+							<Menu.ItemIndicator>{'✅'}</Menu.ItemIndicator>
+							<Menu.ItemText>{framework}</Menu.ItemText>
+						</Menu.RadioItem>
+					}
+				</Menu.RadioItemGroup>
+				<Menu.Separator />
+				<Menu.Root>
+					<Menu.TriggerItem>{'CSS Frameworks'}</Menu.TriggerItem>
+					<Menu.Positioner>
+						<Menu.Content>
+							<Menu.Item value="panda">{'Panda'}</Menu.Item>
+							<Menu.Item value="tailwind">{'Tailwind'}</Menu.Item>
+						</Menu.Content>
+					</Menu.Positioner>
+				</Menu.Root>
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

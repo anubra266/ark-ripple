@@ -1,8 +1,8 @@
-import { LocaleProvider } from '@ark-ui/ripple/locale'
-import { Usage } from './usage.ripple'
+import { LocaleProvider } from 'ark-ripple/locale';
+import { Usage } from './usage.ripple';
 
 export component Basic() {
-  <LocaleProvider locale="ar-BH">
-    <Usage />
-  </LocaleProvider>
+	<LocaleProvider locale="ar-BH">
+		<Usage />
+	</LocaleProvider>
 }

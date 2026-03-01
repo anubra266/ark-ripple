@@ -1,0 +1,16 @@
+import { Format } from 'ark-ripple/format';
+import styles from 'styles/format.module.css';
+
+const byteSizes = [50, 5000, 5000000, 5000000000];
+
+export component ByteSizes() {
+	<div class={styles.List}>
+		for (const size of byteSizes; key size) {
+			<div class={styles.ListItem}>
+				<span class={styles.Value}>
+					<Format.Byte value={size} />
+				</span>
+			</div>
+		}
+	</div>
+}

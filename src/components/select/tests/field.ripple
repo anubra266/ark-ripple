@@ -1,0 +1,46 @@
+import { Field } from 'ark-ripple/field';
+import { Select, createListCollection } from 'ark-ripple/select';
+
+const collection = createListCollection(
+	{
+		items: [
+			{ label: 'React', value: 'react' },
+			{ label: 'Solid', value: 'solid' },
+			{ label: 'Vue', value: 'vue' },
+			{ label: 'Svelte', value: 'svelte' },
+		],
+	},
+);
+
+export component SelectWithField(props: {
+	required?: boolean | undefined;
+	disabled?: boolean | undefined;
+	readOnly?: boolean | undefined;
+	invalid?: boolean | undefined;
+	[key: string]: any;
+}) {
+	<Field.Root {...props}>
+		<Select.Root {collection}>
+			<Select.Label>{'Label'}</Select.Label>
+			<Select.Control>
+				<Select.Trigger>
+					<Select.ValueText placeholder="Select a Framework" />
+					<Select.Indicator>{'▼'}</Select.Indicator>
+				</Select.Trigger>
+			</Select.Control>
+			<Select.Positioner>
+				<Select.Content>
+					for (const item of collection.items; key item.value) {
+						<Select.Item {item}>
+							<Select.ItemText>{item.label}</Select.ItemText>
+							<Select.ItemIndicator>{'✓'}</Select.ItemIndicator>
+						</Select.Item>
+					}
+				</Select.Content>
+			</Select.Positioner>
+			<Select.HiddenSelect />
+		</Select.Root>
+		<Field.HelperText>{'Additional Info'}</Field.HelperText>
+		<Field.ErrorText>{'Error Info'}</Field.ErrorText>
+	</Field.Root>
+}

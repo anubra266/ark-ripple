@@ -1,0 +1,35 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { SelectApiContext } from './use-select-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence } from '../presence/use-presence.ripple';
+import { useSelect, type UseSelectProps } from './use-select.ripple';
+import { splitSelectProps } from './split-select-props.ripple';
+import type { UsePresenceProps } from '../presence/use-presence.ripple';
+import { ark } from '../factory';
+
+export interface SelectRootBaseProps extends UseSelectProps, UsePresenceProps {
+	children?: any;
+	[key: string]: any;
+}
+export type SelectRootProps = SelectRootBaseProps;
+
+export component SelectRoot(props: SelectRootProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [presenceProps, selectProps] = splitPresenceProps(@rest);
+	const [useSelectProps, localProps] = splitSelectProps(@selectProps);
+
+	const select = useSelect(useSelectProps);
+	const present = track(() => @select.open);
+
+	let presence = usePresence({ present, ...@presenceProps });
+	let mergedProps = track(() => mergeProps(@select.getRootProps(), @localProps));
+
+	SelectApiContext.set(select);
+	PresenceApiContext.set(presence);
+
+	<ark.div {...@mergedProps}>
+		<props.children />
+	</ark.div>
+}

@@ -1,0 +1,20 @@
+import { track } from 'ripple';
+import { Presence } from 'ark-ripple/presence';
+import button from 'styles/button.module.css';
+import styles from 'styles/presence.module.css';
+
+export component UnmountOnExit() {
+	let present = track(false);
+
+	<div class="stack">
+		<button
+			class={button.Root}
+			onClick={() => {
+				@present = !@present;
+			}}
+		>
+			{'Toggle'}
+		</button>
+		<Presence class={styles.Box} unmountOnExit {present}>{'Unmount on Exit'}</Presence>
+	</div>
+}

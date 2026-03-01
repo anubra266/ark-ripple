@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTimerContext } from './use-timer-context';
+import { ark } from '../factory';
+
+export interface TimerAreaBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type TimerAreaProps = TimerAreaBaseProps;
+
+export component TimerArea(props: TimerAreaProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const timer = useTimerContext();
+
+	let mergedProps = track(() => mergeProps(@timer.getAreaProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

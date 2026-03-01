@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCarouselContext } from './use-carousel-context';
+import { ark } from '../factory';
+
+export interface CarouselPrevTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CarouselPrevTriggerProps = CarouselPrevTriggerBaseProps;
+
+export component CarouselPrevTrigger(props: CarouselPrevTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const carousel = useCarouselContext();
+
+	let mergedProps = track(() => mergeProps(@carousel.getPrevTriggerProps(), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

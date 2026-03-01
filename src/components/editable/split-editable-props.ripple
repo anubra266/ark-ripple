@@ -1,0 +1,36 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseEditableProps } from './use-editable.ripple';
+
+const splitProps = createSplitProps<UseEditableProps>();
+
+export function splitEditableProps<T extends UseEditableProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'activationMode',
+		'autoResize',
+		'defaultEdit',
+		'defaultValue',
+		'disabled',
+		'edit',
+		'finalFocusEl',
+		'form',
+		'id',
+		'ids',
+		'invalid',
+		'maxLength',
+		'name',
+		'onEditChange',
+		'onFocusOutside',
+		'onInteractOutside',
+		'onPointerDownOutside',
+		'onValueChange',
+		'onValueCommit',
+		'onValueRevert',
+		'placeholder',
+		'readOnly',
+		'required',
+		'selectOnFocus',
+		'submitMode',
+		'translations',
+		'value',
+	]);
+}

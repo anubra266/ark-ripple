@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { AreaProps } from '@zag-js/color-picker';
+import { ColorPickerAreaPropsContext } from './use-color-picker-area-props-context';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerAreaBaseProps extends AreaProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerAreaProps = ColorPickerAreaBaseProps;
+
+export component ColorPickerArea(props: ColorPickerAreaProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [xChannel, yChannel, localProps] = trackSplit(@rest, ['xChannel', 'yChannel']);
+	const colorPicker = useColorPickerContext();
+
+	const areaProps = track(() => ({ xChannel: @xChannel, yChannel: @yChannel }));
+	ColorPickerAreaPropsContext.set(areaProps);
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getAreaProps(@areaProps), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

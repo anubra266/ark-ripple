@@ -1,0 +1,16 @@
+import { Toggle } from 'ark-ripple/toggle';
+import { Heart } from 'lucide-ripple';
+import styles from 'styles/toggle.module.css';
+
+export component Indicator() {
+	<Toggle.Root class={styles.Root}>
+		<Toggle.Indicator
+			class={styles.Indicator}
+			fallback={component() {
+				<Heart />
+			}}
+		>
+			<Heart fill="currentColor" />
+		</Toggle.Indicator>
+	</Toggle.Root>
+}

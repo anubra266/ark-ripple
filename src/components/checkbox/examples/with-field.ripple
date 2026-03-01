@@ -1,0 +1,24 @@
+import { Checkbox } from 'ark-ripple/checkbox';
+import { Field } from 'ark-ripple/field';
+import { Check, Minus } from 'lucide-ripple';
+import styles from 'styles/checkbox.module.css';
+import field from 'styles/field.module.css';
+
+export component WithField() {
+	<Field.Root class={field.Root} data-inline>
+		<Checkbox.Root class={styles.Root}>
+			<Checkbox.Control class={styles.Control}>
+				<Checkbox.Indicator class={styles.Indicator}>
+					<Check />
+				</Checkbox.Indicator>
+				<Checkbox.Indicator class={styles.Indicator} indeterminate>
+					<Minus />
+				</Checkbox.Indicator>
+			</Checkbox.Control>
+			<Checkbox.Label class={styles.Label}>{'Label'}</Checkbox.Label>
+			<Checkbox.HiddenInput />
+		</Checkbox.Root>
+		<Field.HelperText class={field.HelperText}>{'Additional Info'}</Field.HelperText>
+		<Field.ErrorText class={field.ErrorText}>{'Error Info'}</Field.ErrorText>
+	</Field.Root>
+}

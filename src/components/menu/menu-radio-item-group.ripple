@@ -1,0 +1,39 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useId } from '../../utils/use-id';
+import { useMenuContext } from './use-menu-context';
+import { MenuItemGroupContext, type UseMenuItemGroupContext } from './use-menu-item-group-context';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { ark } from '../factory';
+
+type OptionalUseMenuItemGroupContext = Optional<UseMenuItemGroupContext, 'id'>;
+
+export interface MenuRadioItemGroupBaseProps extends OptionalUseMenuItemGroupContext {
+	children?: any;
+}
+export type MenuRadioItemGroupProps = MenuRadioItemGroupBaseProps;
+
+export component MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [optionalItemGroupProps, localProps] = createSplitProps<OptionalUseMenuItemGroupContext>()(
+		@rest,
+		['id', 'value', 'onValueChange'],
+	);
+	const menu = useMenuContext();
+
+	const id = useId();
+	const itemGroupProps = track(
+		() => ({
+			id,
+			...@optionalItemGroupProps,
+		}),
+	);
+
+	let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@itemGroupProps), @localProps));
+
+	MenuItemGroupContext.set(itemGroupProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

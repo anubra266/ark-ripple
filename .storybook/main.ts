@@ -1,8 +1,11 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { mergeConfig } from 'vite';
 
 import type { StorybookConfig } from '@storybook/html-vite';
+
+const __filename = fileURLToPath(import.meta.url);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -24,7 +27,7 @@ const config: StorybookConfig = {
 			},
 			resolve: {
 				alias: {
-					styles: resolve(__dirname, '../../../.storybook/modules'),
+					styles: resolve(__dirname, '../ark/.storybook/modules'),
 				},
 			},
 		});

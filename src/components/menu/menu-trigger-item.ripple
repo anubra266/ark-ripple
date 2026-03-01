@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useMenuTriggerItemContext } from './use-menu-trigger-item-context';
+import { MenuItemPropsContext } from './use-menu-item-props-context';
+import { ark } from '../factory';
+
+export interface MenuTriggerItemBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type MenuTriggerItemProps = MenuTriggerItemBaseProps;
+
+export component MenuTriggerItem(props: MenuTriggerItemProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const getTriggerItemProps = useMenuTriggerItemContext();
+
+	let mergedProps = track(() => mergeProps(@getTriggerItemProps?.() ?? {}, @localProps));
+	let itemProps = track(() => ({ value: (@mergedProps as any)['data-value'] }));
+
+	MenuItemPropsContext.set(itemProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

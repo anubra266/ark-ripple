@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useSelectContext, type UseSelectContext } from './use-select-context';
+
+export interface SelectContextProps {
+	children: (context: UseSelectContext) => any;
+}
+
+export component SelectContext(props: SelectContextProps) {
+	const [children] = trackSplit(props, ['children']);
+	const context = useSelectContext();
+
+	<@children {context} />
+}

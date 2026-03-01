@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDialogContext } from './use-dialog-context';
+import { ark } from '../factory';
+
+export interface DialogCloseTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DialogCloseTriggerProps = DialogCloseTriggerBaseProps;
+
+export component DialogCloseTrigger(props: DialogCloseTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const dialog = useDialogContext();
+
+	let mergedProps = track(() => mergeProps(@dialog.getCloseTriggerProps(), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

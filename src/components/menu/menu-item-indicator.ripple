@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useMenuContext } from './use-menu-context';
+import { useMenuItemPropsContext } from './use-menu-item-props-context';
+import { ark } from '../factory';
+
+export interface MenuItemIndicatorBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type MenuItemIndicatorProps = MenuItemIndicatorBaseProps;
+
+export component MenuItemIndicator(props: MenuItemIndicatorProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const menu = useMenuContext();
+	const itemProps = useMenuItemPropsContext();
+
+	let mergedProps = track(() => mergeProps(@menu.getItemIndicatorProps(@itemProps), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

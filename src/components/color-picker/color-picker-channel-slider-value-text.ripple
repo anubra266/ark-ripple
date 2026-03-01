@@ -1,0 +1,31 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useLocaleContext } from '../../providers/locale';
+import { useColorPickerContext } from './use-color-picker-context';
+import { useColorPickerChannelPropsContext } from './use-color-picker-channel-props-context';
+import { ark } from '../factory';
+
+export interface ColorPickerChannelSliderValueTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerChannelSliderValueTextProps = ColorPickerChannelSliderValueTextBaseProps;
+
+export component ColorPickerChannelSliderValueText(props: ColorPickerChannelSliderValueTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const locale = useLocaleContext();
+	const colorPicker = useColorPickerContext();
+	const channelProps = useColorPickerChannelPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@colorPicker.getChannelSliderValueTextProps(@channelProps), @localProps),
+	);
+
+	<ark.span {...@mergedProps}>
+		if (@children) {
+			<@children />
+		} else {
+			{@colorPicker.getChannelValueText(@channelProps.channel, @locale.locale)}
+		}
+	</ark.span>
+}

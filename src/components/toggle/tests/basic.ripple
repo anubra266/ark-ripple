@@ -1,0 +1,5 @@
+import { Toggle, type ToggleRootProps } from 'ark-ripple/toggle';
+
+export component ComponentUnderTest(props: ToggleRootProps) {
+	<Toggle.Root {...props}>{'Toggle'}</Toggle.Root>
+}

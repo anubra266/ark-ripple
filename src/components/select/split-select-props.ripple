@@ -1,0 +1,39 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseSelectProps } from './use-select.ripple';
+
+const splitProps = createSplitProps<UseSelectProps>();
+
+export function splitSelectProps<T extends UseSelectProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'autoComplete',
+		'closeOnSelect',
+		'collection',
+		'composite',
+		'defaultHighlightedValue',
+		'defaultOpen',
+		'defaultValue',
+		'deselectable',
+		'disabled',
+		'form',
+		'highlightedValue',
+		'id',
+		'ids',
+		'invalid',
+		'loopFocus',
+		'multiple',
+		'name',
+		'onFocusOutside',
+		'onHighlightChange',
+		'onInteractOutside',
+		'onOpenChange',
+		'onPointerDownOutside',
+		'onSelect',
+		'onValueChange',
+		'open',
+		'positioning',
+		'readOnly',
+		'required',
+		'scrollToIndexFn',
+		'value',
+	]);
+}

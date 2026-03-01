@@ -1,0 +1,52 @@
+import { downloadFile, type FileMimeType } from '@zag-js/file-utils';
+import { isFunction } from '@zag-js/utils';
+import { trackSplit } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment/index';
+
+export type DownloadableData = string | Blob | File;
+
+type MaybePromise<T> = T | Promise<T>;
+
+export interface DownloadTriggerBaseProps {
+	fileName: string;
+	data: DownloadableData | (() => MaybePromise<DownloadableData>);
+	mimeType: FileMimeType;
+	onClick?: (event: MouseEvent) => void;
+	children?: any;
+	[key: string]: any;
+}
+
+export type DownloadTriggerProps = DownloadTriggerBaseProps;
+
+export component DownloadTrigger(props: DownloadTriggerProps) {
+	const [children, fileName, data, mimeType, onClick, restProps] = trackSplit(props, [
+		'children', 'fileName', 'data', 'mimeType', 'onClick',
+	]);
+
+	const env = useEnvironmentContext();
+
+	const download = (fileData: DownloadableData) => {
+		downloadFile({ file: fileData, name: @fileName, type: @mimeType, win: @env.getWindow() });
+	};
+
+	const handleClick = (e: MouseEvent) => {
+		@onClick?.(e);
+
+		if (e.defaultPrevented) return;
+
+		if (isFunction(@data)) {
+			const maybePromise = @data();
+			if (maybePromise instanceof Promise) {
+				maybePromise.then((result) => download(result));
+			} else {
+				download(maybePromise);
+			}
+		} else {
+			download(@data);
+		}
+	};
+
+	<button type="button" {...@restProps} onClick={handleClick}>
+		<@children />
+	</button>
+}

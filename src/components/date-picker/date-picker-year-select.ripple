@@ -1,0 +1,22 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDatePickerContext } from './use-date-picker-context';
+import { ark } from '../factory';
+
+export interface DatePickerYearSelectBaseProps {
+	[key: string]: any;
+}
+export type DatePickerYearSelectProps = DatePickerYearSelectBaseProps;
+
+export component DatePickerYearSelect(props: DatePickerYearSelectProps) {
+	const [localProps] = trackSplit(props, []);
+	const datePicker = useDatePickerContext();
+
+	let mergedProps = track(() => mergeProps(@datePicker.getYearSelectProps(), @localProps));
+
+	<ark.select {...@mergedProps}>
+		for (const year of @datePicker.getYears()) {
+			<option value={year.value}>{year.label}</option>
+		}
+	</ark.select>
+}

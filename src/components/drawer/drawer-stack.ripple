@@ -1,0 +1,32 @@
+import * as drawer from '@zag-js/drawer';
+import { normalizeProps, type PropTypes } from 'zag-ripple';
+import { trackSplit, track, effect } from 'ripple';
+import { DrawerStackStoreContext } from './use-drawer-stack-store-context';
+import { DrawerStackApiContext } from './use-drawer-stack-context';
+
+export interface DrawerStackProps {
+	children?: any;
+	[key: string]: any;
+}
+
+export component DrawerStack(props: DrawerStackProps) {
+	const [children] = trackSplit(props, ['children']);
+
+	const stack = drawer.createStack();
+	let snapshot = track(stack.getSnapshot());
+
+	effect(() => {
+		const unsubscribe = stack.subscribe(() => {
+			@snapshot = stack.getSnapshot();
+		});
+		return () => unsubscribe();
+	});
+
+	const stackApi = track(() => drawer.connectStack(@snapshot, normalizeProps));
+	const stackSignal = track(stack);
+
+	DrawerStackStoreContext.set(stackSignal);
+	DrawerStackApiContext.set(stackApi);
+
+	<@children />
+}

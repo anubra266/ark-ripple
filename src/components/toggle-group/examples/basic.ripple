@@ -1,0 +1,20 @@
+import { ToggleGroup } from 'ark-ripple/toggle-group';
+import { TextAlignCenter, TextAlignJustify, TextAlignStart, TextAlignEnd } from 'lucide-ripple';
+import styles from 'styles/toggle-group.module.css';
+
+export component Basic() {
+	<ToggleGroup.Root defaultValue={['left']} class={styles.Root}>
+		<ToggleGroup.Item value="left" class={styles.Item}>
+			<TextAlignStart />
+		</ToggleGroup.Item>
+		<ToggleGroup.Item value="center" class={styles.Item}>
+			<TextAlignCenter />
+		</ToggleGroup.Item>
+		<ToggleGroup.Item value="right" class={styles.Item}>
+			<TextAlignEnd />
+		</ToggleGroup.Item>
+		<ToggleGroup.Item value="justify" class={styles.Item}>
+			<TextAlignJustify />
+		</ToggleGroup.Item>
+	</ToggleGroup.Root>
+}

@@ -1,0 +1,28 @@
+import { Editable } from 'ark-ripple/editable';
+import { Pencil } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/editable.module.css';
+
+export component Controlled() {
+	let value = track('Hello World');
+
+	<Editable.Root
+		class={styles.Root}
+		placeholder="Enter text..."
+		{@value}
+		onValueChange={(e) => {
+			@value = e.value;
+		}}
+	>
+		<Editable.Label class={styles.Label}>{'Label'}</Editable.Label>
+		<Editable.Area class={styles.Area}>
+			<Editable.Input class={styles.Input} />
+			<Editable.Preview class={styles.Preview} />
+		</Editable.Area>
+		<Editable.Control class={styles.Control}>
+			<Editable.EditTrigger class={styles.EditTrigger}>
+				<Pencil />
+			</Editable.EditTrigger>
+		</Editable.Control>
+	</Editable.Root>
+}

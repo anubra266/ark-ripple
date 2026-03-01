@@ -1,0 +1,34 @@
+import { Menu } from 'ark-ripple/menu';
+import { ChevronDown } from 'lucide-ripple';
+import styles from 'styles/menu.module.css';
+
+export component Links() {
+	<Menu.Root>
+		<Menu.Trigger class={styles.Trigger}>
+			{'Help'}
+			<Menu.Indicator class={styles.Indicator}>
+				<ChevronDown />
+			</Menu.Indicator>
+		</Menu.Trigger>
+		<Menu.Positioner>
+			<Menu.Content class={styles.Content}>
+				<Menu.Item class={styles.Item} value="docs">
+					component asChild({ propsFn }) {
+						<a {...propsFn({ href: 'https://ark-ui.com' })}>{'Documentation'}</a>
+					}
+				</Menu.Item>
+				<Menu.Item class={styles.Item} value="github">
+					component asChild({ propsFn }) {
+						<a {...propsFn({ href: 'https://github.com/chakra-ui/ark' })}>{'GitHub'}</a>
+					}
+				</Menu.Item>
+				<Menu.Separator class={styles.Separator} />
+				<Menu.Item class={styles.Item} value="changelog">
+					component asChild({ propsFn }) {
+						<a {...propsFn({ href: 'https://github.com/chakra-ui/ark/releases' })}>{'Changelog'}</a>
+					}
+				</Menu.Item>
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

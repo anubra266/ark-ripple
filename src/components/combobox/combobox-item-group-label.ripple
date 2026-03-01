@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useComboboxContext } from './use-combobox-context';
+import { useComboboxItemGroupPropsContext } from './use-combobox-item-group-props-context';
+import { ark } from '../factory';
+
+export interface ComboboxItemGroupLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type ComboboxItemGroupLabelProps = ComboboxItemGroupLabelBaseProps;
+
+export component ComboboxItemGroupLabel(props: ComboboxItemGroupLabelProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const combobox = useComboboxContext();
+	const groupProps = useComboboxItemGroupPropsContext();
+
+	let mergedProps = track(
+		() => mergeProps(@combobox.getItemGroupLabelProps({ htmlFor: @groupProps.id }), @localProps),
+	);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

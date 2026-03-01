@@ -1,25 +1,27 @@
-import { isRTL } from '@zag-js/i18n-utils'
-import { trackSplit, track } from 'ripple'
-import { LocaleContext } from './use-locale-context'
+import { isRTL } from '@zag-js/i18n-utils';
+import { trackSplit, track } from 'ripple';
+import { LocaleContext } from './use-locale-context';
 
 export interface LocaleProviderProps {
-  children?: any
-  /**
-   * The locale to use for the application.
-   * @default 'en-US'
-   */
-  locale: string
+	children?: any;
+	/**
+ * The locale to use for the application.
+ * @default 'en-US'
+ */
+	locale: string;
 }
 
 export component LocaleProvider(props: LocaleProviderProps) {
-  const [children, locale] = trackSplit(props, ['children','locale'])
+	const [children, locale] = trackSplit(props, ['children', 'locale']);
 
-  const context = track(() => ({
-    locale: @locale,
-    dir: isRTL(@locale) ? 'rtl' : 'ltr',
-  }))
+	const context = track(
+		() => ({
+			locale: @locale,
+			dir: isRTL(@locale) ? 'rtl' : 'ltr',
+		}),
+	);
 
-  LocaleContext.set(context)
+	LocaleContext.set(context);
 
-  <@children />
+	<@children />
 }

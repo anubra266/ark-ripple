@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useEditableContext } from './use-editable-context';
+import { ark } from '../factory';
+
+export interface EditableSubmitTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type EditableSubmitTriggerProps = EditableSubmitTriggerBaseProps;
+
+export component EditableSubmitTrigger(props: EditableSubmitTriggerProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const editable = useEditableContext();
+
+	let mergedProps = track(() => mergeProps(@editable.getSubmitTriggerProps(), @rest));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

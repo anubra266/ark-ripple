@@ -1,0 +1,33 @@
+import * as toggleGroup from '@zag-js/toggle-group';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseToggleGroupProps extends Optional<
+	Omit<toggleGroup.Props, 'dir' | 'getRootNode'>,
+	'id'
+> {}
+
+export type UseToggleGroupReturn = ReturnType<typeof useToggleGroup>;
+
+export function useToggleGroup(ownProps: UseToggleGroupProps = {}) {
+	const id = useId();
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			dir: @locale.dir,
+			getRootNode: @environment.getRootNode,
+			...@ownProps,
+		}),
+	);
+
+	const service = useMachine(toggleGroup.machine, machineProps);
+
+	return track(() => toggleGroup.connect(service, normalizeProps));
+}

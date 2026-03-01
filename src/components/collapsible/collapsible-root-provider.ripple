@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { CollapsibleApiContext } from './use-collapsible-context';
+import type { UseCollapsibleReturn } from './use-collapsible.ripple';
+import { ark } from '../factory';
+
+export interface CollapsibleRootProviderBaseProps {
+	value: UseCollapsibleReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type CollapsibleRootProviderProps = CollapsibleRootProviderBaseProps;
+
+export component CollapsibleRootProvider(props: CollapsibleRootProviderProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const collapsible = props.value;
+
+	CollapsibleApiContext.set(collapsible);
+
+	let mergedProps = track(() => mergeProps(@collapsible.getRootProps(), @rest));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

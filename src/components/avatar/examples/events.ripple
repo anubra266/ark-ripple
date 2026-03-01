@@ -1,0 +1,23 @@
+import { Avatar } from 'ark-ripple/avatar';
+import { track } from 'ripple';
+import styles from 'styles/avatar.module.css';
+
+export component Events() {
+	let status = track('loading...');
+
+	<div class="vstack">
+		<output>
+			{'Status: '}
+			{@status}
+		</output>
+		<Avatar.Root
+			class={styles.Root}
+			onStatusChange={(e) => {
+				@status = e.status;
+			}}
+		>
+			<Avatar.Fallback class={styles.Fallback}>{'PA'}</Avatar.Fallback>
+			<Avatar.Image class={styles.Image} src="https://i.pravatar.cc/3000?u=a" alt="avatar" />
+		</Avatar.Root>
+	</div>
+}

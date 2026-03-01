@@ -1,0 +1,29 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseCarouselProps } from './use-carousel.ripple';
+
+const splitProps = createSplitProps<UseCarouselProps>();
+
+export function splitCarouselProps<T extends UseCarouselProps & Record<string, any>>(props: T) {
+	return splitProps(props, [
+		'allowMouseDrag',
+		'autoplay',
+		'autoSize',
+		'defaultPage',
+		'id',
+		'ids',
+		'inViewThreshold',
+		'loop',
+		'onAutoplayStatusChange',
+		'onDragStatusChange',
+		'onPageChange',
+		'orientation',
+		'padding',
+		'page',
+		'slideCount',
+		'slidesPerMove',
+		'slidesPerPage',
+		'snapType',
+		'spacing',
+		'translations',
+	]);
+}

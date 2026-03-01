@@ -1,0 +1,44 @@
+import * as Accordion from '../accordion';
+
+export component ComponentUnderTest(props: {
+	collapsible?: boolean;
+	defaultValue?: string[];
+	disabled?: boolean;
+	multiple?: boolean;
+	lazyMount?: boolean;
+	unmountOnExit?: boolean;
+	onValueChange?: (details: any) => void;
+	onFocusChange?: (details: any) => void;
+	[key: string]: any;
+}) {
+	<Accordion.Root {...props}>
+		<Accordion.Item value="React">
+			<Accordion.ItemTrigger>
+				{'React Trigger'}
+				<Accordion.ItemIndicator />
+			</Accordion.ItemTrigger>
+			<Accordion.ItemContent>{'React Content'}</Accordion.ItemContent>
+		</Accordion.Item>
+		<Accordion.Item value="Solid">
+			<Accordion.ItemTrigger>
+				{'Solid Trigger'}
+				<Accordion.ItemIndicator />
+			</Accordion.ItemTrigger>
+			<Accordion.ItemContent>{'Solid Content'}</Accordion.ItemContent>
+		</Accordion.Item>
+		<Accordion.Item value="Svelte" disabled>
+			<Accordion.ItemTrigger>
+				{'Svelte Trigger'}
+				<Accordion.ItemIndicator />
+			</Accordion.ItemTrigger>
+			<Accordion.ItemContent>{'Svelte Content'}</Accordion.ItemContent>
+		</Accordion.Item>
+		<Accordion.Item value="Vue">
+			<Accordion.ItemTrigger>
+				{'Vue Trigger'}
+				<Accordion.ItemIndicator />
+			</Accordion.ItemTrigger>
+			<Accordion.ItemContent>{'Vue Content'}</Accordion.ItemContent>
+		</Accordion.Item>
+	</Accordion.Root>
+}

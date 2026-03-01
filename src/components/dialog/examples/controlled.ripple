@@ -1,0 +1,30 @@
+import { Dialog } from 'ark-ripple/dialog';
+import { Portal } from 'ark-ripple/portal';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/dialog.module.css';
+
+export component Controlled() {
+	let open = track(false);
+
+	<Dialog.Root
+		{@open}
+		onOpenChange={(e) => {
+			@open = e.open;
+		}}
+	>
+		<Dialog.Trigger class={button.Root}>{'Open Dialog'}</Dialog.Trigger>
+		<Portal>
+			<Dialog.Backdrop class={styles.Backdrop} />
+			<Dialog.Positioner class={styles.Positioner}>
+				<Dialog.Content class={styles.Content}>
+					<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+					<Dialog.Title class={styles.Title}>{'Session Settings'}</Dialog.Title>
+					<Dialog.Description class={styles.Description}>
+						{'Manage your session preferences and security options.'}
+					</Dialog.Description>
+				</Dialog.Content>
+			</Dialog.Positioner>
+		</Portal>
+	</Dialog.Root>
+}

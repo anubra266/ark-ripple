@@ -1,0 +1,42 @@
+import * as signaturePad from '@zag-js/signature-pad';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useFieldContext } from '../field/use-field-context';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseSignaturePadProps extends Optional<
+	Omit<signaturePad.Props, 'dir' | 'getRootNode'>,
+	'id'
+> {}
+
+export type UseSignaturePadReturn = ReturnType<typeof useSignaturePad>;
+
+export function useSignaturePad(props: UseSignaturePadProps = {}) {
+	const id = useId();
+	const environment = useEnvironmentContext();
+	const locale = useLocaleContext();
+	const field = useFieldContext();
+
+	const machineProps = track(
+		() => ({
+			id,
+			ids: {
+				label: @field?.ids?.label,
+				hiddenInput: @field?.ids?.control,
+			},
+			dir: @locale.dir,
+			disabled: @field?.disabled,
+			readOnly: @field?.readOnly,
+			required: @field?.required,
+			getRootNode: @environment.getRootNode,
+			...@props,
+		}),
+	);
+
+	const service = useMachine(signaturePad.machine, machineProps);
+
+	return track(() => signaturePad.connect(service, normalizeProps));
+}

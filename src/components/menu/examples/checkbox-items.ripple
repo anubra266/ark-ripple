@@ -1,0 +1,48 @@
+import { Menu } from 'ark-ripple/menu';
+import { Check, ChevronDown } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/menu.module.css';
+
+export component CheckboxItems() {
+	let showToolbar = track(true);
+	let showStatusBar = track(false);
+
+	<Menu.Root>
+		<Menu.Trigger class={styles.Trigger}>
+			{'View'}
+			<Menu.Indicator class={styles.Indicator}>
+				<ChevronDown />
+			</Menu.Indicator>
+		</Menu.Trigger>
+		<Menu.Positioner>
+			<Menu.Content class={styles.Content}>
+				<Menu.CheckboxItem
+					class={styles.CheckboxItem}
+					checked={@showToolbar}
+					onCheckedChange={(v) => {
+						@showToolbar = v;
+					}}
+					value="toolbar"
+				>
+					<Menu.ItemIndicator class={styles.ItemIndicator}>
+						<Check />
+					</Menu.ItemIndicator>
+					<Menu.ItemText class={styles.ItemText}>{'Show Toolbar'}</Menu.ItemText>
+				</Menu.CheckboxItem>
+				<Menu.CheckboxItem
+					class={styles.CheckboxItem}
+					checked={@showStatusBar}
+					onCheckedChange={(v) => {
+						@showStatusBar = v;
+					}}
+					value="status-bar"
+				>
+					<Menu.ItemIndicator class={styles.ItemIndicator}>
+						<Check />
+					</Menu.ItemIndicator>
+					<Menu.ItemText class={styles.ItemText}>{'Show Status Bar'}</Menu.ItemText>
+				</Menu.CheckboxItem>
+			</Menu.Content>
+		</Menu.Positioner>
+	</Menu.Root>
+}

@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useDrawerContext } from './use-drawer-context';
+import { ark } from '../factory';
+
+export interface DrawerGrabberIndicatorBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type DrawerGrabberIndicatorProps = DrawerGrabberIndicatorBaseProps;
+
+export component DrawerGrabberIndicator(props: DrawerGrabberIndicatorProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const drawer = useDrawerContext();
+
+	let mergedProps = track(() => mergeProps(@drawer.getGrabberIndicatorProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

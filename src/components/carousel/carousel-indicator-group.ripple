@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCarouselContext } from './use-carousel-context';
+import { ark } from '../factory';
+
+export interface CarouselIndicatorGroupBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CarouselIndicatorGroupProps = CarouselIndicatorGroupBaseProps;
+
+export component CarouselIndicatorGroup(props: CarouselIndicatorGroupProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const carousel = useCarouselContext();
+
+	let mergedProps = track(() => mergeProps(@carousel.getIndicatorGroupProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

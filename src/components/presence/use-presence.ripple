@@ -1,0 +1,61 @@
+import * as presence from '@zag-js/presence';
+import { useMachine, normalizeProps } from 'zag-ripple';
+import { track, effect } from 'ripple';
+import type { Optional } from '../../types';
+import { splitRenderStrategyProps } from '../../utils/render-strategy.ripple';
+
+export interface UsePresenceProps extends Optional<presence.Props, 'present'>, RenderStrategyProps {
+	/**
+ * Whether to allow the initial presence animation.
+ * @default false
+ */
+	skipAnimationOnMount?: boolean;
+}
+export interface UsePresenceProps extends Optional<presence.Props, 'present'> {
+	lazyMount?: boolean | undefined;
+	unmountOnExit?: boolean | undefined;
+	skipAnimationOnMount?: boolean | undefined;
+}
+
+export type UsePresenceReturn = ReturnType<typeof usePresence>;
+
+export function usePresence(props: UsePresenceProps = {}) {
+	const [renderStrategyProps, machineProps] = splitRenderStrategyProps(@props);
+
+	const service = useMachine(presence.machine, machineProps);
+	const api = track(() => presence.connect(service, normalizeProps));
+
+	let wasEverPresent = track(false);
+
+	effect(() => {
+		if (@api.present) {
+			@wasEverPresent = true;
+		}
+	});
+
+	const setNode = (node: Element | null) => {
+		if (!node) return;
+		service.send({ type: 'NODE.SET', node });
+	};
+
+	const unmounted = track(
+		() => !@api.present && !@wasEverPresent && Boolean(@renderStrategyProps.lazyMount) ||
+			Boolean(@renderStrategyProps.unmountOnExit) && !@api.present && @wasEverPresent,
+	);
+
+	return track(
+		() => ({
+			present: @api.present,
+			setNode,
+			getPresenceProps: () => ({
+				'data-state': @api.skip && @machineProps.skipAnimationOnMount
+					? undefined
+					: @machineProps.present
+						? 'open'
+						: 'closed',
+				hidden: !@api.present,
+			}),
+			unmounted: @unmounted,
+		}),
+	);
+}

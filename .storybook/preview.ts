@@ -13,7 +13,7 @@ const preview: Preview = {
 		layout: 'padded',
 		actions: { disable: true },
 		controls: { disable: true },
-		backgrounds: { disable: true },
+		backgrounds: { disabled: true },
 		viewport: { disable: true },
 	},
 };

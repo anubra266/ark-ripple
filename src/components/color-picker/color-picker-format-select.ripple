@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerFormatSelectBaseProps {
+	[key: string]: any;
+}
+export type ColorPickerFormatSelectProps = ColorPickerFormatSelectBaseProps;
+
+export component ColorPickerFormatSelect(props: ColorPickerFormatSelectProps) {
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(() => mergeProps(@colorPicker.getFormatSelectProps(), @props));
+
+	<ark.select {...@mergedProps}>
+		for (const format of ['rgba', 'hsla', 'hsba']; key format) {
+			<option value={format}>{format}</option>
+		}
+	</ark.select>
+}

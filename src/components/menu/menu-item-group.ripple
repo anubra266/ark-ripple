@@ -1,0 +1,28 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useId } from '../../utils/use-id';
+import { useMenuContext } from './use-menu-context';
+import { MenuItemGroupContext } from './use-menu-item-group-context';
+import { ark } from '../factory';
+
+export interface MenuItemGroupBaseProps {
+	id?: string | undefined;
+	children?: any;
+	[key: string]: any;
+}
+export type MenuItemGroupProps = MenuItemGroupBaseProps;
+
+export component MenuItemGroup(props: MenuItemGroupProps) {
+	const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
+	const fallbackId = useId();
+	const menu = useMenuContext();
+
+	const groupProps = track(() => ({ id: @propId ?? fallbackId }));
+	let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@groupProps), @localProps));
+
+	MenuItemGroupContext.set(groupProps);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

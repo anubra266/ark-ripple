@@ -1,0 +1,30 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerSwatchTriggerBaseProps {
+	value: any;
+	disabled?: boolean | undefined;
+	children?: any;
+	[key: string]: any;
+}
+export type ColorPickerSwatchTriggerProps = ColorPickerSwatchTriggerBaseProps;
+
+export component ColorPickerSwatchTrigger(props: ColorPickerSwatchTriggerProps) {
+	const [children, value, disabled, localProps] = trackSplit(props, [
+		'children', 'value', 'disabled',
+	]);
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@colorPicker.getSwatchTriggerProps({ value: @value, disabled: @disabled }),
+			@localProps,
+		),
+	);
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

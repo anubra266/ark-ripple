@@ -1,0 +1,21 @@
+import { SignaturePad, useSignaturePad } from 'ark-ripple/signature-pad';
+import styles from 'styles/signature-pad.module.css';
+
+export component RootProvider() {
+	const signaturePad = useSignaturePad();
+
+	<div class="stack">
+		<output>
+			{'no of paths: '}
+			{@signaturePad.paths.length}
+		</output>
+		<SignaturePad.RootProvider class={styles.Root} value={signaturePad}>
+			<SignaturePad.Label class={styles.Label}>{'Sign below'}</SignaturePad.Label>
+			<SignaturePad.Control class={styles.Control}>
+				<SignaturePad.Segment class={styles.Segment} />
+				<SignaturePad.ClearTrigger class={styles.ClearTrigger}>{'↺'}</SignaturePad.ClearTrigger>
+				<SignaturePad.Guide class={styles.Guide} />
+			</SignaturePad.Control>
+		</SignaturePad.RootProvider>
+	</div>
+}

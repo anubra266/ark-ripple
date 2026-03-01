@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useCheckboxContext } from './use-checkbox-context';
+import { ark } from '../factory';
+
+export interface CheckboxControlBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type CheckboxControlProps = CheckboxControlBaseProps;
+
+export component CheckboxControl(props: CheckboxControlProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const checkbox = useCheckboxContext();
+
+	let mergedProps = track(() => mergeProps(@checkbox.getControlProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

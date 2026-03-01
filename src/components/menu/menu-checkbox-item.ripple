@@ -1,0 +1,48 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { OptionItemProps } from '@zag-js/menu';
+import { useMenuContext } from './use-menu-context';
+import { MenuItemContext } from './use-menu-item-context';
+import { MenuItemPropsContext } from './use-menu-item-props-context';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import { ark } from '../factory';
+
+type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
+
+export interface MenuCheckboxItemBaseProps extends PartialOptionItemProps {
+	children?: any;
+}
+export type MenuCheckboxItemProps = MenuCheckboxItemBaseProps;
+
+export component MenuCheckboxItem(props: MenuCheckboxItemProps) {
+	const [children, rest] = trackSplit(props, ['children']);
+	const [partialOptionItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
+		'checked',
+		'closeOnSelect',
+		'disabled',
+		'onCheckedChange',
+		'value',
+		'valueText',
+	]);
+
+	const optionItemProps = track(
+		() => ({
+			...partialOptionItemProps,
+			type: 'checkbox',
+		}),
+	) as OptionItemProps;
+
+	const menu = useMenuContext();
+
+	let mergedProps = track(
+		() => mergeProps(@menu.getOptionItemProps(@optionItemProps), @localProps),
+	);
+	const optionItemState = track(() => @menu.getOptionItemState(@optionItemProps));
+
+	MenuItemPropsContext.set(optionItemProps);
+	MenuItemContext.set(optionItemState);
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

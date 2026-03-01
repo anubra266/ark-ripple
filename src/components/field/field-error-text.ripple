@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFieldContext } from './use-field-context';
+import { ark } from '../factory';
+
+export interface FieldErrorTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FieldErrorTextProps = FieldErrorTextBaseProps;
+
+export component FieldErrorText(props: FieldErrorTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const field = useFieldContext();
+
+	const mergedProps = track(() => mergeProps(@field?.getErrorTextProps(), @localProps));
+
+	if (@field?.invalid) {
+		<ark.span {...@mergedProps}>
+			<@children />
+		</ark.span>
+	}
+}

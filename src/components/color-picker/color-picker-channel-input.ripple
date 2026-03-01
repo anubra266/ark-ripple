@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { ChannelInputProps } from '@zag-js/color-picker';
+import { useColorPickerContext } from './use-color-picker-context';
+import { ark } from '../factory';
+
+export interface ColorPickerChannelInputBaseProps extends ChannelInputProps {
+	[key: string]: any;
+}
+export type ColorPickerChannelInputProps = ColorPickerChannelInputBaseProps;
+
+export component ColorPickerChannelInput(props: ColorPickerChannelInputProps) {
+	const [channel, orientation, localProps] = trackSplit(props, ['channel', 'orientation']);
+	const colorPicker = useColorPickerContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@colorPicker.getChannelInputProps({ channel: @channel, orientation: @orientation }),
+			@localProps,
+		),
+	);
+
+	<ark.input {...@mergedProps} />
+}

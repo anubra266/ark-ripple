@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { track, trackSplit } from 'ripple';
+import { useFieldsetContext } from './use-fieldset-context';
+import { ark } from '../factory';
+
+export interface FieldsetHelperTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FieldsetHelperTextProps = FieldsetHelperTextBaseProps;
+
+export component FieldsetHelperText(props: FieldsetHelperTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const fieldset = useFieldsetContext();
+
+	const mergedProps = track(() => mergeProps(@fieldset?.getHelperTextProps(), @localProps));
+
+	<ark.span {...@mergedProps}>
+		<@children />
+	</ark.span>
+}

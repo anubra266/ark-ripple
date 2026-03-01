@@ -1,0 +1,32 @@
+import { RatingGroup } from 'ark-ripple/rating-group';
+import { Star } from 'lucide-ripple';
+import styles from 'styles/rating-group.module.css';
+
+export component HalfStar() {
+	<RatingGroup.Root class={styles.Root} defaultValue={2.5} allowHalf>
+		<RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
+		<RatingGroup.Control class={styles.Control}>
+			<RatingGroup.Context>
+				component children({ context }) {
+					for (const item of @context.items; key item) {
+						<RatingGroup.Item class={styles.Item} index={item}>
+							<RatingGroup.ItemContext>
+								component children({ context }) {
+									<span
+										class={styles.ItemIndicator}
+										data-half={@context.half ? '' : undefined}
+										data-highlighted={@context.highlighted ? '' : undefined}
+									>
+										<Star data-bg="" />
+										<Star data-fg="" fill="currentColor" />
+									</span>
+								}
+							</RatingGroup.ItemContext>
+						</RatingGroup.Item>
+					}
+				}
+			</RatingGroup.Context>
+			<RatingGroup.HiddenInput />
+		</RatingGroup.Control>
+	</RatingGroup.Root>
+}

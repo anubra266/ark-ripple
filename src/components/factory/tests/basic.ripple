@@ -1,0 +1,135 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { ark } from '../factory.ts';
+
+// ── Static rendering ─────────────────────────────────────────────────────────
+
+export component ArkDiv(props: { id?: string; class?: string; [key: string]: any }) {
+	<ark.div {...props} />
+}
+
+export component ArkButton(props: { type?: string; children?: any; [key: string]: any }) {
+	<ark.button type={props.type}>
+		<@props.children />
+	</ark.button>
+}
+
+// ── Children ──────────────────────────────────────────────────────────────────
+
+export component ArkWithText() {
+	<ark.div id="with-text">{'Hello Factory'}</ark.div>
+}
+
+// ── asChild ───────────────────────────────────────────────────────────────────
+
+export component ArkWithAsChild(props: { href?: string; [key: string]: any }) {
+	// Note: propsFn() merges host props into the asChild element.
+	// We do NOT set id on the ark.div so the anchor's own id is preserved.
+	<ark.div class="host-class" data-value="42">
+		component asChild({ propsFn }) {
+			const merged = propsFn({ 'data-extra': 'yes' });
+			<a id="aschild-anchor" href={props.href} {...merged}>{'Link'}</a>
+		}
+	</ark.div>
+}
+
+// ── Reactive props ────────────────────────────────────────────────────────────
+
+export component ReactiveClass() {
+	let className = track('initial');
+
+	const changeClass = () => {
+		@className = 'updated';
+	};
+
+	<div>
+		<button id="btn-change" onclick={changeClass}>{'Change'}</button>
+		<ark.div id="reactive-target" class={@className} />
+	</div>
+}
+
+export component ReactiveSpreading() {
+	let extraClass = track('extra-a');
+
+	const swap = () => {
+		@extraClass = 'extra-b';
+	};
+
+	let mergedProps = track(() => ({ id: 'spread-target', class: @extraClass, 'data-test': 'yes' }));
+
+	<div>
+		<button id="btn-swap" onclick={swap}>{'Swap'}</button>
+		<ark.div {...@mergedProps} />
+	</div>
+}
+
+// ── Intermediate component pattern (trackSplit + mergeProps + ark) ────────────
+// Simulates how real components like MenuItem / ComboboxItem work internally.
+
+export component MockItem(props: {
+	value: string;
+	children?: any;
+	asChild?: any;
+	[key: string]: any;
+}) {
+	const [value, children, asChild, rest] = trackSplit(props, ['value', 'children', 'asChild']);
+	let mergedProps = track(
+		() => mergeProps({ role: 'option', 'data-value': @value, id: `item-${@value}` }, @rest),
+	);
+	<ark.div {...@mergedProps} {@asChild}>
+		<@children />
+	</ark.div>
+}
+
+// Simulates EditableInput — merges external computed props with user rest props.
+export component MockInput(props: { computedId?: string; asChild?: any; [key: string]: any }) {
+	const [computedId, asChild, rest] = trackSplit(props, ['computedId', 'asChild']);
+	let mergedProps = track(() => mergeProps({ id: @computedId, type: 'text' }, @rest));
+	<ark.input {...@mergedProps} {@asChild} />
+}
+
+// Wrapper that passes children via JSX (Ripple children must be component blocks, not plain fns).
+export component MockItemWithChildren(props: { value: string; [key: string]: any }) {
+	<MockItem value={props.value}>{'Item Label'}</MockItem>
+}
+
+// Wrapper that uses MockItem with an inline asChild block.
+export component MockItemAsChild(props: { value: string; href: string; [key: string]: any }) {
+	<MockItem value={props.value}>
+		component asChild({ propsFn }) {
+			const merged = propsFn();
+			<a id={`aschild-${props.value}`} href={props.href} {...merged}>{'Link'}</a>
+		}
+	</MockItem>
+}
+
+// Reactive external props fed through intermediate component.
+export component MockItemReactive(props: { value: string; [key: string]: any }) {
+	const [value, rest] = trackSplit(props, ['value']);
+	let state = track(
+		() => ({ 'aria-selected': @value === 'b', 'data-selected': @value === 'b' ? '' : undefined }),
+	);
+	let mergedProps = track(
+		() => mergeProps({ role: 'option', id: `ritem-${@value}` }, @state, @rest),
+	);
+	<ark.div {...@mergedProps} />
+}
+
+// ── asChild + reactive merging ────────────────────────────────────────────────
+
+export component ReactiveAsChild() {
+	let isDisabled = track(false);
+
+	const toggle = () => {
+		@isDisabled = !@isDisabled;
+	};
+
+	<div>
+		<button id="btn-toggle" onclick={toggle}>{'Toggle'}</button>
+		<ark.button data-testid="ark-btn" disabled={@isDisabled}>
+			component asChild({ propsFn }) {
+				<button id="aschild-btn" {...propsFn()}>{'Click'}</button>
+			}
+		</ark.button>
+	</div>
+}

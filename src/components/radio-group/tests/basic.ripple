@@ -1,0 +1,22 @@
+import { RadioGroup, type RadioGroupRootProps } from 'ark-ripple/radio-group';
+
+const items = [
+	{ label: 'React', value: 'react' },
+	{ label: 'Solid', value: 'solid' },
+	{ label: 'Vue', value: 'vue' },
+	{ label: 'Svelte', value: 'svelte', disabled: true },
+];
+
+export component ComponentUnderTest(props: RadioGroupRootProps) {
+	<RadioGroup.Root {...props}>
+		<RadioGroup.Label>{'Framework'}</RadioGroup.Label>
+		<RadioGroup.Indicator />
+		for (const item of items; key item.value) {
+			<RadioGroup.Item value={item.value} disabled={item.disabled}>
+				<RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
+				<RadioGroup.ItemControl />
+				<RadioGroup.ItemHiddenInput />
+			</RadioGroup.Item>
+		}
+	</RadioGroup.Root>
+}

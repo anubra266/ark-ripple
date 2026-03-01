@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useMenuContext } from './use-menu-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+
+export interface MenuContentBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type MenuContentProps = MenuContentBaseProps;
+
+export component MenuContent(props: MenuContentProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const menu = useMenuContext();
+	const presence = usePresenceContext();
+
+	let mergedProps = track(
+		() => mergeProps(@menu.getContentProps(), @presence.getPresenceProps(), @localProps),
+	);
+
+	if (!@presence.unmounted) {
+		<ark.div
+			{...@mergedProps}
+			{ref (el: HTMLDivElement) => {
+				@presence.setNode(el);
+			}}
+		>
+			<@children />
+		</ark.div>
+	}
+}

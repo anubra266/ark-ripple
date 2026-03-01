@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { track } from 'ripple';
+import { useColorPickerContext } from './use-color-picker-context';
+import { useColorPickerChannelPropsContext } from './use-color-picker-channel-props-context';
+import { useColorPickerFormatContext } from './use-color-picker-format-context';
+import { ark } from '../factory';
+
+export interface ColorPickerChannelSliderThumbBaseProps {
+	[key: string]: any;
+}
+export type ColorPickerChannelSliderThumbProps = ColorPickerChannelSliderThumbBaseProps;
+
+export component ColorPickerChannelSliderThumb(props: ColorPickerChannelSliderThumbProps) {
+	const colorPicker = useColorPickerContext();
+	const channelProps = useColorPickerChannelPropsContext();
+	const formatCtx = useColorPickerFormatContext();
+
+	const channelSliderProps = track(() => ({ ...@channelProps, ...@formatCtx }));
+	let mergedProps = track(
+		() => mergeProps(@colorPicker.getChannelSliderThumbProps(@channelSliderProps), @props),
+	);
+
+	<ark.div {...@mergedProps} />
+}

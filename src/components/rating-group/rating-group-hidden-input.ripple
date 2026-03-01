@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useRatingGroupContext } from './use-rating-group-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+
+export interface RatingGroupHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type RatingGroupHiddenInputProps = RatingGroupHiddenInputBaseProps;
+
+export component RatingGroupHiddenInput(props: RatingGroupHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const ratingGroup = useRatingGroupContext();
+	const field = useFieldContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@ratingGroup.getHiddenInputProps(),
+			{ 'aria-describedby': @field?.ariaDescribedby },
+			@localProps,
+		),
+	);
+
+	<ark.input {...@mergedProps} />
+}
