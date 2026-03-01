@@ -61,7 +61,7 @@
   "scripts": {
     "sync": "bun scripts/sync.ts",
     "sync:revert": "bun scripts/sync.ts --revert",
-    "ark:pull": "cd ark && git pull origin main && cd .. && git add ark && echo 'Ark updated. Run: bun run sync'",
+    "ark:pull": "cd ark && git checkout . && git clean -fd && git pull origin main && cd .. && git add ark && echo 'Ark updated. Run: bun run sync'",
     "ark:diff": "bun scripts/diff.ts",
     "dev": "bun run storybook",
     "site": "bun run sync && cd ark && bun install && cd website && bun run dev",
