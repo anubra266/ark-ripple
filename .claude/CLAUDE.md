@@ -113,7 +113,31 @@ let open = track(false)    // declare reactive signal
 { @open }                   // use in JSX expression
 ```
 
-### 7. Event handlers are camelCase like React
+### 7. `effect` vs `onMount`
+
+Use `effect` when the setup depends on reactive values or needs cleanup. The return value of an `effect` is the cleanup function (like React's `useEffect`). Use `onMount` only for one-time, non-reactive initialization with no cleanup.
+
+```ripple
+// ✅ CORRECT — effect with reactive deps and cleanup
+effect(() => {
+  return @api.createFileUrl(@itemProps.file, (newUrl: string) => {
+    @url = newUrl;
+  });
+});
+
+// ❌ WRONG — onMount + onDestroy for reactive cleanup
+let cleanup: (() => void) | undefined;
+onMount(() => {
+  cleanup = @api.createFileUrl(@itemProps.file, (newUrl: string) => {
+    @url = newUrl;
+  });
+});
+onDestroy(() => {
+  cleanup?.();
+});
+```
+
+### 8. Event handlers are camelCase like React
 
 ```ripple
 // ✅ CORRECT (React style)
@@ -181,6 +205,27 @@ For components where other frameworks have too few test cases, write additional 
 - Hook files: `use-component.ripple`
 - Props split: `split-component-props.ripple`
 
+### Component props type structure
+
+Each component defines two interfaces: a `BaseProps` that extends `PolymorphicProps<tag>`, and the actual `Props` that extends both `HTMLProps<tag>` and the base. Component-specific props go on `BaseProps`; `HTMLProps` provides standard HTML attributes and `PolymorphicProps` provides `children` and `asChild`.
+
+```typescript
+import type { HTMLProps, PolymorphicProps } from '../factory'
+
+// BaseProps — component-specific props + PolymorphicProps (includes children)
+export interface FileUploadItemPreviewImageBaseProps extends PolymorphicProps<'img'> {}
+
+// Props — combines HTML attributes with base props
+export interface FileUploadItemPreviewImageProps extends HTMLProps<'img'>, FileUploadItemPreviewImageBaseProps {}
+
+// With component-specific props:
+export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> {
+  /** The file type to match against. Matches all file types by default. */
+  type?: string | undefined
+}
+export interface FileUploadItemPreviewProps extends HTMLProps<'div'>, FileUploadItemPreviewBaseProps {}
+```
+
 ### Barrel exports and anatomy
 
 When developing a new component, **always** update these files:
@@ -207,6 +252,26 @@ export const useDialogContext = (): UseDialogContext => DialogApiContext.get()
 
 // Optional context (e.g. field, stack)
 export const FieldApiContext = new Context<UseFieldContext | undefined>(undefined)
+```
+
+**Important:** When calling `Context.set()`, pass the **tracked** (boxed) value — not the unboxed `@` version. This ensures consumers always read the latest reactive value. When the context stores a tracked value, type it as `Tracked<T>`:
+
+```typescript
+// use-file-upload-item-group-props-context.ts
+import { Context, type Tracked } from 'ripple'
+
+export type UseFileUploadItemGroupContext = Tracked<ItemGroupProps>
+export const FileUploadItemGroupPropsContext = new Context<UseFileUploadItemGroupContext>(...)
+```
+
+```ripple
+const itemGroupProps = track(() => ({ type: @type }));
+
+// ✅ CORRECT — pass tracked value so consumers stay reactive
+FileUploadItemGroupPropsContext.set(itemGroupProps);
+
+// ❌ WRONG — unboxing with @ passes a snapshot, consumers won't update
+FileUploadItemGroupPropsContext.set(@itemGroupProps);
 ```
 
 ### Root component pattern
