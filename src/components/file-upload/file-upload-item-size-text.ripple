@@ -1,0 +1,27 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFileUploadContext } from './use-file-upload-context';
+import { useFileUploadItemPropsContext } from './use-file-upload-item-props-context';
+import { ark } from '../factory';
+
+export interface FileUploadItemSizeTextBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FileUploadItemSizeTextProps = FileUploadItemSizeTextBaseProps;
+
+export component FileUploadItemSizeText(props: FileUploadItemSizeTextProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const fileUpload = useFileUploadContext();
+	const itemProps = useFileUploadItemPropsContext();
+
+	let mergedProps = track(() => mergeProps(@fileUpload.getItemSizeTextProps(@itemProps), @localProps));
+
+	<ark.div {...@mergedProps}>
+		if (@children) {
+			<@children />
+		} else {
+			{@fileUpload.getFileSize(@itemProps.file)}
+		}
+	</ark.div>
+}

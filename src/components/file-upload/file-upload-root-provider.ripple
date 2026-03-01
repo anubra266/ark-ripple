@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { FileUploadApiContext } from './use-file-upload-context';
+import type { UseFileUploadReturn } from './use-file-upload.ripple';
+import { ark } from '../factory';
+
+export interface FileUploadRootProviderBaseProps {
+	value: UseFileUploadReturn;
+	children?: any;
+	[key: string]: any;
+}
+export type FileUploadRootProviderProps = FileUploadRootProviderBaseProps;
+
+export component FileUploadRootProvider(props: FileUploadRootProviderProps) {
+	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+	FileUploadApiContext.set(value);
+
+	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+	<ark.div {...@mergedProps}>
+		<@children />
+	</ark.div>
+}

@@ -1,0 +1,39 @@
+import { FileUpload, useFileUpload } from 'ark-ripple/file-upload';
+import { Clipboard, X } from 'lucide-ripple';
+import field from 'styles/field.module.css';
+import styles from 'styles/file-upload.module.css';
+
+export component PastingFiles() {
+	const fileUpload = useFileUpload({ maxFiles: 3, accept: 'image/*' });
+
+	<FileUpload.RootProvider value={fileUpload} class={styles.Root}>
+		<FileUpload.Label class={styles.Label}>
+			<Clipboard
+				style={{ width: '1rem', height: '1rem', display: 'inline', marginRight: '0.25rem', verticalAlign: 'middle' }}
+			/>
+			{'Upload with Paste'}
+		</FileUpload.Label>
+		<textarea
+			class={field.Textarea}
+			placeholder="Paste an image here (Ctrl/Cmd + V)"
+			onPaste={(e) => {
+				@fileUpload.setClipboardFiles((e as ClipboardEvent).clipboardData!);
+			}}
+		/>
+		<FileUpload.ItemGroup class={styles.ItemGroup}>
+			for (const file of @fileUpload.acceptedFiles; key file.name) {
+				<FileUpload.Item file={file} class={styles.Item}>
+					<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+						<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+					</FileUpload.ItemPreview>
+					<FileUpload.ItemName class={styles.ItemName} />
+					<FileUpload.ItemSizeText class={styles.ItemSizeText} />
+					<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+						<X />
+					</FileUpload.ItemDeleteTrigger>
+				</FileUpload.Item>
+			}
+		</FileUpload.ItemGroup>
+		<FileUpload.HiddenInput />
+	</FileUpload.RootProvider>
+}

@@ -1,0 +1,31 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track, effect } from 'ripple';
+import { useFileUploadContext } from './use-file-upload-context';
+import { useFileUploadItemPropsContext } from './use-file-upload-item-props-context';
+import { ark } from '../factory';
+import type { PolymorphicProps } from '../../types';
+
+export interface FileUploadItemPreviewImageBaseProps extends PolymorphicProps<'img'> {}
+export interface FileUploadItemPreviewImageProps extends HTMLProps<'img'>, FileUploadItemPreviewImageBaseProps {}
+
+export component FileUploadItemPreviewImage(props: FileUploadItemPreviewImageProps) {
+	const [localProps] = trackSplit(props, []);
+	const fileUpload = useFileUploadContext();
+	const itemProps = useFileUploadItemPropsContext();
+
+	let url = track('');
+
+	effect(() => {
+		return @fileUpload.createFileUrl(@itemProps.file, (newUrl: string) => {
+			@url = newUrl;
+		});
+	});
+
+	let mergedProps = track(
+		() => mergeProps(@fileUpload.getItemPreviewImageProps({ ...@itemProps, url: @url }), @localProps),
+	);
+
+	if (@url) {
+		<ark.img {...@mergedProps} />
+	}
+}

@@ -1,0 +1,50 @@
+import { FileUpload } from 'ark-ripple/file-upload';
+import { compressAccurately } from 'image-conversion';
+import { Image, X } from 'lucide-ripple';
+import styles from 'styles/file-upload.module.css';
+
+const transformFiles = async (files: File[]) => {
+	return Promise.all(
+		files.map(async (file) => {
+			if (file.type.startsWith('image/')) {
+				try {
+					const blob = await compressAccurately(file, 200);
+					return new File([blob], file.name, { type: blob.type });
+				} catch (error) {
+					console.error('Compression failed for:', file.name, error);
+					return file;
+				}
+			}
+			return file;
+		}),
+	);
+};
+
+export component TransformFiles() {
+	<FileUpload.Root accept="image/*" maxFiles={5} transformFiles={transformFiles} class={styles.Root}>
+		<FileUpload.Label class={styles.Label}>{'Upload with Compression'}</FileUpload.Label>
+		<FileUpload.Trigger class={styles.Trigger}>
+			<Image style={{ width: '1rem', height: '1rem' }} />
+			{' Choose Images'}
+		</FileUpload.Trigger>
+		<FileUpload.ItemGroup class={styles.ItemGroup}>
+			<FileUpload.Context>
+				component children({ context }) {
+					for (const file of @context.acceptedFiles; key file.name) {
+						<FileUpload.Item file={file} class={styles.Item}>
+							<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+								<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+							</FileUpload.ItemPreview>
+							<FileUpload.ItemName class={styles.ItemName} />
+							<FileUpload.ItemSizeText class={styles.ItemSizeText} />
+							<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+								<X />
+							</FileUpload.ItemDeleteTrigger>
+						</FileUpload.Item>
+					}
+				}
+			</FileUpload.Context>
+		</FileUpload.ItemGroup>
+		<FileUpload.HiddenInput />
+	</FileUpload.Root>
+}

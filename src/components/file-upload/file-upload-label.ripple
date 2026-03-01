@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFileUploadContext } from './use-file-upload-context';
+import { ark } from '../factory';
+
+export interface FileUploadLabelBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FileUploadLabelProps = FileUploadLabelBaseProps;
+
+export component FileUploadLabel(props: FileUploadLabelProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const fileUpload = useFileUploadContext();
+
+	let mergedProps = track(() => mergeProps(@fileUpload.getLabelProps(), @localProps));
+
+	<ark.label {...@mergedProps}>
+		<@children />
+	</ark.label>
+}

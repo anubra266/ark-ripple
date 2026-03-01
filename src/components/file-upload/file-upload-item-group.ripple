@@ -1,0 +1,27 @@
+import type { ItemGroupProps } from '@zag-js/file-upload';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFileUploadContext } from './use-file-upload-context';
+import { FileUploadItemGroupPropsContext } from './use-file-upload-item-group-props-context';
+import { ark } from '../factory';
+
+export interface FileUploadItemGroupBaseProps extends ItemGroupProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FileUploadItemGroupProps = FileUploadItemGroupBaseProps;
+
+export component FileUploadItemGroup(props: FileUploadItemGroupProps) {
+	const [children, type, localProps] = trackSplit(props, ['children', 'type']);
+	const fileUpload = useFileUploadContext();
+
+	const itemGroupProps = track(() => ({ type: @type }));
+
+	FileUploadItemGroupPropsContext.set(itemGroupProps);
+
+	let mergedProps = track(() => mergeProps(@fileUpload.getItemGroupProps(@itemGroupProps), @localProps));
+
+	<ark.ul {...@mergedProps}>
+		<@children />
+	</ark.ul>
+}

@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFieldContext } from '../field/use-field-context';
+import { useFileUploadContext } from './use-file-upload-context';
+import { ark } from '../factory';
+
+export interface FileUploadHiddenInputBaseProps {
+	[key: string]: any;
+}
+export type FileUploadHiddenInputProps = FileUploadHiddenInputBaseProps;
+
+export component FileUploadHiddenInput(props: FileUploadHiddenInputProps) {
+	const [localProps] = trackSplit(props, []);
+	const fileUpload = useFileUploadContext();
+	const field = useFieldContext();
+
+	let mergedProps = track(
+		() => mergeProps(
+			@fileUpload.getHiddenInputProps(),
+			{ 'aria-describedby': @field?.ariaDescribedby },
+			@localProps,
+		),
+	);
+
+	<ark.input {...@mergedProps} />
+}

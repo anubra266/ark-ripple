@@ -1,0 +1,28 @@
+import { FileUpload } from 'ark-ripple/file-upload';
+import { Paperclip, X } from 'lucide-ripple';
+import styles from 'styles/file-upload.module.css';
+
+export component Basic() {
+	<FileUpload.Root maxFiles={5} class={styles.Root}>
+		<FileUpload.Label class={styles.Label}>{'File Upload'}</FileUpload.Label>
+		<FileUpload.Trigger class={styles.Trigger}>
+			<Paperclip />
+			{' Choose file(s)'}
+		</FileUpload.Trigger>
+		<FileUpload.ItemGroup class={styles.ItemGroup}>
+			<FileUpload.Context>
+				component children({ context }) {
+					for (const file of @context.acceptedFiles; key file.name) {
+						<FileUpload.Item file={file} class={styles.ItemCompact}>
+							<FileUpload.ItemName class={styles.ItemName} />
+							<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+								<X />
+							</FileUpload.ItemDeleteTrigger>
+						</FileUpload.Item>
+					}
+				}
+			</FileUpload.Context>
+		</FileUpload.ItemGroup>
+		<FileUpload.HiddenInput />
+	</FileUpload.Root>
+}

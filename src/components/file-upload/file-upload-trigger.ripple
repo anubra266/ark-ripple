@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFileUploadContext } from './use-file-upload-context';
+import { ark } from '../factory';
+
+export interface FileUploadTriggerBaseProps {
+	children?: any;
+	[key: string]: any;
+}
+export type FileUploadTriggerProps = FileUploadTriggerBaseProps;
+
+export component FileUploadTrigger(props: FileUploadTriggerProps) {
+	const [children, localProps] = trackSplit(props, ['children']);
+	const fileUpload = useFileUploadContext();
+
+	let mergedProps = track(() => mergeProps(@fileUpload.getTriggerProps(), @localProps));
+
+	<ark.button {...@mergedProps}>
+		<@children />
+	</ark.button>
+}

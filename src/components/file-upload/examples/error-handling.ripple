@@ -1,0 +1,107 @@
+import { FileUpload } from 'ark-ripple/file-upload';
+import type { FileUploadFileError } from 'ark-ripple/file-upload';
+import { CircleAlert, CircleCheck, File, Upload, X } from 'lucide-ripple';
+import styles from 'styles/file-upload.module.css';
+
+const errorMessages: Record<FileUploadFileError, string> = {
+	TOO_MANY_FILES: 'Too many files selected (max 3 allowed)',
+	FILE_INVALID_TYPE: 'Invalid file type (only images and PDFs allowed)',
+	FILE_TOO_LARGE: 'File too large (max 1MB)',
+	FILE_TOO_SMALL: 'File too small (min 1KB)',
+	FILE_INVALID: 'Invalid file',
+	FILE_EXISTS: 'File already exists',
+};
+
+export component ErrorHandling() {
+	<FileUpload.Root
+		maxFiles={3}
+		maxFileSize={1024 * 1024}
+		minFileSize={1024}
+		accept="image/*,application/pdf"
+		class={styles.Root}
+	>
+		<FileUpload.Label class={styles.Label}>{'Upload Documents'}</FileUpload.Label>
+		<FileUpload.Dropzone class={styles.Dropzone}>
+			<Upload class={styles.DropzoneIcon} />
+			<div class={styles.DropzoneContent}>
+				<span class={styles.DropzoneTitle}>{'Drop files here'}</span>
+				<span class={styles.DropzoneDescription}>{'Images and PDFs, max 1MB each'}</span>
+			</div>
+		</FileUpload.Dropzone>
+
+		<FileUpload.Context>
+			component children({ context }) {
+				if (@context.acceptedFiles.length > 0) {
+					<div class={styles.Section}>
+						<div class={styles.SectionTitle} data-status="accepted">
+							<CircleCheck
+								style={{
+									width: '0.875rem',
+									height: '0.875rem',
+									display: 'inline',
+									marginRight: '0.25rem',
+									verticalAlign: 'middle',
+								}}
+							/>
+							{'Accepted Files'}
+						</div>
+						<FileUpload.ItemGroup class={styles.ItemGroup}>
+							for (const file of @context.acceptedFiles; key file.name) {
+								<FileUpload.Item {file} class={styles.Item}>
+									<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+										<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+									</FileUpload.ItemPreview>
+									<FileUpload.ItemPreview type="application/pdf" class={styles.ItemPreview}>
+										<File />
+									</FileUpload.ItemPreview>
+									<FileUpload.ItemName class={styles.ItemName} />
+									<FileUpload.ItemSizeText class={styles.ItemSizeText} />
+									<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+										<X />
+									</FileUpload.ItemDeleteTrigger>
+								</FileUpload.Item>
+							}
+						</FileUpload.ItemGroup>
+					</div>
+				}
+
+				if (@context.rejectedFiles.length > 0) {
+					<div class={styles.Section}>
+						<div class={styles.SectionTitle} data-status="rejected">
+							<CircleAlert
+								style={{
+									width: '0.875rem',
+									height: '0.875rem',
+									display: 'inline',
+									marginRight: '0.25rem',
+									verticalAlign: 'middle',
+								}}
+							/>
+							{'Rejected Files'}
+						</div>
+						<FileUpload.ItemGroup class={styles.ItemGroup}>
+							for (const fileRejection of @context.rejectedFiles; key fileRejection.file.name) {
+								<FileUpload.Item file={fileRejection.file} class={styles.Item} data-rejected>
+									<div class={styles.ItemPreview}>
+										<CircleAlert />
+									</div>
+									<FileUpload.ItemName class={styles.ItemName} />
+									<FileUpload.ItemSizeText class={styles.ItemSizeText} />
+									<div class={styles.ErrorList}>
+										for (const error of fileRejection.errors; key error) {
+											<div class={styles.ErrorItem}>
+												{errorMessages[error as FileUploadFileError] || error}
+											</div>
+										}
+									</div>
+								</FileUpload.Item>
+							}
+						</FileUpload.ItemGroup>
+					</div>
+				}
+			}
+		</FileUpload.Context>
+
+		<FileUpload.HiddenInput />
+	</FileUpload.Root>
+}

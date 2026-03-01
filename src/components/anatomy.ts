@@ -14,7 +14,7 @@ export { dialogAnatomy } from './dialog/dialog.anatomy';
 export { editableAnatomy } from './editable/editable.anatomy';
 export { fieldAnatomy } from './field/field.anatomy';
 export { fieldsetAnatomy } from './fieldset/fieldset.anatomy';
-// export { fileUploadAnatomy } from './file-upload/file-upload.anatomy';
+export { fileUploadAnatomy } from './file-upload/file-upload.anatomy';
 // export { floatingPanelAnatomy } from './floating-panel/floating-panel.anatomy';
 // export { hoverCardAnatomy } from './hover-card/hover-card.anatomy';
 // export { imageCropperAnatomy } from './image-cropper/image-cropper.anatomy';
