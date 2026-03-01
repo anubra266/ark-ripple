@@ -75,7 +75,25 @@ Context components pass their API to children via `component children({ context 
 </Dialog.Context>
 ```
 
-### 5. Static strings in JSX children need `{}`
+### 5. Component children type
+
+Use `Component<Props>` from `ripple` for children that receive context, not function signatures:
+
+```typescript
+import { type Component } from 'ripple'
+
+// ✅ CORRECT
+export interface DialogContextProps {
+  children: Component<{ context: UseDialogContext }>
+}
+
+// ❌ WRONG — don't use function types
+export interface DialogContextProps {
+  children: (context: UseDialogContext) => any
+}
+```
+
+### 6. Static strings in JSX children need `{}`
 
 ```ripple
 // ✅ CORRECT
@@ -396,6 +414,14 @@ export const CustomCalendar = {
 ```
 
 Never create an example without also adding its corresponding story export.
+
+### Example-only dependencies
+
+If an example requires a third-party package that isn't already in `package.json` (e.g. `image-conversion` for file-upload's `transform-files` example), install it as a **devDependency** since examples are not shipped in dist:
+
+```bash
+bun add -d image-conversion
+```
 
 React examples location: `ark/packages/react/src/components/[component]/examples/`
 Ripple examples location: `packages/ripple/src/components/[component]/examples/`
