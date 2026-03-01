@@ -1,12 +1,12 @@
 import * as Avatar from '../avatar';
 
 export component ComponentUnderTest(props: {
-	src?: string;
-	onStatusChange?: (details: any) => void;
-	[key: string]: any;
+  src?: string;
+  onStatusChange?: (details: any) => void;
+  [key: string]: any;
 }) {
-	<Avatar.Root {...props}>
-		<Avatar.Fallback>{'PA'}</Avatar.Fallback>
-		<Avatar.Image src={props.src} alt="avatar" />
-	</Avatar.Root>
+  <Avatar.Root {...props}>
+    <Avatar.Fallback>{'PA'}</Avatar.Fallback>
+    <Avatar.Image src={props.src} alt="avatar" />
+  </Avatar.Root>
 }

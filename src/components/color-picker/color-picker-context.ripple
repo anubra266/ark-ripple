@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useColorPickerContext, type UseColorPickerContext } from './use-color-picker-context';
 
 export interface ColorPickerContextProps {
-	children: (context: UseColorPickerContext) => any;
+  children: (context: UseColorPickerContext) => any;
 }
 
 export component ColorPickerContext(props: ColorPickerContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useColorPickerContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useColorPickerContext();
 
-	<@children {context} />
+  <@children {context} />
 }

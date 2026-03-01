@@ -2,27 +2,27 @@ import { Field, type FieldRootProps } from 'ark-ripple/field';
 import { SignaturePad, type SignaturePadRootProps } from 'ark-ripple/signature-pad';
 
 export component ComponentUnderTest(props: SignaturePadRootProps) {
-	<SignaturePad.Root {...props}>
-		<SignaturePad.Label>{'Sign below'}</SignaturePad.Label>
-		<SignaturePad.Control>
-			<SignaturePad.Segment />
-			<SignaturePad.ClearTrigger>{'↺'}</SignaturePad.ClearTrigger>
-			<SignaturePad.Guide />
-		</SignaturePad.Control>
-	</SignaturePad.Root>
+  <SignaturePad.Root {...props}>
+    <SignaturePad.Label>{'Sign below'}</SignaturePad.Label>
+    <SignaturePad.Control>
+      <SignaturePad.Segment />
+      <SignaturePad.ClearTrigger>{'↺'}</SignaturePad.ClearTrigger>
+      <SignaturePad.Guide />
+    </SignaturePad.Control>
+  </SignaturePad.Root>
 }
 
 export component SignaturePadWithField(props: FieldRootProps) {
-	<Field.Root {...props}>
-		<SignaturePad.Root>
-			<SignaturePad.Label>{'Label'}</SignaturePad.Label>
-			<SignaturePad.Control>
-				<SignaturePad.Segment />
-				<SignaturePad.ClearTrigger>{'↺'}</SignaturePad.ClearTrigger>
-				<SignaturePad.Guide />
-			</SignaturePad.Control>
-		</SignaturePad.Root>
-		<Field.HelperText>{'Additional Info'}</Field.HelperText>
-		<Field.ErrorText>{'Error Info'}</Field.ErrorText>
-	</Field.Root>
+  <Field.Root {...props}>
+    <SignaturePad.Root>
+      <SignaturePad.Label>{'Label'}</SignaturePad.Label>
+      <SignaturePad.Control>
+        <SignaturePad.Segment />
+        <SignaturePad.ClearTrigger>{'↺'}</SignaturePad.ClearTrigger>
+        <SignaturePad.Guide />
+      </SignaturePad.Control>
+    </SignaturePad.Root>
+    <Field.HelperText>{'Additional Info'}</Field.HelperText>
+    <Field.ErrorText>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
 }

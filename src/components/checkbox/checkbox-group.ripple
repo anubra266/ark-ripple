@@ -8,31 +8,31 @@ import { ark } from '../factory';
 const splitGroupProps = createSplitProps<UseCheckboxGroupProps>();
 
 export interface CheckboxGroupBaseProps extends UseCheckboxGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type CheckboxGroupProps = CheckboxGroupBaseProps;
 
 export component CheckboxGroup(props: CheckboxGroupProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [checkboxGroupProps, localProps] = splitGroupProps(@rest, [
-		'defaultValue',
-		'value',
-		'onValueChange',
-		'disabled',
-		'invalid',
-		'readOnly',
-		'name',
-		'maxSelectedValues',
-	]);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [checkboxGroupProps, localProps] = splitGroupProps(@rest, [
+    'defaultValue',
+    'value',
+    'onValueChange',
+    'disabled',
+    'invalid',
+    'readOnly',
+    'name',
+    'maxSelectedValues',
+  ]);
 
-	const checkboxGroup = useCheckboxGroup(checkboxGroupProps);
+  const checkboxGroup = useCheckboxGroup(checkboxGroupProps);
 
-	CheckboxGroupApiContext.set(checkboxGroup);
+  CheckboxGroupApiContext.set(checkboxGroup);
 
-	const parts = checkboxAnatomy.build();
+  const parts = checkboxAnatomy.build();
 
-	<ark.div role="group" {...@localProps} {...parts.group.attrs}>
-		<@children />
-	</ark.div>
+  <ark.div role="group" {...@localProps} {...parts.group.attrs}>
+    <@children />
+  </ark.div>
 }

@@ -5,24 +5,24 @@ import { useSwap, type UseSwapProps } from './use-swap.ripple';
 import { ark } from '../factory';
 
 export interface SwapRootBaseProps extends UseSwapProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SwapRootProps = SwapRootBaseProps;
 
 export component SwapRoot(props: SwapRootProps) {
-	const [swap, lazyMount, unmountOnExit, children, localProps] = trackSplit(props, [
-		'swap',
-		'lazyMount',
-		'unmountOnExit',
-		'children',
-	]);
+  const [swap, lazyMount, unmountOnExit, children, localProps] = trackSplit(props, [
+    'swap',
+    'lazyMount',
+    'unmountOnExit',
+    'children',
+  ]);
 
-	const swapApi = useSwap({ swap, lazyMount, unmountOnExit });
-	SwapApiContext.set(swapApi);
+  const swapApi = useSwap({ swap, lazyMount, unmountOnExit });
+  SwapApiContext.set(swapApi);
 
-	let mergedProps = track(() => mergeProps(@swapApi.getRootProps(), @localProps));
-	<ark.span {...@mergedProps}>
-		<@children />
-	</ark.span>
+  let mergedProps = track(() => mergeProps(@swapApi.getRootProps(), @localProps));
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
 }

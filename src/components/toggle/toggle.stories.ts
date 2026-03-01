@@ -6,27 +6,27 @@ import { Disabled as DisabledExample } from './examples/disabled.ripple';
 import { Indicator as IndicatorExample } from './examples/indicator.ripple';
 
 const meta: Meta = {
-	title: 'Components/Toggle',
+  title: 'Components/Toggle',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Indicator = {
-	render: () => ({ Component: IndicatorExample }),
+  render: () => ({ Component: IndicatorExample }),
 };

@@ -2,8 +2,8 @@ import { Avatar } from 'ark-ripple/avatar';
 import styles from 'styles/avatar.module.css';
 
 export component Basic() {
-	<Avatar.Root class={styles.Root}>
-		<Avatar.Fallback class={styles.Fallback}>{'PA'}</Avatar.Fallback>
-		<Avatar.Image class={styles.Image} src="https://i.pravatar.cc/300?u=a" alt="avatar" />
-	</Avatar.Root>
+  <Avatar.Root class={styles.Root}>
+    <Avatar.Fallback class={styles.Fallback}>{'PA'}</Avatar.Fallback>
+    <Avatar.Image class={styles.Image} src="https://i.pravatar.cc/300?u=a" alt="avatar" />
+  </Avatar.Root>
 }

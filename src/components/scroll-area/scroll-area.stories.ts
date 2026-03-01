@@ -6,27 +6,27 @@ import { BothDirections as BothDirectionsExample } from './examples/both-directi
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Scroll Area',
+  title: 'Components/Scroll Area',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Nested = {
-	render: () => ({ Component: NestedExample }),
+  render: () => ({ Component: NestedExample }),
 };
 
 export const Horizontal = {
-	render: () => ({ Component: HorizontalExample }),
+  render: () => ({ Component: HorizontalExample }),
 };
 
 export const BothDirections = {
-	render: () => ({ Component: BothDirectionsExample }),
+  render: () => ({ Component: BothDirectionsExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

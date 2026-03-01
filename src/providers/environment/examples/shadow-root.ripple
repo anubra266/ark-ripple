@@ -3,28 +3,28 @@ import { EnvironmentProvider, useEnvironmentContext } from 'ark-ripple/environme
 import { Portal } from 'ark-ripple/portal';
 
 export component ShadowRoot() {
-	let shadowRoot = track<globalThis.ShadowRoot | null>(null);
+  let shadowRoot = track<globalThis.ShadowRoot | null>(null);
 
-	<div
-		{ref (el: HTMLDivElement) => {
-			@shadowRoot = el.attachShadow({ mode: 'open' });
-			return () => {
-				@shadowRoot = null;
-			};
-		}}
-	/>
+  <div
+    {ref (el: HTMLDivElement) => {
+      @shadowRoot = el.attachShadow({ mode: 'open' });
+      return () => {
+        @shadowRoot = null;
+      };
+    }}
+  />
 
-	if (@shadowRoot) {
-		<EnvironmentProvider value={shadowRoot}>
-			<PrintEnvironment />
-		</EnvironmentProvider>
-	}
+  if (@shadowRoot) {
+    <EnvironmentProvider value={shadowRoot}>
+      <PrintEnvironment />
+    </EnvironmentProvider>
+  }
 }
 
 component PrintEnvironment() {
-	const environment = useEnvironmentContext();
+  const environment = useEnvironmentContext();
 
-	<Portal container={@environment.getRootNode() as any}>
-		<pre>{JSON.stringify(String(@environment.getRootNode()), null, 2)}</pre>
-	</Portal>
+  <Portal container={@environment.getRootNode() as any}>
+    <pre>{JSON.stringify(String(@environment.getRootNode()), null, 2)}</pre>
+  </Portal>
 }

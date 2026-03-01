@@ -8,26 +8,26 @@ import type { UseDatePickerReturn } from './use-date-picker.ripple';
 import { ark } from '../factory';
 
 export interface DatePickerRootProviderBaseProps extends UsePresenceProps {
-	value: UseDatePickerReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseDatePickerReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerRootProviderProps = DatePickerRootProviderBaseProps;
 
 export component DatePickerRootProvider(props: DatePickerRootProviderProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
 
-	const datePicker = props.value;
-	const present = track(() => @datePicker.open);
+  const datePicker = props.value;
+  const present = track(() => @datePicker.open);
 
-	const presence = usePresence({ present, ...@presenceProps });
-	let mergedProps = track(() => mergeProps(@datePicker.getRootProps(), @localProps));
+  const presence = usePresence({ present, ...@presenceProps });
+  let mergedProps = track(() => mergeProps(@datePicker.getRootProps(), @localProps));
 
-	DatePickerApiContext.set(datePicker);
-	PresenceApiContext.set(presence);
+  DatePickerApiContext.set(datePicker);
+  PresenceApiContext.set(presence);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

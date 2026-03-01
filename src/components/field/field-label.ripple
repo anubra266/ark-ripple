@@ -4,18 +4,18 @@ import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
 
 export interface FieldLabelBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FieldLabelProps = FieldLabelBaseProps;
 
 export component FieldLabel(props: FieldLabelProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const field = useFieldContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const field = useFieldContext();
 
-	let mergedProps = track(() => mergeProps(@field?.getLabelProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@field?.getLabelProps(), @localProps));
 
-	<ark.label {...@mergedProps}>
-		<@children />
-	</ark.label>
+  <ark.label {...@mergedProps}>
+    <@children />
+  </ark.label>
 }

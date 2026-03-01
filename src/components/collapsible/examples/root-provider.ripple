@@ -4,27 +4,27 @@ import { ChevronRight } from 'lucide-ripple';
 import styles from 'styles/collapsible.module.css';
 
 export component RootProvider() {
-	const collapsible = useCollapsible();
+  const collapsible = useCollapsible();
 
-	<div class="stack">
-		<output>
-			{'collapsible: '}
-			{String(@collapsible.open)}
-			{', visible: '}
-			{String(@collapsible.visible)}
-		</output>
-		<Collapsible.RootProvider class={styles.Root} value={collapsible}>
-			<Collapsible.Trigger class={styles.Trigger}>
-				{'Toggle Panel'}
-				<Collapsible.Indicator class={styles.Indicator}>
-					<ChevronRight />
-				</Collapsible.Indicator>
-			</Collapsible.Trigger>
-			<Collapsible.Content class={styles.Content}>
-				<div class={styles.Body}>
-					{'This panel can be toggled by the button above, which uses the useCollapsible hook for state management.'}
-				</div>
-			</Collapsible.Content>
-		</Collapsible.RootProvider>
-	</div>
+  <div class="stack">
+    <output>
+      {'collapsible: '}
+      {String(@collapsible.open)}
+      {', visible: '}
+      {String(@collapsible.visible)}
+    </output>
+    <Collapsible.RootProvider class={styles.Root} value={collapsible}>
+      <Collapsible.Trigger class={styles.Trigger}>
+        {'Toggle Panel'}
+        <Collapsible.Indicator class={styles.Indicator}>
+          <ChevronRight />
+        </Collapsible.Indicator>
+      </Collapsible.Trigger>
+      <Collapsible.Content class={styles.Content}>
+        <div class={styles.Body}>
+          {'This panel can be toggled by the button above, which uses the useCollapsible hook for state management.'}
+        </div>
+      </Collapsible.Content>
+    </Collapsible.RootProvider>
+  </div>
 }

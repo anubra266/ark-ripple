@@ -10,18 +10,18 @@ export interface UseAvatarProps extends Optional<Omit<avatar.Props, 'dir' | 'get
 export type UseAvatarReturn = ReturnType<typeof useAvatar>;
 
 export function useAvatar(props: UseAvatarProps = {}) {
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(avatar.machine, machineProps);
+  const service = useMachine(avatar.machine, machineProps);
 
-	return track(() => avatar.connect(service, normalizeProps));
+  return track(() => avatar.connect(service, normalizeProps));
 }

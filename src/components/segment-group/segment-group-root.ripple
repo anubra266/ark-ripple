@@ -6,21 +6,21 @@ import { splitSegmentGroupProps } from './split-segment-group-props.ripple';
 import { ark } from '../factory';
 
 export interface SegmentGroupRootBaseProps extends UseSegmentGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SegmentGroupRootProps = SegmentGroupRootBaseProps;
 
 export component SegmentGroupRoot(props: SegmentGroupRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [segmentGroupProps, localProps] = splitSegmentGroupProps(@rest);
-	const segmentGroup = useSegmentGroup(segmentGroupProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [segmentGroupProps, localProps] = splitSegmentGroupProps(@rest);
+  const segmentGroup = useSegmentGroup(segmentGroupProps);
 
-	SegmentGroupApiContext.set(segmentGroup);
+  SegmentGroupApiContext.set(segmentGroup);
 
-	let mergedProps = track(() => mergeProps(@segmentGroup.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@segmentGroup.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -3,15 +3,15 @@ import { ChevronRight } from 'lucide-ripple';
 import styles from 'styles/collapsible.module.css';
 
 export component Disabled() {
-	<Collapsible.Root class={styles.Root} disabled>
-		<Collapsible.Trigger class={styles.Trigger}>
-			{'System Requirements'}
-			<Collapsible.Indicator class={styles.Indicator}>
-				<ChevronRight />
-			</Collapsible.Indicator>
-		</Collapsible.Trigger>
-		<Collapsible.Content class={styles.Content}>
-			<div class={styles.Body}>{'This section is currently unavailable.'}</div>
-		</Collapsible.Content>
-	</Collapsible.Root>
+  <Collapsible.Root class={styles.Root} disabled>
+    <Collapsible.Trigger class={styles.Trigger}>
+      {'System Requirements'}
+      <Collapsible.Indicator class={styles.Indicator}>
+        <ChevronRight />
+      </Collapsible.Indicator>
+    </Collapsible.Trigger>
+    <Collapsible.Content class={styles.Content}>
+      <div class={styles.Body}>{'This section is currently unavailable.'}</div>
+    </Collapsible.Content>
+  </Collapsible.Root>
 }

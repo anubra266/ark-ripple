@@ -4,26 +4,26 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 
 export interface ColorPickerValueTextBaseProps {
-	format?: string | undefined;
-	children?: any;
-	[key: string]: any;
+  format?: string | undefined;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerValueTextProps = ColorPickerValueTextBaseProps;
 
 export component ColorPickerValueText(props: ColorPickerValueTextProps) {
-	const [children, format, localProps] = trackSplit(props, ['children', 'format']);
-	const colorPicker = useColorPickerContext();
+  const [children, format, localProps] = trackSplit(props, ['children', 'format']);
+  const colorPicker = useColorPickerContext();
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getValueTextProps(), @localProps));
-	let valueAsString = track(
-		() => @format ? @colorPicker.value.toString(@format) : @colorPicker.valueAsString,
-	);
+  let mergedProps = track(() => mergeProps(@colorPicker.getValueTextProps(), @localProps));
+  let valueAsString = track(
+    () => @format ? @colorPicker.value.toString(@format) : @colorPicker.valueAsString,
+  );
 
-	<ark.span {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@valueAsString}
-		}
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@valueAsString}
+    }
+  </ark.span>
 }

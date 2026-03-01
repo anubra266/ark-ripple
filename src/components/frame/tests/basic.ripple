@@ -2,23 +2,23 @@ import { Frame } from '../index';
 import { track } from 'ripple';
 
 export component FrameBasicTest() {
-	<Frame title="Test Frame">
-		<div data-testid="content">{'Frame content'}</div>
-	</Frame>
+  <Frame title="Test Frame">
+    <div data-testid="content">{'Frame content'}</div>
+  </Frame>
 }
 
 export component FrameWithMountTest() {
-	const mounted = track(false);
+  const mounted = track(false);
 
-	<div>
-		<Frame
-			title="Test Frame"
-			onMount={() => {
-				@mounted = true;
-			}}
-		>
-			<div data-testid="content">{'Frame content'}</div>
-		</Frame>
-		<span data-testid="mount-status">{@mounted ? 'mounted' : 'not-mounted'}</span>
-	</div>
+  <div>
+    <Frame
+      title="Test Frame"
+      onMount={() => {
+        @mounted = true;
+      }}
+    >
+      <div data-testid="content">{'Frame content'}</div>
+    </Frame>
+    <span data-testid="mount-status">{@mounted ? 'mounted' : 'not-mounted'}</span>
+  </div>
 }

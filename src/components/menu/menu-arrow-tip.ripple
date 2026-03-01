@@ -4,14 +4,14 @@ import { useMenuContext } from './use-menu-context';
 import { ark } from '../factory';
 
 export interface MenuArrowTipBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type MenuArrowTipProps = MenuArrowTipBaseProps;
 
 export component MenuArrowTip(props: MenuArrowTipProps) {
-	const menu = useMenuContext();
+  const menu = useMenuContext();
 
-	let mergedProps = track(() => mergeProps(@menu.getArrowTipProps(), props));
+  let mergedProps = track(() => mergeProps(@menu.getArrowTipProps(), props));
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

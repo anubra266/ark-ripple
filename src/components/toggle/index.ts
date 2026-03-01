@@ -1,8 +1,8 @@
 export { ToggleContext, type ToggleContextProps } from './toggle-context.ripple';
 export {
-	ToggleIndicator,
-	type ToggleIndicatorBaseProps,
-	type ToggleIndicatorProps,
+  ToggleIndicator,
+  type ToggleIndicatorBaseProps,
+  type ToggleIndicatorProps,
 } from './toggle-indicator.ripple';
 export { ToggleRoot, type ToggleRootBaseProps, type ToggleRootProps } from './toggle-root.ripple';
 export { toggleAnatomy } from './toggle.anatomy';

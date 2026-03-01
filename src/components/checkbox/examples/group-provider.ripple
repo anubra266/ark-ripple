@@ -3,30 +3,30 @@ import styles from 'styles/checkbox.module.css';
 import { Check } from 'lucide-ripple';
 
 export component GroupProvider() {
-	const group = useCheckboxGroup(
-		{
-			defaultValue: ['react'],
-			name: 'framework',
-		},
-	);
+  const group = useCheckboxGroup(
+    {
+      defaultValue: ['react'],
+      name: 'framework',
+    },
+  );
 
-	<Checkbox.GroupProvider class={styles.Group} value={group}>
-		for (const item of items; key item.value) {
-			<Checkbox.Root class={styles.Root} value={item.value}>
-				<Checkbox.Control class={styles.Control}>
-					<Checkbox.Indicator class={styles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-	</Checkbox.GroupProvider>
+  <Checkbox.GroupProvider class={styles.Group} value={group}>
+    for (const item of items; key item.value) {
+      <Checkbox.Root class={styles.Root} value={item.value}>
+        <Checkbox.Control class={styles.Control}>
+          <Checkbox.Indicator class={styles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+  </Checkbox.GroupProvider>
 }
 
 const items = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Vue', value: 'vue' },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
 ];

@@ -4,30 +4,30 @@ import styles from 'styles/carousel.module.css';
 const slides = [0, 1, 2, 3, 4, 5];
 
 export component Spacing() {
-	<Carousel.Root class={styles.Root} slideCount={slides.length} slidesPerPage={1.5} spacing="48px">
-		<span class={styles.StatusText}>{'spacing=\'48px\''}</span>
-		<Carousel.ItemGroup class={styles.ItemGroup}>
-			for (const index of slides; key index) {
-				<Carousel.Item class={styles.Item} {index}>
-					<div class={styles.Slide}>{index + 1}</div>
-				</Carousel.Item>
-			}
-		</Carousel.ItemGroup>
-		<Carousel.Control class={styles.Control}>
-			<Carousel.PrevTrigger class={styles.Trigger}>{'←'}</Carousel.PrevTrigger>
-			<Carousel.Context>
-				component children({ context }) {
-					<Carousel.IndicatorGroup class={styles.IndicatorGroup}>
-						for (const snapPoint of @context.pageSnapPoints; key snapPoint) {
-							<Carousel.Indicator
-								class={styles.Indicator}
-								index={@context.pageSnapPoints.indexOf(snapPoint)}
-							/>
-						}
-					</Carousel.IndicatorGroup>
-				}
-			</Carousel.Context>
-			<Carousel.NextTrigger class={styles.Trigger}>{'→'}</Carousel.NextTrigger>
-		</Carousel.Control>
-	</Carousel.Root>
+  <Carousel.Root class={styles.Root} slideCount={slides.length} slidesPerPage={1.5} spacing="48px">
+    <span class={styles.StatusText}>{'spacing=\'48px\''}</span>
+    <Carousel.ItemGroup class={styles.ItemGroup}>
+      for (const index of slides; key index) {
+        <Carousel.Item class={styles.Item} {index}>
+          <div class={styles.Slide}>{index + 1}</div>
+        </Carousel.Item>
+      }
+    </Carousel.ItemGroup>
+    <Carousel.Control class={styles.Control}>
+      <Carousel.PrevTrigger class={styles.Trigger}>{'←'}</Carousel.PrevTrigger>
+      <Carousel.Context>
+        component children({ context }) {
+          <Carousel.IndicatorGroup class={styles.IndicatorGroup}>
+            for (const snapPoint of @context.pageSnapPoints; key snapPoint) {
+              <Carousel.Indicator
+                class={styles.Indicator}
+                index={@context.pageSnapPoints.indexOf(snapPoint)}
+              />
+            }
+          </Carousel.IndicatorGroup>
+        }
+      </Carousel.Context>
+      <Carousel.NextTrigger class={styles.Trigger}>{'→'}</Carousel.NextTrigger>
+    </Carousel.Control>
+  </Carousel.Root>
 }

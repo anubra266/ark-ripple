@@ -1,18 +1,18 @@
 import { DownloadTrigger } from '../index';
 
 export component ComponentUnderTest(props: {
-	data?: any;
-	fileName?: string;
-	mimeType?: any;
-	onClick?: (e: MouseEvent) => void;
-	[key: string]: any;
+  data?: any;
+  fileName?: string;
+  mimeType?: any;
+  onClick?: (e: MouseEvent) => void;
+  [key: string]: any;
 }) {
-	<DownloadTrigger
-		data={props.data ?? 'test content'}
-		fileName={props.fileName ?? 'test.txt'}
-		mimeType={props.mimeType ?? 'text/plain'}
-		onClick={props.onClick}
-	>
-		{'Download'}
-	</DownloadTrigger>
+  <DownloadTrigger
+    data={props.data ?? 'test content'}
+    fileName={props.fileName ?? 'test.txt'}
+    mimeType={props.mimeType ?? 'text/plain'}
+    onClick={props.onClick}
+  >
+    {'Download'}
+  </DownloadTrigger>
 }

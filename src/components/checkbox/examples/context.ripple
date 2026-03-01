@@ -3,20 +3,20 @@ import styles from 'styles/checkbox.module.css';
 import { Check } from 'lucide-ripple';
 
 export component Context() {
-	<Checkbox.Root class={styles.Root}>
-		<Checkbox.Control class={styles.Control}>
-			<Checkbox.Indicator class={styles.Indicator}>
-				<Check />
-			</Checkbox.Indicator>
-		</Checkbox.Control>
-		<Checkbox.Context>
-			component children({ context }) {
-				<Checkbox.Label class={styles.Label}>
-					{'Checked: '}
-					{String(@context.checked)}
-				</Checkbox.Label>
-			}
-		</Checkbox.Context>
-		<Checkbox.HiddenInput />
-	</Checkbox.Root>
+  <Checkbox.Root class={styles.Root}>
+    <Checkbox.Control class={styles.Control}>
+      <Checkbox.Indicator class={styles.Indicator}>
+        <Check />
+      </Checkbox.Indicator>
+    </Checkbox.Control>
+    <Checkbox.Context>
+      component children({ context }) {
+        <Checkbox.Label class={styles.Label}>
+          {'Checked: '}
+          {String(@context.checked)}
+        </Checkbox.Label>
+      }
+    </Checkbox.Context>
+    <Checkbox.HiddenInput />
+  </Checkbox.Root>
 }

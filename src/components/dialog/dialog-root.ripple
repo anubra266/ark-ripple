@@ -6,29 +6,29 @@ import { usePresence, type UsePresenceProps } from '../presence/use-presence.rip
 import { useDialog, type UseDialogProps } from './use-dialog.ripple';
 import { splitDialogProps } from './split-dialog-props.ripple';
 import {
-	splitRenderStrategyProps,
-	RenderStrategyContext,
+  splitRenderStrategyProps,
+  RenderStrategyContext,
 } from '../../utils/render-strategy.ripple';
 
 export interface DialogRootBaseProps extends UseDialogProps, UsePresenceProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DialogRootProps = DialogRootBaseProps;
 
 export component DialogRoot(props: DialogRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [presenceProps, localProps] = splitPresenceProps(@rest);
-	const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
-	const [dialogProps] = splitDialogProps(@localProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+  const [dialogProps] = splitDialogProps(@localProps);
 
-	const dialog = useDialog(dialogProps);
-	const present = track(() => @dialog.open);
-	const presence = usePresence({ present, ...@presenceProps });
+  const dialog = useDialog(dialogProps);
+  const present = track(() => @dialog.open);
+  const presence = usePresence({ present, ...@presenceProps });
 
-	DialogApiContext.set(dialog);
-	RenderStrategyContext.set(renderStrategyProps);
-	PresenceApiContext.set(presence);
+  DialogApiContext.set(dialog);
+  RenderStrategyContext.set(renderStrategyProps);
+  PresenceApiContext.set(presence);
 
-	<@children />
+  <@children />
 }

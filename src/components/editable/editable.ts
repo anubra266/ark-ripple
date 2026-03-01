@@ -1,61 +1,61 @@
 export type {
-	EditChangeDetails,
-	FocusOutsideEvent,
-	InteractOutsideEvent,
-	PointerDownOutsideEvent,
-	ValueChangeDetails,
+  EditChangeDetails,
+  FocusOutsideEvent,
+  InteractOutsideEvent,
+  PointerDownOutsideEvent,
+  ValueChangeDetails,
 } from '@zag-js/editable';
 export {
-	EditableArea as Area,
-	type EditableAreaBaseProps as AreaBaseProps,
-	type EditableAreaProps as AreaProps,
+  EditableArea as Area,
+  type EditableAreaBaseProps as AreaBaseProps,
+  type EditableAreaProps as AreaProps,
 } from './editable-area.ripple';
 export {
-	EditableCancelTrigger as CancelTrigger,
-	type EditableCancelTriggerBaseProps as CancelTriggerBaseProps,
-	type EditableCancelTriggerProps as CancelTriggerProps,
+  EditableCancelTrigger as CancelTrigger,
+  type EditableCancelTriggerBaseProps as CancelTriggerBaseProps,
+  type EditableCancelTriggerProps as CancelTriggerProps,
 } from './editable-cancel-trigger.ripple';
 export {
-	EditableContext as Context,
-	type EditableContextProps as ContextProps,
+  EditableContext as Context,
+  type EditableContextProps as ContextProps,
 } from './editable-context.ripple';
 export {
-	EditableControl as Control,
-	type EditableControlBaseProps as ControlBaseProps,
-	type EditableControlProps as ControlProps,
+  EditableControl as Control,
+  type EditableControlBaseProps as ControlBaseProps,
+  type EditableControlProps as ControlProps,
 } from './editable-control.ripple';
 export {
-	EditableEditTrigger as EditTrigger,
-	type EditableEditTriggerBaseProps as EditTriggerBaseProps,
-	type EditableEditTriggerProps as EditTriggerProps,
+  EditableEditTrigger as EditTrigger,
+  type EditableEditTriggerBaseProps as EditTriggerBaseProps,
+  type EditableEditTriggerProps as EditTriggerProps,
 } from './editable-edit-trigger.ripple';
 export {
-	EditableInput as Input,
-	type EditableInputBaseProps as InputBaseProps,
-	type EditableInputProps as InputProps,
+  EditableInput as Input,
+  type EditableInputBaseProps as InputBaseProps,
+  type EditableInputProps as InputProps,
 } from './editable-input.ripple';
 export {
-	EditableLabel as Label,
-	type EditableLabelBaseProps as LabelBaseProps,
-	type EditableLabelProps as LabelProps,
+  EditableLabel as Label,
+  type EditableLabelBaseProps as LabelBaseProps,
+  type EditableLabelProps as LabelProps,
 } from './editable-label.ripple';
 export {
-	EditablePreview as Preview,
-	type EditablePreviewBaseProps as PreviewBaseProps,
-	type EditablePreviewProps as PreviewProps,
+  EditablePreview as Preview,
+  type EditablePreviewBaseProps as PreviewBaseProps,
+  type EditablePreviewProps as PreviewProps,
 } from './editable-preview.ripple';
 export {
-	EditableRoot as Root,
-	type EditableRootBaseProps as RootBaseProps,
-	type EditableRootProps as RootProps,
+  EditableRoot as Root,
+  type EditableRootBaseProps as RootBaseProps,
+  type EditableRootProps as RootProps,
 } from './editable-root.ripple';
 export {
-	EditableRootProvider as RootProvider,
-	type EditableRootProviderBaseProps as RootProviderBaseProps,
-	type EditableRootProviderProps as RootProviderProps,
+  EditableRootProvider as RootProvider,
+  type EditableRootProviderBaseProps as RootProviderBaseProps,
+  type EditableRootProviderProps as RootProviderProps,
 } from './editable-root-provider.ripple';
 export {
-	EditableSubmitTrigger as SubmitTrigger,
-	type EditableSubmitTriggerBaseProps as SubmitTriggerBaseProps,
-	type EditableSubmitTriggerProps as SubmitTriggerProps,
+  EditableSubmitTrigger as SubmitTrigger,
+  type EditableSubmitTriggerBaseProps as SubmitTriggerBaseProps,
+  type EditableSubmitTriggerProps as SubmitTriggerProps,
 } from './editable-submit-trigger.ripple';

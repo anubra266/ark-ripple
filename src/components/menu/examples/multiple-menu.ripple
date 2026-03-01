@@ -3,49 +3,49 @@ import { ChevronDown } from 'lucide-ripple';
 import styles from 'styles/menu.module.css';
 
 const fileItems = [
-	{ label: 'New File', value: 'new' },
-	{ label: 'Open...', value: 'open' },
-	{ label: 'Save', value: 'save' },
+  { label: 'New File', value: 'new' },
+  { label: 'Open...', value: 'open' },
+  { label: 'Save', value: 'save' },
 ];
 
 const editItems = [
-	{ label: 'Undo', value: 'undo' },
-	{ label: 'Redo', value: 'redo' },
-	{ label: 'Cut', value: 'cut' },
-	{ label: 'Copy', value: 'copy' },
+  { label: 'Undo', value: 'undo' },
+  { label: 'Redo', value: 'redo' },
+  { label: 'Cut', value: 'cut' },
+  { label: 'Copy', value: 'copy' },
 ];
 
 export component MultipleMenu() {
-	<div style="display: flex; gap: 0.5rem">
-		<Menu.Root>
-			<Menu.Trigger class={styles.Trigger}>
-				{'File'}
-				<Menu.Indicator class={styles.Indicator}>
-					<ChevronDown />
-				</Menu.Indicator>
-			</Menu.Trigger>
-			<Menu.Positioner>
-				<Menu.Content class={styles.Content}>
-					for (const item of fileItems; key item.value) {
-						<Menu.Item class={styles.Item} value={item.value}>{item.label}</Menu.Item>
-					}
-				</Menu.Content>
-			</Menu.Positioner>
-		</Menu.Root>
-		<Menu.Root>
-			<Menu.Trigger class={styles.Trigger}>
-				{'Edit'}
-				<Menu.Indicator class={styles.Indicator}>
-					<ChevronDown />
-				</Menu.Indicator>
-			</Menu.Trigger>
-			<Menu.Positioner>
-				<Menu.Content class={styles.Content}>
-					for (const item of editItems; key item.value) {
-						<Menu.Item class={styles.Item} value={item.value}>{item.label}</Menu.Item>
-					}
-				</Menu.Content>
-			</Menu.Positioner>
-		</Menu.Root>
-	</div>
+  <div style="display: flex; gap: 0.5rem">
+    <Menu.Root>
+      <Menu.Trigger class={styles.Trigger}>
+        {'File'}
+        <Menu.Indicator class={styles.Indicator}>
+          <ChevronDown />
+        </Menu.Indicator>
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content class={styles.Content}>
+          for (const item of fileItems; key item.value) {
+            <Menu.Item class={styles.Item} value={item.value}>{item.label}</Menu.Item>
+          }
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>
+    <Menu.Root>
+      <Menu.Trigger class={styles.Trigger}>
+        {'Edit'}
+        <Menu.Indicator class={styles.Indicator}>
+          <ChevronDown />
+        </Menu.Indicator>
+      </Menu.Trigger>
+      <Menu.Positioner>
+        <Menu.Content class={styles.Content}>
+          for (const item of editItems; key item.value) {
+            <Menu.Item class={styles.Item} value={item.value}>{item.label}</Menu.Item>
+          }
+        </Menu.Content>
+      </Menu.Positioner>
+    </Menu.Root>
+  </div>
 }

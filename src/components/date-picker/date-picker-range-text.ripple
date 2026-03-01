@@ -5,26 +5,26 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 
 export interface DatePickerRangeTextBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type DatePickerRangeTextProps = DatePickerRangeTextBaseProps;
 
 export component DatePickerRangeText(props: DatePickerRangeTextProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const datePicker = useDatePickerContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const datePicker = useDatePickerContext();
 
-	let mergedProps = track(() => mergeProps(@datePicker.getRangeTextProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@datePicker.getRangeTextProps(), @localProps));
 
-	const visibleRangeText = track(() => {
-		const { start, end } = @datePicker.visibleRangeText;
-		return uniq([start, end]).filter(Boolean).join(' - ');
-	});
+  const visibleRangeText = track(() => {
+    const { start, end } = @datePicker.visibleRangeText;
+    return uniq([start, end]).filter(Boolean).join(' - ');
+  });
 
-	<ark.div {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@visibleRangeText}
-		}
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@visibleRangeText}
+    }
+  </ark.div>
 }

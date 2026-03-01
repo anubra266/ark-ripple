@@ -5,20 +5,20 @@ import type { UseScrollAreaReturn } from './use-scroll-area.ripple';
 import { ark } from '../factory';
 
 export interface ScrollAreaRootProviderBaseProps {
-	value: UseScrollAreaReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseScrollAreaReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type ScrollAreaRootProviderProps = ScrollAreaRootProviderBaseProps;
 
 export component ScrollAreaRootProvider(props: ScrollAreaRootProviderProps) {
-	const [scrollArea, children, rest] = trackSplit(props, ['value', 'children']);
+  const [scrollArea, children, rest] = trackSplit(props, ['value', 'children']);
 
-	ScrollAreaApiContext.set(scrollArea);
+  ScrollAreaApiContext.set(scrollArea);
 
-	let mergedProps = track(() => mergeProps(@scrollArea.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@scrollArea.getRootProps(), @rest));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

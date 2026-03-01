@@ -6,27 +6,27 @@ import { SkipAnimationOnMount as SkipAnimationOnMountExample } from './examples/
 import { UnmountOnExit as UnmountOnExitExample } from './examples/unmount-on-exit.ripple';
 
 const meta: Meta = {
-	title: 'Components/Presence',
+  title: 'Components/Presence',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const LazyMount = {
-	render: () => ({ Component: LazyMountExample }),
+  render: () => ({ Component: LazyMountExample }),
 };
 
 export const UnmountOnExit = {
-	render: () => ({ Component: UnmountOnExitExample }),
+  render: () => ({ Component: UnmountOnExitExample }),
 };
 
 export const LazyMountAndUnmountOnExit = {
-	render: () => ({ Component: LazyMountAndUnmountOnExitExample }),
+  render: () => ({ Component: LazyMountAndUnmountOnExitExample }),
 };
 
 export const SkipAnimationOnMount = {
-	render: () => ({ Component: SkipAnimationOnMountExample }),
+  render: () => ({ Component: SkipAnimationOnMountExample }),
 };

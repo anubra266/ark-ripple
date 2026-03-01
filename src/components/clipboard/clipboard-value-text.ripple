@@ -3,20 +3,20 @@ import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
 
 export interface ClipboardValueTextBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ClipboardValueTextProps = ClipboardValueTextBaseProps;
 
 export component ClipboardValueText(props: ClipboardValueTextProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const clipboard = useClipboardContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const clipboard = useClipboardContext();
 
-	<ark.span {...@localProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@clipboard.value}
-		}
-	</ark.span>
+  <ark.span {...@localProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@clipboard.value}
+    }
+  </ark.span>
 }

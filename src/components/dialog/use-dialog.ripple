@@ -10,21 +10,21 @@ export interface UseDialogProps extends Optional<Omit<dialog.Props, 'dir' | 'get
 export type UseDialogReturn = ReturnType<typeof useDialog>;
 
 export function useDialog(props: UseDialogProps = {}) {
-	const locale = useLocaleContext();
-	const env = useEnvironmentContext();
-	const id = useId();
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @env.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(dialog.machine, machineProps);
-	const api = track(() => dialog.connect(service, normalizeProps));
+  const service = useMachine(dialog.machine, machineProps);
+  const api = track(() => dialog.connect(service, normalizeProps));
 
-	return api;
+  return api;
 }

@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useCarouselContext, type UseCarouselContext } from './use-carousel-context';
 
 export interface CarouselContextProps {
-	children: (context: UseCarouselContext) => any;
+  children: (context: UseCarouselContext) => any;
 }
 
 export component CarouselContext(props: CarouselContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useCarouselContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useCarouselContext();
 
-	<@children {context} />
+  <@children {context} />
 }

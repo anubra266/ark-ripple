@@ -9,39 +9,39 @@ import { PartialCollapse as PartialCollapseExample } from './examples/partial-co
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Collapsible',
+  title: 'Components/Collapsible',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const InitialOpen = {
-	render: () => ({ Component: InitialOpenExample }),
+  render: () => ({ Component: InitialOpenExample }),
 };
 
 export const LazyMount = {
-	render: () => ({ Component: LazyMountExample }),
+  render: () => ({ Component: LazyMountExample }),
 };
 
 export const Nested = {
-	render: () => ({ Component: NestedExample }),
+  render: () => ({ Component: NestedExample }),
 };
 
 export const PartialCollapse = {
-	render: () => ({ Component: PartialCollapseExample }),
+  render: () => ({ Component: PartialCollapseExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

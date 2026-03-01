@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useFieldContext, type UseFieldContext } from './use-field-context';
 
 export interface FieldContextProps {
-	children: (context: UseFieldContext) => any;
+  children: (context: UseFieldContext) => any;
 }
 
 export component FieldContext(props: FieldContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useFieldContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useFieldContext();
 
-	<@children {context} />
+  <@children {context} />
 }

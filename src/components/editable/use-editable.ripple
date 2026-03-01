@@ -8,35 +8,35 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseEditableProps extends Optional<
-	Omit<editable.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<editable.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 export type UseEditableReturn = ReturnType<typeof useEditable>;
 
 export function useEditable(props: UseEditableProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const field = useFieldContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const field = useFieldContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			ids: {
-				label: @field?.ids.label,
-				input: @field?.ids.control,
-			},
-			dir: @locale.dir,
-			disabled: @field?.disabled,
-			invalid: @field?.invalid,
-			readOnly: @field?.readOnly,
-			required: @field?.required,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        input: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      invalid: @field?.invalid,
+      readOnly: @field?.readOnly,
+      required: @field?.required,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(editable.machine, machineProps);
+  const service = useMachine(editable.machine, machineProps);
 
-	return track(() => editable.connect(service, normalizeProps));
+  return track(() => editable.connect(service, normalizeProps));
 }

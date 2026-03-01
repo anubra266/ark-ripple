@@ -3,12 +3,12 @@ import { Bold } from 'lucide-ripple';
 import styles from 'styles/toggle.module.css';
 
 export component Context() {
-	<Toggle.Root class={styles.Root}>
-		<Bold />
-		<Toggle.Context>
-			component children({ context }) {
-				<span>{@context.pressed ? 'On' : 'Off'}</span>
-			}
-		</Toggle.Context>
-	</Toggle.Root>
+  <Toggle.Root class={styles.Root}>
+    <Bold />
+    <Toggle.Context>
+      component children({ context }) {
+        <span>{@context.pressed ? 'On' : 'Off'}</span>
+      }
+    </Toggle.Context>
+  </Toggle.Root>
 }

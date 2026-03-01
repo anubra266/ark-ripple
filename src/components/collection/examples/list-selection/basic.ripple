@@ -5,39 +5,39 @@ import styles from 'styles/list-selection.module.css';
 import checkboxStyles from 'styles/checkbox.module.css';
 
 const collection = createListCollection(
-	{
-		items: [
-			{ label: 'React', value: 'react' },
-			{ label: 'Vue', value: 'vue' },
-			{ label: 'Angular', value: 'angular' },
-			{ label: 'Svelte', value: 'svelte' },
-		],
-	},
+  {
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Angular', value: 'angular' },
+      { label: 'Svelte', value: 'svelte' },
+    ],
+  },
 );
 
 export component Basic() {
-	const selection = useListSelection({ collection });
+  const selection = useListSelection({ collection });
 
-	<div class={styles.Root}>
-		<output>
-			{'Selected: '}
-			{@selection.selectedValues.join(', ') || 'None'}
-		</output>
-		for (const item of collection.items; key item.value) {
-			<Checkbox.Root
-				class={styles.Item}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				checked={@selection.isSelected(item.value)}
-				onCheckedChange={() => @selection.select(item.value)}
-			>
-				<Checkbox.Control class={checkboxStyles.Control}>
-					<Checkbox.Indicator class={checkboxStyles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-	</div>
+  <div class={styles.Root}>
+    <output>
+      {'Selected: '}
+      {@selection.selectedValues.join(', ') || 'None'}
+    </output>
+    for (const item of collection.items; key item.value) {
+      <Checkbox.Root
+        class={styles.Item}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        checked={@selection.isSelected(item.value)}
+        onCheckedChange={() => @selection.select(item.value)}
+      >
+        <Checkbox.Control class={checkboxStyles.Control}>
+          <Checkbox.Indicator class={checkboxStyles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+  </div>
 }

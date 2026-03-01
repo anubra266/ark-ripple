@@ -4,17 +4,17 @@ import button from 'styles/button.module.css';
 import styles from 'styles/presence.module.css';
 
 export component SkipAnimationOnMount() {
-	let present = track(true);
+  let present = track(true);
 
-	<div class="stack">
-		<button
-			class={button.Root}
-			onClick={() => {
-				@present = !@present;
-			}}
-		>
-			{'Toggle'}
-		</button>
-		<Presence class={styles.Box} skipAnimationOnMount {present}>{'No Initial Animation'}</Presence>
-	</div>
+  <div class="stack">
+    <button
+      class={button.Root}
+      onClick={() => {
+        @present = !@present;
+      }}
+    >
+      {'Toggle'}
+    </button>
+    <Presence class={styles.Box} skipAnimationOnMount {present}>{'No Initial Animation'}</Presence>
+  </div>
 }

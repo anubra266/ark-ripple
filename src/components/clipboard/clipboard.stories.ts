@@ -8,7 +8,7 @@ import { Timeout as TimeoutExample } from './examples/timeout.ripple';
 import { ValueText as ValueTextExample } from './examples/value-text.ripple';
 
 const meta: Meta = {
-	title: 'Components / Clipboard',
+  title: 'Components / Clipboard',
 };
 
 export default meta;

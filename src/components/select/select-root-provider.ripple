@@ -8,25 +8,25 @@ import type { UseSelectReturn } from './use-select.ripple';
 import { ark } from '../factory';
 
 export interface SelectRootProviderBaseProps extends UsePresenceProps {
-	value: UseSelectReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseSelectReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type SelectRootProviderProps = SelectRootProviderBaseProps;
 
 export component SelectRootProvider(props: SelectRootProviderProps) {
-	const [children, value, rest] = trackSplit(props, ['children', 'value']);
-	const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [children, value, rest] = trackSplit(props, ['children', 'value']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
 
-	const present = track(() => @value.open);
+  const present = track(() => @value.open);
 
-	const presence = usePresence({ present, ...@presenceProps });
-	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+  const presence = usePresence({ present, ...@presenceProps });
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
 
-	SelectApiContext.set(value);
-	PresenceApiContext.set(presence);
+  SelectApiContext.set(value);
+  PresenceApiContext.set(presence);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

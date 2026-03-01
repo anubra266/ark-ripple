@@ -5,28 +5,28 @@ import { usePresence } from './use-presence.ripple';
 import { ark } from '../factory';
 
 export interface PresenceBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type PresenceProps = PresenceBaseProps;
 
 export component Presence(props: PresenceProps) {
-	const [presenceProps, localProps] = splitPresenceProps(props);
+  const [presenceProps, localProps] = splitPresenceProps(props);
 
-	const presence = usePresence(presenceProps);
+  const presence = usePresence(presenceProps);
 
-	let mergedProps = track(() => mergeProps(@presence.getPresenceProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@presence.getPresenceProps(), @localProps));
 
-	if (!@presence.unmounted) {
-		<ark.div
-			data-scope="presence"
-			data-part="root"
-			{...@mergedProps}
-			{ref (el: HTMLElement) => {
-				@presence.setNode(el);
-			}}
-		>
-			<props.children />
-		</ark.div>
-	}
+  if (!@presence.unmounted) {
+    <ark.div
+      data-scope="presence"
+      data-part="root"
+      {...@mergedProps}
+      {ref (el: HTMLElement) => {
+        @presence.setNode(el);
+      }}
+    >
+      <props.children />
+    </ark.div>
+  }
 }

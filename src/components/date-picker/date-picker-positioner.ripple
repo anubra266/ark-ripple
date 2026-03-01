@@ -5,21 +5,21 @@ import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
 
 export interface DatePickerPositionerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerPositionerProps = DatePickerPositionerBaseProps;
 
 export component DatePickerPositioner(props: DatePickerPositionerProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const datePicker = useDatePickerContext();
-	const presence = usePresenceContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const datePicker = useDatePickerContext();
+  const presence = usePresenceContext();
 
-	let mergedProps = track(() => mergeProps(@datePicker.getPositionerProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@datePicker.getPositionerProps(), @localProps));
 
-	if (!@presence.unmounted) {
-		<ark.div {...@mergedProps}>
-			<@children />
-		</ark.div>
-	}
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
 }

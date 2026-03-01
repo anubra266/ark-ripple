@@ -7,29 +7,29 @@ import { ComboboxItemPropsContext } from './use-combobox-item-props-context';
 import { ark } from '../factory';
 
 export interface ComboboxItemBaseProps extends ItemProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxItemProps = ComboboxItemBaseProps;
 
 export component ComboboxItem(props: ComboboxItemProps) {
-	const [item, persistFocus, disabled, children, rest] = trackSplit(props, [
-		'item',
-		'persistFocus',
-		'disabled',
-		'children',
-	]);
-	const combobox = useComboboxContext();
+  const [item, persistFocus, disabled, children, rest] = trackSplit(props, [
+    'item',
+    'persistFocus',
+    'disabled',
+    'children',
+  ]);
+  const combobox = useComboboxContext();
 
-	const itemProps = track(
-		() => ({ item: @item, persistFocus: @persistFocus, disabled: @disabled }),
-	);
-	let mergedProps = track(() => mergeProps(@combobox.getItemProps(@itemProps), @rest));
+  const itemProps = track(
+    () => ({ item: @item, persistFocus: @persistFocus, disabled: @disabled }),
+  );
+  let mergedProps = track(() => mergeProps(@combobox.getItemProps(@itemProps), @rest));
 
-	ComboboxItemApiContext.set(track(() => @combobox.getItemState(@itemProps)));
-	ComboboxItemPropsContext.set(itemProps);
+  ComboboxItemApiContext.set(track(() => @combobox.getItemState(@itemProps)));
+  ComboboxItemPropsContext.set(itemProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

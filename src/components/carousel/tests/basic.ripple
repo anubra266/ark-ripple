@@ -3,23 +3,23 @@ import * as Carousel from '../carousel';
 const slides = [0, 1, 2, 3, 4];
 
 export component ComponentUnderTest(props: Carousel.RootProps) {
-	<Carousel.Root slideCount={slides.length} {...props}>
-		<Carousel.Control>
-			<Carousel.PrevTrigger>{'Previous slide'}</Carousel.PrevTrigger>
-			<Carousel.ItemGroup>
-				for (const index of slides; key index) {
-					<Carousel.Item {index}>
-						{'Slide '}
-						{index + 1}
-					</Carousel.Item>
-				}
-			</Carousel.ItemGroup>
-			<Carousel.NextTrigger>{'Next slide'}</Carousel.NextTrigger>
-		</Carousel.Control>
-		<Carousel.IndicatorGroup>
-			for (const index of slides; key index) {
-				<Carousel.Indicator {index} />
-			}
-		</Carousel.IndicatorGroup>
-	</Carousel.Root>
+  <Carousel.Root slideCount={slides.length} {...props}>
+    <Carousel.Control>
+      <Carousel.PrevTrigger>{'Previous slide'}</Carousel.PrevTrigger>
+      <Carousel.ItemGroup>
+        for (const index of slides; key index) {
+          <Carousel.Item {index}>
+            {'Slide '}
+            {index + 1}
+          </Carousel.Item>
+        }
+      </Carousel.ItemGroup>
+      <Carousel.NextTrigger>{'Next slide'}</Carousel.NextTrigger>
+    </Carousel.Control>
+    <Carousel.IndicatorGroup>
+      for (const index of slides; key index) {
+        <Carousel.Indicator {index} />
+      }
+    </Carousel.IndicatorGroup>
+  </Carousel.Root>
 }

@@ -9,31 +9,31 @@ import { ark } from '../factory';
 type OptionalUseMenuItemGroupContext = Optional<UseMenuItemGroupContext, 'id'>;
 
 export interface MenuRadioItemGroupBaseProps extends OptionalUseMenuItemGroupContext {
-	children?: any;
+  children?: any;
 }
 export type MenuRadioItemGroupProps = MenuRadioItemGroupBaseProps;
 
 export component MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [optionalItemGroupProps, localProps] = createSplitProps<OptionalUseMenuItemGroupContext>()(
-		@rest,
-		['id', 'value', 'onValueChange'],
-	);
-	const menu = useMenuContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const [optionalItemGroupProps, localProps] = createSplitProps<OptionalUseMenuItemGroupContext>()(
+    @rest,
+    ['id', 'value', 'onValueChange'],
+  );
+  const menu = useMenuContext();
 
-	const id = useId();
-	const itemGroupProps = track(
-		() => ({
-			id,
-			...@optionalItemGroupProps,
-		}),
-	);
+  const id = useId();
+  const itemGroupProps = track(
+    () => ({
+      id,
+      ...@optionalItemGroupProps,
+    }),
+  );
 
-	let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@itemGroupProps), @localProps));
+  let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@itemGroupProps), @localProps));
 
-	MenuItemGroupContext.set(itemGroupProps);
+  MenuItemGroupContext.set(itemGroupProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

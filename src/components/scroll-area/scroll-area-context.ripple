@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useScrollAreaContext, type UseScrollAreaContext } from './use-scroll-area-context';
 
 export interface ScrollAreaContextProps {
-	children: (context: UseScrollAreaContext) => any;
+  children: (context: UseScrollAreaContext) => any;
 }
 
 export component ScrollAreaContext(props: ScrollAreaContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useScrollAreaContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useScrollAreaContext();
 
-	<@children {context} />
+  <@children {context} />
 }

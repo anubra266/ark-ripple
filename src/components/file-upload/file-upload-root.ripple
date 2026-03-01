@@ -6,21 +6,21 @@ import { splitFileUploadProps } from './split-file-upload-props.ripple';
 import { ark } from '../factory';
 
 export interface FileUploadRootBaseProps extends UseFileUploadProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FileUploadRootProps = FileUploadRootBaseProps;
 
 export component FileUploadRoot(props: FileUploadRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [useFileUploadProps, localProps] = splitFileUploadProps(@rest);
-	const fileUpload = useFileUpload(useFileUploadProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [useFileUploadProps, localProps] = splitFileUploadProps(@rest);
+  const fileUpload = useFileUpload(useFileUploadProps);
 
-	FileUploadApiContext.set(fileUpload);
+  FileUploadApiContext.set(fileUpload);
 
-	let mergedProps = track(() => mergeProps(@fileUpload.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@fileUpload.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

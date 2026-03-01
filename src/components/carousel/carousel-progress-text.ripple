@@ -7,29 +7,29 @@ import { ark } from '../factory';
 const parts = carouselAnatomy.build();
 
 export interface CarouselProgressTextBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export interface CarouselProgressTextProps extends CarouselProgressTextBaseProps {
-	children?: Component;
+  children?: Component;
 }
 
 export component CarouselProgressText(props: CarouselProgressTextProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const carousel = useCarouselContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const carousel = useCarouselContext();
 
-	const progressText = track(() => {
-		const currentPage = @carousel.page + 1;
-		const totalPages = @carousel.pageSnapPoints.length;
-		return `${currentPage} / ${totalPages}`;
-	});
+  const progressText = track(() => {
+    const currentPage = @carousel.page + 1;
+    const totalPages = @carousel.pageSnapPoints.length;
+    return `${currentPage} / ${totalPages}`;
+  });
 
-	let mergedProps = track(() => mergeProps(parts.progressText.attrs, @rest));
+  let mergedProps = track(() => mergeProps(parts.progressText.attrs, @rest));
 
-	<ark.span {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@progressText}
-		}
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@progressText}
+    }
+  </ark.span>
 }

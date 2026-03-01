@@ -2,12 +2,12 @@ import { trackSplit, type Component } from 'ripple';
 import { useFileUploadContext, type UseFileUploadContext } from './use-file-upload-context';
 
 export interface FileUploadContextProps {
-	children: Component<{ context: UseFileUploadContext }>;
+  children: Component<{ context: UseFileUploadContext }>;
 }
 
 export component FileUploadContext(props: FileUploadContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useFileUploadContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useFileUploadContext();
 
-	<@children {context} />
+  <@children {context} />
 }

@@ -5,20 +5,20 @@ import type { UseSegmentGroupReturn } from './use-segment-group.ripple';
 import { ark } from '../factory';
 
 export interface SegmentGroupRootProviderBaseProps {
-	value: UseSegmentGroupReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseSegmentGroupReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type SegmentGroupRootProviderProps = SegmentGroupRootProviderBaseProps;
 
 export component SegmentGroupRootProvider(props: SegmentGroupRootProviderProps) {
-	const [segmentGroup, children, rest] = trackSplit(props, ['value', 'children']);
+  const [segmentGroup, children, rest] = trackSplit(props, ['value', 'children']);
 
-	SegmentGroupApiContext.set(segmentGroup);
+  SegmentGroupApiContext.set(segmentGroup);
 
-	let mergedProps = track(() => mergeProps(@segmentGroup.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@segmentGroup.getRootProps(), @rest));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

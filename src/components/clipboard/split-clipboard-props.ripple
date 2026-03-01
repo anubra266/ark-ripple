@@ -4,13 +4,13 @@ import type { UseClipboardProps } from './use-clipboard.ripple';
 const splitProps = createSplitProps<UseClipboardProps>();
 
 export function splitClipboardProps<T extends UseClipboardProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'defaultValue',
-		'id',
-		'ids',
-		'onStatusChange',
-		'onValueChange',
-		'timeout',
-		'value',
-	]);
+  return splitProps(props, [
+    'defaultValue',
+    'id',
+    'ids',
+    'onStatusChange',
+    'onValueChange',
+    'timeout',
+    'value',
+  ]);
 }

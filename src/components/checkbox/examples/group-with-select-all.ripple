@@ -4,66 +4,66 @@ import { track, trackSplit } from 'ripple';
 import styles from 'styles/checkbox.module.css';
 
 component CheckboxItem(props: Checkbox.RootProps & { children?: any }) {
-	<Checkbox.Root class={styles.Root} {...props}>
-		<Checkbox.Control class={styles.Control}>
-			<Checkbox.Indicator class={styles.Indicator}>
-				<Check />
-			</Checkbox.Indicator>
-			<Checkbox.Indicator class={styles.Indicator} indeterminate>
-				<Minus />
-			</Checkbox.Indicator>
-		</Checkbox.Control>
-		<Checkbox.Label class={styles.Label}>
-			<props.children />
-		</Checkbox.Label>
-		<Checkbox.HiddenInput />
-	</Checkbox.Root>
+  <Checkbox.Root class={styles.Root} {...props}>
+    <Checkbox.Control class={styles.Control}>
+      <Checkbox.Indicator class={styles.Indicator}>
+        <Check />
+      </Checkbox.Indicator>
+      <Checkbox.Indicator class={styles.Indicator} indeterminate>
+        <Minus />
+      </Checkbox.Indicator>
+    </Checkbox.Control>
+    <Checkbox.Label class={styles.Label}>
+      <props.children />
+    </Checkbox.Label>
+    <Checkbox.HiddenInput />
+  </Checkbox.Root>
 }
 
 export component GroupWithSelectAll() {
-	let value = track<string[]>([]);
+  let value = track<string[]>([]);
 
-	const handleSelectAll = (checked: boolean) => {
-		@value = checked ? items.map((item) => item.value) : [];
-	};
+  const handleSelectAll = (checked: boolean) => {
+    @value = checked ? items.map((item) => item.value) : [];
+  };
 
-	const allSelected = track(() => @value.length === items.length);
-	const indeterminate = track(() => @value.length > 0 && @value.length < items.length);
+  const allSelected = track(() => @value.length === items.length);
+  const indeterminate = track(() => @value.length > 0 && @value.length < items.length);
 
-	<div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-		<output>
-			{'Selected: '}
-			{JSON.stringify(@value)}
-		</output>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+    <output>
+      {'Selected: '}
+      {JSON.stringify(@value)}
+    </output>
 
-		<CheckboxItem
-			value="all"
-			checked={@indeterminate ? 'indeterminate' : @allSelected}
-			onCheckedChange={(e) => {
-				handleSelectAll(!!e.checked);
-			}}
-		>
-			{'JSX Frameworks'}
-		</CheckboxItem>
+    <CheckboxItem
+      value="all"
+      checked={@indeterminate ? 'indeterminate' : @allSelected}
+      onCheckedChange={(e) => {
+        handleSelectAll(!!e.checked);
+      }}
+    >
+      {'JSX Frameworks'}
+    </CheckboxItem>
 
-		<Checkbox.Group
-			class={styles.Group}
-			style={{ marginInlineStart: '1rem' }}
-			{value}
-			name="framework"
-			onValueChange={(v) => {
-				@value = v;
-			}}
-		>
-			for (const item of items; key item.value) {
-				<CheckboxItem value={item.value}>{item.label}</CheckboxItem>
-			}
-		</Checkbox.Group>
-	</div>
+    <Checkbox.Group
+      class={styles.Group}
+      style={{ marginInlineStart: '1rem' }}
+      {value}
+      name="framework"
+      onValueChange={(v) => {
+        @value = v;
+      }}
+    >
+      for (const item of items; key item.value) {
+        <CheckboxItem value={item.value}>{item.label}</CheckboxItem>
+      }
+    </Checkbox.Group>
+  </div>
 }
 
 const items = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Vue', value: 'vue' },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
 ];

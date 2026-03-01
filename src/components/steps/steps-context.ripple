@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useStepsContext, type UseStepsContext } from './use-steps-context';
 
 export interface StepsContextProps {
-	children?: (context: UseStepsContext) => any;
-	[key: string]: any;
+  children?: (context: UseStepsContext) => any;
+  [key: string]: any;
 }
 
 export component StepsContext(props: StepsContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useStepsContext();
-	<@children {context} />
+  const [children] = trackSplit(props, ['children']);
+  const context = useStepsContext();
+  <@children {context} />
 }

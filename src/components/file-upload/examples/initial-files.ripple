@@ -3,33 +3,35 @@ import { File as FileIcon, Paperclip, X } from 'lucide-ripple';
 import styles from 'styles/file-upload.module.css';
 
 export component InitialFiles() {
-	<FileUpload.Root
-		defaultAcceptedFiles={[new File(['Welcome to Ark UI Ripple'], 'README.md', { type: 'text/plain' })]}
-		class={styles.Root}
-	>
-		<FileUpload.Label class={styles.Label}>{'File Upload'}</FileUpload.Label>
-		<FileUpload.Trigger class={styles.Trigger}>
-			<Paperclip />
-			{' Choose file(s)'}
-		</FileUpload.Trigger>
-		<FileUpload.ItemGroup class={styles.ItemGroup}>
-			<FileUpload.Context>
-				component children({ context }) {
-					for (const file of @context.acceptedFiles; key file.name) {
-						<FileUpload.Item file={file} class={styles.Item}>
-							<div class={styles.ItemPreview}>
-								<FileIcon />
-							</div>
-							<FileUpload.ItemName class={styles.ItemName} />
-							<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-							<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
-								<X />
-							</FileUpload.ItemDeleteTrigger>
-						</FileUpload.Item>
-					}
-				}
-			</FileUpload.Context>
-		</FileUpload.ItemGroup>
-		<FileUpload.HiddenInput />
-	</FileUpload.Root>
+  <FileUpload.Root
+    defaultAcceptedFiles={[
+      new File(['Welcome to Ark UI Ripple'], 'README.md', { type: 'text/plain' }),
+    ]}
+    class={styles.Root}
+  >
+    <FileUpload.Label class={styles.Label}>{'File Upload'}</FileUpload.Label>
+    <FileUpload.Trigger class={styles.Trigger}>
+      <Paperclip />
+      {' Choose file(s)'}
+    </FileUpload.Trigger>
+    <FileUpload.ItemGroup class={styles.ItemGroup}>
+      <FileUpload.Context>
+        component children({ context }) {
+          for (const file of @context.acceptedFiles; key file.name) {
+            <FileUpload.Item {file} class={styles.Item}>
+              <div class={styles.ItemPreview}>
+                <FileIcon />
+              </div>
+              <FileUpload.ItemName class={styles.ItemName} />
+              <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+              <FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                <X />
+              </FileUpload.ItemDeleteTrigger>
+            </FileUpload.Item>
+          }
+        }
+      </FileUpload.Context>
+    </FileUpload.ItemGroup>
+    <FileUpload.HiddenInput />
+  </FileUpload.Root>
 }

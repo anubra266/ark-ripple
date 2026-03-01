@@ -5,27 +5,27 @@ import { usePresenceContext } from '../presence/use-presence-context';
 import { ark } from '../factory';
 
 export interface MenuTriggerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type MenuTriggerProps = MenuTriggerBaseProps;
 
 export component MenuTrigger(props: MenuTriggerProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const menu = useMenuContext();
-	const presence = usePresenceContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const menu = useMenuContext();
+  const presence = usePresenceContext();
 
-	let mergedProps = track(() => {
-		return mergeProps(
-			{
-				...@menu.getTriggerProps(),
-				'aria-controls': @presence.unmounted ? undefined : @menu.getTriggerProps()['aria-controls'],
-			},
-			@localProps,
-		);
-	});
+  let mergedProps = track(() => {
+    return mergeProps(
+      {
+        ...@menu.getTriggerProps(),
+        'aria-controls': @presence.unmounted ? undefined : @menu.getTriggerProps()['aria-controls'],
+      },
+      @localProps,
+    );
+  });
 
-	<ark.button {...@mergedProps}>
-		<@children />
-	</ark.button>
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
 }

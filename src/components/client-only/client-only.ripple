@@ -1,23 +1,23 @@
 import { track, trackSplit, effect } from 'ripple';
 
 export interface ClientOnlyProps {
-	children?: any;
-	fallback?: any;
+  children?: any;
+  fallback?: any;
 }
 
 export component ClientOnly(props: ClientOnlyProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [fallback] = trackSplit(@rest, ['fallback']);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [fallback] = trackSplit(@rest, ['fallback']);
 
-	const isClient = track(false);
+  const isClient = track(false);
 
-	effect(() => {
-		@isClient = true;
-	});
+  effect(() => {
+    @isClient = true;
+  });
 
-	if (@isClient) {
-		<@children />
-	} else if (@fallback) {
-		<@fallback />
-	}
+  if (@isClient) {
+    <@children />
+  } else if (@fallback) {
+    <@fallback />
+  }
 }

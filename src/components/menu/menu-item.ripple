@@ -8,41 +8,41 @@ import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
 
 interface ItemBaseProps extends ItemProps {
-	/**
+  /**
  * The function to call when the item is selected
  */
-	onSelect?: VoidFunction;
+  onSelect?: VoidFunction;
 }
 
 export interface MenuItemBaseProps extends ItemBaseProps {
-	children?: any;
+  children?: any;
 }
 export type MenuItemProps = MenuItemBaseProps;
 
 export component MenuItem(props: MenuItemProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [itemProps, localProps] = createSplitProps<ItemBaseProps>()(@rest, [
-		'value',
-		'disabled',
-		'valueText',
-		'closeOnSelect',
-		'onSelect',
-	]);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [itemProps, localProps] = createSplitProps<ItemBaseProps>()(@rest, [
+    'value',
+    'disabled',
+    'valueText',
+    'closeOnSelect',
+    'onSelect',
+  ]);
 
-	const menu = useMenuContext();
+  const menu = useMenuContext();
 
-	let mergedProps = track(() => mergeProps(@menu.getItemProps(@itemProps), @localProps));
-	const itemState = track(() => @menu.getItemState(@itemProps));
+  let mergedProps = track(() => mergeProps(@menu.getItemProps(@itemProps), @localProps));
+  const itemState = track(() => @menu.getItemState(@itemProps));
 
-	effect(() => {
-		const cleanup = @menu.addItemListener({ id: @itemState.id, onSelect: @itemProps.onSelect });
-		return cleanup;
-	});
+  effect(() => {
+    const cleanup = @menu.addItemListener({ id: @itemState.id, onSelect: @itemProps.onSelect });
+    return cleanup;
+  });
 
-	MenuItemPropsContext.set(itemProps);
-	MenuItemContext.set(itemState);
+  MenuItemPropsContext.set(itemProps);
+  MenuItemContext.set(itemState);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

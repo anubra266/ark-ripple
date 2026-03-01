@@ -5,20 +5,20 @@ import type { UseCarouselReturn } from './use-carousel.ripple';
 import { ark } from '../factory';
 
 export interface CarouselRootProviderBaseProps {
-	value: UseCarouselReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseCarouselReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type CarouselRootProviderProps = CarouselRootProviderBaseProps;
 
 export component CarouselRootProvider(props: CarouselRootProviderProps) {
-	const [carousel, children, rest] = trackSplit(props, ['value', 'children']);
+  const [carousel, children, rest] = trackSplit(props, ['value', 'children']);
 
-	CarouselApiContext.set(carousel);
+  CarouselApiContext.set(carousel);
 
-	let mergedProps = track(() => mergeProps(@carousel.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@carousel.getRootProps(), @rest));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -4,19 +4,19 @@ import { ShadowRoot as ShadowRootExample } from './examples/shadow-root.ripple';
 import { Setup as SetupExample } from './examples/setup.ripple';
 
 const meta: Meta = {
-	title: 'Utilities / Environment',
+  title: 'Utilities / Environment',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Setup = {
-	render: () => ({ Component: SetupExample }),
+  render: () => ({ Component: SetupExample }),
 };
 
 export const ShadowRoot = {
-	render: () => ({ Component: ShadowRootExample }),
+  render: () => ({ Component: ShadowRootExample }),
 };

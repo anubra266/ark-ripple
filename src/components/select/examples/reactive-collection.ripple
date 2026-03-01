@@ -5,72 +5,72 @@ import button from 'styles/button.module.css';
 import styles from 'styles/select.module.css';
 
 const itemsBase = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Svelte', value: 'svelte', disabled: true },
-	{ label: 'Vue', value: 'vue' },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Svelte', value: 'svelte', disabled: true },
+  { label: 'Vue', value: 'vue' },
 ];
 
 export component ReactiveCollection() {
-	let number = track(0);
+  let number = track(0);
 
-	const collection = track(
-		() => createListCollection(
-			{
-				items: itemsBase.map((item) => ({ ...item, label: `${item.label}-${@number}` })),
-			},
-		),
-	);
+  const collection = track(
+    () => createListCollection(
+      {
+        items: itemsBase.map((item) => ({ ...item, label: `${item.label}-${@number}` })),
+      },
+    ),
+  );
 
-	<div>
-		<div style="display: flex; gap: 0.5rem; margin-bottom: 1rem">
-			<button
-				class={button.Root}
-				type="button"
-				onClick={() => {
-					@number = @number + 1;
-				}}
-			>
-				<Plus />
-			</button>
-			<button
-				class={button.Root}
-				type="button"
-				onClick={() => {
-					@number = @number - 1;
-				}}
-			>
-				<Minus />
-			</button>
-		</div>
+  <div>
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem">
+      <button
+        class={button.Root}
+        type="button"
+        onClick={() => {
+          @number = @number + 1;
+        }}
+      >
+        <Plus />
+      </button>
+      <button
+        class={button.Root}
+        type="button"
+        onClick={() => {
+          @number = @number - 1;
+        }}
+      >
+        <Minus />
+      </button>
+    </div>
 
-		<Select.Root class={styles.Root} positioning={{ sameWidth: true }} {collection}>
-			<Select.Label class={styles.Label}>{'Framework'}</Select.Label>
-			<Select.Control class={styles.Control}>
-				<Select.Trigger class={styles.Trigger}>
-					<Select.ValueText class={styles.ValueText} placeholder="Select a Framework" />
-					<Select.Indicator class={styles.Indicator}>
-						<ChevronsUpDown />
-					</Select.Indicator>
-				</Select.Trigger>
-			</Select.Control>
-			<Select.Positioner>
-				<Select.Content class={styles.Content}>
-					<Select.ItemGroup class={styles.ItemGroup}>
-						<Select.ItemGroupLabel class={styles.ItemGroupLabel}>
-							{'Framework'}
-						</Select.ItemGroupLabel>
-						for (const item of @collection.items; key item.value) {
-							<Select.Item class={styles.Item} {item}>
-								<Select.ItemText class={styles.ItemText}>{item.label}</Select.ItemText>
-								<Select.ItemIndicator class={styles.ItemIndicator}>
-									<Check />
-								</Select.ItemIndicator>
-							</Select.Item>
-						}
-					</Select.ItemGroup>
-				</Select.Content>
-			</Select.Positioner>
-		</Select.Root>
-	</div>
+    <Select.Root class={styles.Root} positioning={{ sameWidth: true }} {collection}>
+      <Select.Label class={styles.Label}>{'Framework'}</Select.Label>
+      <Select.Control class={styles.Control}>
+        <Select.Trigger class={styles.Trigger}>
+          <Select.ValueText class={styles.ValueText} placeholder="Select a Framework" />
+          <Select.Indicator class={styles.Indicator}>
+            <ChevronsUpDown />
+          </Select.Indicator>
+        </Select.Trigger>
+      </Select.Control>
+      <Select.Positioner>
+        <Select.Content class={styles.Content}>
+          <Select.ItemGroup class={styles.ItemGroup}>
+            <Select.ItemGroupLabel class={styles.ItemGroupLabel}>
+              {'Framework'}
+            </Select.ItemGroupLabel>
+            for (const item of @collection.items; key item.value) {
+              <Select.Item class={styles.Item} {item}>
+                <Select.ItemText class={styles.ItemText}>{item.label}</Select.ItemText>
+                <Select.ItemIndicator class={styles.ItemIndicator}>
+                  <Check />
+                </Select.ItemIndicator>
+              </Select.Item>
+            }
+          </Select.ItemGroup>
+        </Select.Content>
+      </Select.Positioner>
+    </Select.Root>
+  </div>
 }

@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useDatePickerContext, type UseDatePickerContext } from './use-date-picker-context';
 
 export interface DatePickerContextProps {
-	children: (context: UseDatePickerContext) => any;
+  children: (context: UseDatePickerContext) => any;
 }
 
 export component DatePickerContext(props: DatePickerContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useDatePickerContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useDatePickerContext();
 
-	<@children {context} />
+  <@children {context} />
 }

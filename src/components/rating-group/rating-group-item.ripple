@@ -5,24 +5,24 @@ import { RatingGroupItemApiContext } from './use-rating-group-item-context';
 import { ark } from '../factory';
 
 export interface RatingGroupItemBaseProps {
-	index: number;
-	children?: any;
-	[key: string]: any;
+  index: number;
+  children?: any;
+  [key: string]: any;
 }
 export type RatingGroupItemProps = RatingGroupItemBaseProps;
 
 export component RatingGroupItem(props: RatingGroupItemProps) {
-	const [children, index, localProps] = trackSplit(props, ['children', 'index']);
-	const ratingGroup = useRatingGroupContext();
+  const [children, index, localProps] = trackSplit(props, ['children', 'index']);
+  const ratingGroup = useRatingGroupContext();
 
-	const itemProps = track(() => ({ index: @index }));
-	const itemState = track(() => @ratingGroup.getItemState(@itemProps));
+  const itemProps = track(() => ({ index: @index }));
+  const itemState = track(() => @ratingGroup.getItemState(@itemProps));
 
-	RatingGroupItemApiContext.set(itemState);
+  RatingGroupItemApiContext.set(itemState);
 
-	let mergedProps = track(() => mergeProps(@ratingGroup.getItemProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@ratingGroup.getItemProps(@itemProps), @localProps));
 
-	<ark.span {...@mergedProps}>
-		<@children />
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
 }

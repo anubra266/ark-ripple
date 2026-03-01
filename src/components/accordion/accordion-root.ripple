@@ -1,9 +1,9 @@
 import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import {
-	splitRenderStrategyProps,
-	RenderStrategyContext,
-	type RenderStrategyProps,
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+  type RenderStrategyProps,
 } from '../../utils/render-strategy.ripple';
 import { AccordionApiContext } from './use-accordion-context';
 import { useAccordion, type UseAccordionProps } from './use-accordion.ripple';
@@ -11,23 +11,23 @@ import { splitAccordionProps } from './split-accordion-props.ripple';
 import { ark } from '../factory';
 
 export interface AccordionRootBaseProps extends UseAccordionProps, RenderStrategyProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type AccordionRootProps = AccordionRootBaseProps;
 
 export component AccordionRoot(props: AccordionRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [renderStrategyProps, accordionProps] = splitRenderStrategyProps(@rest);
-	const [useAccordionProps, localProps] = splitAccordionProps(@accordionProps);
-	const accordion = useAccordion(useAccordionProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [renderStrategyProps, accordionProps] = splitRenderStrategyProps(@rest);
+  const [useAccordionProps, localProps] = splitAccordionProps(@accordionProps);
+  const accordion = useAccordion(useAccordionProps);
 
-	AccordionApiContext.set(accordion);
-	RenderStrategyContext.set(renderStrategyProps);
+  AccordionApiContext.set(accordion);
+  RenderStrategyContext.set(renderStrategyProps);
 
-	let mergedProps = track(() => mergeProps(@accordion.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@accordion.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

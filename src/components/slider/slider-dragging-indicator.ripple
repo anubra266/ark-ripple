@@ -5,19 +5,19 @@ import { useSliderThumbPropsContext } from './use-slider-thumb-props-context';
 import { ark } from '../factory';
 
 export interface SliderDraggingIndicatorBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SliderDraggingIndicatorProps = SliderDraggingIndicatorBaseProps;
 
 export component SliderDraggingIndicator(props: SliderDraggingIndicatorProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const slider = useSliderContext();
-	const thumbProps = useSliderThumbPropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const slider = useSliderContext();
+  const thumbProps = useSliderThumbPropsContext();
 
-	let mergedProps = track(
-		() => mergeProps(@slider.getDraggingIndicatorProps({ index: @thumbProps.index }), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@slider.getDraggingIndicatorProps({ index: @thumbProps.index }), @localProps),
+  );
 
-	<ark.span {...@mergedProps}>{@children ?? @slider.getThumbValue(@thumbProps.index)}</ark.span>
+  <ark.span {...@mergedProps}>{@children ?? @slider.getThumbValue(@thumbProps.index)}</ark.span>
 }

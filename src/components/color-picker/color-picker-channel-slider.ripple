@@ -7,30 +7,30 @@ import { useColorPickerFormatContext } from './use-color-picker-format-context';
 import { ark } from '../factory';
 
 export interface ColorPickerChannelSliderBaseProps extends ChannelProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerChannelSliderProps = ColorPickerChannelSliderBaseProps;
 
 export component ColorPickerChannelSlider(props: ColorPickerChannelSliderProps) {
-	const [children, channel, orientation, localProps] = trackSplit(props, [
-		'children',
-		'channel',
-		'orientation',
-	]);
+  const [children, channel, orientation, localProps] = trackSplit(props, [
+    'children',
+    'channel',
+    'orientation',
+  ]);
 
-	const colorPicker = useColorPickerContext();
-	const formatProps = useColorPickerFormatContext();
+  const colorPicker = useColorPickerContext();
+  const formatProps = useColorPickerFormatContext();
 
-	const channelProps = track(() => ({ channel: @channel, orientation: @orientation }));
-	ColorPickerChannelPropsContext.set(channelProps);
+  const channelProps = track(() => ({ channel: @channel, orientation: @orientation }));
+  ColorPickerChannelPropsContext.set(channelProps);
 
-	const channelSliderProps = track(() => ({ ...@channelProps, ...@formatProps }));
-	let mergedProps = track(
-		() => mergeProps(@colorPicker.getChannelSliderProps(@channelSliderProps), @localProps),
-	);
+  const channelSliderProps = track(() => ({ ...@channelProps, ...@formatProps }));
+  let mergedProps = track(
+    () => mergeProps(@colorPicker.getChannelSliderProps(@channelSliderProps), @localProps),
+  );
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

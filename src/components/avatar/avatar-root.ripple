@@ -6,21 +6,21 @@ import { splitAvatarProps } from './split-avatar-props.ripple';
 import { ark } from '../factory';
 
 export interface AvatarRootBaseProps extends UseAvatarProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type AvatarRootProps = AvatarRootBaseProps;
 
 export component AvatarRoot(props: AvatarRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [useAvatarProps, localProps] = splitAvatarProps(@rest);
-	const avatarApi = useAvatar(useAvatarProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [useAvatarProps, localProps] = splitAvatarProps(@rest);
+  const avatarApi = useAvatar(useAvatarProps);
 
-	AvatarApiContext.set(avatarApi);
+  AvatarApiContext.set(avatarApi);
 
-	let mergedProps = track(() => mergeProps(@avatarApi.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@avatarApi.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

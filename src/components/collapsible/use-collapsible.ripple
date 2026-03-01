@@ -5,50 +5,50 @@ import { useEnvironmentContext } from '../../providers/environment';
 import { useLocaleContext } from '../../providers/locale';
 import { useId } from '../../utils/use-id';
 import {
-	type RenderStrategyProps,
-	splitRenderStrategyProps,
+  type RenderStrategyProps,
+  splitRenderStrategyProps,
 } from '../../utils/render-strategy.ripple';
 import type { Optional } from '../../types';
 
 export interface UseCollapsibleProps extends Optional<
-	Omit<collapsible.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<collapsible.Props, 'dir' | 'getRootNode'>,
+  'id'
 >, RenderStrategyProps {}
 
 export type UseCollapsibleReturn = ReturnType<typeof useCollapsible>;
 
 export function useCollapsible(props: UseCollapsibleProps = {}) {
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const id = useId();
-	const [renderStrategyProps, collapsibleProps] = splitRenderStrategyProps(props);
-	const { lazyMount, unmountOnExit } = renderStrategyProps;
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const id = useId();
+  const [renderStrategyProps, collapsibleProps] = splitRenderStrategyProps(props);
+  const { lazyMount, unmountOnExit } = renderStrategyProps;
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@collapsibleProps,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@collapsibleProps,
+    }),
+  );
 
-	const service = useMachine(collapsible.machine, machineProps);
+  const service = useMachine(collapsible.machine, machineProps);
 
-	const api = track(() => collapsible.connect(service, normalizeProps));
-	let wasVisible = track(false);
+  const api = track(() => collapsible.connect(service, normalizeProps));
+  let wasVisible = track(false);
 
-	effect(() => {
-		if (@api.visible) {
-			@wasVisible = true;
-		}
-	});
+  effect(() => {
+    if (@api.visible) {
+      @wasVisible = true;
+    }
+  });
 
-	return track(
-		() => ({
-			...@api,
-			unmounted: !@api.visible && !@wasVisible && Boolean(@lazyMount) ||
-				Boolean(@unmountOnExit) && !@api.visible && @wasVisible,
-		}),
-	);
+  return track(
+    () => ({
+      ...@api,
+      unmounted: !@api.visible && !@wasVisible && Boolean(@lazyMount) ||
+        Boolean(@unmountOnExit) && !@api.visible && @wasVisible,
+    }),
+  );
 }

@@ -10,18 +10,18 @@ export interface UseTimerProps extends Optional<Omit<timer.Props, 'dir' | 'getRo
 export type UseTimerReturn = ReturnType<typeof useTimer>;
 
 export function useTimer(ownProps: UseTimerProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			getRootNode: @environment.getRootNode,
-			...@ownProps,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      getRootNode: @environment.getRootNode,
+      ...@ownProps,
+    }),
+  );
 
-	const service = useMachine(timer.machine, machineProps);
+  const service = useMachine(timer.machine, machineProps);
 
-	return track(() => timer.connect(service, normalizeProps));
+  return track(() => timer.connect(service, normalizeProps));
 }

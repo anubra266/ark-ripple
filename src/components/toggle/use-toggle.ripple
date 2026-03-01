@@ -7,13 +7,13 @@ export interface UseToggleProps extends toggle.Props {}
 export type UseToggleReturn = ReturnType<typeof useToggle>;
 
 export function useToggle(ownProps: UseToggleProps = {}) {
-	const machineProps = track(
-		() => ({
-			...@ownProps,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      ...@ownProps,
+    }),
+  );
 
-	const service = useMachine(toggle.machine, machineProps);
+  const service = useMachine(toggle.machine, machineProps);
 
-	return track(() => toggle.connect(service, normalizeProps));
+  return track(() => toggle.connect(service, normalizeProps));
 }

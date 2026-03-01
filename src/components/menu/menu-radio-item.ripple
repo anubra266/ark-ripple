@@ -11,40 +11,40 @@ import { ark } from '../factory';
 type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
 
 export interface MenuRadioItemBaseProps extends PartialOptionItemProps {
-	children?: any;
+  children?: any;
 }
 export type MenuRadioItemProps = MenuRadioItemProps;
 
 export component MenuRadioItem(props: MenuRadioItemProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [partialItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
-		'closeOnSelect',
-		'disabled',
-		'value',
-		'valueText',
-	]);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [partialItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
+    'closeOnSelect',
+    'disabled',
+    'value',
+    'valueText',
+  ]);
 
-	const menu = useMenuContext();
-	const itemGroup = useMenuItemGroupContext();
+  const menu = useMenuContext();
+  const itemGroup = useMenuItemGroupContext();
 
-	const optionItemProps = track(
-		() => ({
-			...partialItemProps,
-			type: 'radio',
-			checked: @itemGroup.value === partialItemProps.value,
-			onCheckedChange: () => @itemGroup.onValueChange?.({ value: partialItemProps.value }),
-		}),
-	) as OptionItemProps;
+  const optionItemProps = track(
+    () => ({
+      ...partialItemProps,
+      type: 'radio',
+      checked: @itemGroup.value === partialItemProps.value,
+      onCheckedChange: () => @itemGroup.onValueChange?.({ value: partialItemProps.value }),
+    }),
+  ) as OptionItemProps;
 
-	let mergedProps = track(
-		() => mergeProps(@menu.getOptionItemProps(@optionItemProps), @localProps),
-	);
-	const itemState = track(() => @menu.getOptionItemState(@optionItemProps));
+  let mergedProps = track(
+    () => mergeProps(@menu.getOptionItemProps(@optionItemProps), @localProps),
+  );
+  const itemState = track(() => @menu.getOptionItemState(@optionItemProps));
 
-	MenuItemPropsContext.set(optionItemProps);
-	MenuItemContext.set(itemState);
+  MenuItemPropsContext.set(optionItemProps);
+  MenuItemContext.set(itemState);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

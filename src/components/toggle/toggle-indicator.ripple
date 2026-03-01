@@ -4,23 +4,23 @@ import { useToggleContext } from './use-toggle-context';
 import { ark } from '../factory';
 
 export interface ToggleIndicatorBaseProps {
-	fallback?: any;
-	children?: any;
-	[key: string]: any;
+  fallback?: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ToggleIndicatorProps = ToggleIndicatorBaseProps;
 
 export component ToggleIndicator(props: ToggleIndicatorProps) {
-	const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);
-	const toggle = useToggleContext();
+  const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);
+  const toggle = useToggleContext();
 
-	let mergedProps = track(() => mergeProps(@toggle.getIndicatorProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@toggle.getIndicatorProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		if (@toggle.pressed) {
-			<@children />
-		} else {
-			<@fallback />
-		}
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    if (@toggle.pressed) {
+      <@children />
+    } else {
+      <@fallback />
+    }
+  </ark.div>
 }

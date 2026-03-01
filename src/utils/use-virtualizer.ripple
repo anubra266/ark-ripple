@@ -1,87 +1,87 @@
 import { track, effect } from 'ripple';
 import { onMount } from 'zag-ripple';
 import {
-	Virtualizer,
-	elementScroll,
-	observeElementOffset,
-	observeElementRect,
-	observeWindowOffset,
-	observeWindowRect,
-	windowScroll,
-	type PartialKeys,
-	type VirtualizerOptions,
+  Virtualizer,
+  elementScroll,
+  observeElementOffset,
+  observeElementRect,
+  observeWindowOffset,
+  observeWindowRect,
+  windowScroll,
+  type PartialKeys,
+  type VirtualizerOptions,
 } from '@tanstack/virtual-core';
 
 type Defaults<TScrollElement extends Element | Window, TItemElement extends Element> = Partial<VirtualizerOptions<TScrollElement, TItemElement>>;
 
 function createVirtualizerBase<TScrollElement extends Element | Window, TItemElement extends Element>(
-	userOptions: PartialKeys<VirtualizerOptions<TScrollElement, TItemElement>, 'observeElementRect' | 'observeElementOffset' | 'scrollToFn' | 'getScrollElement'>,
-	defaults: Defaults<TScrollElement, TItemElement>,
+  userOptions: PartialKeys<VirtualizerOptions<TScrollElement, TItemElement>, 'observeElementRect' | 'observeElementOffset' | 'scrollToFn' | 'getScrollElement'>,
+  defaults: Defaults<TScrollElement, TItemElement>,
 ) {
-	const onChange = (inst: Virtualizer<TScrollElement, TItemElement>, sync: boolean) => {
-		inst._willUpdate();
-		@virtualItemsSignal = inst.getVirtualItems();
-		@totalSizeSignal = inst.getTotalSize();
-		userOptions.onChange?.(inst, sync);
-	};
+  const onChange = (inst: Virtualizer<TScrollElement, TItemElement>, sync: boolean) => {
+    inst._willUpdate();
+    @virtualItemsSignal = inst.getVirtualItems();
+    @totalSizeSignal = inst.getTotalSize();
+    userOptions.onChange?.(inst, sync);
+  };
 
-	const instance = new Virtualizer<TScrollElement, TItemElement>({
-		...defaults,
-		...userOptions,
-		onChange,
-	});
+  const instance = new Virtualizer<TScrollElement, TItemElement>({
+    ...defaults,
+    ...userOptions,
+    onChange,
+  });
 
-	instance._willUpdate();
+  instance._willUpdate();
 
-	let virtualItemsSignal = track<any[]>(instance.getVirtualItems());
-	let totalSizeSignal = track(instance.getTotalSize());
+  let virtualItemsSignal = track<any[]>(instance.getVirtualItems());
+  let totalSizeSignal = track(instance.getTotalSize());
 
-	onMount(() => {
-		const cleanup = instance._didMount();
-		return () => cleanup();
-	});
+  onMount(() => {
+    const cleanup = instance._didMount();
+    return () => cleanup();
+  });
 
-	effect(() => {
-		instance.setOptions(
-			{
-				...defaults,
-				...userOptions,
-				onChange,
-			},
-		);
-		instance._willUpdate();
-		instance.measure();
-	});
+  effect(() => {
+    instance.setOptions(
+      {
+        ...defaults,
+        ...userOptions,
+        onChange,
+      },
+    );
+    instance._willUpdate();
+    instance.measure();
+  });
 
-	return {
-		getVirtualItems: () => @virtualItemsSignal,
-		getTotalSize: () => @totalSizeSignal,
-		scrollToIndex(
-			index: number,
-			scrollOptions?: { align?: 'start' | 'center' | 'end' | 'auto'; behavior?: 'auto' | 'smooth' },
-		) {
-			instance.scrollToIndex(index, scrollOptions);
-		},
-		measureElement(node: TItemElement | null | undefined) {
-			instance.measureElement(node);
-		},
-	};
+  return {
+    getVirtualItems: () => @virtualItemsSignal,
+    getTotalSize: () => @totalSizeSignal,
+    scrollToIndex(
+      index: number,
+      scrollOptions?: { align?: 'start' | 'center' | 'end' | 'auto'; behavior?: 'auto' | 'smooth' },
+    ) {
+      instance.scrollToIndex(index, scrollOptions);
+    },
+    measureElement(node: TItemElement | null | undefined) {
+      instance.measureElement(node);
+    },
+  };
 }
 
 export function createVirtualizer<TScrollElement extends Element, TItemElement extends Element>(options: PartialKeys<VirtualizerOptions<TScrollElement, TItemElement>, 'observeElementRect' | 'observeElementOffset' | 'scrollToFn'>) {
-	return createVirtualizerBase<TScrollElement, TItemElement>(options, {
-		observeElementRect,
-		observeElementOffset,
-		scrollToFn: elementScroll,
-	});
+  return createVirtualizerBase<TScrollElement, TItemElement>(options, {
+    observeElementRect,
+    observeElementOffset,
+    scrollToFn: elementScroll,
+  });
 }
 
 export function createWindowVirtualizer<TItemElement extends Element>(options: PartialKeys<VirtualizerOptions<Window, TItemElement>, 'getScrollElement' | 'observeElementRect' | 'observeElementOffset' | 'scrollToFn'>) {
-	return createVirtualizerBase<Window, TItemElement>(options, {
-		getScrollElement: () => (typeof document !== 'undefined' ? window : null),
-		observeElementRect: observeWindowRect,
-		observeElementOffset: observeWindowOffset,
-		scrollToFn: windowScroll,
-		initialOffset: () => (typeof document !== 'undefined' ? window.scrollY : 0),
-	});
+  return createVirtualizerBase<Window, TItemElement>(options, {
+    getScrollElement: () => (typeof document !== 'undefined' ? window : null),
+    observeElementRect: observeWindowRect,
+    observeElementOffset: observeWindowOffset,
+    scrollToFn: windowScroll,
+    initialOffset: () => (typeof document !== 'undefined' ? window.scrollY : 0),
+  });
 }

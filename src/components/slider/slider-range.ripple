@@ -4,15 +4,15 @@ import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
 
 export interface SliderRangeBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type SliderRangeProps = SliderRangeBaseProps;
 
 export component SliderRange(props: SliderRangeProps) {
-	const [localProps] = trackSplit(props, []);
-	const slider = useSliderContext();
+  const [localProps] = trackSplit(props, []);
+  const slider = useSliderContext();
 
-	let mergedProps = track(() => mergeProps(@slider.getRangeProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@slider.getRangeProps(), @localProps));
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

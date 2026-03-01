@@ -4,18 +4,18 @@ import { useMenuContext } from './use-menu-context';
 import { ark } from '../factory';
 
 export interface MenuIndicatorBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type MenuIndicatorProps = MenuIndicatorBaseProps;
 
 export component MenuIndicator(props: MenuIndicatorProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const menu = useMenuContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const menu = useMenuContext();
 
-	let mergedProps = track(() => mergeProps(@menu.getIndicatorProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@menu.getIndicatorProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

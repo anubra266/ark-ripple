@@ -6,21 +6,21 @@ import { splitToggleGroupProps } from './split-toggle-group-props.ripple';
 import { ark } from '../factory';
 
 export interface ToggleGroupRootBaseProps extends UseToggleGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ToggleGroupRootProps = ToggleGroupRootBaseProps;
 
 export component ToggleGroupRoot(props: ToggleGroupRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [toggleGroupProps, localProps] = splitToggleGroupProps(@rest);
-	const toggleGroup = useToggleGroup(toggleGroupProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [toggleGroupProps, localProps] = splitToggleGroupProps(@rest);
+  const toggleGroup = useToggleGroup(toggleGroupProps);
 
-	ToggleGroupApiContext.set(toggleGroup);
+  ToggleGroupApiContext.set(toggleGroup);
 
-	let mergedProps = track(() => mergeProps(@toggleGroup.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@toggleGroup.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

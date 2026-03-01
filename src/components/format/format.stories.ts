@@ -20,7 +20,7 @@ import { TimeWithLocale as TimeWithLocaleExample } from './examples/time-with-lo
 import { TimeWithSeconds as TimeWithSecondsExample } from './examples/time-with-seconds.ripple';
 
 const meta: Meta = {
-	title: 'Utilities / Format',
+  title: 'Utilities / Format',
 };
 
 export default meta;

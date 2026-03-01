@@ -7,22 +7,22 @@ import { SelectItemPropsContext } from './use-select-item-props-context';
 import { ark } from '../factory';
 
 export interface SelectItemBaseProps extends ItemProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SelectItemProps = SelectItemBaseProps;
 
 export component SelectItem(props: SelectItemProps) {
-	const [item, disabled, children, rest] = trackSplit(props, ['item', 'disabled', 'children']);
-	const select = useSelectContext();
+  const [item, disabled, children, rest] = trackSplit(props, ['item', 'disabled', 'children']);
+  const select = useSelectContext();
 
-	const itemProps = track(() => ({ item: @item, disabled: @disabled }));
-	let mergedProps = track(() => mergeProps(@select.getItemProps(@itemProps), @rest));
+  const itemProps = track(() => ({ item: @item, disabled: @disabled }));
+  let mergedProps = track(() => mergeProps(@select.getItemProps(@itemProps), @rest));
 
-	SelectItemApiContext.set(track(() => @select.getItemState(@itemProps)));
-	SelectItemPropsContext.set(itemProps);
+  SelectItemApiContext.set(track(() => @select.getItemState(@itemProps)));
+  SelectItemPropsContext.set(itemProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -9,39 +9,39 @@ import { WithTextarea as TextareaExample } from './examples/textarea.ripple';
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components/Editable',
+  title: 'Components/Editable',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Controls = {
-	render: () => ({ Component: ControlsExample }),
+  render: () => ({ Component: ControlsExample }),
 };
 
 export const DoubleClick = {
-	render: () => ({ Component: DoubleClickExample }),
+  render: () => ({ Component: DoubleClickExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Textarea = {
-	render: () => ({ Component: TextareaExample }),
+  render: () => ({ Component: TextareaExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };

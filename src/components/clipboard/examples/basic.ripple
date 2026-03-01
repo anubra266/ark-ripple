@@ -3,15 +3,15 @@ import { Check, Copy } from 'lucide-ripple';
 import styles from 'styles/clipboard.module.css';
 
 export component Basic() {
-	<Clipboard.Root class={styles.Root} value="https://ark-ui.com">
-		<Clipboard.Label class={styles.Label}>{'Copy this link'}</Clipboard.Label>
-		<Clipboard.Control class={styles.Control}>
-			<Clipboard.Input class={styles.Input} />
-			<Clipboard.Trigger class={styles.Trigger}>
-				<Clipboard.Indicator class={styles.Indicator} copied={Check}>
-					<Copy />
-				</Clipboard.Indicator>
-			</Clipboard.Trigger>
-		</Clipboard.Control>
-	</Clipboard.Root>
+  <Clipboard.Root class={styles.Root} value="https://ark-ui.com">
+    <Clipboard.Label class={styles.Label}>{'Copy this link'}</Clipboard.Label>
+    <Clipboard.Control class={styles.Control}>
+      <Clipboard.Input class={styles.Input} />
+      <Clipboard.Trigger class={styles.Trigger}>
+        <Clipboard.Indicator class={styles.Indicator} copied={Check}>
+          <Copy />
+        </Clipboard.Indicator>
+      </Clipboard.Trigger>
+    </Clipboard.Control>
+  </Clipboard.Root>
 }

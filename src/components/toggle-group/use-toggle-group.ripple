@@ -7,27 +7,27 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseToggleGroupProps extends Optional<
-	Omit<toggleGroup.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<toggleGroup.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseToggleGroupReturn = ReturnType<typeof useToggleGroup>;
 
 export function useToggleGroup(ownProps: UseToggleGroupProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@ownProps,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@ownProps,
+    }),
+  );
 
-	const service = useMachine(toggleGroup.machine, machineProps);
+  const service = useMachine(toggleGroup.machine, machineProps);
 
-	return track(() => toggleGroup.connect(service, normalizeProps));
+  return track(() => toggleGroup.connect(service, normalizeProps));
 }

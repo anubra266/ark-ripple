@@ -2,27 +2,27 @@ import { Format, FormatByte, FormatNumber, FormatRelativeTime } from '../index';
 import { LocaleProvider } from '../../../providers/locale';
 
 export component FormatNumberTest(props: { value?: number; [key: string]: any }) {
-	<span data-testid="output">
-		<FormatNumber value={props.value ?? 1450.45} {...props} />
-	</span>
+  <span data-testid="output">
+    <FormatNumber value={props.value ?? 1450.45} {...props} />
+  </span>
 }
 
 export component FormatNumberWithLocaleTest() {
-	<LocaleProvider locale="de-DE">
-		<span data-testid="output">
-			<Format.Number value={1450.45} />
-		</span>
-	</LocaleProvider>
+  <LocaleProvider locale="de-DE">
+    <span data-testid="output">
+      <Format.Number value={1450.45} />
+    </span>
+  </LocaleProvider>
 }
 
 export component FormatByteTest(props: { value?: number; [key: string]: any }) {
-	<span data-testid="output">
-		<FormatByte value={props.value ?? 120000} {...props} />
-	</span>
+  <span data-testid="output">
+    <FormatByte value={props.value ?? 120000} {...props} />
+  </span>
 }
 
 export component FormatRelativeTimeTest(props: { value?: Date; [key: string]: any }) {
-	<span data-testid="output">
-		<FormatRelativeTime value={props.value ?? new Date('2025-05-05')} {...props} />
-	</span>
+  <span data-testid="output">
+    <FormatRelativeTime value={props.value ?? new Date('2025-05-05')} {...props} />
+  </span>
 }

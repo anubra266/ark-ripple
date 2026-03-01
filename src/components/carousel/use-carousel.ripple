@@ -6,25 +6,25 @@ import { useLocaleContext } from '../../providers/locale';
 import type { Optional } from '../../types';
 
 export interface UseCarouselProps extends Optional<
-	Omit<carousel.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<carousel.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseCarouselReturn = ReturnType<typeof useCarousel>;
 
 export function useCarousel(props: UseCarouselProps = {}) {
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(carousel.machine, machineProps);
+  const service = useMachine(carousel.machine, machineProps);
 
-	return track(() => carousel.connect(service, normalizeProps));
+  return track(() => carousel.connect(service, normalizeProps));
 }

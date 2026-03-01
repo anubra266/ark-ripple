@@ -2,40 +2,40 @@ import { track } from 'ripple';
 import { createSplitProps } from '../create-split-props.ripple';
 
 interface ItemProps {
-	value?: string;
-	disabled?: boolean;
+  value?: string;
+  disabled?: boolean;
 }
 
 const splitItemProps = createSplitProps<ItemProps>();
 
 component Inner(props: ItemProps & Record<string, any>) {
-	const [matched, rest] = splitItemProps(props, ['value', 'disabled']);
+  const [matched, rest] = splitItemProps(props, ['value', 'disabled']);
 
-	<div {...@rest}>
-		<span data-testid="value">{@matched.value}</span>
-		<span data-testid="disabled">{String(@matched.disabled)}</span>
-	</div>
+  <div {...@rest}>
+    <span data-testid="value">{@matched.value}</span>
+    <span data-testid="disabled">{String(@matched.disabled)}</span>
+  </div>
 }
 
 export component ComponentUnderTest(props: Record<string, any>) {
-	let value = track('initial');
-	let disabled = track(false);
+  let value = track('initial');
+  let disabled = track(false);
 
-	<div>
-		<button
-			onClick={() => {
-				@value = 'updated';
-			}}
-		>
-			{'Change Value'}
-		</button>
-		<button
-			onClick={() => {
-				@disabled = true;
-			}}
-		>
-			{'Disable'}
-		</button>
-		<Inner {value} {disabled} data-extra="rest-prop" />
-	</div>
+  <div>
+    <button
+      onClick={() => {
+        @value = 'updated';
+      }}
+    >
+      {'Change Value'}
+    </button>
+    <button
+      onClick={() => {
+        @disabled = true;
+      }}
+    >
+      {'Disable'}
+    </button>
+    <Inner {value} {disabled} data-extra="rest-prop" />
+  </div>
 }

@@ -2,14 +2,14 @@ import { Avatar } from 'ark-ripple/avatar';
 import styles from 'styles/avatar.module.css';
 
 export component Context() {
-	<Avatar.Root class={styles.Root}>
-		<Avatar.Context>
-			component children({ context }) {
-				<Avatar.Fallback class={styles.Fallback}>
-					{@context.loaded ? 'PA' : 'Loading'}
-				</Avatar.Fallback>
-			}
-		</Avatar.Context>
-		<Avatar.Image class={styles.Image} src="https://i.pravatar.cc/300?u=a" alt="avatar" />
-	</Avatar.Root>
+  <Avatar.Root class={styles.Root}>
+    <Avatar.Context>
+      component children({ context }) {
+        <Avatar.Fallback class={styles.Fallback}>
+          {@context.loaded ? 'PA' : 'Loading'}
+        </Avatar.Fallback>
+      }
+    </Avatar.Context>
+    <Avatar.Image class={styles.Image} src="https://i.pravatar.cc/300?u=a" alt="avatar" />
+  </Avatar.Root>
 }

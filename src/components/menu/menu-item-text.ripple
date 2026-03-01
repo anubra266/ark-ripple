@@ -5,19 +5,19 @@ import { useMenuItemPropsContext } from './use-menu-item-props-context';
 import { ark } from '../factory';
 
 export interface MenuItemTextBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type MenuItemTextProps = MenuItemTextBaseProps;
 
 export component MenuItemText(props: MenuItemTextProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const menu = useMenuContext();
-	const itemProps = useMenuItemPropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const menu = useMenuContext();
+  const itemProps = useMenuItemPropsContext();
 
-	let mergedProps = track(() => mergeProps(@menu.getItemTextProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@menu.getItemTextProps(@itemProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

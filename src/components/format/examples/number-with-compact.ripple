@@ -2,10 +2,10 @@ import { Format } from 'ark-ripple/format';
 import styles from 'styles/format.module.css';
 
 export component NumberWithCompact() {
-	<div class={styles.Root}>
-		<span class={styles.ValueLarge}>
-			<Format.Number value={1500000} notation="compact" compactDisplay="short" />
-		</span>
-		<span class={styles.Label}>{'downloads per month'}</span>
-	</div>
+  <div class={styles.Root}>
+    <span class={styles.ValueLarge}>
+      <Format.Number value={1500000} notation="compact" compactDisplay="short" />
+    </span>
+    <span class={styles.Label}>{'downloads per month'}</span>
+  </div>
 }

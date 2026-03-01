@@ -4,18 +4,18 @@ import { useDrawerContext } from './use-drawer-context';
 import { ark } from '../factory';
 
 export interface DrawerGrabberBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DrawerGrabberProps = DrawerGrabberBaseProps;
 
 export component DrawerGrabber(props: DrawerGrabberProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const drawer = useDrawerContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const drawer = useDrawerContext();
 
-	let mergedProps = track(() => mergeProps(@drawer.getGrabberProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@drawer.getGrabberProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

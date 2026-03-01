@@ -5,54 +5,54 @@ import { ChevronsUpDown, X } from 'lucide-ripple';
 import styles from 'styles/select.module.css';
 
 const collection = createListCollection(
-	{
-		items: ['React', 'Solid', 'Vue', 'Svelte'],
-	},
+  {
+    items: ['React', 'Solid', 'Vue', 'Svelte'],
+  },
 );
 
 export component FullyControlled() {
-	let value = track(['React']);
-	const setValue = (v: string[]) => {
-		@value = v;
-	};
+  let value = track(['React']);
+  const setValue = (v: string[]) => {
+    @value = v;
+  };
 
-	<Select.Root
-		class={styles.Root}
-		{value}
-		{collection}
-		onValueChange={(e: any) => setValue(e.value)}
-	>
-		<Select.Label class={styles.Label}>{'Framework'}</Select.Label>
-		<Select.Control class={styles.Control}>
-			<Select.Trigger class={styles.Trigger}>
-				<Select.ValueText class={styles.ValueText} placeholder="Select a Framework" />
-			</Select.Trigger>
-			<div class={styles.Indicators}>
-				<Select.ClearTrigger class={styles.ClearTrigger}>
-					<X />
-				</Select.ClearTrigger>
-				<Select.Indicator class={styles.Indicator}>
-					<ChevronsUpDown />
-				</Select.Indicator>
-			</div>
-		</Select.Control>
-		<Portal>
-			<Select.Positioner>
-				<Select.Content class={styles.Content}>
-					<Select.ItemGroup class={styles.ItemGroup}>
-						<Select.ItemGroupLabel class={styles.ItemGroupLabel}>
-							{'Frameworks'}
-						</Select.ItemGroupLabel>
-						for (const item of collection.items; key item) {
-							<Select.Item class={styles.Item} {item}>
-								<Select.ItemText class={styles.ItemText}>{item}</Select.ItemText>
-								<Select.ItemIndicator class={styles.ItemIndicator}>{'✓'}</Select.ItemIndicator>
-							</Select.Item>
-						}
-					</Select.ItemGroup>
-				</Select.Content>
-			</Select.Positioner>
-		</Portal>
-		<Select.HiddenSelect />
-	</Select.Root>
+  <Select.Root
+    class={styles.Root}
+    {value}
+    {collection}
+    onValueChange={(e: any) => setValue(e.value)}
+  >
+    <Select.Label class={styles.Label}>{'Framework'}</Select.Label>
+    <Select.Control class={styles.Control}>
+      <Select.Trigger class={styles.Trigger}>
+        <Select.ValueText class={styles.ValueText} placeholder="Select a Framework" />
+      </Select.Trigger>
+      <div class={styles.Indicators}>
+        <Select.ClearTrigger class={styles.ClearTrigger}>
+          <X />
+        </Select.ClearTrigger>
+        <Select.Indicator class={styles.Indicator}>
+          <ChevronsUpDown />
+        </Select.Indicator>
+      </div>
+    </Select.Control>
+    <Portal>
+      <Select.Positioner>
+        <Select.Content class={styles.Content}>
+          <Select.ItemGroup class={styles.ItemGroup}>
+            <Select.ItemGroupLabel class={styles.ItemGroupLabel}>
+              {'Frameworks'}
+            </Select.ItemGroupLabel>
+            for (const item of collection.items; key item) {
+              <Select.Item class={styles.Item} {item}>
+                <Select.ItemText class={styles.ItemText}>{item}</Select.ItemText>
+                <Select.ItemIndicator class={styles.ItemIndicator}>{'✓'}</Select.ItemIndicator>
+              </Select.Item>
+            }
+          </Select.ItemGroup>
+        </Select.Content>
+      </Select.Positioner>
+    </Portal>
+    <Select.HiddenSelect />
+  </Select.Root>
 }

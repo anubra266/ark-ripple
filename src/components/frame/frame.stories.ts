@@ -4,7 +4,7 @@ import { Script as ScriptExample } from './examples/script.ripple';
 import { SrcDoc as SrcDocExample } from './examples/src-doc.ripple';
 
 const meta: Meta = {
-	title: 'Utilities / Frame',
+  title: 'Utilities / Frame',
 };
 
 export default meta;

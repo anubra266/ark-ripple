@@ -4,31 +4,31 @@ import { useSwapContext } from './use-swap-context';
 import { ark } from '../factory';
 
 export interface SwapIndicatorBaseProps {
-	type: 'on' | 'off';
-	children?: any;
-	[key: string]: any;
+  type: 'on' | 'off';
+  children?: any;
+  [key: string]: any;
 }
 export type SwapIndicatorProps = SwapIndicatorBaseProps;
 
 export component SwapIndicator(props: SwapIndicatorProps) {
-	const [type, children, localProps] = trackSplit(props, ['type', 'children']);
+  const [type, children, localProps] = trackSplit(props, ['type', 'children']);
 
-	const swap = useSwapContext();
+  const swap = useSwapContext();
 
-	const presence = track(() => @type === 'on' ? @swap.onPresence : @swap.offPresence);
+  const presence = track(() => @type === 'on' ? @swap.onPresence : @swap.offPresence);
 
-	if (@presence.unmounted) {
-		return;
-	}
+  if (@presence.unmounted) {
+    return;
+  }
 
-	let mergedProps = track(() => mergeProps(@swap.getIndicatorProps({ type: @type }), @localProps));
+  let mergedProps = track(() => mergeProps(@swap.getIndicatorProps({ type: @type }), @localProps));
 
-	<ark.span
-		{...@mergedProps}
-		{ref (el: HTMLSpanElement | null) => {
-			@presence.setNode(el);
-		}}
-	>
-		<@children />
-	</ark.span>
+  <ark.span
+    {...@mergedProps}
+    {ref (el: HTMLSpanElement | null) => {
+      @presence.setNode(el);
+    }}
+  >
+    <@children />
+  </ark.span>
 }

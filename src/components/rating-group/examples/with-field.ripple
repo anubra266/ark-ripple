@@ -5,33 +5,33 @@ import field from 'styles/field.module.css';
 import styles from 'styles/rating-group.module.css';
 
 export component WithField() {
-	<Field.Root class={field.Root}>
-		<RatingGroup.Root class={styles.Root} count={5} defaultValue={3}>
-			<RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
-			<RatingGroup.Control class={styles.Control}>
-				<RatingGroup.Context>
-					component children({ context }) {
-						for (const item of @context.items; key item) {
-							<RatingGroup.Item class={styles.Item} index={item}>
-								<RatingGroup.ItemContext>
-									component children({ context }) {
-										<span
-											class={styles.ItemIndicator}
-											data-highlighted={@context.highlighted ? '' : undefined}
-										>
-											<Star data-bg="" />
-											<Star data-fg="" fill="currentColor" />
-										</span>
-									}
-								</RatingGroup.ItemContext>
-							</RatingGroup.Item>
-						}
-					}
-				</RatingGroup.Context>
-				<RatingGroup.HiddenInput />
-			</RatingGroup.Control>
-		</RatingGroup.Root>
-		<Field.HelperText class={field.HelperText}>{'Additional Info'}</Field.HelperText>
-		<Field.ErrorText class={field.ErrorText}>{'Error Info'}</Field.ErrorText>
-	</Field.Root>
+  <Field.Root class={field.Root}>
+    <RatingGroup.Root class={styles.Root} count={5} defaultValue={3}>
+      <RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
+      <RatingGroup.Control class={styles.Control}>
+        <RatingGroup.Context>
+          component children({ context }) {
+            for (const item of @context.items; key item) {
+              <RatingGroup.Item class={styles.Item} index={item}>
+                <RatingGroup.ItemContext>
+                  component children({ context }) {
+                    <span
+                      class={styles.ItemIndicator}
+                      data-highlighted={@context.highlighted ? '' : undefined}
+                    >
+                      <Star data-bg="" />
+                      <Star data-fg="" fill="currentColor" />
+                    </span>
+                  }
+                </RatingGroup.ItemContext>
+              </RatingGroup.Item>
+            }
+          }
+        </RatingGroup.Context>
+        <RatingGroup.HiddenInput />
+      </RatingGroup.Control>
+    </RatingGroup.Root>
+    <Field.HelperText class={field.HelperText}>{'Additional Info'}</Field.HelperText>
+    <Field.ErrorText class={field.ErrorText}>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
 }

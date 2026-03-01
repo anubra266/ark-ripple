@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useClipboardContext, type UseClipboardContext } from './use-clipboard-context';
 
 export interface ClipboardContextProps {
-	children: (context: UseClipboardContext) => any;
+  children: (context: UseClipboardContext) => any;
 }
 
 export component ClipboardContext(props: ClipboardContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useClipboardContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useClipboardContext();
 
-	<@children {context} />
+  <@children {context} />
 }

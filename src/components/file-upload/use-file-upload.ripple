@@ -7,31 +7,35 @@ import { useFieldContext } from '../field/use-field-context';
 import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
-export interface UseFileUploadProps
-	extends Optional<Omit<fileUpload.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export interface UseFileUploadProps extends Optional<
+  Omit<fileUpload.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
 export type UseFileUploadReturn = ReturnType<typeof useFileUpload>;
 
 export function useFileUpload(props: UseFileUploadProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const field = useFieldContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const field = useFieldContext();
 
-	const machineProps = track(() => ({
-		id,
-		ids: {
-			label: @field?.ids.label,
-			hiddenInput: @field?.ids.control,
-		},
-		dir: @locale.dir,
-		disabled: @field?.disabled,
-		locale: @locale.locale,
-		required: @field?.required,
-		invalid: @field?.invalid,
-		getRootNode: @environment.getRootNode,
-		...@props,
-	}));
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        hiddenInput: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      locale: @locale.locale,
+      required: @field?.required,
+      invalid: @field?.invalid,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(fileUpload.machine, machineProps);
-	return track(() => fileUpload.connect(service, normalizeProps));
+  const service = useMachine(fileUpload.machine, machineProps);
+  return track(() => fileUpload.connect(service, normalizeProps));
 }

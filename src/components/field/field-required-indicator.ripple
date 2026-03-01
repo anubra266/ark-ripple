@@ -4,26 +4,26 @@ import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
 
 export interface FieldRequiredIndicatorBaseProps {
-	fallback?: Component;
-	children?: Component;
-	[key: string]: any;
+  fallback?: Component;
+  children?: Component;
+  [key: string]: any;
 }
 export type FieldRequiredIndicatorProps = FieldRequiredIndicatorBaseProps;
 
 export component FieldRequiredIndicator(props: FieldRequiredIndicatorProps) {
-	const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);
-	const field = useFieldContext();
+  const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);
+  const field = useFieldContext();
 
-	if (@field?.required) {
-		<@fallback />
-	}
+  if (@field?.required) {
+    <@fallback />
+  }
 
-	let mergedProps = track(() => mergeProps(@field.getRequiredIndicatorProps(), @localProps));
-	<ark.span {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{'*'}
-		}
-	</ark.span>
+  let mergedProps = track(() => mergeProps(@field.getRequiredIndicatorProps(), @localProps));
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {'*'}
+    }
+  </ark.span>
 }

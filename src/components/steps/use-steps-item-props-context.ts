@@ -1,7 +1,7 @@
 import { Context } from 'ripple';
 
 export interface StepsItemPropsSignals {
-	index: any;
+  index: any;
 }
 
 export const StepsItemPropsContext = new Context<StepsItemPropsSignals>({ index: 0 });

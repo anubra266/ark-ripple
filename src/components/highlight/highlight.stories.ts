@@ -8,7 +8,7 @@ import { Multiple as MultipleExample } from './examples/multiple.ripple';
 import { RepeatingText as RepeatingTextExample } from './examples/repeating-text.ripple';
 
 const meta: Meta = {
-	title: 'Utilities / Highlight',
+  title: 'Utilities / Highlight',
 };
 
 export default meta;

@@ -2,9 +2,9 @@ import { trackSplit } from 'ripple';
 import { RenderStrategyContext, type RenderStrategyProps } from './render-strategy.ripple';
 
 export component RenderStrategyProvider(props: { value: RenderStrategyProps; children?: any }) {
-	const [children, value] = trackSplit(props, ['children', 'value']);
+  const [children, value] = trackSplit(props, ['children', 'value']);
 
-	RenderStrategyContext.set(value);
+  RenderStrategyContext.set(value);
 
-	<@children />
+  <@children />
 }

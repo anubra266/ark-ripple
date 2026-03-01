@@ -9,19 +9,19 @@ export interface UseSliderProps extends Partial<Omit<slider.Props, 'dir' | 'getR
 export interface UseSliderReturn extends slider.Api {}
 
 export function useSlider(props: UseSliderProps = {}): UseSliderReturn {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(slider.machine, machineProps);
-	return track(() => slider.connect(service, normalizeProps));
+  const service = useMachine(slider.machine, machineProps);
+  return track(() => slider.connect(service, normalizeProps));
 }

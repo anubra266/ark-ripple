@@ -8,25 +8,25 @@ import type { UseComboboxReturn } from './use-combobox.ripple';
 import { ark } from '../factory';
 
 export interface ComboboxRootProviderBaseProps extends UsePresenceProps {
-	value: UseComboboxReturn<any>;
-	children?: any;
-	[key: string]: any;
+  value: UseComboboxReturn<any>;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxRootProviderProps = ComboboxRootProviderBaseProps;
 
 export component ComboboxRootProvider(props: ComboboxRootProviderProps) {
-	const [children, value, rest] = trackSplit(props, ['children', 'value']);
-	const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [children, value, rest] = trackSplit(props, ['children', 'value']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
 
-	const present = track(() => @value.open);
+  const present = track(() => @value.open);
 
-	const presence = usePresence({ present, ...@presenceProps });
-	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+  const presence = usePresence({ present, ...@presenceProps });
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
 
-	ComboboxApiContext.set(value);
-	PresenceApiContext.set(presence);
+  ComboboxApiContext.set(value);
+  PresenceApiContext.set(presence);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

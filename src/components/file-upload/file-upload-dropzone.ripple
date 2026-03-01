@@ -5,20 +5,20 @@ import { useFileUploadContext } from './use-file-upload-context';
 import { ark } from '../factory';
 
 export interface FileUploadDropzoneBaseProps extends DropzoneProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FileUploadDropzoneProps = FileUploadDropzoneBaseProps;
 
 export component FileUploadDropzone(props: FileUploadDropzoneProps) {
-	const [children, disableClick, localProps] = trackSplit(props, ['children', 'disableClick']);
-	const fileUpload = useFileUploadContext();
+  const [children, disableClick, localProps] = trackSplit(props, ['children', 'disableClick']);
+  const fileUpload = useFileUploadContext();
 
-	let mergedProps = track(
-		() => mergeProps(@fileUpload.getDropzoneProps({ disableClick: @disableClick }), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@fileUpload.getDropzoneProps({ disableClick: @disableClick }), @localProps),
+  );
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

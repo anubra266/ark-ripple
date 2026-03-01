@@ -6,23 +6,23 @@ import { useAccordionContext } from './use-accordion-context';
 import { useAccordionItemPropsContext } from './use-accordion-item-props-context';
 
 export interface AccordionItemContentBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type AccordionItemContentProps = AccordionItemContentBaseProps;
 
 export component AccordionItemContent(props: AccordionItemContentProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const accordion = useAccordionContext();
-	const itemProps = useAccordionItemPropsContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const accordion = useAccordionContext();
+  const itemProps = useAccordionItemPropsContext();
 
-	const contentProps = track(
-		() => omit(@accordion.getItemContentProps(@itemProps) as any, ['hidden', 'data-state']),
-	);
+  const contentProps = track(
+    () => omit(@accordion.getItemContentProps(@itemProps) as any, ['hidden', 'data-state']),
+  );
 
-	let mergedProps = track(() => mergeProps(@contentProps, @rest));
+  let mergedProps = track(() => mergeProps(@contentProps, @rest));
 
-	<CollapsibleContent {...@mergedProps}>
-		<@children />
-	</CollapsibleContent>
+  <CollapsibleContent {...@mergedProps}>
+    <@children />
+  </CollapsibleContent>
 }

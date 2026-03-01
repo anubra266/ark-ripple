@@ -5,21 +5,21 @@ import type { ItemProps } from '@zag-js/timer';
 import { ark } from '../factory';
 
 export interface TimerItemBaseProps extends ItemProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type TimerItemProps = TimerItemBaseProps;
 
 export component TimerItem(props: TimerItemProps) {
-	const [children, type, localProps] = trackSplit(props, ['children', 'type']);
-	const timer = useTimerContext();
+  const [children, type, localProps] = trackSplit(props, ['children', 'type']);
+  const timer = useTimerContext();
 
-	let mergedProps = track(() => mergeProps(@timer.getItemProps({ type: @type }), @localProps));
+  let mergedProps = track(() => mergeProps(@timer.getItemProps({ type: @type }), @localProps));
 
-	<ark.div {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@timer.formattedTime[@type]}
-		}
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@timer.formattedTime[@type]}
+    }
+  </ark.div>
 }

@@ -5,19 +5,19 @@ import { useStepsItemPropsContext } from './use-steps-item-props-context';
 import { ark } from '../factory';
 
 export interface StepsSeparatorBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type StepsSeparatorProps = StepsSeparatorBaseProps;
 
 export component StepsSeparator(props: StepsSeparatorProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const stepsApi = useStepsContext();
-	const itemProps = useStepsItemPropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const stepsApi = useStepsContext();
+  const itemProps = useStepsItemPropsContext();
 
-	let mergedProps = track(() => mergeProps(@stepsApi.getSeparatorProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@stepsApi.getSeparatorProps(@itemProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -1,22 +1,22 @@
 import { SegmentGroup, type SegmentGroupRootProps } from 'ark-ripple/segment-group';
 
 const items = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Vue', value: 'vue' },
-	{ label: 'Svelte', value: 'svelte', disabled: true },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'Svelte', value: 'svelte', disabled: true },
 ];
 
 export component ComponentUnderTest(props: SegmentGroupRootProps) {
-	<SegmentGroup.Root {...props}>
-		<SegmentGroup.Label>{'Framework'}</SegmentGroup.Label>
-		<SegmentGroup.Indicator />
-		for (const item of items; key item.value) {
-			<SegmentGroup.Item value={item.value} disabled={item.disabled}>
-				<SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>
-				<SegmentGroup.ItemControl />
-				<SegmentGroup.ItemHiddenInput />
-			</SegmentGroup.Item>
-		}
-	</SegmentGroup.Root>
+  <SegmentGroup.Root {...props}>
+    <SegmentGroup.Label>{'Framework'}</SegmentGroup.Label>
+    <SegmentGroup.Indicator />
+    for (const item of items; key item.value) {
+      <SegmentGroup.Item value={item.value} disabled={item.disabled}>
+        <SegmentGroup.ItemText>{item.label}</SegmentGroup.ItemText>
+        <SegmentGroup.ItemControl />
+        <SegmentGroup.ItemHiddenInput />
+      </SegmentGroup.Item>
+    }
+  </SegmentGroup.Root>
 }

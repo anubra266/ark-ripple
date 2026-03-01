@@ -4,19 +4,19 @@ import { Multiple as MultipleExample } from './examples/list-selection/multiple.
 import { Range as RangeExample } from './examples/list-selection/range.ripple';
 
 const meta: Meta = {
-	title: 'Utilities/ListSelection',
+  title: 'Utilities/ListSelection',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Multiple = {
-	render: () => ({ Component: MultipleExample }),
+  render: () => ({ Component: MultipleExample }),
 };
 
 export const Range = {
-	render: () => ({ Component: RangeExample }),
+  render: () => ({ Component: RangeExample }),
 };

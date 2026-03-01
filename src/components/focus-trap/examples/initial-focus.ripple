@@ -2,38 +2,38 @@ import { FocusTrap } from 'ark-ripple/focus-trap';
 import { track } from 'ripple';
 
 export component InitialFocus() {
-	let disabled = track(true);
-	let inputRef = track<HTMLInputElement | null>(null);
+  let disabled = track(true);
+  let inputRef = track<HTMLInputElement | null>(null);
 
-	<div class="stack">
-		<button
-			type="button"
-			onClick={() => {
-				@disabled = !@disabled;
-			}}
-		>
-			{@disabled ? 'Start Trap' : 'End Trap'}
-		</button>
-		<FocusTrap {disabled} initialFocus={() => @inputRef}>
-			<div class="stack">
-				<input type="text" placeholder="First input" />
-				<input
-					type="text"
-					placeholder="Second input (initial focus)"
-					{ref (el: HTMLInputElement | null) => {
-						@inputRef = el;
-					}}
-				/>
-				<textarea placeholder="textarea" />
-				<button
-					type="button"
-					onClick={() => {
-						@disabled = true;
-					}}
-				>
-					{'End Trap'}
-				</button>
-			</div>
-		</FocusTrap>
-	</div>
+  <div class="stack">
+    <button
+      type="button"
+      onClick={() => {
+        @disabled = !@disabled;
+      }}
+    >
+      {@disabled ? 'Start Trap' : 'End Trap'}
+    </button>
+    <FocusTrap {disabled} initialFocus={() => @inputRef}>
+      <div class="stack">
+        <input type="text" placeholder="First input" />
+        <input
+          type="text"
+          placeholder="Second input (initial focus)"
+          {ref (el: HTMLInputElement | null) => {
+            @inputRef = el;
+          }}
+        />
+        <textarea placeholder="textarea" />
+        <button
+          type="button"
+          onClick={() => {
+            @disabled = true;
+          }}
+        >
+          {'End Trap'}
+        </button>
+      </div>
+    </FocusTrap>
+  </div>
 }

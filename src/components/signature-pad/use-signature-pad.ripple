@@ -8,35 +8,35 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseSignaturePadProps extends Optional<
-	Omit<signaturePad.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<signaturePad.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseSignaturePadReturn = ReturnType<typeof useSignaturePad>;
 
 export function useSignaturePad(props: UseSignaturePadProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const field = useFieldContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const field = useFieldContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			ids: {
-				label: @field?.ids?.label,
-				hiddenInput: @field?.ids?.control,
-			},
-			dir: @locale.dir,
-			disabled: @field?.disabled,
-			readOnly: @field?.readOnly,
-			required: @field?.required,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids?.label,
+        hiddenInput: @field?.ids?.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      readOnly: @field?.readOnly,
+      required: @field?.required,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(signaturePad.machine, machineProps);
+  const service = useMachine(signaturePad.machine, machineProps);
 
-	return track(() => signaturePad.connect(service, normalizeProps));
+  return track(() => signaturePad.connect(service, normalizeProps));
 }

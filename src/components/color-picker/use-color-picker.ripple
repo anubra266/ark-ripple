@@ -8,36 +8,36 @@ import type { Optional } from '../../types';
 import { useFieldContext } from '../field/use-field-context';
 
 export interface UseColorPickerProps extends Optional<
-	Omit<colorPicker.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<colorPicker.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseColorPickerReturn = ReturnType<typeof useColorPicker>;
 
 export function useColorPicker(props: UseColorPickerProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const field = useFieldContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const field = useFieldContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			ids: {
-				label: @field?.ids.label,
-				input: @field?.ids.control,
-			},
-			dir: @locale.dir,
-			disabled: @field?.disabled,
-			invalid: @field?.invalid,
-			readOnly: @field?.readOnly,
-			required: @field?.required,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        input: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      invalid: @field?.invalid,
+      readOnly: @field?.readOnly,
+      required: @field?.required,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(colorPicker.machine, machineProps);
+  const service = useMachine(colorPicker.machine, machineProps);
 
-	return track(() => colorPicker.connect(service, normalizeProps));
+  return track(() => colorPicker.connect(service, normalizeProps));
 }

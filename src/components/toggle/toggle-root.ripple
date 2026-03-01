@@ -6,21 +6,21 @@ import { splitToggleProps } from './split-toggle-props.ripple';
 import { ark } from '../factory';
 
 export interface ToggleRootBaseProps extends UseToggleProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ToggleRootProps = ToggleRootBaseProps;
 
 export component ToggleRoot(props: ToggleRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [toggleProps, localProps] = splitToggleProps(@rest);
-	const toggle = useToggle(toggleProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [toggleProps, localProps] = splitToggleProps(@rest);
+  const toggle = useToggle(toggleProps);
 
-	ToggleApiContext.set(toggle);
+  ToggleApiContext.set(toggle);
 
-	let mergedProps = track(() => mergeProps(@toggle.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@toggle.getRootProps(), @localProps));
 
-	<ark.button {...@mergedProps}>
-		<@children />
-	</ark.button>
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
 }

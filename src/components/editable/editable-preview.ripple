@@ -4,21 +4,21 @@ import { useEditableContext } from './use-editable-context';
 import { ark } from '../factory';
 
 export interface EditablePreviewBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type EditablePreviewProps = EditablePreviewBaseProps;
 
 export component EditablePreview(props: EditablePreviewProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const editable = useEditableContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const editable = useEditableContext();
 
-	let mergedProps = track(() => mergeProps(@editable.getPreviewProps(), @rest));
+  let mergedProps = track(() => mergeProps(@editable.getPreviewProps(), @rest));
 
-	<ark.span {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@editable.valueText}
-		}
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@editable.valueText}
+    }
+  </ark.span>
 }

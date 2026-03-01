@@ -4,17 +4,17 @@ import button from 'styles/button.module.css';
 import styles from 'styles/presence.module.css';
 
 export component LazyMountAndUnmountOnExit() {
-	let present = track(false);
+  let present = track(false);
 
-	<div class="stack">
-		<button
-			class={button.Root}
-			onClick={() => {
-				@present = !@present;
-			}}
-		>
-			{'Toggle'}
-		</button>
-		<Presence class={styles.Box} lazyMount unmountOnExit {@present}>{'Lazy + Unmount'}</Presence>
-	</div>
+  <div class="stack">
+    <button
+      class={button.Root}
+      onClick={() => {
+        @present = !@present;
+      }}
+    >
+      {'Toggle'}
+    </button>
+    <Presence class={styles.Box} lazyMount unmountOnExit {@present}>{'Lazy + Unmount'}</Presence>
+  </div>
 }

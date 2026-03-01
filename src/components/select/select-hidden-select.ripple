@@ -5,35 +5,35 @@ import { useFieldContext } from '../field/use-field-context';
 import { ark } from '../factory';
 
 export interface SelectHiddenSelectBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type SelectHiddenSelectProps = SelectHiddenSelectBaseProps;
 
 export component SelectHiddenSelect(props: SelectHiddenSelectProps) {
-	const select = useSelectContext();
-	const field = useFieldContext();
+  const select = useSelectContext();
+  const field = useFieldContext();
 
-	let mergedProps = track(
-		() => mergeProps(
-			@select.getHiddenSelectProps(),
-			{ 'aria-describedby': @field?.ariaDescribedby },
-			props,
-		),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @select.getHiddenSelectProps(),
+      { 'aria-describedby': @field?.ariaDescribedby },
+      props,
+    ),
+  );
 
-	const isValueEmpty = track(() => @select.value.length === 0);
+  const isValueEmpty = track(() => @select.value.length === 0);
 
-	<ark.select {...@mergedProps}>
-		if (@isValueEmpty) {
-			<option value="" />
-		}
-		for (const item of @select.collection.items) {
-			<option
-				value={@select.collection.getItemValue(item) ?? ''}
-				disabled={@select.collection.getItemDisabled(item)}
-			>
-				{@select.collection.stringifyItem(item)}
-			</option>
-		}
-	</ark.select>
+  <ark.select {...@mergedProps}>
+    if (@isValueEmpty) {
+      <option value="" />
+    }
+    for (const item of @select.collection.items) {
+      <option
+        value={@select.collection.getItemValue(item) ?? ''}
+        disabled={@select.collection.getItemDisabled(item)}
+      >
+        {@select.collection.stringifyItem(item)}
+      </option>
+    }
+  </ark.select>
 }

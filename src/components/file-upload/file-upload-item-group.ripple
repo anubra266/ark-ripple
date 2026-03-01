@@ -6,22 +6,24 @@ import { FileUploadItemGroupPropsContext } from './use-file-upload-item-group-pr
 import { ark } from '../factory';
 
 export interface FileUploadItemGroupBaseProps extends ItemGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FileUploadItemGroupProps = FileUploadItemGroupBaseProps;
 
 export component FileUploadItemGroup(props: FileUploadItemGroupProps) {
-	const [children, type, localProps] = trackSplit(props, ['children', 'type']);
-	const fileUpload = useFileUploadContext();
+  const [children, type, localProps] = trackSplit(props, ['children', 'type']);
+  const fileUpload = useFileUploadContext();
 
-	const itemGroupProps = track(() => ({ type: @type }));
+  const itemGroupProps = track(() => ({ type: @type }));
 
-	FileUploadItemGroupPropsContext.set(itemGroupProps);
+  FileUploadItemGroupPropsContext.set(itemGroupProps);
 
-	let mergedProps = track(() => mergeProps(@fileUpload.getItemGroupProps(@itemGroupProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@fileUpload.getItemGroupProps(@itemGroupProps), @localProps),
+  );
 
-	<ark.ul {...@mergedProps}>
-		<@children />
-	</ark.ul>
+  <ark.ul {...@mergedProps}>
+    <@children />
+  </ark.ul>
 }

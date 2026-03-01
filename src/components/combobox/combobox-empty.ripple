@@ -6,20 +6,20 @@ import { ark } from '../factory';
 const parts = comboboxAnatomy.build();
 
 export interface ComboboxEmptyBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxEmptyProps = ComboboxEmptyBaseProps;
 
 export component ComboboxEmpty(props: ComboboxEmptyProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const combobox = useComboboxContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const combobox = useComboboxContext();
 
-	if (@combobox.collection.size !== 0) {
-		return;
-	}
+  if (@combobox.collection.size !== 0) {
+    return;
+  }
 
-	<ark.div {...parts.empty.attrs} role="presentation" {...@localProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...parts.empty.attrs} role="presentation" {...@localProps}>
+    <@children />
+  </ark.div>
 }

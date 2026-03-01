@@ -7,31 +7,31 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { Step as StepExample } from './examples/step.ripple';
 
 const meta: Meta = {
-	title: 'Components/Angle Slider',
+  title: 'Components/Angle Slider',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Step = {
-	render: () => ({ Component: StepExample }),
+  render: () => ({ Component: StepExample }),
 };

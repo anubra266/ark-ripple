@@ -6,21 +6,21 @@ import { splitEditableProps } from './split-editable-props.ripple';
 import { ark } from '../factory';
 
 export interface EditableRootBaseProps extends UseEditableProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type EditableRootProps = EditableRootBaseProps;
 
 export component EditableRoot(props: EditableRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [editableProps, localProps] = splitEditableProps(@rest);
-	const editable = useEditable(editableProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [editableProps, localProps] = splitEditableProps(@rest);
+  const editable = useEditable(editableProps);
 
-	EditableApiContext.set(editable);
+  EditableApiContext.set(editable);
 
-	let mergedProps = track(() => mergeProps(@editable.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@editable.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

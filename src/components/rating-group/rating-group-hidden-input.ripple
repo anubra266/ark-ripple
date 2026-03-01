@@ -5,22 +5,22 @@ import { useFieldContext } from '../field/use-field-context';
 import { ark } from '../factory';
 
 export interface RatingGroupHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type RatingGroupHiddenInputProps = RatingGroupHiddenInputBaseProps;
 
 export component RatingGroupHiddenInput(props: RatingGroupHiddenInputProps) {
-	const [localProps] = trackSplit(props, []);
-	const ratingGroup = useRatingGroupContext();
-	const field = useFieldContext();
+  const [localProps] = trackSplit(props, []);
+  const ratingGroup = useRatingGroupContext();
+  const field = useFieldContext();
 
-	let mergedProps = track(
-		() => mergeProps(
-			@ratingGroup.getHiddenInputProps(),
-			{ 'aria-describedby': @field?.ariaDescribedby },
-			@localProps,
-		),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @ratingGroup.getHiddenInputProps(),
+      { 'aria-describedby': @field?.ariaDescribedby },
+      @localProps,
+    ),
+  );
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

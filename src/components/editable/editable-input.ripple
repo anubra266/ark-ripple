@@ -5,16 +5,16 @@ import { useEditableContext } from './use-editable-context';
 import { ark } from '../factory';
 
 export interface EditableInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type EditableInputProps = EditableInputBaseProps;
 
 export component EditableInput(props: EditableInputProps) {
-	const [rest] = trackSplit(props, []);
-	const editable = useEditableContext();
-	const field = useFieldContext();
+  const [rest] = trackSplit(props, []);
+  const editable = useEditableContext();
+  const field = useFieldContext();
 
-	let mergedProps = track(() => mergeProps(@editable.getInputProps(), @rest));
+  let mergedProps = track(() => mergeProps(@editable.getInputProps(), @rest));
 
-	<ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+  <ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
 }

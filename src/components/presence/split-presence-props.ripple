@@ -4,12 +4,12 @@ import type { UsePresenceProps } from './use-presence.ripple';
 const splitProps = createSplitProps<UsePresenceProps>();
 
 export function splitPresenceProps<T extends UsePresenceProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'immediate',
-		'lazyMount',
-		'onExitComplete',
-		'present',
-		'skipAnimationOnMount',
-		'unmountOnExit',
-	]);
+  return splitProps(props, [
+    'immediate',
+    'lazyMount',
+    'onExitComplete',
+    'present',
+    'skipAnimationOnMount',
+    'unmountOnExit',
+  ]);
 }

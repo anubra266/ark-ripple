@@ -12,51 +12,51 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { WithSlider as WithSliderExample } from './examples/with-slider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Accordion',
+  title: 'Components/Accordion',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Collapsible = {
-	render: () => ({ Component: CollapsibleExample }),
+  render: () => ({ Component: CollapsibleExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Horizontal = {
-	render: () => ({ Component: HorizontalExample }),
+  render: () => ({ Component: HorizontalExample }),
 };
 
 export const ItemContext = {
-	render: () => ({ Component: ItemContextExample }),
+  render: () => ({ Component: ItemContextExample }),
 };
 
 export const LazyMount = {
-	render: () => ({ Component: LazyMountExample }),
+  render: () => ({ Component: LazyMountExample }),
 };
 
 export const Multiple = {
-	render: () => ({ Component: MultipleExample }),
+  render: () => ({ Component: MultipleExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const WithSlider = {
-	render: () => ({ Component: WithSliderExample }),
+  render: () => ({ Component: WithSliderExample }),
 };

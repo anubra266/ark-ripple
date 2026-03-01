@@ -3,27 +3,27 @@ import { track, trackSplit } from 'ripple';
 import type { PolymorphicProps } from '../../types';
 
 export interface ArkProps<E extends ElementType> extends PolymorphicProps<E> {
-	element?: E;
+  element?: E;
 }
 
 export component Ark<E extends ElementType>(props: ArkProps<E>) {
-	const [element, asChild, children] = trackSplit(props, ['element', 'asChild', 'children']);
+  const [element, asChild, children] = trackSplit(props, ['element', 'asChild', 'children']);
 
-	const renderProps = track(
-		() => ({
-			...props,
-			asChild: undefined,
-			element: undefined,
-		}),
-	);
+  const renderProps = track(
+    () => ({
+      ...props,
+      asChild: undefined,
+      element: undefined,
+    }),
+  );
 
-	const propsFn = (userProps?: any) => mergeProps(@renderProps, userProps ?? {});
+  const propsFn = (userProps?: any) => mergeProps(@renderProps, userProps ?? {});
 
-	if (@asChild) {
-		<@asChild {propsFn} />
-	} else {
-		<@element {...@renderProps} element={undefined}>
-			<@children />
-		</@element>
-	}
+  if (@asChild) {
+    <@asChild {propsFn} />
+  } else {
+    <@element {...@renderProps} element={undefined}>
+      <@children />
+    </@element>
+  }
 }

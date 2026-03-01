@@ -2,11 +2,11 @@ import { Highlight } from 'ark-ripple/highlight';
 import styles from 'styles/highlight.module.css';
 
 export component Basic() {
-	<p class={styles.Text}>
-		<Highlight
-			class={styles.Mark}
-			query="component"
-			text="Ark UI is a headless component library for building accessible web applications."
-		/>
-	</p>
+  <p class={styles.Text}>
+    <Highlight
+      class={styles.Mark}
+      query="component"
+      text="Ark UI is a headless component library for building accessible web applications."
+    />
+  </p>
 }

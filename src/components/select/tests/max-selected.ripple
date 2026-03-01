@@ -2,55 +2,55 @@ import { Select, createListCollection } from 'ark-ripple/select';
 import { track } from 'ripple';
 
 const items = [
-	{ label: 'React', value: 'React' },
-	{ label: 'Solid', value: 'Solid' },
-	{ label: 'Vue', value: 'Vue' },
-	{ label: 'Svelte', value: 'Svelte' },
+  { label: 'React', value: 'React' },
+  { label: 'Solid', value: 'Solid' },
+  { label: 'Vue', value: 'Vue' },
+  { label: 'Svelte', value: 'Svelte' },
 ];
 const MAX_SELECTION = 2;
 
 export component MaxSelectedTest() {
-	let value = track<string[]>([]);
+  let value = track<string[]>([]);
 
-	const collection = track(
-		() => createListCollection(
-			{
-				items: items.map(
-					(item) => ({
-						...item,
-						disabled: @value.length >= MAX_SELECTION && !@value.includes(item.value),
-					}),
-				),
-			},
-		),
-	);
+  const collection = track(
+    () => createListCollection(
+      {
+        items: items.map(
+          (item) => ({
+            ...item,
+            disabled: @value.length >= MAX_SELECTION && !@value.includes(item.value),
+          }),
+        ),
+      },
+    ),
+  );
 
-	const handleValueChange = (details: any) => {
-		if (@value.length >= MAX_SELECTION && details.value.length > @value.length) return;
-		@value = details.value;
-	};
+  const handleValueChange = (details: any) => {
+    if (@value.length >= MAX_SELECTION && details.value.length > @value.length) return;
+    @value = details.value;
+  };
 
-	<Select.Root {collection} multiple {value} onValueChange={handleValueChange}>
-		<Select.Label>{'Framework'}</Select.Label>
-		<Select.Control>
-			<Select.Trigger>
-				<Select.ValueText data-testid="value-text" placeholder="Select a Framework" />
-				<Select.Indicator>{'▼'}</Select.Indicator>
-			</Select.Trigger>
-		</Select.Control>
-		<Select.Positioner data-testid="positioner">
-			<Select.Content>
-				<Select.ItemGroup>
-					<Select.ItemGroupLabel>{'Frameworks'}</Select.ItemGroupLabel>
-					for (const item of @collection.items; key item.value) {
-						<Select.Item {item}>
-							<Select.ItemText>{item.label}</Select.ItemText>
-							<Select.ItemIndicator>{'✓'}</Select.ItemIndicator>
-						</Select.Item>
-					}
-				</Select.ItemGroup>
-			</Select.Content>
-		</Select.Positioner>
-		<Select.HiddenSelect />
-	</Select.Root>
+  <Select.Root {collection} multiple {value} onValueChange={handleValueChange}>
+    <Select.Label>{'Framework'}</Select.Label>
+    <Select.Control>
+      <Select.Trigger>
+        <Select.ValueText data-testid="value-text" placeholder="Select a Framework" />
+        <Select.Indicator>{'▼'}</Select.Indicator>
+      </Select.Trigger>
+    </Select.Control>
+    <Select.Positioner data-testid="positioner">
+      <Select.Content>
+        <Select.ItemGroup>
+          <Select.ItemGroupLabel>{'Frameworks'}</Select.ItemGroupLabel>
+          for (const item of @collection.items; key item.value) {
+            <Select.Item {item}>
+              <Select.ItemText>{item.label}</Select.ItemText>
+              <Select.ItemIndicator>{'✓'}</Select.ItemIndicator>
+            </Select.Item>
+          }
+        </Select.ItemGroup>
+      </Select.Content>
+    </Select.Positioner>
+    <Select.HiddenSelect />
+  </Select.Root>
 }

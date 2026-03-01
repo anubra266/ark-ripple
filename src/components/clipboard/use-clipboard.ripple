@@ -7,26 +7,26 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseClipboardProps extends Optional<
-	Omit<clipboard.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<clipboard.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 export type UseClipboardReturn = ReturnType<typeof useClipboard>;
 
 export function useClipboard(props: UseClipboardProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(clipboard.machine, machineProps);
+  const service = useMachine(clipboard.machine, machineProps);
 
-	return track(() => clipboard.connect(service, normalizeProps));
+  return track(() => clipboard.connect(service, normalizeProps));
 }

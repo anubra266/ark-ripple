@@ -3,110 +3,110 @@ import { fireEvent, render, screen, waitFor } from '../../../test-utils';
 import { ComboboxWithField, ComponentUnderTest } from './basic.ripple';
 
 describe('Combobox', () => {
-	it('should show options on click', async () => {
-		render(ComponentUnderTest);
-		expect(screen.getByRole('option', { hidden: true, name: 'React' })).not.toBeVisible();
+  it('should show options on click', async () => {
+    render(ComponentUnderTest);
+    expect(screen.getByRole('option', { hidden: true, name: 'React' })).not.toBeVisible();
 
-		fireEvent.click(screen.getByText('Open'));
+    fireEvent.click(screen.getByText('Open'));
 
-		await waitFor(() => expect(screen.getByText('Open')).toHaveAttribute('aria-expanded', 'true'));
-		await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
-	});
+    await waitFor(() => expect(screen.getByText('Open')).toHaveAttribute('aria-expanded', 'true'));
+    await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
+  });
 
-	it('should handle item selection', async () => {
-		render(ComponentUnderTest);
+  it('should handle item selection', async () => {
+    render(ComponentUnderTest);
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
 
-		fireEvent.click(screen.getByRole('option', { name: 'React' }));
-		await waitFor(() => expect(screen.getByRole('combobox')).toHaveValue('React'));
-	});
+    fireEvent.click(screen.getByRole('option', { name: 'React' }));
+    await waitFor(() => expect(screen.getByRole('combobox')).toHaveValue('React'));
+  });
 
-	it('should call onValueChange when item is selected', async () => {
-		const onValueChange = vi.fn();
-		render(ComponentUnderTest, { onValueChange });
+  it('should call onValueChange when item is selected', async () => {
+    const onValueChange = vi.fn();
+    render(ComponentUnderTest, { onValueChange });
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(screen.getByRole('option', { name: 'React' })).toBeVisible());
 
-		fireEvent.click(screen.getByRole('option', { name: 'React' }));
-		await waitFor(() => {
-			expect(onValueChange).toHaveBeenCalledTimes(1);
-		});
-	});
+    fireEvent.click(screen.getByRole('option', { name: 'React' }));
+    await waitFor(() => {
+      expect(onValueChange).toHaveBeenCalledTimes(1);
+    });
+  });
 
-	it('should open menu when onOpenChange is called', async () => {
-		const onOpenChange = vi.fn();
-		render(ComponentUnderTest, { onOpenChange });
+  it('should open menu when onOpenChange is called', async () => {
+    const onOpenChange = vi.fn();
+    render(ComponentUnderTest, { onOpenChange });
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(onOpenChange).toHaveBeenCalledTimes(1));
-	});
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(onOpenChange).toHaveBeenCalledTimes(1));
+  });
 
-	it('should be read-only when readOnly is true', async () => {
-		render(ComponentUnderTest, { readOnly: true });
+  it('should be read-only when readOnly is true', async () => {
+    render(ComponentUnderTest, { readOnly: true });
 
-		await user.click(screen.getByText('Open'));
-		await waitFor(() =>
-			expect(screen.queryByRole('option', { hidden: true, name: 'React' })).not.toBeVisible(),
-		);
-	});
+    await user.click(screen.getByText('Open'));
+    await waitFor(() =>
+      expect(screen.queryByRole('option', { hidden: true, name: 'React' })).not.toBeVisible(),
+    );
+  });
 
-	it('should be able to lazy mount its items', async () => {
-		render(ComponentUnderTest, { lazyMount: true });
-		expect(screen.queryByTestId('positioner')).not.toBeInTheDocument();
+  it('should be able to lazy mount its items', async () => {
+    render(ComponentUnderTest, { lazyMount: true });
+    expect(screen.queryByTestId('positioner')).not.toBeInTheDocument();
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
-	});
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
+  });
 
-	it('should be able to lazy mount and unmount its items', async () => {
-		render(ComponentUnderTest, { lazyMount: true, unmountOnExit: true });
-		expect(screen.queryByTestId('positioner')).not.toBeInTheDocument();
+  it('should be able to lazy mount and unmount its items', async () => {
+    render(ComponentUnderTest, { lazyMount: true, unmountOnExit: true });
+    expect(screen.queryByTestId('positioner')).not.toBeInTheDocument();
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
 
-		fireEvent.click(screen.getByText('Open'));
-		await waitFor(() => expect(screen.queryByTestId('positioner')).not.toBeInTheDocument());
-	});
+    fireEvent.click(screen.getByText('Open'));
+    await waitFor(() => expect(screen.queryByTestId('positioner')).not.toBeInTheDocument());
+  });
 });
 
 describe('Combobox / Field', () => {
-	it('should set combobox as required', async () => {
-		render(ComboboxWithField, { required: true });
-		expect(screen.getByRole('combobox', { name: /label/i })).toBeRequired();
-	});
+  it('should set combobox as required', async () => {
+    render(ComboboxWithField, { required: true });
+    expect(screen.getByRole('combobox', { name: /label/i })).toBeRequired();
+  });
 
-	it('should set combobox as disabled', async () => {
-		render(ComboboxWithField, { disabled: true });
-		expect(screen.getByRole('combobox', { name: /label/i })).toBeDisabled();
-	});
+  it('should set combobox as disabled', async () => {
+    render(ComboboxWithField, { disabled: true });
+    expect(screen.getByRole('combobox', { name: /label/i })).toBeDisabled();
+  });
 
-	it('should set combobox as readonly', async () => {
-		render(ComboboxWithField, { readOnly: true });
-		expect(screen.getByRole('combobox', { name: /label/i })).toHaveAttribute('readonly');
-	});
+  it('should set combobox as readonly', async () => {
+    render(ComboboxWithField, { readOnly: true });
+    expect(screen.getByRole('combobox', { name: /label/i })).toHaveAttribute('readonly');
+  });
 
-	it('should display helper text', async () => {
-		render(ComboboxWithField);
-		expect(screen.getByText('Additional Info')).toBeInTheDocument();
-	});
+  it('should display helper text', async () => {
+    render(ComboboxWithField);
+    expect(screen.getByText('Additional Info')).toBeInTheDocument();
+  });
 
-	it('should display error text when error is present', async () => {
-		render(ComboboxWithField, { invalid: true });
-		expect(screen.getByText('Error Info')).toBeInTheDocument();
-	});
+  it('should display error text when error is present', async () => {
+    render(ComboboxWithField, { invalid: true });
+    expect(screen.getByText('Error Info')).toBeInTheDocument();
+  });
 
-	it('should focus on combobox when label is clicked', async () => {
-		render(ComboboxWithField);
-		await user.click(screen.getByText(/label/i));
-		expect(screen.getByRole('combobox', { name: /label/i })).toHaveFocus();
-	});
+  it('should focus on combobox when label is clicked', async () => {
+    render(ComboboxWithField);
+    await user.click(screen.getByText(/label/i));
+    expect(screen.getByRole('combobox', { name: /label/i })).toHaveFocus();
+  });
 
-	it('should not display error text when no error is present', async () => {
-		render(ComboboxWithField);
-		expect(screen.queryByText('Error Info')).not.toBeInTheDocument();
-	});
+  it('should not display error text when no error is present', async () => {
+    render(ComboboxWithField);
+    expect(screen.queryByText('Error Info')).not.toBeInTheDocument();
+  });
 });

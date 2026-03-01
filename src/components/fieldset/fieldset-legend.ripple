@@ -4,18 +4,18 @@ import { useFieldsetContext } from './use-fieldset-context';
 import { ark } from '../factory';
 
 export interface FieldsetLegendBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FieldsetLegendProps = FieldsetLegendBaseProps;
 
 export component FieldsetLegend(props: FieldsetLegendProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const fieldset = useFieldsetContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const fieldset = useFieldsetContext();
 
-	let mergedProps = track(() => mergeProps(@fieldset?.getLegendProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@fieldset?.getLegendProps(), @localProps));
 
-	<ark.legend {...@mergedProps}>
-		<@children />
-	</ark.legend>
+  <ark.legend {...@mergedProps}>
+    <@children />
+  </ark.legend>
 }

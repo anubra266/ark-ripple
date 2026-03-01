@@ -5,18 +5,18 @@ import { useRadioGroupItemPropsContext } from './use-radio-group-item-props-cont
 import { ark } from '../factory';
 
 export interface RadioGroupItemHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type RadioGroupItemHiddenInputProps = RadioGroupItemHiddenInputBaseProps;
 
 export component RadioGroupItemHiddenInput(props: RadioGroupItemHiddenInputProps) {
-	const [localProps] = trackSplit(props, []);
-	const radioGroup = useRadioGroupContext();
-	const itemProps = useRadioGroupItemPropsContext();
+  const [localProps] = trackSplit(props, []);
+  const radioGroup = useRadioGroupContext();
+  const itemProps = useRadioGroupItemPropsContext();
 
-	let mergedProps = track(
-		() => mergeProps(@radioGroup.getItemHiddenInputProps(@itemProps), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@radioGroup.getItemHiddenInputProps(@itemProps), @localProps),
+  );
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

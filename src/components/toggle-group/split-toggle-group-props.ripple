@@ -4,17 +4,17 @@ import type { UseToggleGroupProps } from './use-toggle-group.ripple';
 const splitProps = createSplitProps<UseToggleGroupProps>();
 
 export function splitToggleGroupProps<T extends UseToggleGroupProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'defaultValue',
-		'deselectable',
-		'disabled',
-		'id',
-		'ids',
-		'loopFocus',
-		'multiple',
-		'onValueChange',
-		'orientation',
-		'rovingFocus',
-		'value',
-	]);
+  return splitProps(props, [
+    'defaultValue',
+    'deselectable',
+    'disabled',
+    'id',
+    'ids',
+    'loopFocus',
+    'multiple',
+    'onValueChange',
+    'orientation',
+    'rovingFocus',
+    'value',
+  ]);
 }

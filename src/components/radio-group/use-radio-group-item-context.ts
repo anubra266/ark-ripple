@@ -6,4 +6,4 @@ export type UseRadioGroupItemContext = ItemState;
 export const RadioGroupItemApiContext = new Context<UseRadioGroupItemContext>();
 
 export const useRadioGroupItemContext = (): UseRadioGroupItemContext =>
-	RadioGroupItemApiContext.get();
+  RadioGroupItemApiContext.get();

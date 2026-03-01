@@ -6,21 +6,21 @@ import { splitRadioGroupProps } from './split-radio-group-props.ripple';
 import { ark } from '../factory';
 
 export interface RadioGroupRootBaseProps extends UseRadioGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type RadioGroupRootProps = RadioGroupRootBaseProps;
 
 export component RadioGroupRoot(props: RadioGroupRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [radioGroupProps, localProps] = splitRadioGroupProps(@rest);
-	const radioGroup = useRadioGroup(radioGroupProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [radioGroupProps, localProps] = splitRadioGroupProps(@rest);
+  const radioGroup = useRadioGroup(radioGroupProps);
 
-	RadioGroupApiContext.set(radioGroup);
+  RadioGroupApiContext.set(radioGroup);
 
-	let mergedProps = track(() => mergeProps(@radioGroup.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@radioGroup.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

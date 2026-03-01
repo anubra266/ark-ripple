@@ -8,35 +8,35 @@ import { WithField as WithFieldExample } from './examples/with-field.ripple';
 import { PhoneInput as PhoneInputExample } from './examples/phone-input.ripple';
 
 const meta: Meta = {
-	title: 'Components/Fieldset',
+  title: 'Components/Fieldset',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Invalid = {
-	render: () => ({ Component: InvalidExample }),
+  render: () => ({ Component: InvalidExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const WithCheckbox = {
-	render: () => ({ Component: WithCheckboxExample }),
+  render: () => ({ Component: WithCheckboxExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };
 
 export const PhoneInput = {
-	render: () => ({ Component: PhoneInputExample }),
+  render: () => ({ Component: PhoneInputExample }),
 };

@@ -6,89 +6,89 @@ import styles from 'styles/combobox.module.css';
 import { useAsync } from './use-async';
 
 export component RehydrateValue() {
-	let inputValue = track('');
+  let inputValue = track('');
 
-	let { collection, set } = useListCollection<Character>(
-		{
-			initialItems: [],
-			itemToString: (item) => item.name,
-			itemToValue: (item) => item.name,
-		},
-	);
+  let { collection, set } = useListCollection<Character>(
+    {
+      initialItems: [],
+      itemToString: (item) => item.name,
+      itemToValue: (item) => item.name,
+    },
+  );
 
-	const combobox = useCombobox(
-		{
-			collection,
-			defaultValue: ['C-3PO'],
-			placeholder: 'Example: Dexter',
-			inputValue,
-			onInputValueChange: (e) => {
-				@inputValue = e.inputValue;
-			},
-		},
-	);
+  const combobox = useCombobox(
+    {
+      collection,
+      defaultValue: ['C-3PO'],
+      placeholder: 'Example: Dexter',
+      inputValue,
+      onInputValueChange: (e) => {
+        @inputValue = e.inputValue;
+      },
+    },
+  );
 
-	let state = useAsync(async (signal) => {
-		const response = await fetch(`https://swapi.py4e.com/api/people/?search=${@inputValue}`, {
-			signal,
-		});
-		const data = await response.json();
-		set(data.results);
-	});
+  let state = useAsync(async (signal) => {
+    const response = await fetch(`https://swapi.py4e.com/api/people/?search=${@inputValue}`, {
+      signal,
+    });
+    const data = await response.json();
+    set(data.results);
+  });
 
-	effect(() => {
-		void @inputValue;
-		void state.load();
-	});
+  effect(() => {
+    void @inputValue;
+    void state.load();
+  });
 
-	let hydrated = false;
-	effect(() => {
-		if (@combobox.value.length && @combobox.collection.size && !hydrated) {
-			@combobox.syncSelectedItems();
-			hydrated = true;
-		}
-	});
+  let hydrated = false;
+  effect(() => {
+    if (@combobox.value.length && @combobox.collection.size && !hydrated) {
+      @combobox.syncSelectedItems();
+      hydrated = true;
+    }
+  });
 
-	<Combobox.RootProvider class={styles.Root} value={combobox}>
-		<Combobox.Label class={styles.Label}>{'Search Star Wars Characters'}</Combobox.Label>
-		<Combobox.Control class={styles.Control}>
-			<Combobox.Input class={styles.Input} placeholder="e.g. Luke" />
-		</Combobox.Control>
-		<Portal>
-			<Combobox.Positioner>
-				<Combobox.Content class={styles.Content}>
-					if (state.@loading) {
-						<span style={{ padding: '0.5rem' }}>{'Loading...'}</span>
-					} else if (state.@error) {
-						<span style={{ padding: '0.5rem' }}>{state.@error?.message}</span>
-					} else {
-						for (const item of @collection.items; key item.name) {
-							<Combobox.Item class={styles.Item} {item}>
-								<Combobox.ItemText class={styles.ItemText}>
-									{item.name}
-									{' - '}
-									{item.height}
-									{'cm / '}
-									{item.mass}
-									{'kg'}
-								</Combobox.ItemText>
-								<Combobox.ItemIndicator class={styles.ItemIndicator}>
-									<Check />
-								</Combobox.ItemIndicator>
-							</Combobox.Item>
-						}
-					}
-				</Combobox.Content>
-			</Combobox.Positioner>
-		</Portal>
-	</Combobox.RootProvider>
+  <Combobox.RootProvider class={styles.Root} value={combobox}>
+    <Combobox.Label class={styles.Label}>{'Search Star Wars Characters'}</Combobox.Label>
+    <Combobox.Control class={styles.Control}>
+      <Combobox.Input class={styles.Input} placeholder="e.g. Luke" />
+    </Combobox.Control>
+    <Portal>
+      <Combobox.Positioner>
+        <Combobox.Content class={styles.Content}>
+          if (state.@loading) {
+            <span style={{ padding: '0.5rem' }}>{'Loading...'}</span>
+          } else if (state.@error) {
+            <span style={{ padding: '0.5rem' }}>{state.@error?.message}</span>
+          } else {
+            for (const item of @collection.items; key item.name) {
+              <Combobox.Item class={styles.Item} {item}>
+                <Combobox.ItemText class={styles.ItemText}>
+                  {item.name}
+                  {' - '}
+                  {item.height}
+                  {'cm / '}
+                  {item.mass}
+                  {'kg'}
+                </Combobox.ItemText>
+                <Combobox.ItemIndicator class={styles.ItemIndicator}>
+                  <Check />
+                </Combobox.ItemIndicator>
+              </Combobox.Item>
+            }
+          }
+        </Combobox.Content>
+      </Combobox.Positioner>
+    </Portal>
+  </Combobox.RootProvider>
 }
 
 interface Character {
-	name: string;
-	height: string;
-	mass: string;
-	created: string;
-	edited: string;
-	url: string;
+  name: string;
+  height: string;
+  mass: string;
+  created: string;
+  edited: string;
+  url: string;
 }

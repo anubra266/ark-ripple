@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useCheckboxContext, type UseCheckboxContext } from './use-checkbox-context';
 
 export interface CheckboxContextProps {
-	children: (context: UseCheckboxContext) => any;
+  children: (context: UseCheckboxContext) => any;
 }
 
 export component CheckboxContext(props: CheckboxContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useCheckboxContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useCheckboxContext();
 
-	<@children {context} />
+  <@children {context} />
 }

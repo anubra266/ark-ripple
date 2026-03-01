@@ -3,13 +3,13 @@ import { Check } from 'lucide-ripple';
 import styles from 'styles/checkbox.module.css';
 
 export component Basic() {
-	<Checkbox.Root class={styles.Root}>
-		<Checkbox.Control class={styles.Control}>
-			<Checkbox.Indicator class={styles.Indicator}>
-				<Check />
-			</Checkbox.Indicator>
-		</Checkbox.Control>
-		<Checkbox.Label class={styles.Label}>{'Checkbox'}</Checkbox.Label>
-		<Checkbox.HiddenInput />
-	</Checkbox.Root>
+  <Checkbox.Root class={styles.Root}>
+    <Checkbox.Control class={styles.Control}>
+      <Checkbox.Indicator class={styles.Indicator}>
+        <Check />
+      </Checkbox.Indicator>
+    </Checkbox.Control>
+    <Checkbox.Label class={styles.Label}>{'Checkbox'}</Checkbox.Label>
+    <Checkbox.HiddenInput />
+  </Checkbox.Root>
 }

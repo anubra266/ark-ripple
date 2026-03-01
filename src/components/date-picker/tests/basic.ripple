@@ -2,109 +2,109 @@ import { DatePicker, useDatePickerContext } from 'ark-ripple/date-picker';
 import { Portal } from 'ark-ripple/portal';
 
 component DayView() {
-	const dp = useDatePickerContext();
-	<DatePicker.View view="day">
-		<DatePicker.ViewControl>
-			<DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
-			<DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
-			<DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
-		</DatePicker.ViewControl>
-		<DatePicker.Table>
-			<DatePicker.TableHead>
-				<DatePicker.TableRow>
-					for (const weekDay of @dp.weekDays; key weekDay.short) {
-						<DatePicker.TableHeader>{weekDay.short}</DatePicker.TableHeader>
-					}
-				</DatePicker.TableRow>
-			</DatePicker.TableHead>
-			<DatePicker.TableBody>
-				for (const week of @dp.weeks; key week[0].toString()) {
-					<DatePicker.TableRow>
-						for (const day of week; key day.toString()) {
-							<DatePicker.TableCell value={day}>
-								<DatePicker.TableCellTrigger>{day.day}</DatePicker.TableCellTrigger>
-							</DatePicker.TableCell>
-						}
-					</DatePicker.TableRow>
-				}
-			</DatePicker.TableBody>
-		</DatePicker.Table>
-	</DatePicker.View>
+  const dp = useDatePickerContext();
+  <DatePicker.View view="day">
+    <DatePicker.ViewControl>
+      <DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
+      <DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
+      <DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
+    </DatePicker.ViewControl>
+    <DatePicker.Table>
+      <DatePicker.TableHead>
+        <DatePicker.TableRow>
+          for (const weekDay of @dp.weekDays; key weekDay.short) {
+            <DatePicker.TableHeader>{weekDay.short}</DatePicker.TableHeader>
+          }
+        </DatePicker.TableRow>
+      </DatePicker.TableHead>
+      <DatePicker.TableBody>
+        for (const week of @dp.weeks; key week[0].toString()) {
+          <DatePicker.TableRow>
+            for (const day of week; key day.toString()) {
+              <DatePicker.TableCell value={day}>
+                <DatePicker.TableCellTrigger>{day.day}</DatePicker.TableCellTrigger>
+              </DatePicker.TableCell>
+            }
+          </DatePicker.TableRow>
+        }
+      </DatePicker.TableBody>
+    </DatePicker.Table>
+  </DatePicker.View>
 }
 
 component MonthView() {
-	const dp = useDatePickerContext();
-	<DatePicker.View view="month">
-		<DatePicker.ViewControl>
-			<DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
-			<DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
-			<DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
-		</DatePicker.ViewControl>
-		<DatePicker.Table>
-			<DatePicker.TableBody>
-				for (const months of @dp.getMonthsGrid(
-					{ columns: 4, format: 'short' },
-				); key months[0].value) {
-					<DatePicker.TableRow>
-						for (const month of months; key month.value) {
-							<DatePicker.TableCell value={month.value}>
-								<DatePicker.TableCellTrigger>{month.label}</DatePicker.TableCellTrigger>
-							</DatePicker.TableCell>
-						}
-					</DatePicker.TableRow>
-				}
-			</DatePicker.TableBody>
-		</DatePicker.Table>
-	</DatePicker.View>
+  const dp = useDatePickerContext();
+  <DatePicker.View view="month">
+    <DatePicker.ViewControl>
+      <DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
+      <DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
+      <DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
+    </DatePicker.ViewControl>
+    <DatePicker.Table>
+      <DatePicker.TableBody>
+        for (const months of @dp.getMonthsGrid(
+          { columns: 4, format: 'short' },
+        ); key months[0].value) {
+          <DatePicker.TableRow>
+            for (const month of months; key month.value) {
+              <DatePicker.TableCell value={month.value}>
+                <DatePicker.TableCellTrigger>{month.label}</DatePicker.TableCellTrigger>
+              </DatePicker.TableCell>
+            }
+          </DatePicker.TableRow>
+        }
+      </DatePicker.TableBody>
+    </DatePicker.Table>
+  </DatePicker.View>
 }
 
 component YearView() {
-	const dp = useDatePickerContext();
-	<DatePicker.View view="year">
-		<DatePicker.ViewControl>
-			<DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
-			<DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
-			<DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
-		</DatePicker.ViewControl>
-		<DatePicker.Table>
-			<DatePicker.TableBody>
-				for (const years of @dp.getYearsGrid({ columns: 4 }); key years[0].value) {
-					<DatePicker.TableRow>
-						for (const year of years; key year.value) {
-							<DatePicker.TableCell value={year.value}>
-								<DatePicker.TableCellTrigger>{year.label}</DatePicker.TableCellTrigger>
-							</DatePicker.TableCell>
-						}
-					</DatePicker.TableRow>
-				}
-			</DatePicker.TableBody>
-		</DatePicker.Table>
-	</DatePicker.View>
+  const dp = useDatePickerContext();
+  <DatePicker.View view="year">
+    <DatePicker.ViewControl>
+      <DatePicker.PrevTrigger>{'Prev'}</DatePicker.PrevTrigger>
+      <DatePicker.ViewTrigger><DatePicker.RangeText /></DatePicker.ViewTrigger>
+      <DatePicker.NextTrigger>{'Next'}</DatePicker.NextTrigger>
+    </DatePicker.ViewControl>
+    <DatePicker.Table>
+      <DatePicker.TableBody>
+        for (const years of @dp.getYearsGrid({ columns: 4 }); key years[0].value) {
+          <DatePicker.TableRow>
+            for (const year of years; key year.value) {
+              <DatePicker.TableCell value={year.value}>
+                <DatePicker.TableCellTrigger>{year.label}</DatePicker.TableCellTrigger>
+              </DatePicker.TableCell>
+            }
+          </DatePicker.TableRow>
+        }
+      </DatePicker.TableBody>
+    </DatePicker.Table>
+  </DatePicker.View>
 }
 
 export component ComponentUnderTest(props: {
-	lazyMount?: boolean | undefined;
-	unmountOnExit?: boolean | undefined;
-	open?: boolean | undefined;
-	onOpenChange?: ((details: any) => void) | undefined;
-	onValueChange?: ((details: any) => void) | undefined;
-	[key: string]: any;
+  lazyMount?: boolean | undefined;
+  unmountOnExit?: boolean | undefined;
+  open?: boolean | undefined;
+  onOpenChange?: ((details: any) => void) | undefined;
+  onValueChange?: ((details: any) => void) | undefined;
+  [key: string]: any;
 }) {
-	<DatePicker.Root {...props}>
-		<DatePicker.Label>{'Label'}</DatePicker.Label>
-		<DatePicker.Control>
-			<DatePicker.Input />
-			<DatePicker.Trigger>{'Open calendar'}</DatePicker.Trigger>
-			<DatePicker.ClearTrigger>{'Clear'}</DatePicker.ClearTrigger>
-		</DatePicker.Control>
-		<Portal>
-			<DatePicker.Positioner data-testid="positioner">
-				<DatePicker.Content>
-					<DayView />
-					<MonthView />
-					<YearView />
-				</DatePicker.Content>
-			</DatePicker.Positioner>
-		</Portal>
-	</DatePicker.Root>
+  <DatePicker.Root {...props}>
+    <DatePicker.Label>{'Label'}</DatePicker.Label>
+    <DatePicker.Control>
+      <DatePicker.Input />
+      <DatePicker.Trigger>{'Open calendar'}</DatePicker.Trigger>
+      <DatePicker.ClearTrigger>{'Clear'}</DatePicker.ClearTrigger>
+    </DatePicker.Control>
+    <Portal>
+      <DatePicker.Positioner data-testid="positioner">
+        <DatePicker.Content>
+          <DayView />
+          <MonthView />
+          <YearView />
+        </DatePicker.Content>
+      </DatePicker.Positioner>
+    </Portal>
+  </DatePicker.Root>
 }

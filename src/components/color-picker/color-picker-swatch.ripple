@@ -6,22 +6,22 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 
 export interface ColorPickerSwatchBaseProps extends SwatchProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerSwatchProps = ColorPickerSwatchBaseProps;
 
 export component ColorPickerSwatch(props: ColorPickerSwatchProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [respectAlpha, value, localProps] = trackSplit(@rest, ['respectAlpha', 'value']);
-	const colorPicker = useColorPickerContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const [respectAlpha, value, localProps] = trackSplit(@rest, ['respectAlpha', 'value']);
+  const colorPicker = useColorPickerContext();
 
-	const swatchProps = track(() => ({ respectAlpha: @respectAlpha, value: @value }));
-	ColorPickerSwatchPropsContext.set(swatchProps);
+  const swatchProps = track(() => ({ respectAlpha: @respectAlpha, value: @value }));
+  ColorPickerSwatchPropsContext.set(swatchProps);
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getSwatchProps(@swatchProps), @localProps));
+  let mergedProps = track(() => mergeProps(@colorPicker.getSwatchProps(@swatchProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

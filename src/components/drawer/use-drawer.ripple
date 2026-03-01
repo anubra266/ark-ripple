@@ -11,23 +11,23 @@ export interface UseDrawerProps extends Optional<Omit<drawer.Props, 'dir' | 'get
 export type UseDrawerReturn = ReturnType<typeof useDrawer>;
 
 export function useDrawer(props: UseDrawerProps = {}) {
-	const locale = useLocaleContext();
-	const env = useEnvironmentContext();
-	const id = useId();
-	const stack = useDrawerStackStoreContext();
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+  const stack = useDrawerStackStoreContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @env.getRootNode,
-			stack: @stack ?? undefined,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      stack: @stack ?? undefined,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(drawer.machine, machineProps);
-	const api = track(() => drawer.connect(service, normalizeProps));
+  const service = useMachine(drawer.machine, machineProps);
+  const api = track(() => drawer.connect(service, normalizeProps));
 
-	return api;
+  return api;
 }

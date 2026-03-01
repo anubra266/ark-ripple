@@ -3,16 +3,16 @@ import styles from 'styles/checkbox.module.css';
 import { Check, Minus } from 'lucide-ripple';
 
 export component Indeterminate() {
-	<Checkbox.Root class={styles.Root} checked="indeterminate">
-		<Checkbox.Control class={styles.Control}>
-			<Checkbox.Indicator class={styles.Indicator}>
-				<Check />
-			</Checkbox.Indicator>
-			<Checkbox.Indicator class={styles.Indicator} indeterminate>
-				<Minus />
-			</Checkbox.Indicator>
-		</Checkbox.Control>
-		<Checkbox.Label class={styles.Label}>{'Checkbox'}</Checkbox.Label>
-		<Checkbox.HiddenInput />
-	</Checkbox.Root>
+  <Checkbox.Root class={styles.Root} checked="indeterminate">
+    <Checkbox.Control class={styles.Control}>
+      <Checkbox.Indicator class={styles.Indicator}>
+        <Check />
+      </Checkbox.Indicator>
+      <Checkbox.Indicator class={styles.Indicator} indeterminate>
+        <Minus />
+      </Checkbox.Indicator>
+    </Checkbox.Control>
+    <Checkbox.Label class={styles.Label}>{'Checkbox'}</Checkbox.Label>
+    <Checkbox.HiddenInput />
+  </Checkbox.Root>
 }

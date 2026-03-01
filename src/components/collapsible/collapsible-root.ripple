@@ -6,21 +6,21 @@ import { splitCollapsibleProps } from './split-collapsible-props.ripple';
 import { ark } from '../factory';
 
 export interface CollapsibleRootBaseProps extends UseCollapsibleProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type CollapsibleRootProps = CollapsibleRootBaseProps;
 
 export component CollapsibleRoot(props: CollapsibleRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [collapsibleProps, localProps] = splitCollapsibleProps(@rest);
-	const collapsible = useCollapsible(collapsibleProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [collapsibleProps, localProps] = splitCollapsibleProps(@rest);
+  const collapsible = useCollapsible(collapsibleProps);
 
-	CollapsibleApiContext.set(collapsible);
+  CollapsibleApiContext.set(collapsible);
 
-	let mergedProps = track(() => mergeProps(@collapsible.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@collapsible.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

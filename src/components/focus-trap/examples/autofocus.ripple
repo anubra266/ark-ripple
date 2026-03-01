@@ -2,42 +2,42 @@ import { FocusTrap } from 'ark-ripple/focus-trap';
 import { track } from 'ripple';
 
 export component Autofocus() {
-	let disabled = track(true);
-	let buttonRef = track<HTMLButtonElement | null>(null);
+  let disabled = track(true);
+  let buttonRef = track<HTMLButtonElement | null>(null);
 
-	const getButtonNode = () => {
-		const node = @buttonRef;
-		if (!node) throw new Error('Button not found');
-		return node;
-	};
+  const getButtonNode = () => {
+    const node = @buttonRef;
+    if (!node) throw new Error('Button not found');
+    return node;
+  };
 
-	<div class="stack">
-		<button
-			type="button"
-			onClick={() => {
-				@disabled = !@disabled;
-			}}
-			{ref (el: HTMLButtonElement | null) => {
-				@buttonRef = el;
-			}}
-		>
-			{@disabled ? 'Start Trap' : 'End Trap'}
-		</button>
-		if (@disabled) {
-			<FocusTrap {disabled} setReturnFocus={getButtonNode}>
-				<div class="stack">
-					<input type="text" placeholder="Regular input" />
-					<input type="text" placeholder="Autofocused input" autofocus />
-					<button
-						type="button"
-						onClick={() => {
-							@disabled = true;
-						}}
-					>
-						{'End Trap'}
-					</button>
-				</div>
-			</FocusTrap>
-		}
-	</div>
+  <div class="stack">
+    <button
+      type="button"
+      onClick={() => {
+        @disabled = !@disabled;
+      }}
+      {ref (el: HTMLButtonElement | null) => {
+        @buttonRef = el;
+      }}
+    >
+      {@disabled ? 'Start Trap' : 'End Trap'}
+    </button>
+    if (@disabled) {
+      <FocusTrap {disabled} setReturnFocus={getButtonNode}>
+        <div class="stack">
+          <input type="text" placeholder="Regular input" />
+          <input type="text" placeholder="Autofocused input" autofocus />
+          <button
+            type="button"
+            onClick={() => {
+              @disabled = true;
+            }}
+          >
+            {'End Trap'}
+          </button>
+        </div>
+      </FocusTrap>
+    }
+  </div>
 }

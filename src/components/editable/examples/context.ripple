@@ -3,24 +3,24 @@ import { Pencil } from 'lucide-ripple';
 import styles from 'styles/editable.module.css';
 
 export component Context() {
-	<Editable.Root class={styles.Root} placeholder="Enter text..." defaultValue="Hello World">
-		<Editable.Label class={styles.Label}>{'Label'}</Editable.Label>
-		<Editable.Area class={styles.Area}>
-			<Editable.Input class={styles.Input} />
-			<Editable.Preview class={styles.Preview} />
-		</Editable.Area>
-		<Editable.Context>
-			component children({ context }) {
-				if (@context.editing) {
-					<span class={styles.HelperText}>{'Enter to save, Esc to cancel'}</span>
-				} else {
-					<Editable.Control class={styles.Control}>
-						<Editable.EditTrigger class={styles.EditTrigger}>
-							<Pencil />
-						</Editable.EditTrigger>
-					</Editable.Control>
-				}
-			}
-		</Editable.Context>
-	</Editable.Root>
+  <Editable.Root class={styles.Root} placeholder="Enter text..." defaultValue="Hello World">
+    <Editable.Label class={styles.Label}>{'Label'}</Editable.Label>
+    <Editable.Area class={styles.Area}>
+      <Editable.Input class={styles.Input} />
+      <Editable.Preview class={styles.Preview} />
+    </Editable.Area>
+    <Editable.Context>
+      component children({ context }) {
+        if (@context.editing) {
+          <span class={styles.HelperText}>{'Enter to save, Esc to cancel'}</span>
+        } else {
+          <Editable.Control class={styles.Control}>
+            <Editable.EditTrigger class={styles.EditTrigger}>
+              <Pencil />
+            </Editable.EditTrigger>
+          </Editable.Control>
+        }
+      }
+    </Editable.Context>
+  </Editable.Root>
 }

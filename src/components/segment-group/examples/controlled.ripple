@@ -5,22 +5,22 @@ import styles from 'styles/segment-group.module.css';
 const frameworks = ['React', 'Solid', 'Vue'];
 
 export component Controlled() {
-	let value = track<string | null>(null);
+  let value = track<string | null>(null);
 
-	<SegmentGroup.Root
-		class={styles.Root}
-		{@value}
-		onValueChange={(e) => {
-			@value = e.value;
-		}}
-	>
-		<SegmentGroup.Indicator class={styles.Indicator} />
-		for (const framework of frameworks; key framework) {
-			<SegmentGroup.Item class={styles.Item} value={framework}>
-				<SegmentGroup.ItemText class={styles.ItemText}>{framework}</SegmentGroup.ItemText>
-				<SegmentGroup.ItemControl class={styles.ItemControl} />
-				<SegmentGroup.ItemHiddenInput />
-			</SegmentGroup.Item>
-		}
-	</SegmentGroup.Root>
+  <SegmentGroup.Root
+    class={styles.Root}
+    {@value}
+    onValueChange={(e) => {
+      @value = e.value;
+    }}
+  >
+    <SegmentGroup.Indicator class={styles.Indicator} />
+    for (const framework of frameworks; key framework) {
+      <SegmentGroup.Item class={styles.Item} value={framework}>
+        <SegmentGroup.ItemText class={styles.ItemText}>{framework}</SegmentGroup.ItemText>
+        <SegmentGroup.ItemControl class={styles.ItemControl} />
+        <SegmentGroup.ItemHiddenInput />
+      </SegmentGroup.Item>
+    }
+  </SegmentGroup.Root>
 }

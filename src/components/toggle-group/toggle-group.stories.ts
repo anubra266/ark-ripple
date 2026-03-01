@@ -5,23 +5,23 @@ import { Multiple as MultipleExample } from './examples/multiple.ripple';
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Toggle Group',
+  title: 'Components/Toggle Group',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Multiple = {
-	render: () => ({ Component: MultipleExample }),
+  render: () => ({ Component: MultipleExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

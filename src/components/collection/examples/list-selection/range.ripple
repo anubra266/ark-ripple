@@ -5,55 +5,55 @@ import styles from 'styles/list-selection.module.css';
 import checkboxStyles from 'styles/checkbox.module.css';
 
 const collection = createListCollection(
-	{
-		items: [
-			{ label: 'React', value: 'react' },
-			{ label: 'Vue', value: 'vue' },
-			{ label: 'Angular', value: 'angular' },
-			{ label: 'Svelte', value: 'svelte' },
-			{ label: 'Solid', value: 'solid' },
-		],
-	},
+  {
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Angular', value: 'angular' },
+      { label: 'Svelte', value: 'svelte' },
+      { label: 'Solid', value: 'solid' },
+    ],
+  },
 );
 
 export component Range() {
-	const selection = useListSelection({ collection, selectionMode: 'multiple' });
+  const selection = useListSelection({ collection, selectionMode: 'multiple' });
 
-	const handleItemClick = (value: string, event: MouseEvent) => {
-		event.preventDefault();
-		const firstSelected = @selection.firstSelectedValue;
-		if (event.shiftKey && firstSelected) {
-			@selection.extend(firstSelected, value);
-		} else if (event.ctrlKey || event.metaKey) {
-			@selection.toggle(value);
-		} else {
-			@selection.replace(value);
-		}
-	};
+  const handleItemClick = (value: string, event: MouseEvent) => {
+    event.preventDefault();
+    const firstSelected = @selection.firstSelectedValue;
+    if (event.shiftKey && firstSelected) {
+      @selection.extend(firstSelected, value);
+    } else if (event.ctrlKey || event.metaKey) {
+      @selection.toggle(value);
+    } else {
+      @selection.replace(value);
+    }
+  };
 
-	<div class={styles.Root}>
-		<output>
-			{'Selected: '}
-			{@selection.selectedValues.join(', ') || 'None'}
-		</output>
-		for (const item of collection.items; key item.value) {
-			<Checkbox.Root
-				class={styles.Item}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				checked={@selection.isSelected(item.value)}
-				onClick={(e) => handleItemClick(item.value, e)}
-			>
-				<Checkbox.Control class={checkboxStyles.Control}>
-					<Checkbox.Indicator class={checkboxStyles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-		<p class={styles.HelperText}>
-			{'Click to select • Shift+Click for range • Cmd/Ctrl+Click to toggle'}
-		</p>
-	</div>
+  <div class={styles.Root}>
+    <output>
+      {'Selected: '}
+      {@selection.selectedValues.join(', ') || 'None'}
+    </output>
+    for (const item of collection.items; key item.value) {
+      <Checkbox.Root
+        class={styles.Item}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        checked={@selection.isSelected(item.value)}
+        onClick={(e) => handleItemClick(item.value, e)}
+      >
+        <Checkbox.Control class={checkboxStyles.Control}>
+          <Checkbox.Indicator class={checkboxStyles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+    <p class={styles.HelperText}>
+      {'Click to select • Shift+Click for range • Cmd/Ctrl+Click to toggle'}
+    </p>
+  </div>
 }

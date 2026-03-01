@@ -15,63 +15,63 @@ import { Vertical as VerticalExample } from './examples/vertical.ripple';
 import { WithMarks as WithMarksExample } from './examples/with-marks.ripple';
 
 const meta: Meta = {
-	title: 'Components/Slider',
+  title: 'Components/Slider',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const CenterOrigin = {
-	render: () => ({ Component: CenterOriginExample }),
+  render: () => ({ Component: CenterOriginExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const DraggingIndicator = {
-	render: () => ({ Component: DraggingIndicatorExample }),
+  render: () => ({ Component: DraggingIndicatorExample }),
 };
 
 export const MinMax = {
-	render: () => ({ Component: MinMaxExample }),
+  render: () => ({ Component: MinMaxExample }),
 };
 
 export const OnEvent = {
-	render: () => ({ Component: OnEventExample }),
+  render: () => ({ Component: OnEventExample }),
 };
 
 export const Range = {
-	render: () => ({ Component: RangeExample }),
+  render: () => ({ Component: RangeExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Step = {
-	render: () => ({ Component: StepExample }),
+  render: () => ({ Component: StepExample }),
 };
 
 export const ThumbAlignment = {
-	render: () => ({ Component: ThumbAlignmentExample }),
+  render: () => ({ Component: ThumbAlignmentExample }),
 };
 
 export const ThumbCollision = {
-	render: () => ({ Component: ThumbCollisionExample }),
+  render: () => ({ Component: ThumbCollisionExample }),
 };
 
 export const ThumbOverlap = {
-	render: () => ({ Component: ThumbOverlapExample }),
+  render: () => ({ Component: ThumbOverlapExample }),
 };
 
 export const Vertical = {
-	render: () => ({ Component: VerticalExample }),
+  render: () => ({ Component: VerticalExample }),
 };
 
 export const WithMarks = {
-	render: () => ({ Component: WithMarksExample }),
+  render: () => ({ Component: WithMarksExample }),
 };

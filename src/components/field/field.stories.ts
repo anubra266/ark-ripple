@@ -11,47 +11,47 @@ import { Textarea as TextareaExample } from './examples/textarea.ripple';
 import { TextareaAutoresize as TextareaAutoresizeExample } from './examples/textarea-autoresize.ripple';
 
 const meta: Meta = {
-	title: 'Components/Field',
+  title: 'Components/Field',
 };
 
 export default meta;
 
 export const CustomControl = {
-	render: () => ({ Component: CustomControlExample }),
+  render: () => ({ Component: CustomControlExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Input = {
-	render: () => ({ Component: InputExample }),
+  render: () => ({ Component: InputExample }),
 };
 
 export const Invalid = {
-	render: () => ({ Component: InvalidExample }),
+  render: () => ({ Component: InvalidExample }),
 };
 
 export const RequiredIndicator = {
-	render: () => ({ Component: RequiredIndicatorExample }),
+  render: () => ({ Component: RequiredIndicatorExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Select = {
-	render: () => ({ Component: SelectExample }),
+  render: () => ({ Component: SelectExample }),
 };
 
 export const ShadowDom = {
-	render: () => ({ Component: ShadowDomExample }),
+  render: () => ({ Component: ShadowDomExample }),
 };
 
 export const Textarea = {
-	render: () => ({ Component: TextareaExample }),
+  render: () => ({ Component: TextareaExample }),
 };
 
 export const TextareaAutoresize = {
-	render: () => ({ Component: TextareaAutoresizeExample }),
+  render: () => ({ Component: TextareaAutoresizeExample }),
 };

@@ -3,59 +3,59 @@ import { CircleAlert, Image, Upload, X } from 'lucide-ripple';
 import styles from 'styles/file-upload.module.css';
 
 export component AcceptedFileTypes() {
-	<FileUpload.Root accept="image/png,image/jpeg" class={styles.Root}>
-		<FileUpload.Label class={styles.Label}>{'Upload Images (PNG and JPEG only)'}</FileUpload.Label>
-		<FileUpload.Dropzone class={styles.Dropzone}>
-			<Upload class={styles.DropzoneIcon} />
-			<div class={styles.DropzoneContent}>
-				<span class={styles.DropzoneTitle}>{'Drop your images here'}</span>
-				<span class={styles.DropzoneDescription}>{'Only PNG and JPEG files'}</span>
-			</div>
-		</FileUpload.Dropzone>
+  <FileUpload.Root accept="image/png,image/jpeg" class={styles.Root}>
+    <FileUpload.Label class={styles.Label}>{'Upload Images (PNG and JPEG only)'}</FileUpload.Label>
+    <FileUpload.Dropzone class={styles.Dropzone}>
+      <Upload class={styles.DropzoneIcon} />
+      <div class={styles.DropzoneContent}>
+        <span class={styles.DropzoneTitle}>{'Drop your images here'}</span>
+        <span class={styles.DropzoneDescription}>{'Only PNG and JPEG files'}</span>
+      </div>
+    </FileUpload.Dropzone>
 
-		<FileUpload.Context>
-			component children({ context }) {
-				if (@context.acceptedFiles.length > 0) {
-					<FileUpload.ItemGroup class={styles.ItemGroup}>
-						for (const file of @context.acceptedFiles; key file.name) {
-							<FileUpload.Item {file} class={styles.Item}>
-								<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
-									<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
-								</FileUpload.ItemPreview>
-								<FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
-									<Image />
-								</FileUpload.ItemPreview>
-								<FileUpload.ItemName class={styles.ItemName} />
-								<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-								<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
-									<X />
-								</FileUpload.ItemDeleteTrigger>
-							</FileUpload.Item>
-						}
-					</FileUpload.ItemGroup>
-				}
+    <FileUpload.Context>
+      component children({ context }) {
+        if (@context.acceptedFiles.length > 0) {
+          <FileUpload.ItemGroup class={styles.ItemGroup}>
+            for (const file of @context.acceptedFiles; key file.name) {
+              <FileUpload.Item {file} class={styles.Item}>
+                <FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+                  <FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+                </FileUpload.ItemPreview>
+                <FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
+                  <Image />
+                </FileUpload.ItemPreview>
+                <FileUpload.ItemName class={styles.ItemName} />
+                <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+                <FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                  <X />
+                </FileUpload.ItemDeleteTrigger>
+              </FileUpload.Item>
+            }
+          </FileUpload.ItemGroup>
+        }
 
-				if (@context.rejectedFiles.length > 0) {
-					<FileUpload.ItemGroup class={styles.ItemGroup}>
-						for (const fileRejection of @context.rejectedFiles; key fileRejection.file.name) {
-							<FileUpload.Item file={fileRejection.file} class={styles.Item} data-rejected>
-								<div class={styles.ItemPreview}>
-									<CircleAlert />
-								</div>
-								<FileUpload.ItemName class={styles.ItemName} />
-								<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-								<div class={styles.ErrorList}>
-									for (const error of fileRejection.errors; key error) {
-										<div class={styles.ErrorItem}>{error}</div>
-									}
-								</div>
-							</FileUpload.Item>
-						}
-					</FileUpload.ItemGroup>
-				}
-			}
-		</FileUpload.Context>
+        if (@context.rejectedFiles.length > 0) {
+          <FileUpload.ItemGroup class={styles.ItemGroup}>
+            for (const fileRejection of @context.rejectedFiles; key fileRejection.file.name) {
+              <FileUpload.Item file={fileRejection.file} class={styles.Item} data-rejected>
+                <div class={styles.ItemPreview}>
+                  <CircleAlert />
+                </div>
+                <FileUpload.ItemName class={styles.ItemName} />
+                <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+                <div class={styles.ErrorList}>
+                  for (const error of fileRejection.errors; key error) {
+                    <div class={styles.ErrorItem}>{error}</div>
+                  }
+                </div>
+              </FileUpload.Item>
+            }
+          </FileUpload.ItemGroup>
+        }
+      }
+    </FileUpload.Context>
 
-		<FileUpload.HiddenInput />
-	</FileUpload.Root>
+    <FileUpload.HiddenInput />
+  </FileUpload.Root>
 }

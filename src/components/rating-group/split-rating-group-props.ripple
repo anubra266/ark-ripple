@@ -4,21 +4,21 @@ import type { UseRatingGroupProps } from './use-rating-group.ripple';
 const splitProps = createSplitProps<UseRatingGroupProps>();
 
 export function splitRatingGroupProps<T extends UseRatingGroupProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'allowHalf',
-		'autoFocus',
-		'count',
-		'defaultValue',
-		'disabled',
-		'form',
-		'id',
-		'ids',
-		'name',
-		'onHoverChange',
-		'onValueChange',
-		'readOnly',
-		'required',
-		'translations',
-		'value',
-	]);
+  return splitProps(props, [
+    'allowHalf',
+    'autoFocus',
+    'count',
+    'defaultValue',
+    'disabled',
+    'form',
+    'id',
+    'ids',
+    'name',
+    'onHoverChange',
+    'onValueChange',
+    'readOnly',
+    'required',
+    'translations',
+    'value',
+  ]);
 }

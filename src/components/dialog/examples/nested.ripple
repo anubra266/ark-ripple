@@ -4,47 +4,47 @@ import button from 'styles/button.module.css';
 import styles from 'styles/dialog.module.css';
 
 export component Nested() {
-	const parentDialog = useDialog();
-	const childDialog = useDialog();
+  const parentDialog = useDialog();
+  const childDialog = useDialog();
 
-	<div class="stack">
-		<button class={button.Root} onClick={() => @parentDialog.setOpen(true)}>
-			{'Open Parent Dialog'}
-		</button>
+  <div class="stack">
+    <button class={button.Root} onClick={() => @parentDialog.setOpen(true)}>
+      {'Open Parent Dialog'}
+    </button>
 
-		<Dialog.RootProvider value={parentDialog}>
-			<Portal>
-				<Dialog.Backdrop class={styles.Backdrop} />
-				<Dialog.Positioner class={styles.Positioner}>
-					<Dialog.Content class={styles.Content}>
-						<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
-						<Dialog.Title class={styles.Title}>{'Parent Dialog'}</Dialog.Title>
-						<Dialog.Description class={styles.Description}>
-							{'This is the parent dialog.'}
-						</Dialog.Description>
-						<div class={styles.Body}>
-							<button class={button.Root} onClick={() => @childDialog.setOpen(true)}>
-								{'Open Nested Dialog'}
-							</button>
-						</div>
-					</Dialog.Content>
-				</Dialog.Positioner>
-			</Portal>
-		</Dialog.RootProvider>
+    <Dialog.RootProvider value={parentDialog}>
+      <Portal>
+        <Dialog.Backdrop class={styles.Backdrop} />
+        <Dialog.Positioner class={styles.Positioner}>
+          <Dialog.Content class={styles.Content}>
+            <Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+            <Dialog.Title class={styles.Title}>{'Parent Dialog'}</Dialog.Title>
+            <Dialog.Description class={styles.Description}>
+              {'This is the parent dialog.'}
+            </Dialog.Description>
+            <div class={styles.Body}>
+              <button class={button.Root} onClick={() => @childDialog.setOpen(true)}>
+                {'Open Nested Dialog'}
+              </button>
+            </div>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.RootProvider>
 
-		<Dialog.RootProvider value={childDialog}>
-			<Portal>
-				<Dialog.Backdrop class={styles.Backdrop} />
-				<Dialog.Positioner class={styles.Positioner}>
-					<Dialog.Content class={styles.Content}>
-						<Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
-						<Dialog.Title class={styles.Title}>{'Nested Dialog'}</Dialog.Title>
-						<Dialog.Description class={styles.Description}>
-							{'This dialog is nested within the parent.'}
-						</Dialog.Description>
-					</Dialog.Content>
-				</Dialog.Positioner>
-			</Portal>
-		</Dialog.RootProvider>
-	</div>
+    <Dialog.RootProvider value={childDialog}>
+      <Portal>
+        <Dialog.Backdrop class={styles.Backdrop} />
+        <Dialog.Positioner class={styles.Positioner}>
+          <Dialog.Content class={styles.Content}>
+            <Dialog.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Dialog.CloseTrigger>
+            <Dialog.Title class={styles.Title}>{'Nested Dialog'}</Dialog.Title>
+            <Dialog.Description class={styles.Description}>
+              {'This dialog is nested within the parent.'}
+            </Dialog.Description>
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
+    </Dialog.RootProvider>
+  </div>
 }

@@ -3,23 +3,23 @@ import styles from 'styles/checkbox.module.css';
 import { Check } from 'lucide-ripple';
 
 export component Group() {
-	<Checkbox.Group class={styles.Group} defaultValue={['react']} name="framework">
-		for (const item of items; key item.value) {
-			<Checkbox.Root class={styles.Root} value={item.value}>
-				<Checkbox.Control class={styles.Control}>
-					<Checkbox.Indicator class={styles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-	</Checkbox.Group>
+  <Checkbox.Group class={styles.Group} defaultValue={['react']} name="framework">
+    for (const item of items; key item.value) {
+      <Checkbox.Root class={styles.Root} value={item.value}>
+        <Checkbox.Control class={styles.Control}>
+          <Checkbox.Indicator class={styles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+  </Checkbox.Group>
 }
 
 const items = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Vue', value: 'vue' },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
 ];

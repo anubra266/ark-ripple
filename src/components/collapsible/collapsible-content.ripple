@@ -4,20 +4,20 @@ import { useCollapsibleContext } from './use-collapsible-context';
 import { ark } from '../factory';
 
 export interface CollapsibleContentBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type CollapsibleContentProps = CollapsibleContentBaseProps;
 
 export component CollapsibleContent(props: CollapsibleContentProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const collapsible = useCollapsibleContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const collapsible = useCollapsibleContext();
 
-	let mergedProps = track(() => mergeProps(@collapsible.getContentProps(), @rest));
+  let mergedProps = track(() => mergeProps(@collapsible.getContentProps(), @rest));
 
-	if (!@collapsible.unmounted) {
-		<ark.div {...@mergedProps}>
-			<@children />
-		</ark.div>
-	}
+  if (!@collapsible.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
 }

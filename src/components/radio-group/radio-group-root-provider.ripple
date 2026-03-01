@@ -5,20 +5,20 @@ import type { UseRadioGroupReturn } from './use-radio-group.ripple';
 import { ark } from '../factory';
 
 export interface RadioGroupRootProviderBaseProps {
-	value: UseRadioGroupReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseRadioGroupReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type RadioGroupRootProviderProps = RadioGroupRootProviderBaseProps;
 
 export component RadioGroupRootProvider(props: RadioGroupRootProviderProps) {
-	const [radioGroup, children, rest] = trackSplit(props, ['value', 'children']);
+  const [radioGroup, children, rest] = trackSplit(props, ['value', 'children']);
 
-	RadioGroupApiContext.set(radioGroup);
+  RadioGroupApiContext.set(radioGroup);
 
-	let mergedProps = track(() => mergeProps(@radioGroup.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@radioGroup.getRootProps(), @rest));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

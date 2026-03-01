@@ -5,23 +5,23 @@ import { WithField as WithFieldExample } from './examples/with-field.ripple';
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Signature Pad',
+  title: 'Components/Signature Pad',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const ImagePreview = {
-	render: () => ({ Component: ImagePreviewExample }),
+  render: () => ({ Component: ImagePreviewExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

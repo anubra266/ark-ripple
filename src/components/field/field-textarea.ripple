@@ -5,32 +5,32 @@ import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
 
 export interface FieldTextareaBaseProps {
-	/**
+  /**
  * Whether the textarea should autoresize
  * @default false
  */
-	autoresize?: boolean | undefined;
-	[key: string]: any;
+  autoresize?: boolean | undefined;
+  [key: string]: any;
 }
 export type FieldTextareaProps = FieldTextareaBaseProps;
 
 export component FieldTextarea(props: FieldTextareaProps) {
-	const [autoresize, localProps] = trackSplit(props, ['autoresize']);
-	const field = useFieldContext();
+  const [autoresize, localProps] = trackSplit(props, ['autoresize']);
+  const field = useFieldContext();
 
-	let mergedProps = track(
-		() => mergeProps(
-			@field?.getTextareaProps(),
-			{ style: { resize: @autoresize ? 'none' : undefined } },
-			@localProps,
-		),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @field?.getTextareaProps(),
+      { style: { resize: @autoresize ? 'none' : undefined } },
+      @localProps,
+    ),
+  );
 
-	<ark.textarea
-		{...@mergedProps}
-		{ref (el: HTMLTextAreaElement) => {
-			if (!@autoresize) return;
-			return autoresizeTextarea(el);
-		}}
-	/>
+  <ark.textarea
+    {...@mergedProps}
+    {ref (el: HTMLTextAreaElement) => {
+      if (!@autoresize) return;
+      return autoresizeTextarea(el);
+    }}
+  />
 }

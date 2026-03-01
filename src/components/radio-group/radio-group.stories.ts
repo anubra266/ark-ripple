@@ -8,35 +8,35 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { WithFieldset as WithFieldsetExample } from './examples/with-fieldset.ripple';
 
 const meta: Meta = {
-	title: 'Components/Radio Group',
+  title: 'Components/Radio Group',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const InitialValue = {
-	render: () => ({ Component: InitialValueExample }),
+  render: () => ({ Component: InitialValueExample }),
 };
 
 export const Orientation = {
-	render: () => ({ Component: OrientationExample }),
+  render: () => ({ Component: OrientationExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const WithFieldset = {
-	render: () => ({ Component: WithFieldsetExample }),
+  render: () => ({ Component: WithFieldsetExample }),
 };

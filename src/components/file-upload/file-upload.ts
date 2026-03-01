@@ -1,83 +1,83 @@
 export type {
-	FileAcceptDetails,
-	FileChangeDetails,
-	FileRejectDetails,
-	FileValidateDetails,
-	FileError,
-	FileMimeType,
-	FileRejection,
+  FileAcceptDetails,
+  FileChangeDetails,
+  FileRejectDetails,
+  FileValidateDetails,
+  FileError,
+  FileMimeType,
+  FileRejection,
 } from '@zag-js/file-upload';
 export {
-	FileUploadClearTrigger as ClearTrigger,
-	type FileUploadClearTriggerBaseProps as ClearTriggerBaseProps,
-	type FileUploadClearTriggerProps as ClearTriggerProps,
+  FileUploadClearTrigger as ClearTrigger,
+  type FileUploadClearTriggerBaseProps as ClearTriggerBaseProps,
+  type FileUploadClearTriggerProps as ClearTriggerProps,
 } from './file-upload-clear-trigger.ripple';
 export {
-	FileUploadContext as Context,
-	type FileUploadContextProps as ContextProps,
+  FileUploadContext as Context,
+  type FileUploadContextProps as ContextProps,
 } from './file-upload-context.ripple';
 export {
-	FileUploadDropzone as Dropzone,
-	type FileUploadDropzoneBaseProps as DropzoneBaseProps,
-	type FileUploadDropzoneProps as DropzoneProps,
+  FileUploadDropzone as Dropzone,
+  type FileUploadDropzoneBaseProps as DropzoneBaseProps,
+  type FileUploadDropzoneProps as DropzoneProps,
 } from './file-upload-dropzone.ripple';
 export {
-	FileUploadHiddenInput as HiddenInput,
-	type FileUploadHiddenInputBaseProps as HiddenInputBaseProps,
-	type FileUploadHiddenInputProps as HiddenInputProps,
+  FileUploadHiddenInput as HiddenInput,
+  type FileUploadHiddenInputBaseProps as HiddenInputBaseProps,
+  type FileUploadHiddenInputProps as HiddenInputProps,
 } from './file-upload-hidden-input.ripple';
 export {
-	FileUploadItem as Item,
-	type FileUploadItemBaseProps as ItemBaseProps,
-	type FileUploadItemProps as ItemProps,
+  FileUploadItem as Item,
+  type FileUploadItemBaseProps as ItemBaseProps,
+  type FileUploadItemProps as ItemProps,
 } from './file-upload-item.ripple';
 export {
-	FileUploadItemDeleteTrigger as ItemDeleteTrigger,
-	type FileUploadItemDeleteTriggerBaseProps as ItemDeleteTriggerBaseProps,
-	type FileUploadItemDeleteTriggerProps as ItemDeleteTriggerProps,
+  FileUploadItemDeleteTrigger as ItemDeleteTrigger,
+  type FileUploadItemDeleteTriggerBaseProps as ItemDeleteTriggerBaseProps,
+  type FileUploadItemDeleteTriggerProps as ItemDeleteTriggerProps,
 } from './file-upload-item-delete-trigger.ripple';
 export {
-	FileUploadItemGroup as ItemGroup,
-	type FileUploadItemGroupBaseProps as ItemGroupBaseProps,
-	type FileUploadItemGroupProps as ItemGroupProps,
+  FileUploadItemGroup as ItemGroup,
+  type FileUploadItemGroupBaseProps as ItemGroupBaseProps,
+  type FileUploadItemGroupProps as ItemGroupProps,
 } from './file-upload-item-group.ripple';
 export {
-	FileUploadItemName as ItemName,
-	type FileUploadItemNameBaseProps as ItemNameBaseProps,
-	type FileUploadItemNameProps as ItemNameProps,
+  FileUploadItemName as ItemName,
+  type FileUploadItemNameBaseProps as ItemNameBaseProps,
+  type FileUploadItemNameProps as ItemNameProps,
 } from './file-upload-item-name.ripple';
 export {
-	FileUploadItemPreview as ItemPreview,
-	type FileUploadItemPreviewBaseProps as ItemPreviewBaseProps,
-	type FileUploadItemPreviewProps as ItemPreviewProps,
+  FileUploadItemPreview as ItemPreview,
+  type FileUploadItemPreviewBaseProps as ItemPreviewBaseProps,
+  type FileUploadItemPreviewProps as ItemPreviewProps,
 } from './file-upload-item-preview.ripple';
 export {
-	FileUploadItemPreviewImage as ItemPreviewImage,
-	type FileUploadItemPreviewImageBaseProps as ItemPreviewImageBaseProps,
-	type FileUploadItemPreviewImageProps as ItemPreviewImageProps,
+  FileUploadItemPreviewImage as ItemPreviewImage,
+  type FileUploadItemPreviewImageBaseProps as ItemPreviewImageBaseProps,
+  type FileUploadItemPreviewImageProps as ItemPreviewImageProps,
 } from './file-upload-item-preview-image.ripple';
 export {
-	FileUploadItemSizeText as ItemSizeText,
-	type FileUploadItemSizeTextBaseProps as ItemSizeTextBaseProps,
-	type FileUploadItemSizeTextProps as ItemSizeTextProps,
+  FileUploadItemSizeText as ItemSizeText,
+  type FileUploadItemSizeTextBaseProps as ItemSizeTextBaseProps,
+  type FileUploadItemSizeTextProps as ItemSizeTextProps,
 } from './file-upload-item-size-text.ripple';
 export {
-	FileUploadLabel as Label,
-	type FileUploadLabelBaseProps as LabelBaseProps,
-	type FileUploadLabelProps as LabelProps,
+  FileUploadLabel as Label,
+  type FileUploadLabelBaseProps as LabelBaseProps,
+  type FileUploadLabelProps as LabelProps,
 } from './file-upload-label.ripple';
 export {
-	FileUploadRoot as Root,
-	type FileUploadRootBaseProps as RootBaseProps,
-	type FileUploadRootProps as RootProps,
+  FileUploadRoot as Root,
+  type FileUploadRootBaseProps as RootBaseProps,
+  type FileUploadRootProps as RootProps,
 } from './file-upload-root.ripple';
 export {
-	FileUploadRootProvider as RootProvider,
-	type FileUploadRootProviderBaseProps as RootProviderBaseProps,
-	type FileUploadRootProviderProps as RootProviderProps,
+  FileUploadRootProvider as RootProvider,
+  type FileUploadRootProviderBaseProps as RootProviderBaseProps,
+  type FileUploadRootProviderProps as RootProviderProps,
 } from './file-upload-root-provider.ripple';
 export {
-	FileUploadTrigger as Trigger,
-	type FileUploadTriggerBaseProps as TriggerBaseProps,
-	type FileUploadTriggerProps as TriggerProps,
+  FileUploadTrigger as Trigger,
+  type FileUploadTriggerBaseProps as TriggerBaseProps,
+  type FileUploadTriggerProps as TriggerProps,
 } from './file-upload-trigger.ripple';

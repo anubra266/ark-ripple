@@ -1,13 +1,13 @@
 import { Context } from 'ripple';
 
 export interface ValueChangeDetails {
-	value: string;
+  value: string;
 }
 
 export interface UseMenuItemGroupContext {
-	id: string;
-	value?: string | undefined;
-	onValueChange?: ((e: ValueChangeDetails) => void) | undefined;
+  id: string;
+  value?: string | undefined;
+  onValueChange?: ((e: ValueChangeDetails) => void) | undefined;
 }
 
 export const MenuItemGroupContext = new Context<UseMenuItemGroupContext>();

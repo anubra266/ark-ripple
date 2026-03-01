@@ -6,17 +6,17 @@ import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
 
 export interface AngleSliderMarkerBaseProps extends MarkerProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type AngleSliderMarkerProps = AngleSliderMarkerBaseProps;
 
 export component AngleSliderMarker(props: AngleSliderMarkerProps) {
-	const [value, localProps] = trackSplit(props, ['value']);
-	const angleSlider = useAngleSliderContext();
+  const [value, localProps] = trackSplit(props, ['value']);
+  const angleSlider = useAngleSliderContext();
 
-	let mergedProps = track(
-		() => mergeProps(@angleSlider.getMarkerProps({ value: @value }), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@angleSlider.getMarkerProps({ value: @value }), @localProps),
+  );
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

@@ -5,20 +5,20 @@ import type { UseTimerReturn } from './use-timer.ripple';
 import { ark } from '../factory';
 
 export interface TimerRootProviderBaseProps {
-	value: UseTimerReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseTimerReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type TimerRootProviderProps = TimerRootProviderBaseProps;
 
 export component TimerRootProvider(props: TimerRootProviderProps) {
-	const [timer, children, localProps] = trackSplit(props, ['value', 'children']);
+  const [timer, children, localProps] = trackSplit(props, ['value', 'children']);
 
-	TimerApiContext.set(timer);
+  TimerApiContext.set(timer);
 
-	let mergedProps = track(() => mergeProps(@timer.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@timer.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

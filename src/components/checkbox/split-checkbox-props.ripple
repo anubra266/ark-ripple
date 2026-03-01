@@ -4,18 +4,18 @@ import type { UseCheckboxProps } from './use-checkbox.ripple';
 const splitProps = createSplitProps<UseCheckboxProps>();
 
 export function splitCheckboxProps<T extends UseCheckboxProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'checked',
-		'defaultChecked',
-		'disabled',
-		'form',
-		'id',
-		'ids',
-		'invalid',
-		'name',
-		'onCheckedChange',
-		'readOnly',
-		'required',
-		'value',
-	]);
+  return splitProps(props, [
+    'checked',
+    'defaultChecked',
+    'disabled',
+    'form',
+    'id',
+    'ids',
+    'invalid',
+    'name',
+    'onCheckedChange',
+    'readOnly',
+    'required',
+    'value',
+  ]);
 }

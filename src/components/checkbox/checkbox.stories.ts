@@ -18,75 +18,75 @@ import { WithField as WithFieldExample } from './examples/with-field.ripple';
 import { WithForm as WithFormExample } from './examples/with-form.ripple';
 
 const meta: Meta = {
-	title: 'Components/Checkbox',
+  title: 'Components/Checkbox',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const DefaultChecked = {
-	render: () => ({ Component: DefaultCheckedExample }),
+  render: () => ({ Component: DefaultCheckedExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Group = {
-	render: () => ({ Component: GroupExample }),
+  render: () => ({ Component: GroupExample }),
 };
 
 export const GroupControlled = {
-	render: () => ({ Component: GroupControlledExample }),
+  render: () => ({ Component: GroupControlledExample }),
 };
 
 export const GroupProvider = {
-	render: () => ({ Component: GroupProviderExample }),
+  render: () => ({ Component: GroupProviderExample }),
 };
 
 export const GroupWithFieldset = {
-	render: () => ({ Component: GroupWithFieldsetExample }),
+  render: () => ({ Component: GroupWithFieldsetExample }),
 };
 
 export const GroupWithForm = {
-	render: () => ({ Component: GroupWithFormExample }),
+  render: () => ({ Component: GroupWithFormExample }),
 };
 
 export const GroupWithInvalid = {
-	render: () => ({ Component: GroupWithInvalidExample }),
+  render: () => ({ Component: GroupWithInvalidExample }),
 };
 
 export const GroupWithMaxSelected = {
-	render: () => ({ Component: GroupWithMaxSelectedExample }),
+  render: () => ({ Component: GroupWithMaxSelectedExample }),
 };
 
 export const GroupWithSelectAll = {
-	render: () => ({ Component: GroupWithSelectAllExample }),
+  render: () => ({ Component: GroupWithSelectAllExample }),
 };
 
 export const Indeterminate = {
-	render: () => ({ Component: IndeterminateExample }),
+  render: () => ({ Component: IndeterminateExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };
 
 export const WithForm = {
-	render: () => ({ Component: WithFormExample }),
+  render: () => ({ Component: WithFormExample }),
 };

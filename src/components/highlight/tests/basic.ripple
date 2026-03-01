@@ -1,35 +1,35 @@
 import { Highlight } from '../index';
 
 export component HighlightBasicTest() {
-	<p data-testid="output">
-		<Highlight query="component" text="Ark UI is a headless component library." />
-	</p>
+  <p data-testid="output">
+    <Highlight query="component" text="Ark UI is a headless component library." />
+  </p>
 }
 
 export component HighlightIgnoreCaseTest() {
-	<p data-testid="output">
-		<Highlight
-			query="typescript"
-			text="TypeScript provides static type checking. Using typescript helps."
-			ignoreCase
-		/>
-	</p>
+  <p data-testid="output">
+    <Highlight
+      query="typescript"
+      text="TypeScript provides static type checking. Using typescript helps."
+      ignoreCase
+    />
+  </p>
 }
 
 export component HighlightMatchAllTest() {
-	<p data-testid="output">
-		<Highlight query="component" text="Each component is a component." matchAll />
-	</p>
+  <p data-testid="output">
+    <Highlight query="component" text="Each component is a component." matchAll />
+  </p>
 }
 
 export component HighlightExactMatchTest() {
-	<p data-testid="output">
-		<Highlight query="box" text="The checkbox renders a box." exactMatch matchAll />
-	</p>
+  <p data-testid="output">
+    <Highlight query="box" text="The checkbox renders a box." exactMatch matchAll />
+  </p>
 }
 
 export component HighlightMultipleTest() {
-	<p data-testid="output">
-		<Highlight query={['React', 'Vue']} text="Ark UI provides React, Solid, Vue components." />
-	</p>
+  <p data-testid="output">
+    <Highlight query={['React', 'Vue']} text="Ark UI provides React, Solid, Vue components." />
+  </p>
 }

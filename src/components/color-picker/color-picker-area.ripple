@@ -6,22 +6,22 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 
 export interface ColorPickerAreaBaseProps extends AreaProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerAreaProps = ColorPickerAreaBaseProps;
 
 export component ColorPickerArea(props: ColorPickerAreaProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [xChannel, yChannel, localProps] = trackSplit(@rest, ['xChannel', 'yChannel']);
-	const colorPicker = useColorPickerContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const [xChannel, yChannel, localProps] = trackSplit(@rest, ['xChannel', 'yChannel']);
+  const colorPicker = useColorPickerContext();
 
-	const areaProps = track(() => ({ xChannel: @xChannel, yChannel: @yChannel }));
-	ColorPickerAreaPropsContext.set(areaProps);
+  const areaProps = track(() => ({ xChannel: @xChannel, yChannel: @yChannel }));
+  ColorPickerAreaPropsContext.set(areaProps);
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getAreaProps(@areaProps), @localProps));
+  let mergedProps = track(() => mergeProps(@colorPicker.getAreaProps(@areaProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

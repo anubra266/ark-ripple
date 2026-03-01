@@ -1,13 +1,13 @@
 import { Field } from 'ark-ripple/field';
 
 export component ComponentUnderTest(props: Field.RootProps) {
-	<Field.Root {...props}>
-		<Field.Label>
-			{'Label'}
-			<Field.RequiredIndicator />
-		</Field.Label>
-		<Field.Input />
-		<Field.HelperText>{'Some additional Info'}</Field.HelperText>
-		<Field.ErrorText>{'Error Info'}</Field.ErrorText>
-	</Field.Root>
+  <Field.Root {...props}>
+    <Field.Label>
+      {'Label'}
+      <Field.RequiredIndicator />
+    </Field.Label>
+    <Field.Input />
+    <Field.HelperText>{'Some additional Info'}</Field.HelperText>
+    <Field.ErrorText>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
 }

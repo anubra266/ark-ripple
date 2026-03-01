@@ -4,20 +4,20 @@ import { useFieldsetContext } from './use-fieldset-context';
 import { ark } from '../factory';
 
 export interface FieldsetErrorTextBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FieldsetErrorTextProps = FieldsetErrorTextBaseProps;
 
 export component FieldsetErrorText(props: FieldsetErrorTextProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const fieldset = useFieldsetContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const fieldset = useFieldsetContext();
 
-	const mergedProps = track(() => mergeProps(@fieldset?.getErrorTextProps(), @localProps));
+  const mergedProps = track(() => mergeProps(@fieldset?.getErrorTextProps(), @localProps));
 
-	if (@fieldset?.invalid) {
-		<ark.span {...@mergedProps}>
-			<@children />
-		</ark.span>
-	}
+  if (@fieldset?.invalid) {
+    <ark.span {...@mergedProps}>
+      <@children />
+    </ark.span>
+  }
 }

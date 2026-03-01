@@ -17,71 +17,71 @@ import { SelectOnHighlight as SelectOnHighlightExample } from './examples/select
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components/Select',
+  title: 'Components/Select',
 };
 
 export default meta;
 
 export const Async = {
-	render: () => ({ Component: AsyncExample }),
+  render: () => ({ Component: AsyncExample }),
 };
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const DynamicItems = {
-	render: () => ({ Component: DynamicItemsExample }),
+  render: () => ({ Component: DynamicItemsExample }),
 };
 
 export const FormLibrary = {
-	render: () => ({ Component: FormLibraryExample }),
+  render: () => ({ Component: FormLibraryExample }),
 };
 
 export const FullyControlled = {
-	render: () => ({ Component: FullyControlledExample }),
+  render: () => ({ Component: FullyControlledExample }),
 };
 
 export const Grouping = {
-	render: () => ({ Component: GroupingExample }),
+  render: () => ({ Component: GroupingExample }),
 };
 
 export const LazyMount = {
-	render: () => ({ Component: LazyMountExample }),
+  render: () => ({ Component: LazyMountExample }),
 };
 
 export const MaxSelected = {
-	render: () => ({ Component: MaxSelectedExample }),
+  render: () => ({ Component: MaxSelectedExample }),
 };
 
 export const Multiple = {
-	render: () => ({ Component: MultipleExample }),
+  render: () => ({ Component: MultipleExample }),
 };
 
 export const Overflow = {
-	render: () => ({ Component: OverflowExample }),
+  render: () => ({ Component: OverflowExample }),
 };
 
 export const ReactiveCollection = {
-	render: () => ({ Component: ReactiveCollectionExample }),
+  render: () => ({ Component: ReactiveCollectionExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const SelectAll = {
-	render: () => ({ Component: SelectAllExample }),
+  render: () => ({ Component: SelectAllExample }),
 };
 
 export const SelectOnHighlight = {
-	render: () => ({ Component: SelectOnHighlightExample }),
+  render: () => ({ Component: SelectOnHighlightExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };

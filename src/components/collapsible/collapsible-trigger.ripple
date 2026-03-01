@@ -4,18 +4,18 @@ import { useCollapsibleContext } from './use-collapsible-context';
 import { ark } from '../factory';
 
 export interface CollapsibleTriggerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type CollapsibleTriggerProps = CollapsibleTriggerBaseProps;
 
 export component CollapsibleTrigger(props: CollapsibleTriggerProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const collapsible = useCollapsibleContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const collapsible = useCollapsibleContext();
 
-	let mergedProps = track(() => mergeProps(@collapsible.getTriggerProps(), @rest));
+  let mergedProps = track(() => mergeProps(@collapsible.getTriggerProps(), @rest));
 
-	<ark.button {...@mergedProps}>
-		<@children />
-	</ark.button>
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
 }

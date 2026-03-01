@@ -4,18 +4,18 @@ import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
 
 export interface ClipboardControlBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ClipboardControlProps = ClipboardControlBaseProps;
 
 export component ClipboardControl(props: ClipboardControlProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const clipboard = useClipboardContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const clipboard = useClipboardContext();
 
-	const mergedProps = track(() => mergeProps(@clipboard.getControlProps(), @localProps));
+  const mergedProps = track(() => mergeProps(@clipboard.getControlProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

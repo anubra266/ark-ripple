@@ -6,25 +6,25 @@ import { useLocaleContext } from '../../providers/locale';
 import type { Optional } from '../../types';
 
 export interface UseAngleSliderProps extends Optional<
-	Omit<angleSlider.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<angleSlider.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseAngleSliderReturn = ReturnType<typeof useAngleSlider>;
 
 export function useAngleSlider(props: UseAngleSliderProps = {}) {
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(angleSlider.machine, machineProps);
+  const service = useMachine(angleSlider.machine, machineProps);
 
-	return track(() => angleSlider.connect(service, normalizeProps));
+  return track(() => angleSlider.connect(service, normalizeProps));
 }

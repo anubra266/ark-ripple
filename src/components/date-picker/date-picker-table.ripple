@@ -8,23 +8,23 @@ import { useId } from '../../utils/use-id';
 import { ark } from '../factory';
 
 export interface DatePickerTableBaseProps extends Pick<TableProps, 'columns'> {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerTableProps = DatePickerTableBaseProps;
 
 export component DatePickerTable(props: DatePickerTableProps) {
-	const [children, columns, localProps] = trackSplit(props, ['children', 'columns']);
-	const datePicker = useDatePickerContext();
-	const viewProps = useDatePickerViewPropsContext();
-	const id = useId();
+  const [children, columns, localProps] = trackSplit(props, ['children', 'columns']);
+  const datePicker = useDatePickerContext();
+  const viewProps = useDatePickerViewPropsContext();
+  const id = useId();
 
-	const tableProps = track(() => ({ columns: @columns, id, ...@viewProps }));
-	let mergedProps = track(() => mergeProps(@datePicker.getTableProps(@tableProps), @localProps));
+  const tableProps = track(() => ({ columns: @columns, id, ...@viewProps }));
+  let mergedProps = track(() => mergeProps(@datePicker.getTableProps(@tableProps), @localProps));
 
-	DatePickerTablePropsContext.set(tableProps);
+  DatePickerTablePropsContext.set(tableProps);
 
-	<ark.table {...@mergedProps}>
-		<@children />
-	</ark.table>
+  <ark.table {...@mergedProps}>
+    <@children />
+  </ark.table>
 }

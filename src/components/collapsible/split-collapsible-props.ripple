@@ -4,17 +4,17 @@ import type { UseCollapsibleProps } from './use-collapsible.ripple';
 const splitProps = createSplitProps<UseCollapsibleProps>();
 
 export function splitCollapsibleProps<T extends UseCollapsibleProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'id',
-		'ids',
-		'open',
-		'defaultOpen',
-		'disabled',
-		'collapsedHeight',
-		'collapsedWidth',
-		'onOpenChange',
-		'onExitComplete',
-		'lazyMount',
-		'unmountOnExit',
-	]);
+  return splitProps(props, [
+    'id',
+    'ids',
+    'open',
+    'defaultOpen',
+    'disabled',
+    'collapsedHeight',
+    'collapsedWidth',
+    'onOpenChange',
+    'onExitComplete',
+    'lazyMount',
+    'unmountOnExit',
+  ]);
 }

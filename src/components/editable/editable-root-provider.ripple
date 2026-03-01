@@ -5,20 +5,20 @@ import type { UseEditableReturn } from './use-editable.ripple';
 import { ark } from '../factory';
 
 export interface EditableRootProviderBaseProps {
-	value: UseEditableReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseEditableReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type EditableRootProviderProps = EditableRootProviderBaseProps;
 
 export component EditableRootProvider(props: EditableRootProviderProps) {
-	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
 
-	EditableApiContext.set(value);
+  EditableApiContext.set(value);
 
-	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

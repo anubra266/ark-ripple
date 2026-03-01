@@ -6,27 +6,27 @@ import { Conditional as ConditionalExample } from './examples/conditional.ripple
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Segment Group',
+  title: 'Components/Segment Group',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const Conditional = {
-	render: () => ({ Component: ConditionalExample }),
+  render: () => ({ Component: ConditionalExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

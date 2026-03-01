@@ -9,17 +9,17 @@ export interface FileUploadItemNameBaseProps extends PolymorphicProps<'div'> {}
 export interface FileUploadItemNameProps extends HTMLProps<'div'>, FileUploadItemNameBaseProps {}
 
 export component FileUploadItemName(props: FileUploadItemNameProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const fileUpload = useFileUploadContext();
-	const itemProps = useFileUploadItemPropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const fileUpload = useFileUploadContext();
+  const itemProps = useFileUploadItemPropsContext();
 
-	let mergedProps = track(() => mergeProps(@fileUpload.getItemNameProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@fileUpload.getItemNameProps(@itemProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@itemProps.file.name}
-		}
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@itemProps.file.name}
+    }
+  </ark.div>
 }

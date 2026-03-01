@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useMenuContext, type UseMenuContext } from './use-menu-context';
 
 export interface MenuContextProps {
-	children: (context: UseMenuContext) => any;
+  children: (context: UseMenuContext) => any;
 }
 
 export component MenuContext(props: MenuContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useMenuContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useMenuContext();
 
-	<@children {context} />
+  <@children {context} />
 }

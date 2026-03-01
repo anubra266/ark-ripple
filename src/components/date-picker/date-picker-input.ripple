@@ -5,16 +5,16 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 
 export interface DatePickerInputBaseProps extends InputProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type DatePickerInputProps = DatePickerInputBaseProps;
 
 export component DatePickerInput(props: DatePickerInputProps) {
-	const [index, fixOnBlur, localProps] = trackSplit(props, ['index', 'fixOnBlur']);
-	const datePicker = useDatePickerContext();
+  const [index, fixOnBlur, localProps] = trackSplit(props, ['index', 'fixOnBlur']);
+  const datePicker = useDatePickerContext();
 
-	const inputProps = track(() => ({ index: @index, fixOnBlur: @fixOnBlur }));
-	let mergedProps = track(() => mergeProps(@datePicker.getInputProps(@inputProps), @localProps));
+  const inputProps = track(() => ({ index: @index, fixOnBlur: @fixOnBlur }));
+  let mergedProps = track(() => mergeProps(@datePicker.getInputProps(@inputProps), @localProps));
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

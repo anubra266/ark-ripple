@@ -7,193 +7,193 @@ import { useFieldsetContext } from '../fieldset/use-fieldset-context';
 import { parts } from './field.anatomy';
 
 export interface ElementIds {
-	root?: string;
-	control?: string;
-	label?: string;
-	errorText?: string;
-	helperText?: string;
+  root?: string;
+  control?: string;
+  label?: string;
+  errorText?: string;
+  helperText?: string;
 }
 
 export interface UseFieldProps {
-	/**
+  /**
  * The id of the field.
  */
-	id?: string | undefined;
-	/**
+  id?: string | undefined;
+  /**
  * The ids of the field parts.
  */
-	ids?: ElementIds | undefined;
-	/**
+  ids?: ElementIds | undefined;
+  /**
  * Indicates whether the field is required.
  */
-	required?: boolean | undefined;
-	/**
+  required?: boolean | undefined;
+  /**
  * Indicates whether the field is disabled.
  */
-	disabled?: boolean | undefined;
-	/**
+  disabled?: boolean | undefined;
+  /**
  * Indicates whether the field is invalid.
  */
-	invalid?: boolean | undefined;
-	/**
+  invalid?: boolean | undefined;
+  /**
  * Indicates whether the field is read-only.
  */
-	readOnly?: boolean | undefined;
+  readOnly?: boolean | undefined;
 }
 
 export type UseFieldReturn = ReturnType<typeof useField>;
 
 export function useField(inProps: UseFieldProps = {}) {
-	const fieldset = useFieldsetContext();
-	const env = useEnvironmentContext();
+  const fieldset = useFieldsetContext();
+  const env = useEnvironmentContext();
 
-	const props = track(() => {
-		const resolvedProps = runIfFn(@inProps);
-		ensureProps(resolvedProps, ['id']);
-		return resolvedProps;
-	});
+  const props = track(() => {
+    const resolvedProps = runIfFn(@inProps);
+    ensureProps(resolvedProps, ['id']);
+    return resolvedProps;
+  });
 
-	const id = track(() => @props.@id);
-	const ids = track(() => @props.@ids);
+  const id = track(() => @props.@id);
+  const ids = track(() => @props.@ids);
 
-	const disabled = track(() => @props.@disabled);
-	const invalid = track(() => @props.@invalid);
-	const readOnly = track(() => @props.@readOnly);
-	const required = track(() => @props.@required);
+  const disabled = track(() => @props.@disabled);
+  const invalid = track(() => @props.@invalid);
+  const readOnly = track(() => @props.@readOnly);
+  const required = track(() => @props.@required);
 
-	let hasErrorText = track(false);
-	let hasHelperText = track(false);
+  let hasErrorText = track(false);
+  let hasHelperText = track(false);
 
-	let rootRef = track<Element | null>(null);
-	const setRootRef = (el: Element | null) => {
-		@rootRef = el;
-	};
+  let rootRef = track<Element | null>(null);
+  const setRootRef = (el: Element | null) => {
+    @rootRef = el;
+  };
 
-	const rootId = track(() => @ids?.root ?? `field::${@id}`);
-	const controlId = track(() => @ids?.control ?? `field::${@id}::control`);
-	const labelId = track(() => @ids?.label ?? `field::${@id}::label`);
-	const errorTextId = track(() => @ids?.errorText ?? `field::${@id}::error-text`);
-	const helperTextId = track(() => @ids?.helperText ?? `field::${@id}::helper-text`);
+  const rootId = track(() => @ids?.root ?? `field::${@id}`);
+  const controlId = track(() => @ids?.control ?? `field::${@id}::control`);
+  const labelId = track(() => @ids?.label ?? `field::${@id}::label`);
+  const errorTextId = track(() => @ids?.errorText ?? `field::${@id}::error-text`);
+  const helperTextId = track(() => @ids?.helperText ?? `field::${@id}::helper-text`);
 
-	const setHasErrorText = (v: boolean) => {
-		@hasErrorText = v;
-	};
-	const setHasHelperText = (v: boolean) => {
-		@hasHelperText = v;
-	};
+  const setHasErrorText = (v: boolean) => {
+    @hasErrorText = v;
+  };
+  const setHasHelperText = (v: boolean) => {
+    @hasHelperText = v;
+  };
 
-	const checkTextElements = () => {
-		if (!@rootRef) return;
-		const doc = @env.getRootNode();
-		setHasErrorText(!!doc.getElementById(@errorTextId));
-		setHasHelperText(!!doc.getElementById(@helperTextId));
-	};
+  const checkTextElements = () => {
+    if (!@rootRef) return;
+    const doc = @env.getRootNode();
+    setHasErrorText(!!doc.getElementById(@errorTextId));
+    setHasHelperText(!!doc.getElementById(@helperTextId));
+  };
 
-	onMount(() => {
-		checkTextElements();
+  onMount(() => {
+    checkTextElements();
 
-		if (@rootRef) {
-			const win = @env.getWindow();
-			const observer = new win.MutationObserver(checkTextElements);
-			observer.observe(@rootRef, { childList: true, subtree: true });
-			return () => observer.disconnect();
-		}
-	});
+    if (@rootRef) {
+      const win = @env.getWindow();
+      const observer = new win.MutationObserver(checkTextElements);
+      observer.observe(@rootRef, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }
+  });
 
-	const labelIds = () => {
-		const ids: string[] = [];
-		if (@hasErrorText && @invalid) ids.push(@errorTextId);
-		if (@hasHelperText) ids.push(@helperTextId);
-		return ids.join(' ') || undefined;
-	};
+  const labelIds = () => {
+    const ids: string[] = [];
+    if (@hasErrorText && @invalid) ids.push(@errorTextId);
+    if (@hasHelperText) ids.push(@helperTextId);
+    return ids.join(' ') || undefined;
+  };
 
-	const getRootProps = () => ({
-		...parts.root.attrs,
-		id: @rootId,
-		role: 'group' as const,
-		'data-disabled': dataAttr(@disabled),
-		'data-invalid': dataAttr(@invalid),
-		'data-readonly': dataAttr(@readOnly),
-	});
+  const getRootProps = () => ({
+    ...parts.root.attrs,
+    id: @rootId,
+    role: 'group' as const,
+    'data-disabled': dataAttr(@disabled),
+    'data-invalid': dataAttr(@invalid),
+    'data-readonly': dataAttr(@readOnly),
+  });
 
-	const getLabelProps = () => ({
-		...parts.label.attrs,
-		id: @labelId,
-		for: @controlId,
-		'data-disabled': dataAttr(@disabled),
-		'data-invalid': dataAttr(@invalid),
-		'data-readonly': dataAttr(@readOnly),
-		'data-required': dataAttr(@required),
-	});
+  const getLabelProps = () => ({
+    ...parts.label.attrs,
+    id: @labelId,
+    for: @controlId,
+    'data-disabled': dataAttr(@disabled),
+    'data-invalid': dataAttr(@invalid),
+    'data-readonly': dataAttr(@readOnly),
+    'data-required': dataAttr(@required),
+  });
 
-	const getControlProps = () => ({
-		'aria-describedby': labelIds(),
-		'aria-invalid': ariaAttr(@invalid),
-		'data-invalid': dataAttr(@invalid),
-		'data-required': dataAttr(@required),
-		'data-readonly': dataAttr(@readOnly),
-		id: @controlId,
-		required: @required,
-		disabled: @disabled,
-		readOnly: @readOnly,
-	});
+  const getControlProps = () => ({
+    'aria-describedby': labelIds(),
+    'aria-invalid': ariaAttr(@invalid),
+    'data-invalid': dataAttr(@invalid),
+    'data-required': dataAttr(@required),
+    'data-readonly': dataAttr(@readOnly),
+    id: @controlId,
+    required: @required,
+    disabled: @disabled,
+    readOnly: @readOnly,
+  });
 
-	const getInputProps = () => ({
-		...getControlProps(),
-		...parts.input.attrs,
-	});
+  const getInputProps = () => ({
+    ...getControlProps(),
+    ...parts.input.attrs,
+  });
 
-	const getTextareaProps = () => ({
-		...getControlProps(),
-		...parts.textarea.attrs,
-	});
+  const getTextareaProps = () => ({
+    ...getControlProps(),
+    ...parts.textarea.attrs,
+  });
 
-	const getSelectProps = () => ({
-		...getControlProps(),
-		...parts.select.attrs,
-	});
+  const getSelectProps = () => ({
+    ...getControlProps(),
+    ...parts.select.attrs,
+  });
 
-	const getHelperTextProps = () => ({
-		id: @helperTextId,
-		...parts.helperText.attrs,
-		'data-disabled': dataAttr(@disabled),
-	});
+  const getHelperTextProps = () => ({
+    id: @helperTextId,
+    ...parts.helperText.attrs,
+    'data-disabled': dataAttr(@disabled),
+  });
 
-	const getErrorTextProps = () => ({
-		id: @errorTextId,
-		...parts.errorText.attrs,
-		'aria-live': 'polite' as const,
-	});
+  const getErrorTextProps = () => ({
+    id: @errorTextId,
+    ...parts.errorText.attrs,
+    'aria-live': 'polite' as const,
+  });
 
-	const getRequiredIndicatorProps = () => ({
-		'aria-hidden': true,
-		...parts.requiredIndicator.attrs,
-	});
+  const getRequiredIndicatorProps = () => ({
+    'aria-hidden': true,
+    ...parts.requiredIndicator.attrs,
+  });
 
-	return track(
-		() => ({
-			setRootRef,
-			ariaDescribedby: labelIds(),
-			ids: {
-				root: @rootId,
-				control: @controlId,
-				label: @labelId,
-				errorText: @errorTextId,
-				helperText: @helperTextId,
-			},
-			disabled: @disabled,
-			invalid: @invalid,
-			readOnly: @readOnly,
-			required: @required,
-			getRootProps,
-			getLabelProps,
-			getControlProps,
-			getInputProps,
-			getTextareaProps,
-			getSelectProps,
-			getHelperTextProps,
-			getErrorTextProps,
-			getRequiredIndicatorProps,
-		}),
-	);
+  return track(
+    () => ({
+      setRootRef,
+      ariaDescribedby: labelIds(),
+      ids: {
+        root: @rootId,
+        control: @controlId,
+        label: @labelId,
+        errorText: @errorTextId,
+        helperText: @helperTextId,
+      },
+      disabled: @disabled,
+      invalid: @invalid,
+      readOnly: @readOnly,
+      required: @required,
+      getRootProps,
+      getLabelProps,
+      getControlProps,
+      getInputProps,
+      getTextareaProps,
+      getSelectProps,
+      getHelperTextProps,
+      getErrorTextProps,
+      getRequiredIndicatorProps,
+    }),
+  );
 }

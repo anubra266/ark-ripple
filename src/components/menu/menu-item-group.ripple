@@ -6,23 +6,23 @@ import { MenuItemGroupContext } from './use-menu-item-group-context';
 import { ark } from '../factory';
 
 export interface MenuItemGroupBaseProps {
-	id?: string | undefined;
-	children?: any;
-	[key: string]: any;
+  id?: string | undefined;
+  children?: any;
+  [key: string]: any;
 }
 export type MenuItemGroupProps = MenuItemGroupBaseProps;
 
 export component MenuItemGroup(props: MenuItemGroupProps) {
-	const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
-	const fallbackId = useId();
-	const menu = useMenuContext();
+  const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
+  const fallbackId = useId();
+  const menu = useMenuContext();
 
-	const groupProps = track(() => ({ id: @propId ?? fallbackId }));
-	let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@groupProps), @localProps));
+  const groupProps = track(() => ({ id: @propId ?? fallbackId }));
+  let mergedProps = track(() => mergeProps(@menu.getItemGroupProps(@groupProps), @localProps));
 
-	MenuItemGroupContext.set(groupProps);
+  MenuItemGroupContext.set(groupProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

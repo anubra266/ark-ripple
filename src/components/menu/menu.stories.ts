@@ -16,67 +16,67 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { SelectEvent as SelectEventExample } from './examples/select-event.ripple';
 
 const meta: Meta = {
-	title: 'Components/Menu',
+  title: 'Components/Menu',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const CheckboxItems = {
-	render: () => ({ Component: CheckboxItemsExample }),
+  render: () => ({ Component: CheckboxItemsExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const ContextLazyMount = {
-	render: () => ({ Component: ContextLazyMountExample }),
+  render: () => ({ Component: ContextLazyMountExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Group = {
-	render: () => ({ Component: GroupExample }),
+  render: () => ({ Component: GroupExample }),
 };
 
 export const ItemContext = {
-	render: () => ({ Component: ItemContextExample }),
+  render: () => ({ Component: ItemContextExample }),
 };
 
 export const Links = {
-	render: () => ({ Component: LinksExample }),
+  render: () => ({ Component: LinksExample }),
 };
 
 export const MenuInDialog = {
-	render: () => ({ Component: MenuInDialogExample }),
+  render: () => ({ Component: MenuInDialogExample }),
 };
 
 export const MenuItemDialog = {
-	render: () => ({ Component: MenuItemDialogExample }),
+  render: () => ({ Component: MenuItemDialogExample }),
 };
 
 export const MultipleMenu = {
-	render: () => ({ Component: MultipleMenuExample }),
+  render: () => ({ Component: MultipleMenuExample }),
 };
 
 export const Nested = {
-	render: () => ({ Component: NestedExample }),
+  render: () => ({ Component: NestedExample }),
 };
 
 export const RadioItems = {
-	render: () => ({ Component: RadioItemsExample }),
+  render: () => ({ Component: RadioItemsExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const SelectEvent = {
-	render: () => ({ Component: SelectEventExample }),
+  render: () => ({ Component: SelectEventExample }),
 };

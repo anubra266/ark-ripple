@@ -4,5 +4,5 @@ import type { UseToggleProps } from './use-toggle.ripple';
 const splitProps = createSplitProps<UseToggleProps>();
 
 export function splitToggleProps<T extends UseToggleProps & Record<string, any>>(props: T) {
-	return splitProps(props, ['pressed', 'defaultPressed', 'disabled', 'onPressedChange']);
+  return splitProps(props, ['pressed', 'defaultPressed', 'disabled', 'onPressedChange']);
 }

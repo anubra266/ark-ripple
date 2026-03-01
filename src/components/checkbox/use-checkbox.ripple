@@ -9,44 +9,44 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseCheckboxProps extends Optional<
-	Omit<checkbox.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<checkbox.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 export type UseCheckboxReturn = ReturnType<typeof useCheckbox>;
 
 export function useCheckbox(ownProps: UseCheckboxProps = {}) {
-	const id = useId();
-	const checkboxGroup = useCheckboxGroupContext();
-	const field = useFieldContext();
+  const id = useId();
+  const checkboxGroup = useCheckboxGroupContext();
+  const field = useFieldContext();
 
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const [value, ownId, rest] = trackSplit(ownProps, ['value', 'id']);
+  const [value, ownId, rest] = trackSplit(ownProps, ['value', 'id']);
 
-	const props = track(
-		() => mergeProps(@checkboxGroup?.getItemProps({ value: @value }) ?? {}, @rest),
-	);
+  const props = track(
+    () => mergeProps(@checkboxGroup?.getItemProps({ value: @value }) ?? {}, @rest),
+  );
 
-	const machineProps = track(() => {
-		return {
-			id: @ownId ?? id,
-			value: @value,
-			ids: {
-				label: @field?.ids.label,
-				hiddenInput: @field?.ids.control,
-			},
-			dir: @locale.dir,
-			disabled: @field?.disabled,
-			readOnly: @field?.readOnly,
-			invalid: @field?.invalid,
-			required: @field?.required,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		};
-	});
+  const machineProps = track(() => {
+    return {
+      id: @ownId ?? id,
+      value: @value,
+      ids: {
+        label: @field?.ids.label,
+        hiddenInput: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      readOnly: @field?.readOnly,
+      invalid: @field?.invalid,
+      required: @field?.required,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    };
+  });
 
-	const service = useMachine(checkbox.machine, machineProps);
+  const service = useMachine(checkbox.machine, machineProps);
 
-	return track(() => checkbox.connect(service, normalizeProps));
+  return track(() => checkbox.connect(service, normalizeProps));
 }

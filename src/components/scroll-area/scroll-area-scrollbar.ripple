@@ -5,25 +5,25 @@ import { ScrollAreaScrollbarContext } from './use-scroll-area-scrollbar-context'
 import { ark } from '../factory';
 
 export interface ScrollAreaScrollbarBaseProps {
-	orientation?: 'horizontal' | 'vertical';
-	children?: any;
-	[key: string]: any;
+  orientation?: 'horizontal' | 'vertical';
+  children?: any;
+  [key: string]: any;
 }
 export type ScrollAreaScrollbarProps = ScrollAreaScrollbarBaseProps;
 
 export component ScrollAreaScrollbar(props: ScrollAreaScrollbarProps) {
-	const [children, orientation, localProps] = trackSplit(props, ['children', 'orientation']);
-	const scrollArea = useScrollAreaContext();
+  const [children, orientation, localProps] = trackSplit(props, ['children', 'orientation']);
+  const scrollArea = useScrollAreaContext();
 
-	const scrollbarProps = track(() => ({ orientation: @orientation }));
+  const scrollbarProps = track(() => ({ orientation: @orientation }));
 
-	ScrollAreaScrollbarContext.set(scrollbarProps);
+  ScrollAreaScrollbarContext.set(scrollbarProps);
 
-	let mergedProps = track(
-		() => mergeProps(@scrollArea.getScrollbarProps(@scrollbarProps), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@scrollArea.getScrollbarProps(@scrollbarProps), @localProps),
+  );
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

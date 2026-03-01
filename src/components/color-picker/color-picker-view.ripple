@@ -6,23 +6,23 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 
 export interface ColorPickerViewBaseProps {
-	format: ColorFormat;
-	children?: any;
-	[key: string]: any;
+  format: ColorFormat;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerViewProps = ColorPickerViewBaseProps;
 
 export component ColorPickerView(props: ColorPickerViewProps) {
-	const [children, format, localProps] = trackSplit(props, ['children', 'format']);
-	const colorPicker = useColorPickerContext();
+  const [children, format, localProps] = trackSplit(props, ['children', 'format']);
+  const colorPicker = useColorPickerContext();
 
-	const formatCtx = track(() => ({ format: @format }));
-	ColorPickerFormatContext.set(formatCtx);
+  const formatCtx = track(() => ({ format: @format }));
+  ColorPickerFormatContext.set(formatCtx);
 
-	if (@colorPicker.format === @format) {
-		const viewAttrs = colorPickerAnatomy.build().view.attrs;
-		<ark.div data-format={@format} {...viewAttrs} {...@localProps}>
-			<@children />
-		</ark.div>
-	}
+  if (@colorPicker.format === @format) {
+    const viewAttrs = colorPickerAnatomy.build().view.attrs;
+    <ark.div data-format={@format} {...viewAttrs} {...@localProps}>
+      <@children />
+    </ark.div>
+  }
 }

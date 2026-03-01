@@ -6,4 +6,4 @@ export type DatePickerTablePropsContext = TableProps & { id: string };
 export const DatePickerTablePropsContext = new Context<DatePickerTablePropsContext>();
 
 export const useDatePickerTablePropsContext = (): DatePickerTablePropsContext =>
-	DatePickerTablePropsContext.get();
+  DatePickerTablePropsContext.get();

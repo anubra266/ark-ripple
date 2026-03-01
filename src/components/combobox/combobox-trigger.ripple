@@ -4,19 +4,19 @@ import { useComboboxContext } from './use-combobox-context';
 import { ark } from '../factory';
 
 export interface ComboboxTriggerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxTriggerProps = ComboboxTriggerBaseProps;
 
 export component ComboboxTrigger(props: ComboboxTriggerProps) {
-	const [focusable, children, localProps] = trackSplit(props, ['focusable', 'children']);
-	const combobox = useComboboxContext();
+  const [focusable, children, localProps] = trackSplit(props, ['focusable', 'children']);
+  const combobox = useComboboxContext();
 
-	const triggerProps = track(() => ({ focusable: @focusable }));
-	let mergedProps = track(() => mergeProps(@combobox.getTriggerProps(@triggerProps), @localProps));
+  const triggerProps = track(() => ({ focusable: @focusable }));
+  let mergedProps = track(() => mergeProps(@combobox.getTriggerProps(@triggerProps), @localProps));
 
-	<ark.button {...@mergedProps}>
-		<@children />
-	</ark.button>
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
 }

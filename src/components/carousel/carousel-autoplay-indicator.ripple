@@ -7,27 +7,27 @@ import { ark } from '../factory';
 const parts = carouselAnatomy.build();
 
 export interface CarouselAutoplayIndicatorBaseProps {
-	/**
+  /**
  * The fallback snippet to render when autoplay is paused.
 */
-	fallback?: Component;
-	[key: string]: any;
+  fallback?: Component;
+  [key: string]: any;
 }
 export interface CarouselAutoplayIndicatorProps extends CarouselAutoplayIndicatorBaseProps {
-	children?: Component;
+  children?: Component;
 }
 
 export component CarouselAutoplayIndicator(props: CarouselAutoplayIndicatorProps) {
-	const [children, fallback, rest] = trackSplit(props, ['children', 'fallback']);
-	const carousel = useCarouselContext();
+  const [children, fallback, rest] = trackSplit(props, ['children', 'fallback']);
+  const carousel = useCarouselContext();
 
-	let mergedProps = track(() => mergeProps(parts.autoplayIndicator.attrs, @rest));
+  let mergedProps = track(() => mergeProps(parts.autoplayIndicator.attrs, @rest));
 
-	<ark.span {...@mergedProps}>
-		if (@carousel.isPlaying) {
-			<@children />
-		} else {
-			<@fallback />
-		}
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    if (@carousel.isPlaying) {
+      <@children />
+    } else {
+      <@fallback />
+    }
+  </ark.span>
 }

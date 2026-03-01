@@ -15,63 +15,63 @@ import { TransformFiles as TransformFilesExample } from './examples/transform-fi
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components/FileUpload',
+  title: 'Components/FileUpload',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const AcceptedFileTypes = {
-	render: () => ({ Component: AcceptedFileTypesExample }),
+  render: () => ({ Component: AcceptedFileTypesExample }),
 };
 
 export const ClearTrigger = {
-	render: () => ({ Component: ClearTriggerExample }),
+  render: () => ({ Component: ClearTriggerExample }),
 };
 
 export const DirectoryUpload = {
-	render: () => ({ Component: DirectoryUploadExample }),
+  render: () => ({ Component: DirectoryUploadExample }),
 };
 
 export const Dropzone = {
-	render: () => ({ Component: DropzoneExample }),
+  render: () => ({ Component: DropzoneExample }),
 };
 
 export const ErrorHandling = {
-	render: () => ({ Component: ErrorHandlingExample }),
+  render: () => ({ Component: ErrorHandlingExample }),
 };
 
 export const FormUsage = {
-	render: () => ({ Component: FormUsageExample }),
+  render: () => ({ Component: FormUsageExample }),
 };
 
 export const InitialFiles = {
-	render: () => ({ Component: InitialFilesExample }),
+  render: () => ({ Component: InitialFilesExample }),
 };
 
 export const MediaCapture = {
-	render: () => ({ Component: MediaCaptureExample }),
+  render: () => ({ Component: MediaCaptureExample }),
 };
 
 export const PastingFiles = {
-	render: () => ({ Component: PastingFilesExample }),
+  render: () => ({ Component: PastingFilesExample }),
 };
 
 export const RejectedFiles = {
-	render: () => ({ Component: RejectedFilesExample }),
+  render: () => ({ Component: RejectedFilesExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const TransformFiles = {
-	render: () => ({ Component: TransformFilesExample }),
+  render: () => ({ Component: TransformFilesExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };

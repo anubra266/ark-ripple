@@ -18,75 +18,75 @@ import { Virtualized as VirtualizedExample } from './examples/virtualized.ripple
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components/Combobox',
+  title: 'Components/Combobox',
 };
 
 export default meta;
 
 export const AsyncSearch = {
-	render: () => ({ Component: AsyncSearchExample }),
+  render: () => ({ Component: AsyncSearchExample }),
 };
 
 export const AutoHighlight = {
-	render: () => ({ Component: AutoHighlightExample }),
+  render: () => ({ Component: AutoHighlightExample }),
 };
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Creatable = {
-	render: () => ({ Component: CreatableExample }),
+  render: () => ({ Component: CreatableExample }),
 };
 
 export const CustomObject = {
-	render: () => ({ Component: CustomObjectExample }),
+  render: () => ({ Component: CustomObjectExample }),
 };
 
 export const Dynamic = {
-	render: () => ({ Component: DynamicExample }),
+  render: () => ({ Component: DynamicExample }),
 };
 
 export const Grouping = {
-	render: () => ({ Component: GroupingExample }),
+  render: () => ({ Component: GroupingExample }),
 };
 
 export const HighlightMatchingText = {
-	render: () => ({ Component: HighlightMatchingTextExample }),
+  render: () => ({ Component: HighlightMatchingTextExample }),
 };
 
 export const InlineAutocomplete = {
-	render: () => ({ Component: InlineAutocompleteExample }),
+  render: () => ({ Component: InlineAutocompleteExample }),
 };
 
 export const LimitResults = {
-	render: () => ({ Component: LimitResultsExample }),
+  render: () => ({ Component: LimitResultsExample }),
 };
 
 export const Links = {
-	render: () => ({ Component: LinksExample }),
+  render: () => ({ Component: LinksExample }),
 };
 
 export const Multiple = {
-	render: () => ({ Component: MultipleExample }),
+  render: () => ({ Component: MultipleExample }),
 };
 
 export const RehydrateValue = {
-	render: () => ({ Component: RehydrateValueExample }),
+  render: () => ({ Component: RehydrateValueExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Virtualized = {
-	render: () => ({ Component: VirtualizedExample }),
+  render: () => ({ Component: VirtualizedExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };

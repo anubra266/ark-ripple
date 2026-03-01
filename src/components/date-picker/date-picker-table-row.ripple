@@ -5,19 +5,19 @@ import { useDatePickerTablePropsContext } from './use-date-picker-table-props-co
 import { ark } from '../factory';
 
 export interface DatePickerTableRowBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerTableRowProps = DatePickerTableRowBaseProps;
 
 export component DatePickerTableRow(props: DatePickerTableRowProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const datePicker = useDatePickerContext();
-	const tableProps = useDatePickerTablePropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const datePicker = useDatePickerContext();
+  const tableProps = useDatePickerTablePropsContext();
 
-	let mergedProps = track(() => mergeProps(@datePicker.getTableRowProps(@tableProps), @localProps));
+  let mergedProps = track(() => mergeProps(@datePicker.getTableRowProps(@tableProps), @localProps));
 
-	<ark.tr {...@mergedProps}>
-		<@children />
-	</ark.tr>
+  <ark.tr {...@mergedProps}>
+    <@children />
+  </ark.tr>
 }

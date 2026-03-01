@@ -4,18 +4,18 @@ import { useDrawerStackContext } from './use-drawer-stack-context';
 import { ark } from '../factory';
 
 export interface DrawerIndentBackgroundBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DrawerIndentBackgroundProps = DrawerIndentBackgroundBaseProps;
 
 export component DrawerIndentBackground(props: DrawerIndentBackgroundProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const stackApi = useDrawerStackContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const stackApi = useDrawerStackContext();
 
-	let mergedProps = track(() => mergeProps(@stackApi!.getIndentBackgroundProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@stackApi!.getIndentBackgroundProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

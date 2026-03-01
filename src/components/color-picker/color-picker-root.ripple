@@ -9,26 +9,26 @@ import { usePresence, type UsePresenceProps } from '../presence/use-presence.rip
 import { ark } from '../factory';
 
 export interface ColorPickerRootBaseProps extends UseColorPickerProps, UsePresenceProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerRootProps = ColorPickerRootBaseProps;
 
 export component ColorPickerRoot(props: ColorPickerRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [presenceProps, colorPickerRest] = splitPresenceProps(@rest);
-	const [colorPickerProps, localProps] = splitColorPickerProps(@colorPickerRest);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, colorPickerRest] = splitPresenceProps(@rest);
+  const [colorPickerProps, localProps] = splitColorPickerProps(@colorPickerRest);
 
-	const colorPicker = useColorPicker(colorPickerProps);
-	const present = track(() => @colorPicker.open);
-	const presence = usePresence({ present, ...@presenceProps });
+  const colorPicker = useColorPicker(colorPickerProps);
+  const present = track(() => @colorPicker.open);
+  const presence = usePresence({ present, ...@presenceProps });
 
-	ColorPickerApiContext.set(colorPicker);
-	PresenceApiContext.set(presence);
+  ColorPickerApiContext.set(colorPicker);
+  PresenceApiContext.set(presence);
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@colorPicker.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

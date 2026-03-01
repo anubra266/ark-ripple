@@ -9,41 +9,41 @@ import type { UseMenuReturn } from './use-menu.ripple';
 import { onMount } from 'zag-ripple';
 
 interface RootProviderProps {
-	value: UseMenuReturn;
+  value: UseMenuReturn;
 }
 
 export interface MenuRootProviderBaseProps extends RootProviderProps, UsePresenceProps {
-	children?: any;
+  children?: any;
 }
 export type MenuRootProviderProps = MenuRootProviderBaseProps;
 
 export component MenuRootProvider(props: MenuRootProviderProps) {
-	const [children, value, rest] = trackSplit(props, ['children', 'value']);
-	const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [children, value, rest] = trackSplit(props, ['children', 'value']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
 
-	const parentApi = useMenuContext();
-	const parentMachine = useMenuMachineContext();
+  const parentApi = useMenuContext();
+  const parentMachine = useMenuMachineContext();
 
-	const api = track(() => @value.@api);
-	const service = track(() => @value.service);
+  const api = track(() => @value.@api);
+  const service = track(() => @value.service);
 
-	const present = track(() => @api.open);
-	const presence = usePresence({ present, ...@presenceProps });
+  const present = track(() => @api.open);
+  const presence = usePresence({ present, ...@presenceProps });
 
-	// Connect parent-child relationship for nested menus
-	onMount(() => {
-		if (!@parentMachine) return;
-		if (!@parentApi) return;
+  // Connect parent-child relationship for nested menus
+  onMount(() => {
+    if (!@parentMachine) return;
+    if (!@parentApi) return;
 
-		@parentApi.setChild(@service)(@api).setParent(@parentMachine);
-	});
+    @parentApi.setChild(@service)(@api).setParent(@parentMachine);
+  });
 
-	const triggerItemContext = () => @parentApi?.getTriggerItemProps(@api);
+  const triggerItemContext = () => @parentApi?.getTriggerItemProps(@api);
 
-	MenuTriggerItemContext.set(triggerItemContext);
-	MenuMachineContext.set(service);
-	MenuApiContext.set(api);
-	PresenceApiContext.set(presence);
+  MenuTriggerItemContext.set(triggerItemContext);
+  MenuMachineContext.set(service);
+  MenuApiContext.set(api);
+  PresenceApiContext.set(presence);
 
-	<@children />
+  <@children />
 }

@@ -11,20 +11,20 @@ export interface UseStepsProps extends Optional<Omit<steps.Props, 'dir' | 'getRo
 export type UseStepsReturn = ReturnType<typeof useSteps>;
 
 export function useSteps(ownProps: UseStepsProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@ownProps,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@ownProps,
+    }),
+  );
 
-	const service = useMachine(steps.machine, machineProps);
+  const service = useMachine(steps.machine, machineProps);
 
-	return track(() => steps.connect(service, normalizeProps));
+  return track(() => steps.connect(service, normalizeProps));
 }

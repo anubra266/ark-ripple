@@ -6,28 +6,28 @@ import { ark } from '../factory';
 import type { PolymorphicProps } from '../../types';
 
 export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> {
-	/**
+  /**
  * The file type to match against. Matches all file types by default.
  * @default '.*'
  */
-	type?: string | undefined;
+  type?: string | undefined;
 }
 export interface FileUploadItemPreviewProps extends HTMLProps<
-	'div'
+  'div'
 >, FileUploadItemPreviewBaseProps {}
 
 export component FileUploadItemPreview(props: FileUploadItemPreviewProps) {
-	const [children, type, localProps] = trackSplit(props, ['children', 'type']);
-	const fileUpload = useFileUploadContext();
-	const itemProps = useFileUploadItemPropsContext();
+  const [children, type, localProps] = trackSplit(props, ['children', 'type']);
+  const fileUpload = useFileUploadContext();
+  const itemProps = useFileUploadItemPropsContext();
 
-	let mergedProps = track(
-		() => mergeProps(@fileUpload.getItemPreviewProps(@itemProps), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@fileUpload.getItemPreviewProps(@itemProps), @localProps),
+  );
 
-	if (@itemProps.file.type.match(@type ?? '.*')) {
-		<ark.div {...@mergedProps}>
-			<@children />
-		</ark.div>
-	}
+  if (@itemProps.file.type.match(@type ?? '.*')) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
 }

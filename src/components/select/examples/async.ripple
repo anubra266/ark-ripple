@@ -5,69 +5,69 @@ import { ChevronsUpDown } from 'lucide-ripple';
 import styles from 'styles/select.module.css';
 
 function loadData() {
-	return new Promise<string[]>((resolve) => {
-		setTimeout(() => resolve(['React', 'Solid', 'Vue', 'Svelte', 'Angular', 'Ember']), 500);
-	});
+  return new Promise<string[]>((resolve) => {
+    setTimeout(() => resolve(['React', 'Solid', 'Vue', 'Svelte', 'Angular', 'Ember']), 500);
+  });
 }
 
 export component Async() {
-	let data = track<string[] | null>(null);
-	let loading = track(false);
-	let error = track<Error | null>(null);
+  let data = track<string[] | null>(null);
+  let loading = track(false);
+  let error = track<Error | null>(null);
 
-	const collection = track(() => createListCollection<string>({ items: @data ?? [] }));
+  const collection = track(() => createListCollection<string>({ items: @data ?? [] }));
 
-	const setData = (v: string[] | null) => {
-		@data = v;
-	};
-	const setLoading = (v: boolean) => {
-		@loading = v;
-	};
-	const setError = (v: Error | null) => {
-		@error = v;
-	};
+  const setData = (v: string[] | null) => {
+    @data = v;
+  };
+  const setLoading = (v: boolean) => {
+    @loading = v;
+  };
+  const setError = (v: Error | null) => {
+    @error = v;
+  };
 
-	const handleOpenChange = (details: any) => {
-		if (details.open && @data === null) {
-			setLoading(true);
-			setError(null);
-			loadData().then((data) => setData(data)).catch((err) => setError(err)).finally(
-				() => setLoading(false),
-			);
-		}
-	};
+  const handleOpenChange = (details: any) => {
+    if (details.open && @data === null) {
+      setLoading(true);
+      setError(null);
+      loadData().then((data) => setData(data)).catch((err) => setError(err)).finally(
+        () => setLoading(false),
+      );
+    }
+  };
 
-	<Select.Root class={styles.Root} {collection} onOpenChange={handleOpenChange}>
-		<Select.Label class={styles.Label}>{'Framework'}</Select.Label>
-		<Select.Control class={styles.Control}>
-			<Select.Trigger class={styles.Trigger}>
-				<Select.ValueText class={styles.ValueText} placeholder="Select" />
-				<Select.Indicator class={styles.Indicator}>
-					<ChevronsUpDown />
-				</Select.Indicator>
-			</Select.Trigger>
-		</Select.Control>
-		<Portal>
-			<Select.Positioner>
-				<Select.Content class={styles.Content}>
-					if (@loading) {
-						<div class={styles.Item}>{'Loading...'}</div>
-					} else if (@error) {
-						<div class={styles.Item}>
-							{'Error: '}
-							{@error.message}
-						</div>
-					} else {
-						for (const item of @collection.items; key item) {
-							<Select.Item class={styles.Item} {item}>
-								<Select.ItemText class={styles.ItemText}>{item}</Select.ItemText>
-								<Select.ItemIndicator class={styles.ItemIndicator}>{'✓'}</Select.ItemIndicator>
-							</Select.Item>
-						}
-					}
-				</Select.Content>
-			</Select.Positioner>
-		</Portal>
-		<Select.HiddenSelect />
-	</Select.Root>
+  <Select.Root class={styles.Root} {collection} onOpenChange={handleOpenChange}>
+    <Select.Label class={styles.Label}>{'Framework'}</Select.Label>
+    <Select.Control class={styles.Control}>
+      <Select.Trigger class={styles.Trigger}>
+        <Select.ValueText class={styles.ValueText} placeholder="Select" />
+        <Select.Indicator class={styles.Indicator}>
+          <ChevronsUpDown />
+        </Select.Indicator>
+      </Select.Trigger>
+    </Select.Control>
+    <Portal>
+      <Select.Positioner>
+        <Select.Content class={styles.Content}>
+          if (@loading) {
+            <div class={styles.Item}>{'Loading...'}</div>
+          } else if (@error) {
+            <div class={styles.Item}>
+              {'Error: '}
+              {@error.message}
+            </div>
+          } else {
+            for (const item of @collection.items; key item) {
+              <Select.Item class={styles.Item} {item}>
+                <Select.ItemText class={styles.ItemText}>{item}</Select.ItemText>
+                <Select.ItemIndicator class={styles.ItemIndicator}>{'✓'}</Select.ItemIndicator>
+              </Select.Item>
+            }
+          }
+        </Select.Content>
+      </Select.Positioner>
+    </Portal>
+    <Select.HiddenSelect />
+  </Select.Root>
 }

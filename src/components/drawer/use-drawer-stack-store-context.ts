@@ -4,4 +4,4 @@ import { Context } from 'ripple';
 export const DrawerStackStoreContext = new Context<drawer.DrawerStack | undefined>(undefined);
 
 export const useDrawerStackStoreContext = (): drawer.DrawerStack | undefined =>
-	DrawerStackStoreContext.get();
+  DrawerStackStoreContext.get();

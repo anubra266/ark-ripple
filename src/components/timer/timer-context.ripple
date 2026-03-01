@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useTimerContext, type UseTimerContext } from './use-timer-context';
 
 export interface TimerContextProps {
-	children?: (context: UseTimerContext) => any;
-	[key: string]: any;
+  children?: (context: UseTimerContext) => any;
+  [key: string]: any;
 }
 
 export component TimerContext(props: TimerContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useTimerContext();
-	<@children {context} />
+  const [children] = trackSplit(props, ['children']);
+  const context = useTimerContext();
+  <@children {context} />
 }

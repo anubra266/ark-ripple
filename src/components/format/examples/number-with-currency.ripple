@@ -2,7 +2,7 @@ import { Format } from 'ark-ripple/format';
 import styles from 'styles/format.module.css';
 
 export component NumberWithCurrency() {
-	<span class={styles.Value}>
-		<Format.Number value={1234.45} style="currency" currency="USD" />
-	</span>
+  <span class={styles.Value}>
+    <Format.Number value={1234.45} style="currency" currency="USD" />
+  </span>
 }

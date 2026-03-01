@@ -5,19 +5,19 @@ import { useStepsItemPropsContext } from './use-steps-item-props-context';
 import { ark } from '../factory';
 
 export interface StepsIndicatorBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type StepsIndicatorProps = StepsIndicatorBaseProps;
 
 export component StepsIndicator(props: StepsIndicatorProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const stepsApi = useStepsContext();
-	const itemProps = useStepsItemPropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const stepsApi = useStepsContext();
+  const itemProps = useStepsItemPropsContext();
 
-	let mergedProps = track(() => mergeProps(@stepsApi.getIndicatorProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@stepsApi.getIndicatorProps(@itemProps), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

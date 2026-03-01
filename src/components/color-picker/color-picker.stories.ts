@@ -14,7 +14,7 @@ import { ValueSwatch as ValueSwatchExample } from './examples/value-swatch.rippl
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components / Color Picker',
+  title: 'Components / Color Picker',
 };
 
 export default meta;

@@ -4,17 +4,17 @@ import { useSignaturePadContext } from './use-signature-pad-context';
 import { ark } from '../factory';
 
 export interface SignaturePadGuideBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type SignaturePadGuideProps = SignaturePadGuideBaseProps;
 
 export component SignaturePadGuide(props: SignaturePadGuideProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const signaturePad = useSignaturePadContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const signaturePad = useSignaturePadContext();
 
-	let mergedProps = track(() => mergeProps(@signaturePad.getGuideProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@signaturePad.getGuideProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

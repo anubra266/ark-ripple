@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useSignaturePadContext, type UseSignaturePadContext } from './use-signature-pad-context';
 
 export interface SignaturePadContextProps {
-	children: (context: UseSignaturePadContext) => any;
+  children: (context: UseSignaturePadContext) => any;
 }
 
 export component SignaturePadContext(props: SignaturePadContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useSignaturePadContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useSignaturePadContext();
 
-	<@children {context} />
+  <@children {context} />
 }

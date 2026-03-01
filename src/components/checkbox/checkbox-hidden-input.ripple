@@ -5,22 +5,22 @@ import { useCheckboxContext } from './use-checkbox-context';
 import { ark } from '../factory';
 
 export interface CheckboxHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type CheckboxHiddenInputProps = CheckboxHiddenInputBaseProps;
 
 export component CheckboxHiddenInput(props: CheckboxHiddenInputProps) {
-	const [localProps] = trackSplit(props, []);
-	const checkbox = useCheckboxContext();
-	const field = useFieldContext();
+  const [localProps] = trackSplit(props, []);
+  const checkbox = useCheckboxContext();
+  const field = useFieldContext();
 
-	let mergedProps = track(
-		() => mergeProps(
-			@checkbox.getHiddenInputProps(),
-			{ 'aria-describedby': @field?.ariaDescribedby },
-			@localProps,
-		),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @checkbox.getHiddenInputProps(),
+      { 'aria-describedby': @field?.ariaDescribedby },
+      @localProps,
+    ),
+  );
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

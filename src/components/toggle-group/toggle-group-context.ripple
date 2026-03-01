@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useToggleGroupContext, type UseToggleGroupContext } from './use-toggle-group-context';
 
 export interface ToggleGroupContextProps {
-	children: (context: UseToggleGroupContext) => any;
+  children: (context: UseToggleGroupContext) => any;
 }
 
 export component ToggleGroupContext(props: ToggleGroupContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useToggleGroupContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useToggleGroupContext();
 
-	<@children {context} />
+  <@children {context} />
 }

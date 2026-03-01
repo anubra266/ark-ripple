@@ -2,12 +2,12 @@ import { Highlight } from 'ark-ripple/highlight';
 import styles from 'styles/highlight.module.css';
 
 export component IgnoreCase() {
-	<p class={styles.Text}>
-		<Highlight
-			class={styles.Mark}
-			text="TypeScript provides static type checking. Using typescript helps catch errors early in development."
-			query="typescript"
-			ignoreCase
-		/>
-	</p>
+  <p class={styles.Text}>
+    <Highlight
+      class={styles.Mark}
+      text="TypeScript provides static type checking. Using typescript helps catch errors early in development."
+      query="typescript"
+      ignoreCase
+    />
+  </p>
 }

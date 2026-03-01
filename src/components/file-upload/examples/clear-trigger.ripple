@@ -3,33 +3,33 @@ import { Paperclip, X } from 'lucide-ripple';
 import styles from 'styles/file-upload.module.css';
 
 export component ClearTrigger() {
-	<FileUpload.Root maxFiles={5} accept="image/png,image/jpeg" class={styles.Root}>
-		<FileUpload.Label class={styles.Label}>{'File Upload'}</FileUpload.Label>
-		<div class={styles.Actions}>
-			<FileUpload.Trigger class={styles.Trigger}>
-				<Paperclip />
-				{' Choose file(s)'}
-			</FileUpload.Trigger>
-			<FileUpload.ClearTrigger class={styles.ClearTrigger}>{'Clear Files'}</FileUpload.ClearTrigger>
-		</div>
-		<FileUpload.ItemGroup class={styles.ItemGroup}>
-			<FileUpload.Context>
-				component children({ context }) {
-					for (const file of @context.acceptedFiles; key file.name) {
-						<FileUpload.Item file={file} class={styles.Item}>
-							<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
-								<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
-							</FileUpload.ItemPreview>
-							<FileUpload.ItemName class={styles.ItemName} />
-							<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-							<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
-								<X />
-							</FileUpload.ItemDeleteTrigger>
-						</FileUpload.Item>
-					}
-				}
-			</FileUpload.Context>
-		</FileUpload.ItemGroup>
-		<FileUpload.HiddenInput />
-	</FileUpload.Root>
+  <FileUpload.Root maxFiles={5} accept="image/png,image/jpeg" class={styles.Root}>
+    <FileUpload.Label class={styles.Label}>{'File Upload'}</FileUpload.Label>
+    <div class={styles.Actions}>
+      <FileUpload.Trigger class={styles.Trigger}>
+        <Paperclip />
+        {' Choose file(s)'}
+      </FileUpload.Trigger>
+      <FileUpload.ClearTrigger class={styles.ClearTrigger}>{'Clear Files'}</FileUpload.ClearTrigger>
+    </div>
+    <FileUpload.ItemGroup class={styles.ItemGroup}>
+      <FileUpload.Context>
+        component children({ context }) {
+          for (const file of @context.acceptedFiles; key file.name) {
+            <FileUpload.Item {file} class={styles.Item}>
+              <FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+                <FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+              </FileUpload.ItemPreview>
+              <FileUpload.ItemName class={styles.ItemName} />
+              <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+              <FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                <X />
+              </FileUpload.ItemDeleteTrigger>
+            </FileUpload.Item>
+          }
+        }
+      </FileUpload.Context>
+    </FileUpload.ItemGroup>
+    <FileUpload.HiddenInput />
+  </FileUpload.Root>
 }

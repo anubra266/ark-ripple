@@ -1,26 +1,26 @@
 import { ColorPicker, parseColor } from '../index';
 
 export component ColorPickerBasicTest() {
-	<ColorPicker.Root defaultValue={parseColor('#eb5e41')}>
-		<ColorPicker.Label>{'Color'}</ColorPicker.Label>
-		<ColorPicker.Control>
-			<ColorPicker.ChannelInput data-testid="hex-input" channel="hex" />
-			<ColorPicker.Trigger data-testid="trigger">
-				<ColorPicker.ValueSwatch data-testid="value-swatch" />
-			</ColorPicker.Trigger>
-		</ColorPicker.Control>
-		<ColorPicker.Positioner>
-			<ColorPicker.Content data-testid="content">
-				<ColorPicker.Area>
-					<ColorPicker.AreaBackground />
-					<ColorPicker.AreaThumb />
-				</ColorPicker.Area>
-				<ColorPicker.ChannelSlider channel="hue">
-					<ColorPicker.ChannelSliderTrack />
-					<ColorPicker.ChannelSliderThumb />
-				</ColorPicker.ChannelSlider>
-			</ColorPicker.Content>
-		</ColorPicker.Positioner>
-		<ColorPicker.HiddenInput data-testid="hidden-input" />
-	</ColorPicker.Root>
+  <ColorPicker.Root defaultValue={parseColor('#eb5e41')}>
+    <ColorPicker.Label>{'Color'}</ColorPicker.Label>
+    <ColorPicker.Control>
+      <ColorPicker.ChannelInput data-testid="hex-input" channel="hex" />
+      <ColorPicker.Trigger data-testid="trigger">
+        <ColorPicker.ValueSwatch data-testid="value-swatch" />
+      </ColorPicker.Trigger>
+    </ColorPicker.Control>
+    <ColorPicker.Positioner>
+      <ColorPicker.Content data-testid="content">
+        <ColorPicker.Area>
+          <ColorPicker.AreaBackground />
+          <ColorPicker.AreaThumb />
+        </ColorPicker.Area>
+        <ColorPicker.ChannelSlider channel="hue">
+          <ColorPicker.ChannelSliderTrack />
+          <ColorPicker.ChannelSliderThumb />
+        </ColorPicker.ChannelSlider>
+      </ColorPicker.Content>
+    </ColorPicker.Positioner>
+    <ColorPicker.HiddenInput data-testid="hidden-input" />
+  </ColorPicker.Root>
 }

@@ -4,38 +4,38 @@ import { track } from 'ripple';
 import styles from 'styles/rating-group.module.css';
 
 export component Controlled() {
-	let value = track(0);
+  let value = track(0);
 
-	<RatingGroup.Root
-		class={styles.Root}
-		{@value}
-		onValueChange={(details) => {
-			@value = details.value;
-		}}
-	>
-		<RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
-		<RatingGroup.Control class={styles.Control}>
-			<RatingGroup.Context>
-				component children({ context }) {
-					for (const item of @context.items; key item) {
-						<RatingGroup.Item class={styles.Item} index={item}>
-							<RatingGroup.ItemContext>
-								component children({ context }) {
-									<span
-										class={styles.ItemIndicator}
-										data-half={@context.half ? '' : undefined}
-										data-highlighted={@context.highlighted ? '' : undefined}
-									>
-										<Star data-bg="" />
-										<Star data-fg="" fill="currentColor" />
-									</span>
-								}
-							</RatingGroup.ItemContext>
-						</RatingGroup.Item>
-					}
-				}
-			</RatingGroup.Context>
-			<RatingGroup.HiddenInput />
-		</RatingGroup.Control>
-	</RatingGroup.Root>
+  <RatingGroup.Root
+    class={styles.Root}
+    {@value}
+    onValueChange={(details) => {
+      @value = details.value;
+    }}
+  >
+    <RatingGroup.Label class={styles.Label}>{'Label'}</RatingGroup.Label>
+    <RatingGroup.Control class={styles.Control}>
+      <RatingGroup.Context>
+        component children({ context }) {
+          for (const item of @context.items; key item) {
+            <RatingGroup.Item class={styles.Item} index={item}>
+              <RatingGroup.ItemContext>
+                component children({ context }) {
+                  <span
+                    class={styles.ItemIndicator}
+                    data-half={@context.half ? '' : undefined}
+                    data-highlighted={@context.highlighted ? '' : undefined}
+                  >
+                    <Star data-bg="" />
+                    <Star data-fg="" fill="currentColor" />
+                  </span>
+                }
+              </RatingGroup.ItemContext>
+            </RatingGroup.Item>
+          }
+        }
+      </RatingGroup.Context>
+      <RatingGroup.HiddenInput />
+    </RatingGroup.Control>
+  </RatingGroup.Root>
 }

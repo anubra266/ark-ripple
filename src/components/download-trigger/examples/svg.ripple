@@ -8,19 +8,19 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="
 </svg>`;
 
 export component Svg() {
-	<div class={styles.Root}>
-		<div class={styles.Preview}>
-			<File />
-			<span class={styles.PreviewText}>{'circle.svg'}</span>
-		</div>
-		<DownloadTrigger
-			class={button.Root}
-			data={svgContent}
-			fileName="circle.svg"
-			mimeType="image/svg+xml"
-		>
-			<Download />
-			{' Download SVG'}
-		</DownloadTrigger>
-	</div>
+  <div class={styles.Root}>
+    <div class={styles.Preview}>
+      <File />
+      <span class={styles.PreviewText}>{'circle.svg'}</span>
+    </div>
+    <DownloadTrigger
+      class={button.Root}
+      data={svgContent}
+      fileName="circle.svg"
+      mimeType="image/svg+xml"
+    >
+      <Download />
+      {' Download SVG'}
+    </DownloadTrigger>
+  </div>
 }

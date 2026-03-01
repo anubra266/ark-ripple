@@ -7,7 +7,7 @@ export interface UseAsyncListProps<T, C = string> extends asyncList.Props<T, C> 
 export interface UseAsyncListReturn<T, C = string> extends Accessor<asyncList.Api<T, C>> {}
 
 export function useAsyncList<T, C = string>(props: UseAsyncListProps<T, C>): UseAsyncListReturn<T, C> {
-	const service = useMachine(asyncList.machine as asyncList.Machine<T, C>, props);
-	const api = track(() => asyncList.connect(service));
-	return api;
+  const service = useMachine(asyncList.machine as asyncList.Machine<T, C>, props);
+  const api = track(() => asyncList.connect(service));
+  return api;
 }

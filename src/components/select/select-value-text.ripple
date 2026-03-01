@@ -4,22 +4,22 @@ import { useSelectContext } from './use-select-context';
 import { ark } from '../factory';
 
 export interface SelectValueTextBaseProps {
-	placeholder?: string | undefined;
-	[key: string]: any;
+  placeholder?: string | undefined;
+  [key: string]: any;
 }
 export type SelectValueTextProps = SelectValueTextBaseProps;
 
 export component SelectValueText(props: SelectValueTextProps) {
-	const [placeholder, children, localProps] = trackSplit(props, ['placeholder', 'children']);
-	const select = useSelectContext();
+  const [placeholder, children, localProps] = trackSplit(props, ['placeholder', 'children']);
+  const select = useSelectContext();
 
-	let mergedProps = track(() => mergeProps(@select.getValueTextProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@select.getValueTextProps(), @localProps));
 
-	<ark.span {...@mergedProps}>
-		if (@children) {
-			<@children />
-		} else {
-			{@select.valueAsString || @placeholder}
-		}
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@select.valueAsString || @placeholder}
+    }
+  </ark.span>
 }

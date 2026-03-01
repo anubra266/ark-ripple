@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useDialogContext, type UseDialogContext } from './use-dialog-context';
 
 export interface DialogContextProps {
-	children: (context: UseDialogContext) => any;
+  children: (context: UseDialogContext) => any;
 }
 
 export component DialogContext(props: DialogContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useDialogContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useDialogContext();
 
-	<@children {context} />
+  <@children {context} />
 }

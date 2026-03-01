@@ -11,47 +11,47 @@ import { SnapPoints as SnapPointsExample } from './examples/snap-points.ripple';
 import { SwipeDirection as SwipeDirectionExample } from './examples/swipe-direction.ripple';
 
 const meta: Meta = {
-	title: 'Components/Drawer',
+  title: 'Components/Drawer',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const IndentBackground = {
-	render: () => ({ Component: IndentBackgroundExample }),
+  render: () => ({ Component: IndentBackgroundExample }),
 };
 
 export const Modal = {
-	render: () => ({ Component: ModalExample }),
+  render: () => ({ Component: ModalExample }),
 };
 
 export const NoDragArea = {
-	render: () => ({ Component: NoDragAreaExample }),
+  render: () => ({ Component: NoDragAreaExample }),
 };
 
 export const NonDraggable = {
-	render: () => ({ Component: NonDraggableExample }),
+  render: () => ({ Component: NonDraggableExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Scrollable = {
-	render: () => ({ Component: ScrollableExample }),
+  render: () => ({ Component: ScrollableExample }),
 };
 
 export const SnapPoints = {
-	render: () => ({ Component: SnapPointsExample }),
+  render: () => ({ Component: SnapPointsExample }),
 };
 
 export const SwipeDirection = {
-	render: () => ({ Component: SwipeDirectionExample }),
+  render: () => ({ Component: SwipeDirectionExample }),
 };

@@ -5,20 +5,20 @@ import type { UseSwapReturn } from './use-swap.ripple';
 import { ark } from '../factory';
 
 export interface SwapRootProviderBaseProps {
-	value: UseSwapReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseSwapReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type SwapRootProviderProps = SwapRootProviderBaseProps;
 
 export component SwapRootProvider(props: SwapRootProviderProps) {
-	const [swapApi, children, localProps] = trackSplit(props, ['value', 'children']);
+  const [swapApi, children, localProps] = trackSplit(props, ['value', 'children']);
 
-	SwapApiContext.set(swapApi);
+  SwapApiContext.set(swapApi);
 
-	let mergedProps = track(() => mergeProps(@swapApi.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@swapApi.getRootProps(), @localProps));
 
-	<ark.span {...@mergedProps}>
-		<@children />
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
 }

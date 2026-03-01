@@ -6,29 +6,29 @@ import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
 import { ark } from '../factory';
 
 export interface DialogBackdropBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DialogBackdropProps = DialogBackdropBaseProps;
 
 export component DialogBackdrop(props: DialogBackdropProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const dialog = useDialogContext();
-	const renderStrategy = useRenderStrategyContext();
-	const present = track(() => @dialog.open);
-	const presence = usePresence({ present, ...@renderStrategy });
+  const [children, localProps] = trackSplit(props, ['children']);
+  const dialog = useDialogContext();
+  const renderStrategy = useRenderStrategyContext();
+  const present = track(() => @dialog.open);
+  const presence = usePresence({ present, ...@renderStrategy });
 
-	let mergedProps = track(
-		() => mergeProps(@dialog.getBackdropProps(), @presence.getPresenceProps(), @localProps),
-	);
-	if (!@presence.unmounted) {
-		<ark.div
-			{...@mergedProps}
-			{ref (el: HTMLDivElement) => {
-				@presence.setNode(el);
-			}}
-		>
-			<@children />
-		</ark.div>
-	}
+  let mergedProps = track(
+    () => mergeProps(@dialog.getBackdropProps(), @presence.getPresenceProps(), @localProps),
+  );
+  if (!@presence.unmounted) {
+    <ark.div
+      {...@mergedProps}
+      {ref (el: HTMLDivElement) => {
+        @presence.setNode(el);
+      }}
+    >
+      <@children />
+    </ark.div>
+  }
 }

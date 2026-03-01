@@ -4,18 +4,18 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 
 export interface DatePickerControlBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerControlProps = DatePickerControlBaseProps;
 
 export component DatePickerControl(props: DatePickerControlProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const datePicker = useDatePickerContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const datePicker = useDatePickerContext();
 
-	let mergedProps = track(() => mergeProps(@datePicker.getControlProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@datePicker.getControlProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

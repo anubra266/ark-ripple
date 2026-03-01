@@ -8,35 +8,35 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { WithField as WithFieldExample } from './examples/with-field.ripple';
 
 const meta: Meta = {
-	title: 'Components/Rating Group',
+  title: 'Components/Rating Group',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const Disabled = {
-	render: () => ({ Component: DisabledExample }),
+  render: () => ({ Component: DisabledExample }),
 };
 
 export const FormUsage = {
-	render: () => ({ Component: FormUsageExample }),
+  render: () => ({ Component: FormUsageExample }),
 };
 
 export const HalfStar = {
-	render: () => ({ Component: HalfStarExample }),
+  render: () => ({ Component: HalfStarExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const WithField = {
-	render: () => ({ Component: WithFieldExample }),
+  render: () => ({ Component: WithFieldExample }),
 };

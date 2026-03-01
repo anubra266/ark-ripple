@@ -6,19 +6,19 @@ import { useColorPickerFormatContext } from './use-color-picker-format-context';
 import { ark } from '../factory';
 
 export interface ColorPickerChannelSliderTrackBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type ColorPickerChannelSliderTrackProps = ColorPickerChannelSliderTrackBaseProps;
 
 export component ColorPickerChannelSliderTrack(props: ColorPickerChannelSliderTrackProps) {
-	const colorPicker = useColorPickerContext();
-	const channelProps = useColorPickerChannelPropsContext();
-	const formatCtx = useColorPickerFormatContext();
+  const colorPicker = useColorPickerContext();
+  const channelProps = useColorPickerChannelPropsContext();
+  const formatCtx = useColorPickerFormatContext();
 
-	const channelSliderProps = track(() => ({ ...@channelProps, ...@formatCtx }));
-	let mergedProps = track(
-		() => mergeProps(@colorPicker.getChannelSliderTrackProps(@channelSliderProps), @props),
-	);
+  const channelSliderProps = track(() => ({ ...@channelProps, ...@formatCtx }));
+  let mergedProps = track(
+    () => mergeProps(@colorPicker.getChannelSliderTrackProps(@channelSliderProps), @props),
+  );
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

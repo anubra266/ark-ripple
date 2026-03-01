@@ -5,23 +5,23 @@ import { RootProvider as RootProviderExample } from './examples/root-provider.ri
 import { Vertical as VerticalExample } from './examples/vertical.ripple';
 
 const meta: Meta = {
-	title: 'Components/Steps',
+  title: 'Components/Steps',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const Vertical = {
-	render: () => ({ Component: VerticalExample }),
+  render: () => ({ Component: VerticalExample }),
 };

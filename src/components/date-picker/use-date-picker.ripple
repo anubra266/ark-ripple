@@ -7,29 +7,29 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseDatePickerProps extends Optional<
-	Omit<datePicker.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<datePicker.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export interface UseDatePickerReturn extends datePicker.Api<PropTypes> {}
 
 export function useDatePicker(props: Tracked<UseDatePickerProps> = {}): UseDatePickerReturn {
-	const locale = useLocaleContext();
-	const env = useEnvironmentContext();
-	const id = useId();
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			locale: @locale.locale,
-			getRootNode: @env.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      locale: @locale.locale,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(datePicker.machine, machineProps);
-	const api = track(() => datePicker.connect(service, normalizeProps));
+  const service = useMachine(datePicker.machine, machineProps);
+  const api = track(() => datePicker.connect(service, normalizeProps));
 
-	return api;
+  return api;
 }

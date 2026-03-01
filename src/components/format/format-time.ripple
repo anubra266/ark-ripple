@@ -3,17 +3,17 @@ import { trackSplit, track } from 'ripple';
 import { useLocaleContext } from '../../providers/locale';
 
 export interface FormatTimeProps extends FormatTimeOptions {
-	/**
+  /**
  * The time to format
  */
-	value: string | Date;
+  value: string | Date;
 }
 
 export component FormatTime(props: FormatNumberProps) {
-	const [value, intlOptions] = trackSplit(props, ['value']);
-	const locale = useLocaleContext();
+  const [value, intlOptions] = trackSplit(props, ['value']);
+  const locale = useLocaleContext();
 
-	const text = track(() => formatTime(@value, @locale.locale, @intlOptions));
+  const text = track(() => formatTime(@value, @locale.locale, @intlOptions));
 
-	{@text}
+  {@text}
 }

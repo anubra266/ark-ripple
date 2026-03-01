@@ -5,22 +5,22 @@ import { useFileUploadContext } from './use-file-upload-context';
 import { ark } from '../factory';
 
 export interface FileUploadHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type FileUploadHiddenInputProps = FileUploadHiddenInputBaseProps;
 
 export component FileUploadHiddenInput(props: FileUploadHiddenInputProps) {
-	const [localProps] = trackSplit(props, []);
-	const fileUpload = useFileUploadContext();
-	const field = useFieldContext();
+  const [localProps] = trackSplit(props, []);
+  const fileUpload = useFileUploadContext();
+  const field = useFieldContext();
 
-	let mergedProps = track(
-		() => mergeProps(
-			@fileUpload.getHiddenInputProps(),
-			{ 'aria-describedby': @field?.ariaDescribedby },
-			@localProps,
-		),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @fileUpload.getHiddenInputProps(),
+      { 'aria-describedby': @field?.ariaDescribedby },
+      @localProps,
+    ),
+  );
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

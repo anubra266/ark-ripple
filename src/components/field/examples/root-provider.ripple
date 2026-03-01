@@ -5,24 +5,24 @@ import button from 'styles/button.module.css';
 import { track } from 'ripple';
 
 export component RootProvider() {
-	let invalid = track(false);
-	const field = useField({ id: 'field', invalid });
+  let invalid = track(false);
+  const field = useField({ id: 'field', invalid });
 
-	<div class="vstack">
-		<button
-			class={button.Root}
-			style={{ marginBottom: '1rem' }}
-			onClick={() => {
-				@invalid = !@invalid;
-			}}
-		>
-			{'Toggle Invalid'}
-		</button>
-		<Field.RootProvider class={styles.Root} value={field}>
-			<Field.Label class={styles.Label}>{'Label'}</Field.Label>
-			<Field.Input class={styles.Input} />
-			<Field.HelperText class={styles.HelperText}>{'Some additional Info'}</Field.HelperText>
-			<Field.ErrorText class={styles.ErrorText}>{'Error Info'}</Field.ErrorText>
-		</Field.RootProvider>
-	</div>
+  <div class="vstack">
+    <button
+      class={button.Root}
+      style={{ marginBottom: '1rem' }}
+      onClick={() => {
+        @invalid = !@invalid;
+      }}
+    >
+      {'Toggle Invalid'}
+    </button>
+    <Field.RootProvider class={styles.Root} value={field}>
+      <Field.Label class={styles.Label}>{'Label'}</Field.Label>
+      <Field.Input class={styles.Input} />
+      <Field.HelperText class={styles.HelperText}>{'Some additional Info'}</Field.HelperText>
+      <Field.ErrorText class={styles.ErrorText}>{'Error Info'}</Field.ErrorText>
+    </Field.RootProvider>
+  </div>
 }

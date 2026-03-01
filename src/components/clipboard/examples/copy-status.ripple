@@ -4,29 +4,29 @@ import { Check, Copy } from 'lucide-ripple';
 import styles from 'styles/clipboard.module.css';
 
 export component CopyStatus() {
-	const copyCount = track(0);
+  const copyCount = track(0);
 
-	<Clipboard.Root
-		class={styles.Root}
-		value="https://ark-ui.com"
-		onStatusChange={(details) => {
-			if (details.copied) {
-				@copyCount = @copyCount + 1;
-			}
-		}}
-	>
-		<Clipboard.Control class={styles.Control}>
-			<Clipboard.Trigger class={styles.Trigger}>
-				<Clipboard.Indicator class={styles.Indicator} copied={Check}>
-					<Copy />
-				</Clipboard.Indicator>
-				<Clipboard.ValueText />
-			</Clipboard.Trigger>
-		</Clipboard.Control>
-		<p>
-			{'Copied '}
-			{@copyCount}
-			{' times'}
-		</p>
-	</Clipboard.Root>
+  <Clipboard.Root
+    class={styles.Root}
+    value="https://ark-ui.com"
+    onStatusChange={(details) => {
+      if (details.copied) {
+        @copyCount = @copyCount + 1;
+      }
+    }}
+  >
+    <Clipboard.Control class={styles.Control}>
+      <Clipboard.Trigger class={styles.Trigger}>
+        <Clipboard.Indicator class={styles.Indicator} copied={Check}>
+          <Copy />
+        </Clipboard.Indicator>
+        <Clipboard.ValueText />
+      </Clipboard.Trigger>
+    </Clipboard.Control>
+    <p>
+      {'Copied '}
+      {@copyCount}
+      {' times'}
+    </p>
+  </Clipboard.Root>
 }

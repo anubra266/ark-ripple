@@ -6,118 +6,118 @@ import { parts } from './fieldset.anatomy';
 import { useEnvironmentContext } from '../../providers/environment/use-environment-context';
 
 export interface UseFieldsetProps {
-	/**
+  /**
  * The id of the fieldset.
  */
-	id?: string | undefined;
-	/**
+  id?: string | undefined;
+  /**
  * Indicates whether the fieldset is disabled.
  */
-	disabled?: boolean | undefined;
-	/**
+  disabled?: boolean | undefined;
+  /**
  * Indicates whether the fieldset is invalid.
  */
-	invalid?: boolean | undefined;
+  invalid?: boolean | undefined;
 }
 
 export type UseFieldsetReturn = ReturnType<typeof useFieldset>;
 
 export function useFieldset(inProps: UseFieldsetProps = {}) {
-	const props = track(() => {
-		const resolvedProps = runIfFn(@inProps);
-		ensureProps(resolvedProps, ['id']);
-		return resolvedProps;
-	});
+  const props = track(() => {
+    const resolvedProps = runIfFn(@inProps);
+    ensureProps(resolvedProps, ['id']);
+    return resolvedProps;
+  });
 
-	const [id, disabled, invalid] = trackSplit(@props, ['id', 'disabled', 'invalid']);
+  const [id, disabled, invalid] = trackSplit(@props, ['id', 'disabled', 'invalid']);
 
-	const env = useEnvironmentContext();
+  const env = useEnvironmentContext();
 
-	let hasErrorText = track(false);
-	let hasHelperText = track(false);
+  let hasErrorText = track(false);
+  let hasHelperText = track(false);
 
-	let rootRef = track<Element | null>(null);
-	const setRootRef = (el: Element | null) => {
-		@rootRef = el;
-	};
+  let rootRef = track<Element | null>(null);
+  const setRootRef = (el: Element | null) => {
+    @rootRef = el;
+  };
 
-	const legendId = track(() => `fieldset::${@id}::legend`);
-	const errorTextId = track(() => `fieldset::${@id}::error-text`);
-	const helperTextId = track(() => `fieldset::${@id}::helper-text`);
+  const legendId = track(() => `fieldset::${@id}::legend`);
+  const errorTextId = track(() => `fieldset::${@id}::error-text`);
+  const helperTextId = track(() => `fieldset::${@id}::helper-text`);
 
-	const setHasErrorText = (v: boolean) => {
-		@hasErrorText = v;
-	};
-	const setHasHelperText = (v: boolean) => {
-		@hasHelperText = v;
-	};
+  const setHasErrorText = (v: boolean) => {
+    @hasErrorText = v;
+  };
+  const setHasHelperText = (v: boolean) => {
+    @hasHelperText = v;
+  };
 
-	const checkTextElements = () => {
-		if (!@rootRef) return;
-		const doc = @env.getRootNode() as Document;
-		setHasErrorText(!!doc.getElementById(@errorTextId));
-		setHasHelperText(!!doc.getElementById(@helperTextId));
-	};
+  const checkTextElements = () => {
+    if (!@rootRef) return;
+    const doc = @env.getRootNode() as Document;
+    setHasErrorText(!!doc.getElementById(@errorTextId));
+    setHasHelperText(!!doc.getElementById(@helperTextId));
+  };
 
-	onMount(() => {
-		checkTextElements();
+  onMount(() => {
+    checkTextElements();
 
-		if (@rootRef) {
-			const win = @env.getWindow();
-			const observer = new win.MutationObserver(checkTextElements);
-			observer.observe(@rootRef, { childList: true, subtree: true });
-			return () => observer.disconnect();
-		}
-	});
+    if (@rootRef) {
+      const win = @env.getWindow();
+      const observer = new win.MutationObserver(checkTextElements);
+      observer.observe(@rootRef, { childList: true, subtree: true });
+      return () => observer.disconnect();
+    }
+  });
 
-	const labelIds = () => {
-		const ids: string[] = [];
-		if (@hasErrorText && @invalid) ids.push(@errorTextId);
-		if (@hasHelperText) ids.push(@helperTextId);
-		return ids.join(' ') || undefined;
-	};
+  const labelIds = () => {
+    const ids: string[] = [];
+    if (@hasErrorText && @invalid) ids.push(@errorTextId);
+    if (@hasHelperText) ids.push(@helperTextId);
+    return ids.join(' ') || undefined;
+  };
 
-	const getRootProps = () => ({
-		...parts.root.attrs,
-		disabled: !!@disabled,
-		'data-disabled': dataAttr(!!@disabled),
-		'data-invalid': dataAttr(!!@invalid),
-		'aria-labelledby': @legendId,
-		'aria-describedby': labelIds(),
-	});
+  const getRootProps = () => ({
+    ...parts.root.attrs,
+    disabled: !!@disabled,
+    'data-disabled': dataAttr(!!@disabled),
+    'data-invalid': dataAttr(!!@invalid),
+    'aria-labelledby': @legendId,
+    'aria-describedby': labelIds(),
+  });
 
-	const getLegendProps = () => ({
-		id: @legendId,
-		...parts.legend.attrs,
-		'data-disabled': dataAttr(!!@disabled),
-		'data-invalid': dataAttr(!!@invalid),
-	});
+  const getLegendProps = () => ({
+    id: @legendId,
+    ...parts.legend.attrs,
+    'data-disabled': dataAttr(!!@disabled),
+    'data-invalid': dataAttr(!!@invalid),
+  });
 
-	const getHelperTextProps = () => ({
-		id: @helperTextId,
-		...parts.helperText.attrs,
-	});
+  const getHelperTextProps = () => ({
+    id: @helperTextId,
+    ...parts.helperText.attrs,
+  });
 
-	const getErrorTextProps = () => ({
-		id: @errorTextId,
-		...parts.errorText.attrs,
-		'aria-live': 'polite',
-	});
+  const getErrorTextProps = () => ({
+    id: @errorTextId,
+    ...parts.errorText.attrs,
+    'aria-live': 'polite',
+  });
 
-	return track(
-		() => ({
-			setRootRef,
-			ids: {
-				legend: @legendId,
-				errorText: @errorTextId,
-				helperText: @helperTextId,
-			},
-			disabled: !!@disabled,
-			invalid: !!@invalid,
-			getRootProps,
-			getLegendProps,
-			getHelperTextProps,
-			getErrorTextProps,
-		}),
-	);
+  return track(
+    () => ({
+      setRootRef,
+      ids: {
+        legend: @legendId,
+        errorText: @errorTextId,
+        helperText: @helperTextId,
+      },
+      disabled: !!@disabled,
+      invalid: !!@invalid,
+      getRootProps,
+      getLegendProps,
+      getHelperTextProps,
+      getErrorTextProps,
+    }),
+  );
 }

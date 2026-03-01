@@ -6,22 +6,22 @@ import { ComboboxItemGroupPropsContext } from './use-combobox-item-group-props-c
 import { ark } from '../factory';
 
 export interface ComboboxItemGroupBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxItemGroupProps = ComboboxItemGroupBaseProps;
 
 export component ComboboxItemGroup(props: ComboboxItemGroupProps) {
-	const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
-	const id = useId();
-	const combobox = useComboboxContext();
+  const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
+  const id = useId();
+  const combobox = useComboboxContext();
 
-	const groupProps = track(() => ({ id: @propId ?? id }));
-	let mergedProps = track(() => mergeProps(@combobox.getItemGroupProps(groupProps), @localProps));
+  const groupProps = track(() => ({ id: @propId ?? id }));
+  let mergedProps = track(() => mergeProps(@combobox.getItemGroupProps(groupProps), @localProps));
 
-	ComboboxItemGroupPropsContext.set(groupProps);
+  ComboboxItemGroupPropsContext.set(groupProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

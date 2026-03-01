@@ -2,30 +2,30 @@ import { FocusTrap } from 'ark-ripple/focus-trap';
 import { track } from 'ripple';
 
 export component Basic() {
-	let disabled = track(true);
+  let disabled = track(true);
 
-	<div class="stack">
-		<button
-			type="button"
-			onClick={() => {
-				@disabled = false;
-			}}
-		>
-			{'Start Trap'}
-		</button>
-		<FocusTrap returnFocusOnDeactivate={false} {disabled}>
-			<div class="stack">
-				<input type="text" placeholder="input" />
-				<textarea placeholder="textarea" />
-				<button
-					type="button"
-					onClick={() => {
-						@disabled = true;
-					}}
-				>
-					{'End Trap'}
-				</button>
-			</div>
-		</FocusTrap>
-	</div>
+  <div class="stack">
+    <button
+      type="button"
+      onClick={() => {
+        @disabled = false;
+      }}
+    >
+      {'Start Trap'}
+    </button>
+    <FocusTrap returnFocusOnDeactivate={false} {disabled}>
+      <div class="stack">
+        <input type="text" placeholder="input" />
+        <textarea placeholder="textarea" />
+        <button
+          type="button"
+          onClick={() => {
+            @disabled = true;
+          }}
+        >
+          {'End Trap'}
+        </button>
+      </div>
+    </FocusTrap>
+  </div>
 }

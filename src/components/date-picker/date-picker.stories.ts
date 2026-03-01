@@ -29,119 +29,119 @@ import { YearPickerRange as YearPickerRangeExample } from './examples/year-picke
 import { CustomCalendar as CustomCalendarExample } from './examples/custom-calendar.ripple';
 
 const meta: Meta = {
-	title: 'Components/DatePicker',
+  title: 'Components/DatePicker',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const DefaultValue = {
-	render: () => ({ Component: DefaultValueExample }),
+  render: () => ({ Component: DefaultValueExample }),
 };
 
 export const DefaultView = {
-	render: () => ({ Component: DefaultViewExample }),
+  render: () => ({ Component: DefaultViewExample }),
 };
 
 export const FixedWeeks = {
-	render: () => ({ Component: FixedWeeksExample }),
+  render: () => ({ Component: FixedWeeksExample }),
 };
 
 export const Form = {
-	render: () => ({ Component: FormExample }),
+  render: () => ({ Component: FormExample }),
 };
 
 export const FormatParse = {
-	render: () => ({ Component: FormatParseExample }),
+  render: () => ({ Component: FormatParseExample }),
 };
 
 export const Inline = {
-	render: () => ({ Component: InlineExample }),
+  render: () => ({ Component: InlineExample }),
 };
 
 export const Locale = {
-	render: () => ({ Component: LocaleExample }),
+  render: () => ({ Component: LocaleExample }),
 };
 
 export const MaxSelectedDates = {
-	render: () => ({ Component: MaxSelectedDatesExample }),
+  render: () => ({ Component: MaxSelectedDatesExample }),
 };
 
 export const MinMax = {
-	render: () => ({ Component: MinMaxExample }),
+  render: () => ({ Component: MinMaxExample }),
 };
 
 export const MonthPicker = {
-	render: () => ({ Component: MonthPickerExample }),
+  render: () => ({ Component: MonthPickerExample }),
 };
 
 export const MonthPickerRange = {
-	render: () => ({ Component: MonthPickerRangeExample }),
+  render: () => ({ Component: MonthPickerRangeExample }),
 };
 
 export const MonthYearSelect = {
-	render: () => ({ Component: MonthYearSelectExample }),
+  render: () => ({ Component: MonthYearSelectExample }),
 };
 
 export const MultiSelection = {
-	render: () => ({ Component: MultiSelectionExample }),
+  render: () => ({ Component: MultiSelectionExample }),
 };
 
 export const MultipleMonths = {
-	render: () => ({ Component: MultipleMonthsExample }),
+  render: () => ({ Component: MultipleMonthsExample }),
 };
 
 export const OpenOnClick = {
-	render: () => ({ Component: OpenOnClickExample }),
+  render: () => ({ Component: OpenOnClickExample }),
 };
 
 export const Presets = {
-	render: () => ({ Component: PresetsExample }),
+  render: () => ({ Component: PresetsExample }),
 };
 
 export const RangeSelection = {
-	render: () => ({ Component: RangeSelectionExample }),
+  render: () => ({ Component: RangeSelectionExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const SelectToday = {
-	render: () => ({ Component: SelectTodayExample }),
+  render: () => ({ Component: SelectTodayExample }),
 };
 
 export const TriggerValue = {
-	render: () => ({ Component: TriggerValueExample }),
+  render: () => ({ Component: TriggerValueExample }),
 };
 
 export const Unavailable = {
-	render: () => ({ Component: UnavailableExample }),
+  render: () => ({ Component: UnavailableExample }),
 };
 
 export const WeekNumbers = {
-	render: () => ({ Component: WeekNumbersExample }),
+  render: () => ({ Component: WeekNumbersExample }),
 };
 
 export const WithTime = {
-	render: () => ({ Component: WithTimeExample }),
+  render: () => ({ Component: WithTimeExample }),
 };
 
 export const YearPicker = {
-	render: () => ({ Component: YearPickerExample }),
+  render: () => ({ Component: YearPickerExample }),
 };
 
 export const YearPickerRange = {
-	render: () => ({ Component: YearPickerRangeExample }),
+  render: () => ({ Component: YearPickerRangeExample }),
 };
 
 export const CustomCalendar = {
-	render: () => ({ Component: CustomCalendarExample }),
+  render: () => ({ Component: CustomCalendarExample }),
 };

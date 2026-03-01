@@ -5,20 +5,20 @@ import type { UseCheckboxReturn } from './use-checkbox.ripple';
 import { ark } from '../factory';
 
 export interface CheckboxRootProviderBaseProps {
-	value: UseCheckboxReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseCheckboxReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type CheckboxRootProviderProps = CheckboxRootProviderBaseProps;
 
 export component CheckboxRootProvider(props: CheckboxRootProviderProps) {
-	const [checkbox, children, rest] = trackSplit(props, ['value', 'children']);
+  const [checkbox, children, rest] = trackSplit(props, ['value', 'children']);
 
-	CheckboxApiContext.set(checkbox);
+  CheckboxApiContext.set(checkbox);
 
-	let mergedProps = track(() => mergeProps(@checkbox.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@checkbox.getRootProps(), @rest));
 
-	<ark.label {...@mergedProps}>
-		<@children />
-	</ark.label>
+  <ark.label {...@mergedProps}>
+    <@children />
+  </ark.label>
 }

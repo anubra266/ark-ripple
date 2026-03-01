@@ -4,18 +4,18 @@ import { useSelectContext } from './use-select-context';
 import { ark } from '../factory';
 
 export interface SelectClearTriggerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SelectClearTriggerProps = SelectClearTriggerBaseProps;
 
 export component SelectClearTrigger(props: SelectClearTriggerProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const select = useSelectContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const select = useSelectContext();
 
-	let mergedProps = track(() => mergeProps(@select.getClearTriggerProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@select.getClearTriggerProps(), @localProps));
 
-	<ark.button {...@mergedProps}>
-		<@children />
-	</ark.button>
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
 }

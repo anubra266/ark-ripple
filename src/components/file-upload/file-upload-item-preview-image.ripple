@@ -6,26 +6,31 @@ import { ark } from '../factory';
 import type { PolymorphicProps } from '../../types';
 
 export interface FileUploadItemPreviewImageBaseProps extends PolymorphicProps<'img'> {}
-export interface FileUploadItemPreviewImageProps extends HTMLProps<'img'>, FileUploadItemPreviewImageBaseProps {}
+export interface FileUploadItemPreviewImageProps extends HTMLProps<
+  'img'
+>, FileUploadItemPreviewImageBaseProps {}
 
 export component FileUploadItemPreviewImage(props: FileUploadItemPreviewImageProps) {
-	const [localProps] = trackSplit(props, []);
-	const fileUpload = useFileUploadContext();
-	const itemProps = useFileUploadItemPropsContext();
+  const [localProps] = trackSplit(props, []);
+  const fileUpload = useFileUploadContext();
+  const itemProps = useFileUploadItemPropsContext();
 
-	let url = track('');
+  let url = track('');
 
-	effect(() => {
-		return @fileUpload.createFileUrl(@itemProps.file, (newUrl: string) => {
-			@url = newUrl;
-		});
-	});
+  effect(() => {
+    return @fileUpload.createFileUrl(@itemProps.file, (newUrl: string) => {
+      @url = newUrl;
+    });
+  });
 
-	let mergedProps = track(
-		() => mergeProps(@fileUpload.getItemPreviewImageProps({ ...@itemProps, url: @url }), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(
+      @fileUpload.getItemPreviewImageProps({ ...@itemProps, url: @url }),
+      @localProps,
+    ),
+  );
 
-	if (@url) {
-		<ark.img {...@mergedProps} />
-	}
+  if (@url) {
+    <ark.img {...@mergedProps} />
+  }
 }

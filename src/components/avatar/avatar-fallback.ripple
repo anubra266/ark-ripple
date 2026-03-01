@@ -4,18 +4,18 @@ import { useAvatarContext } from './use-avatar-context';
 import { ark } from '../factory';
 
 export interface AvatarFallbackBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type AvatarFallbackProps = AvatarFallbackBaseProps;
 
 export component AvatarFallback(props: AvatarFallbackProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const avatarApi = useAvatarContext();
+  const [children, rest] = trackSplit(props, ['children']);
+  const avatarApi = useAvatarContext();
 
-	let mergedProps = track(() => mergeProps(@avatarApi.getFallbackProps(), @rest));
+  let mergedProps = track(() => mergeProps(@avatarApi.getFallbackProps(), @rest));
 
-	<ark.span {...@mergedProps}>
-		<@children />
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
 }

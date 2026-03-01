@@ -6,21 +6,21 @@ import { splitStepsProps } from './split-steps-props.ripple';
 import { ark } from '../factory';
 
 export interface StepsRootBaseProps extends UseStepsProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type StepsRootProps = StepsRootBaseProps;
 
 export component StepsRoot(props: StepsRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [stepsProps, localProps] = splitStepsProps(@rest);
-	const stepsApi = useSteps(stepsProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [stepsProps, localProps] = splitStepsProps(@rest);
+  const stepsApi = useSteps(stepsProps);
 
-	StepsApiContext.set(stepsApi);
+  StepsApiContext.set(stepsApi);
 
-	let mergedProps = track(() => mergeProps(@stepsApi.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@stepsApi.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

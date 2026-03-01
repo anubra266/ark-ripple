@@ -4,18 +4,18 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 
 export interface ColorPickerTransparencyGridBaseProps {
-	size?: string | undefined;
-	[key: string]: any;
+  size?: string | undefined;
+  [key: string]: any;
 }
 export type ColorPickerTransparencyGridProps = ColorPickerTransparencyGridBaseProps;
 
 export component ColorPickerTransparencyGrid(props: ColorPickerTransparencyGridProps) {
-	const [size, localProps] = trackSplit(props, ['size']);
-	const colorPicker = useColorPickerContext();
+  const [size, localProps] = trackSplit(props, ['size']);
+  const colorPicker = useColorPickerContext();
 
-	let mergedProps = track(
-		() => mergeProps(@colorPicker.getTransparencyGridProps({ size: @size }), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@colorPicker.getTransparencyGridProps({ size: @size }), @localProps),
+  );
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

@@ -6,32 +6,32 @@ import { SegmentGroupItemPropsContext } from './use-segment-group-item-props-con
 import { ark } from '../factory';
 
 export interface SegmentGroupItemBaseProps {
-	value: string;
-	disabled?: boolean;
-	invalid?: boolean;
-	children?: any;
-	[key: string]: any;
+  value: string;
+  disabled?: boolean;
+  invalid?: boolean;
+  children?: any;
+  [key: string]: any;
 }
 export type SegmentGroupItemProps = SegmentGroupItemBaseProps;
 
 export component SegmentGroupItem(props: SegmentGroupItemProps) {
-	const [children, value, disabled, invalid, localProps] = trackSplit(props, [
-		'children',
-		'value',
-		'disabled',
-		'invalid',
-	]);
-	const segmentGroup = useSegmentGroupContext();
+  const [children, value, disabled, invalid, localProps] = trackSplit(props, [
+    'children',
+    'value',
+    'disabled',
+    'invalid',
+  ]);
+  const segmentGroup = useSegmentGroupContext();
 
-	const itemProps = track(() => ({ value: @value, disabled: @disabled, invalid: @invalid }));
-	const itemState = track(() => @segmentGroup.getItemState(@itemProps));
+  const itemProps = track(() => ({ value: @value, disabled: @disabled, invalid: @invalid }));
+  const itemState = track(() => @segmentGroup.getItemState(@itemProps));
 
-	SegmentGroupItemApiContext.set(itemState);
-	SegmentGroupItemPropsContext.set(itemProps);
+  SegmentGroupItemApiContext.set(itemState);
+  SegmentGroupItemPropsContext.set(itemProps);
 
-	let mergedProps = track(() => mergeProps(@segmentGroup.getItemProps(@itemProps), @localProps));
+  let mergedProps = track(() => mergeProps(@segmentGroup.getItemProps(@itemProps), @localProps));
 
-	<ark.label {...@mergedProps}>
-		<@children />
-	</ark.label>
+  <ark.label {...@mergedProps}>
+    <@children />
+  </ark.label>
 }

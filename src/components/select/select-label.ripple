@@ -4,18 +4,18 @@ import { useSelectContext } from './use-select-context';
 import { ark } from '../factory';
 
 export interface SelectLabelBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SelectLabelProps = SelectLabelBaseProps;
 
 export component SelectLabel(props: SelectLabelProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const select = useSelectContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const select = useSelectContext();
 
-	let mergedProps = track(() => mergeProps(@select.getLabelProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@select.getLabelProps(), @localProps));
 
-	<ark.label {...@mergedProps}>
-		<@children />
-	</ark.label>
+  <ark.label {...@mergedProps}>
+    <@children />
+  </ark.label>
 }

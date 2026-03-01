@@ -5,40 +5,40 @@ import { splitFocusTrapProps } from './split-focus-trap-props.ripple';
 import { ark } from '../factory';
 
 export interface TrapOptions extends Pick<
-	FocusTrapOptions,
-	'onActivate' | 'onDeactivate' | 'initialFocus' | 'fallbackFocus' | 'returnFocusOnDeactivate' | 'setReturnFocus'
+  FocusTrapOptions,
+  'onActivate' | 'onDeactivate' | 'initialFocus' | 'fallbackFocus' | 'returnFocusOnDeactivate' | 'setReturnFocus'
 > {
-	/**
+  /**
  * Whether the focus trap is disabled.
  */
-	disabled?: boolean;
+  disabled?: boolean;
 }
 
 export interface FocusTrapBaseProps extends TrapOptions {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 
 export type FocusTrapProps = FocusTrapBaseProps;
 
 export component FocusTrap(props: FocusTrapProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [trapProps, localProps] = splitFocusTrapProps(@rest);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [trapProps, localProps] = splitFocusTrapProps(@rest);
 
-	let elem = track<HTMLDivElement | null>(null);
+  let elem = track<HTMLDivElement | null>(null);
 
-	effect(() => {
-		const node = @elem;
-		if (!node || @trapProps.disabled) return;
-		return trapFocus(node, mergeProps(@trapProps));
-	});
+  effect(() => {
+    const node = @elem;
+    if (!node || @trapProps.disabled) return;
+    return trapFocus(node, mergeProps(@trapProps));
+  });
 
-	<ark.div
-		{...@localProps}
-		{ref (el: HTMLDivElement | null) => {
-			@elem = el;
-		}}
-	>
-		<@children />
-	</ark.div>
+  <ark.div
+    {...@localProps}
+    {ref (el: HTMLDivElement | null) => {
+      @elem = el;
+    }}
+  >
+    <@children />
+  </ark.div>
 }

@@ -6,21 +6,21 @@ import { splitSliderProps } from './split-slider-props.ripple';
 import { ark } from '../factory';
 
 export interface SliderRootBaseProps extends UseSliderProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SliderRootProps = SliderRootBaseProps;
 
 export component SliderRoot(props: SliderRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [sliderProps, localProps] = splitSliderProps(@rest);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [sliderProps, localProps] = splitSliderProps(@rest);
 
-	const slider = useSlider(sliderProps);
-	let mergedProps = track(() => mergeProps(@slider.getRootProps(), @localProps));
+  const slider = useSlider(sliderProps);
+  let mergedProps = track(() => mergeProps(@slider.getRootProps(), @localProps));
 
-	SliderApiContext.set(slider);
+  SliderApiContext.set(slider);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

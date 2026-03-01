@@ -1,8 +1,8 @@
 import { Swap } from 'ark-ripple/swap';
 
 export component ComponentUnderTest(props: Record<string, any>) {
-	<Swap.Root {...props}>
-		<Swap.Indicator type="on">{'On'}</Swap.Indicator>
-		<Swap.Indicator type="off">{'Off'}</Swap.Indicator>
-	</Swap.Root>
+  <Swap.Root {...props}>
+    <Swap.Indicator type="on">{'On'}</Swap.Indicator>
+    <Swap.Indicator type="off">{'Off'}</Swap.Indicator>
+  </Swap.Root>
 }

@@ -4,23 +4,23 @@ import { useCheckboxContext } from './use-checkbox-context';
 import { ark } from '../factory';
 
 export interface CheckboxIndicatorBaseProps {
-	indeterminate?: boolean;
-	children?: any;
-	[key: string]: any;
+  indeterminate?: boolean;
+  children?: any;
+  [key: string]: any;
 }
 export type CheckboxIndicatorProps = CheckboxIndicatorBaseProps;
 
 export component CheckboxIndicator(props: CheckboxIndicatorProps) {
-	const [indeterminate, children, localProps] = trackSplit(props, ['indeterminate', 'children']);
-	const checkbox = useCheckboxContext();
+  const [indeterminate, children, localProps] = trackSplit(props, ['indeterminate', 'children']);
+  const checkbox = useCheckboxContext();
 
-	const isVisible = track(() => @indeterminate ? @checkbox.indeterminate : @checkbox.checked);
+  const isVisible = track(() => @indeterminate ? @checkbox.indeterminate : @checkbox.checked);
 
-	let mergedProps = track(
-		() => mergeProps(@checkbox.getIndicatorProps(), @localProps, { hidden: !@isVisible }),
-	);
+  let mergedProps = track(
+    () => mergeProps(@checkbox.getIndicatorProps(), @localProps, { hidden: !@isVisible }),
+  );
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -3,9 +3,9 @@ import { Frame } from 'ark-ripple/frame';
 import { Usage } from './usage.ripple';
 
 export component Basic() {
-	<Frame title="IFrame Context" style={{ width: '100%', height: '100%' }}>
-		<EnvironmentProvider>
-			<Usage />
-		</EnvironmentProvider>
-	</Frame>
+  <Frame title="IFrame Context" style={{ width: '100%', height: '100%' }}>
+    <EnvironmentProvider>
+      <Usage />
+    </EnvironmentProvider>
+  </Frame>
 }

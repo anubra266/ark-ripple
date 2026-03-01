@@ -5,5 +5,5 @@ import { mergeProps } from 'zag-ripple';
 export interface UseHighlightProps extends HighlightWordProps {}
 
 export function useHighlight(props: Tracked<UseHighlightProps>) {
-	return track(() => highlightWord(mergeProps(@props)));
+  return track(() => highlightWord(mergeProps(@props)));
 }

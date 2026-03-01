@@ -10,26 +10,26 @@ import type { UsePresenceProps } from '../presence/use-presence.ripple';
 import { ark } from '../factory';
 
 export interface ComboboxRootBaseProps<T = any> extends UseComboboxProps<T>, UsePresenceProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ComboboxRootProps<T = any> = ComboboxRootBaseProps<T>;
 
 export component ComboboxRoot(props: ComboboxRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [presenceProps, comboboxProps] = splitPresenceProps(@rest);
-	const [useComboboxPropsVal, localProps] = splitComboboxProps(@comboboxProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, comboboxProps] = splitPresenceProps(@rest);
+  const [useComboboxPropsVal, localProps] = splitComboboxProps(@comboboxProps);
 
-	const combobox = useCombobox(useComboboxPropsVal);
-	const present = track(() => @combobox.open);
+  const combobox = useCombobox(useComboboxPropsVal);
+  const present = track(() => @combobox.open);
 
-	let presence = usePresence({ present, ...@presenceProps });
-	let mergedProps = track(() => mergeProps(@combobox.getRootProps(), @localProps));
+  let presence = usePresence({ present, ...@presenceProps });
+  let mergedProps = track(() => mergeProps(@combobox.getRootProps(), @localProps));
 
-	ComboboxApiContext.set(combobox);
-	PresenceApiContext.set(presence);
+  ComboboxApiContext.set(combobox);
+  PresenceApiContext.set(presence);
 
-	<ark.div {...@mergedProps}>
-		<props.children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <props.children />
+  </ark.div>
 }

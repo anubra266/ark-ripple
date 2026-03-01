@@ -4,18 +4,18 @@ import type { UseSegmentGroupProps } from './use-segment-group.ripple';
 const splitProps = createSplitProps<UseSegmentGroupProps>();
 
 export function splitSegmentGroupProps<T extends UseSegmentGroupProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'defaultValue',
-		'disabled',
-		'form',
-		'id',
-		'ids',
-		'invalid',
-		'name',
-		'onValueChange',
-		'orientation',
-		'readOnly',
-		'required',
-		'value',
-	]);
+  return splitProps(props, [
+    'defaultValue',
+    'disabled',
+    'form',
+    'id',
+    'ids',
+    'invalid',
+    'name',
+    'onValueChange',
+    'orientation',
+    'readOnly',
+    'required',
+    'value',
+  ]);
 }

@@ -5,21 +5,21 @@ import styles from 'styles/radio-group.module.css';
 const frameworks = ['React', 'Solid', 'Vue'];
 
 export component RootProvider() {
-	const radioGroup = useRadioGroup({ defaultValue: 'React' });
+  const radioGroup = useRadioGroup({ defaultValue: 'React' });
 
-	<div class="stack">
-		<RadioGroup.RootProvider class={styles.Root} value={radioGroup}>
-			<RadioGroup.Label class={styles.Label}>{'Framework'}</RadioGroup.Label>
-			for (const framework of frameworks; key framework) {
-				<RadioGroup.Item class={styles.Item} value={framework}>
-					<RadioGroup.ItemControl class={styles.ItemControl} />
-					<RadioGroup.ItemText class={styles.ItemText}>{framework}</RadioGroup.ItemText>
-					<RadioGroup.ItemHiddenInput />
-				</RadioGroup.Item>
-			}
-		</RadioGroup.RootProvider>
-		<button class={button.Root} onClick={() => @radioGroup.setValue('Solid')}>
-			{'Set to Solid'}
-		</button>
-	</div>
+  <div class="stack">
+    <RadioGroup.RootProvider class={styles.Root} value={radioGroup}>
+      <RadioGroup.Label class={styles.Label}>{'Framework'}</RadioGroup.Label>
+      for (const framework of frameworks; key framework) {
+        <RadioGroup.Item class={styles.Item} value={framework}>
+          <RadioGroup.ItemControl class={styles.ItemControl} />
+          <RadioGroup.ItemText class={styles.ItemText}>{framework}</RadioGroup.ItemText>
+          <RadioGroup.ItemHiddenInput />
+        </RadioGroup.Item>
+      }
+    </RadioGroup.RootProvider>
+    <button class={button.Root} onClick={() => @radioGroup.setValue('Solid')}>
+      {'Set to Solid'}
+    </button>
+  </div>
 }

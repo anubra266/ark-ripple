@@ -7,27 +7,27 @@ export interface HighlightBaseProps extends UseHighlightProps {}
 export interface HighlightProps extends Assign<HTMLProps<'mark'>, HighlightBaseProps> {}
 
 export component Highlight(props: HighlightProps) {
-	const [highlightProps, localProps] = createSplitProps<HighlightBaseProps>()(props, [
-		'query',
-		'text',
-		'ignoreCase',
-		'matchAll',
-		'exactMatch',
-	]);
+  const [highlightProps, localProps] = createSplitProps<HighlightBaseProps>()(props, [
+    'query',
+    'text',
+    'ignoreCase',
+    'matchAll',
+    'exactMatch',
+  ]);
 
-	effect(() => {
-		if (typeof @highlightProps.text !== 'string') {
-			throw new Error('[ark-ui/highlight] text must be a string');
-		}
-	});
+  effect(() => {
+    if (typeof @highlightProps.text !== 'string') {
+      throw new Error('[ark-ui/highlight] text must be a string');
+    }
+  });
 
-	const chunks = useHighlight(highlightProps);
+  const chunks = useHighlight(highlightProps);
 
-	for (const chunk of @chunks; index i; key i) {
-		if (chunk.match) {
-			<ark.mark {...@localProps}>{chunk.text}</ark.mark>
-		} else {
-			{chunk.text}
-		}
-	}
+  for (const chunk of @chunks; index i; key i) {
+    if (chunk.match) {
+      <ark.mark {...@localProps}>{chunk.text}</ark.mark>
+    } else {
+      {chunk.text}
+    }
+  }
 }

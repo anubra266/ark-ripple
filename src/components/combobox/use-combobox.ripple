@@ -10,45 +10,45 @@ import type { Optional, Accessor } from '../../types';
 import type { CollectionItem, ListCollection } from '../collection';
 
 export interface UseComboboxProps<T extends CollectionItem> extends Optional<
-	Omit<combobox.Props<T>, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<combobox.Props<T>, 'dir' | 'getRootNode'>,
+  'id'
 > {
-	/**
+  /**
  * The collection of items
  */
-	collection: ListCollection<T>;
+  collection: ListCollection<T>;
 }
 
 export interface UseComboboxReturn<T extends CollectionItem> extends Accessor<
-	combobox.Api<PropTypes, T>
+  combobox.Api<PropTypes, T>
 > {}
 
 export function useCombobox<T extends CollectionItem>(props: Tracked<UseComboboxProps<T>>): UseComboboxReturn<T> {
-	const locale = useLocaleContext();
-	const env = useEnvironmentContext();
-	const field = useFieldContext();
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const field = useFieldContext();
 
-	const id = useId();
+  const id = useId();
 
-	const machineProps = track(
-		() => ({
-			id,
-			ids: {
-				label: @field?.ids.label,
-				input: @field?.ids.control,
-			},
-			dir: @locale.dir,
-			getRootNode: @env.getRootNode,
-			disabled: @field?.disabled,
-			readOnly: @field?.readOnly,
-			invalid: @field?.invalid,
-			required: @field?.required,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        input: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      disabled: @field?.disabled,
+      readOnly: @field?.readOnly,
+      invalid: @field?.invalid,
+      required: @field?.required,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(combobox.machine, machineProps);
-	const api = track(() => combobox.connect(service, normalizeProps));
+  const service = useMachine(combobox.machine, machineProps);
+  const api = track(() => combobox.connect(service, normalizeProps));
 
-	return api;
+  return api;
 }

@@ -5,21 +5,21 @@ import { useDatePickerTablePropsContext } from './use-date-picker-table-props-co
 import { ark } from '../factory';
 
 export interface DatePickerWeekNumberHeaderCellBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerWeekNumberHeaderCellProps = DatePickerWeekNumberHeaderCellBaseProps;
 
 export component DatePickerWeekNumberHeaderCell(props: DatePickerWeekNumberHeaderCellProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const datePicker = useDatePickerContext();
-	const tableProps = useDatePickerTablePropsContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const datePicker = useDatePickerContext();
+  const tableProps = useDatePickerTablePropsContext();
 
-	let mergedProps = track(
-		() => mergeProps(@datePicker.getWeekNumberHeaderCellProps(@tableProps), @localProps),
-	);
+  let mergedProps = track(
+    () => mergeProps(@datePicker.getWeekNumberHeaderCellProps(@tableProps), @localProps),
+  );
 
-	<ark.th {...@mergedProps}>
-		<@children />
-	</ark.th>
+  <ark.th {...@mergedProps}>
+    <@children />
+  </ark.th>
 }

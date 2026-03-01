@@ -7,27 +7,27 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseScrollAreaProps extends Optional<
-	Omit<scrollArea.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<scrollArea.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseScrollAreaReturn = ReturnType<typeof useScrollArea>;
 
 export function useScrollArea(props: UseScrollAreaProps = {}) {
-	const id = useId();
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
+  const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(scrollArea.machine, machineProps);
+  const service = useMachine(scrollArea.machine, machineProps);
 
-	return track(() => scrollArea.connect(service, normalizeProps));
+  return track(() => scrollArea.connect(service, normalizeProps));
 }

@@ -3,29 +3,29 @@ import styles from 'styles/checkbox.module.css';
 import { Check } from 'lucide-ripple';
 
 export component GroupWithMaxSelected() {
-	<Checkbox.Group
-		class={styles.Group}
-		defaultValue={['react']}
-		maxSelectedValues={2}
-		name="framework"
-	>
-		for (const item of items; key item.value) {
-			<Checkbox.Root class={styles.Root} value={item.value}>
-				<Checkbox.Control class={styles.Control}>
-					<Checkbox.Indicator class={styles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-	</Checkbox.Group>
+  <Checkbox.Group
+    class={styles.Group}
+    defaultValue={['react']}
+    maxSelectedValues={2}
+    name="framework"
+  >
+    for (const item of items; key item.value) {
+      <Checkbox.Root class={styles.Root} value={item.value}>
+        <Checkbox.Control class={styles.Control}>
+          <Checkbox.Indicator class={styles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={styles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+  </Checkbox.Group>
 }
 
 const items = [
-	{ label: 'React', value: 'react' },
-	{ label: 'Solid', value: 'solid' },
-	{ label: 'Vue', value: 'vue' },
-	{ label: 'Svelte', value: 'svelte' },
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'Svelte', value: 'svelte' },
 ];

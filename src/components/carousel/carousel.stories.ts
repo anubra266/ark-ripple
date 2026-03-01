@@ -13,55 +13,55 @@ import { VariableSize as VariableSizeExample } from './examples/variable-size.ri
 import { Vertical as VerticalExample } from './examples/vertical.ripple';
 
 const meta: Meta = {
-	title: 'Components/Carousel',
+  title: 'Components/Carousel',
 };
 
 export default meta;
 
 export const Autoplay = {
-	render: () => ({ Component: AutoplayExample }),
+  render: () => ({ Component: AutoplayExample }),
 };
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const DynamicSlides = {
-	render: () => ({ Component: DynamicSlidesExample }),
+  render: () => ({ Component: DynamicSlidesExample }),
 };
 
 export const PauseOnHover = {
-	render: () => ({ Component: PauseOnHoverExample }),
+  render: () => ({ Component: PauseOnHoverExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };
 
 export const ScrollTo = {
-	render: () => ({ Component: ScrollToExample }),
+  render: () => ({ Component: ScrollToExample }),
 };
 
 export const SlidesPerPage = {
-	render: () => ({ Component: SlidesPerPageExample }),
+  render: () => ({ Component: SlidesPerPageExample }),
 };
 
 export const Spacing = {
-	render: () => ({ Component: SpacingExample }),
+  render: () => ({ Component: SpacingExample }),
 };
 
 export const ThumbnailIndicator = {
-	render: () => ({ Component: ThumbnailIndicatorExample }),
+  render: () => ({ Component: ThumbnailIndicatorExample }),
 };
 
 export const VariableSize = {
-	render: () => ({ Component: VariableSizeExample }),
+  render: () => ({ Component: VariableSizeExample }),
 };
 
 export const Vertical = {
-	render: () => ({ Component: VerticalExample }),
+  render: () => ({ Component: VerticalExample }),
 };

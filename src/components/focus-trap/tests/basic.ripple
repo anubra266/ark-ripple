@@ -1,11 +1,11 @@
 import { FocusTrap, type FocusTrapProps } from 'ark-ripple/focus-trap';
 
 export component ComponentUnderTest(props: FocusTrapProps) {
-	<FocusTrap {...props}>
-		<div>
-			<input type="text" placeholder="First" />
-			<input type="text" placeholder="Second" />
-			<button type="button">{'Button'}</button>
-		</div>
-	</FocusTrap>
+  <FocusTrap {...props}>
+    <div>
+      <input type="text" placeholder="First" />
+      <input type="text" placeholder="Second" />
+      <button type="button">{'Button'}</button>
+    </div>
+  </FocusTrap>
 }

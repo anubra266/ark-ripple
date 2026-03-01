@@ -5,25 +5,25 @@ const slides = [0, 1, 2, 3, 4, 5];
 const pageIndicators = [0, 1, 2];
 
 export component SlidesPerPage() {
-	<Carousel.Root class={styles.Root} slideCount={slides.length} slidesPerPage={2} spacing="20px">
-		<Carousel.Control class={styles.Control}>
-			<Carousel.PrevTrigger class={styles.Trigger}>{'←'}</Carousel.PrevTrigger>
-			<Carousel.NextTrigger class={styles.Trigger}>{'→'}</Carousel.NextTrigger>
-		</Carousel.Control>
-		<Carousel.ItemGroup class={styles.ItemGroup}>
-			for (const index of slides; key index) {
-				<Carousel.Item class={styles.Item} {index}>
-					<div class={styles.Slide}>
-						{'Slide '}
-						{index + 1}
-					</div>
-				</Carousel.Item>
-			}
-		</Carousel.ItemGroup>
-		<Carousel.IndicatorGroup class={styles.IndicatorGroup}>
-			for (const index of pageIndicators; key index) {
-				<Carousel.Indicator class={styles.Indicator} {index} />
-			}
-		</Carousel.IndicatorGroup>
-	</Carousel.Root>
+  <Carousel.Root class={styles.Root} slideCount={slides.length} slidesPerPage={2} spacing="20px">
+    <Carousel.Control class={styles.Control}>
+      <Carousel.PrevTrigger class={styles.Trigger}>{'←'}</Carousel.PrevTrigger>
+      <Carousel.NextTrigger class={styles.Trigger}>{'→'}</Carousel.NextTrigger>
+    </Carousel.Control>
+    <Carousel.ItemGroup class={styles.ItemGroup}>
+      for (const index of slides; key index) {
+        <Carousel.Item class={styles.Item} {index}>
+          <div class={styles.Slide}>
+            {'Slide '}
+            {index + 1}
+          </div>
+        </Carousel.Item>
+      }
+    </Carousel.ItemGroup>
+    <Carousel.IndicatorGroup class={styles.IndicatorGroup}>
+      for (const index of pageIndicators; key index) {
+        <Carousel.Indicator class={styles.Indicator} {index} />
+      }
+    </Carousel.IndicatorGroup>
+  </Carousel.Root>
 }

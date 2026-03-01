@@ -7,27 +7,27 @@ import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
 export interface UseAccordionProps extends Optional<
-	Omit<accordion.Props, 'dir' | 'getRootNode'>,
-	'id'
+  Omit<accordion.Props, 'dir' | 'getRootNode'>,
+  'id'
 > {}
 
 export type UseAccordionReturn = ReturnType<typeof useAccordion>;
 
 export function useAccordion(props: UseAccordionProps = {}) {
-	const environment = useEnvironmentContext();
-	const locale = useLocaleContext();
-	const id = useId();
+  const environment = useEnvironmentContext();
+  const locale = useLocaleContext();
+  const id = useId();
 
-	const machineProps = track(
-		() => ({
-			id,
-			dir: @locale.dir,
-			getRootNode: @environment.getRootNode,
-			...@props,
-		}),
-	);
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @environment.getRootNode,
+      ...@props,
+    }),
+  );
 
-	const service = useMachine(accordion.machine, machineProps);
+  const service = useMachine(accordion.machine, machineProps);
 
-	return track(() => accordion.connect(service, normalizeProps));
+  return track(() => accordion.connect(service, normalizeProps));
 }

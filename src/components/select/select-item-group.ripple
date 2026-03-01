@@ -6,22 +6,22 @@ import { SelectItemGroupPropsContext } from './use-select-item-group-props-conte
 import { ark } from '../factory';
 
 export interface SelectItemGroupBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SelectItemGroupProps = SelectItemGroupBaseProps;
 
 export component SelectItemGroup(props: SelectItemGroupProps) {
-	const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
-	const id = useId();
-	const select = useSelectContext();
+  const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
+  const id = useId();
+  const select = useSelectContext();
 
-	const groupProps = track(() => ({ id: @propId ?? id }));
-	let mergedProps = track(() => mergeProps(@select.getItemGroupProps(groupProps), @localProps));
+  const groupProps = track(() => ({ id: @propId ?? id }));
+  let mergedProps = track(() => mergeProps(@select.getItemGroupProps(groupProps), @localProps));
 
-	SelectItemGroupPropsContext.set(groupProps);
+  SelectItemGroupPropsContext.set(groupProps);
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -5,40 +5,40 @@ import field from 'styles/field.module.css';
 import styles from 'styles/file-upload.module.css';
 
 export component WithField() {
-	<Field.Root class={field.Root}>
-		<FileUpload.Root maxFiles={5} class={styles.Root}>
-			<FileUpload.Label class={styles.Label}>{'Attachments'}</FileUpload.Label>
-			<FileUpload.Dropzone class={styles.Dropzone}>
-				<Upload class={styles.DropzoneIcon} />
-				<div class={styles.DropzoneContent}>
-					<span class={styles.DropzoneTitle}>{'Drop files here'}</span>
-					<span class={styles.DropzoneDescription}>{'or click to browse'}</span>
-				</div>
-			</FileUpload.Dropzone>
-			<FileUpload.ItemGroup class={styles.ItemGroup}>
-				<FileUpload.Context>
-					component children({ context }) {
-						for (const file of @context.acceptedFiles; key file.name) {
-							<FileUpload.Item file={file} class={styles.Item}>
-								<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
-									<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
-								</FileUpload.ItemPreview>
-								<FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
-									<File />
-								</FileUpload.ItemPreview>
-								<FileUpload.ItemName class={styles.ItemName} />
-								<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-								<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
-									<X />
-								</FileUpload.ItemDeleteTrigger>
-							</FileUpload.Item>
-						}
-					}
-				</FileUpload.Context>
-			</FileUpload.ItemGroup>
-			<FileUpload.HiddenInput data-testid="input" />
-		</FileUpload.Root>
-		<Field.HelperText class={field.HelperText}>{'Upload up to 5 files'}</Field.HelperText>
-		<Field.ErrorText class={field.ErrorText}>{'Please upload at least one file'}</Field.ErrorText>
-	</Field.Root>
+  <Field.Root class={field.Root}>
+    <FileUpload.Root maxFiles={5} class={styles.Root}>
+      <FileUpload.Label class={styles.Label}>{'Attachments'}</FileUpload.Label>
+      <FileUpload.Dropzone class={styles.Dropzone}>
+        <Upload class={styles.DropzoneIcon} />
+        <div class={styles.DropzoneContent}>
+          <span class={styles.DropzoneTitle}>{'Drop files here'}</span>
+          <span class={styles.DropzoneDescription}>{'or click to browse'}</span>
+        </div>
+      </FileUpload.Dropzone>
+      <FileUpload.ItemGroup class={styles.ItemGroup}>
+        <FileUpload.Context>
+          component children({ context }) {
+            for (const file of @context.acceptedFiles; key file.name) {
+              <FileUpload.Item {file} class={styles.Item}>
+                <FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+                  <FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+                </FileUpload.ItemPreview>
+                <FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
+                  <File />
+                </FileUpload.ItemPreview>
+                <FileUpload.ItemName class={styles.ItemName} />
+                <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+                <FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                  <X />
+                </FileUpload.ItemDeleteTrigger>
+              </FileUpload.Item>
+            }
+          }
+        </FileUpload.Context>
+      </FileUpload.ItemGroup>
+      <FileUpload.HiddenInput data-testid="input" />
+    </FileUpload.Root>
+    <Field.HelperText class={field.HelperText}>{'Upload up to 5 files'}</Field.HelperText>
+    <Field.ErrorText class={field.ErrorText}>{'Please upload at least one file'}</Field.ErrorText>
+  </Field.Root>
 }

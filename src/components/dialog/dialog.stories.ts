@@ -16,67 +16,67 @@ import { RapidStateChange as RapidStateChangeExample } from './examples/rapid-st
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Dialog',
+  title: 'Components/Dialog',
 };
 
 export default meta;
 
 export const AlertDialog = {
-	render: () => ({ Component: AlertDialogExample }),
+  render: () => ({ Component: AlertDialogExample }),
 };
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Confirmation = {
-	render: () => ({ Component: ConfirmationExample }),
+  render: () => ({ Component: ConfirmationExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Controlled = {
-	render: () => ({ Component: ControlledExample }),
+  render: () => ({ Component: ControlledExample }),
 };
 
 export const FinalFocus = {
-	render: () => ({ Component: FinalFocusExample }),
+  render: () => ({ Component: FinalFocusExample }),
 };
 
 export const InitialFocus = {
-	render: () => ({ Component: InitialFocusExample }),
+  render: () => ({ Component: InitialFocusExample }),
 };
 
 export const InsideScroll = {
-	render: () => ({ Component: InsideScrollExample }),
+  render: () => ({ Component: InsideScrollExample }),
 };
 
 export const LazyMount = {
-	render: () => ({ Component: LazyMountExample }),
+  render: () => ({ Component: LazyMountExample }),
 };
 
 export const Nested = {
-	render: () => ({ Component: NestedExample }),
+  render: () => ({ Component: NestedExample }),
 };
 
 export const NonModal = {
-	render: () => ({ Component: NonModalExample }),
+  render: () => ({ Component: NonModalExample }),
 };
 
 export const OpenFromMenu = {
-	render: () => ({ Component: OpenFromMenuExample }),
+  render: () => ({ Component: OpenFromMenuExample }),
 };
 
 export const OutsideScroll = {
-	render: () => ({ Component: OutsideScrollExample }),
+  render: () => ({ Component: OutsideScrollExample }),
 };
 
 export const RapidStateChange = {
-	render: () => ({ Component: RapidStateChangeExample }),
+  render: () => ({ Component: RapidStateChangeExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

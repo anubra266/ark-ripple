@@ -5,55 +5,55 @@ import styles from 'styles/list-selection.module.css';
 import checkboxStyles from 'styles/checkbox.module.css';
 
 const collection = createListCollection(
-	{
-		items: [
-			{ label: 'React', value: 'react' },
-			{ label: 'Vue', value: 'vue' },
-			{ label: 'Angular', value: 'angular' },
-			{ label: 'Svelte', value: 'svelte' },
-			{ label: 'Solid', value: 'solid' },
-		],
-	},
+  {
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Angular', value: 'angular' },
+      { label: 'Svelte', value: 'svelte' },
+      { label: 'Solid', value: 'solid' },
+    ],
+  },
 );
 
 export component Multiple() {
-	const selection = useListSelection({ collection, selectionMode: 'multiple' });
+  const selection = useListSelection({ collection, selectionMode: 'multiple' });
 
-	const handleSelectAll = () => {
-		if (@selection.isAllSelected()) {
-			@selection.clear();
-		} else {
-			@selection.setSelectedValues(collection.getValues());
-		}
-	};
+  const handleSelectAll = () => {
+    if (@selection.isAllSelected()) {
+      @selection.clear();
+    } else {
+      @selection.setSelectedValues(collection.getValues());
+    }
+  };
 
-	<div class={styles.Root}>
-		<div class={styles.Header}>
-			<span class={styles.Count}>
-				{@selection.selectedValues.length}
-				{' of '}
-				{collection.items.length}
-				{' selected'}
-			</span>
-			<button type="button" class={styles.SelectAllButton} onClick={handleSelectAll}>
-				{@selection.isAllSelected() ? 'Deselect all' : 'Select all'}
-			</button>
-		</div>
-		for (const item of collection.items; key item.value) {
-			<Checkbox.Root
-				class={styles.Item}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				checked={@selection.isSelected(item.value)}
-				onCheckedChange={() => @selection.select(item.value)}
-			>
-				<Checkbox.Control class={checkboxStyles.Control}>
-					<Checkbox.Indicator class={checkboxStyles.Indicator}>
-						<Check />
-					</Checkbox.Indicator>
-				</Checkbox.Control>
-				<Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
-				<Checkbox.HiddenInput />
-			</Checkbox.Root>
-		}
-	</div>
+  <div class={styles.Root}>
+    <div class={styles.Header}>
+      <span class={styles.Count}>
+        {@selection.selectedValues.length}
+        {' of '}
+        {collection.items.length}
+        {' selected'}
+      </span>
+      <button type="button" class={styles.SelectAllButton} onClick={handleSelectAll}>
+        {@selection.isAllSelected() ? 'Deselect all' : 'Select all'}
+      </button>
+    </div>
+    for (const item of collection.items; key item.value) {
+      <Checkbox.Root
+        class={styles.Item}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        checked={@selection.isSelected(item.value)}
+        onCheckedChange={() => @selection.select(item.value)}
+      >
+        <Checkbox.Control class={checkboxStyles.Control}>
+          <Checkbox.Indicator class={checkboxStyles.Indicator}>
+            <Check />
+          </Checkbox.Indicator>
+        </Checkbox.Control>
+        <Checkbox.Label class={checkboxStyles.Label}>{item.label}</Checkbox.Label>
+        <Checkbox.HiddenInput />
+      </Checkbox.Root>
+    }
+  </div>
 }

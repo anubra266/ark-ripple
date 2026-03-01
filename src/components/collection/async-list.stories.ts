@@ -7,31 +7,31 @@ import { SortClientSide as SortClientSideExample } from './examples/async-list/s
 import { SortServerSide as SortServerSideExample } from './examples/async-list/sort-server-side.ripple';
 
 const meta: Meta = {
-	title: 'Utilities/AsyncList',
+  title: 'Utilities/AsyncList',
 };
 
 export default meta;
 
 export const Filter = {
-	render: () => ({ Component: FilterExample }),
+  render: () => ({ Component: FilterExample }),
 };
 
 export const InfiniteLoading = {
-	render: () => ({ Component: InfiniteLoadingExample }),
+  render: () => ({ Component: InfiniteLoadingExample }),
 };
 
 export const Reload = {
-	render: () => ({ Component: ReloadExample }),
+  render: () => ({ Component: ReloadExample }),
 };
 
 export const SortClientSide = {
-	render: () => ({ Component: SortClientSideExample }),
+  render: () => ({ Component: SortClientSideExample }),
 };
 
 export const SortServerSide = {
-	render: () => ({ Component: SortServerSideExample }),
+  render: () => ({ Component: SortServerSideExample }),
 };
 
 export const Dependencies = {
-	render: () => ({ Component: DependenciesExample }),
+  render: () => ({ Component: DependenciesExample }),
 };

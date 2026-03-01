@@ -4,18 +4,18 @@ import { useCarouselContext } from './use-carousel-context';
 import { ark } from '../factory';
 
 export interface CarouselControlBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type CarouselControlProps = CarouselControlBaseProps;
 
 export component CarouselControl(props: CarouselControlProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const carousel = useCarouselContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const carousel = useCarouselContext();
 
-	let mergedProps = track(() => mergeProps(@carousel.getControlProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@carousel.getControlProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

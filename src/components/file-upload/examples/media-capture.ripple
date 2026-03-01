@@ -3,35 +3,35 @@ import { Camera, File, X } from 'lucide-ripple';
 import styles from 'styles/file-upload.module.css';
 
 export component MediaCapture() {
-	<FileUpload.Root capture="environment" class={styles.Root}>
-		<FileUpload.Label class={styles.Label}>{'Capture Photo'}</FileUpload.Label>
-		<FileUpload.Trigger class={styles.Trigger}>
-			<Camera style={{ width: '1rem', height: '1rem' }} />
-			{' Open Camera'}
-		</FileUpload.Trigger>
-		<FileUpload.ItemGroup class={styles.ItemGroup}>
-			<FileUpload.Context>
-				component children({ context }) {
-					for (const file of @context.acceptedFiles; key file.name) {
-						<FileUpload.Item file={file} class={styles.Item}>
-							<FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
-								<FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
-							</FileUpload.ItemPreview>
-							<FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
-								<File />
-							</FileUpload.ItemPreview>
-							<FileUpload.ItemName class={styles.ItemName}>
-								{file.webkitRelativePath || file.name}
-							</FileUpload.ItemName>
-							<FileUpload.ItemSizeText class={styles.ItemSizeText} />
-							<FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
-								<X />
-							</FileUpload.ItemDeleteTrigger>
-						</FileUpload.Item>
-					}
-				}
-			</FileUpload.Context>
-		</FileUpload.ItemGroup>
-		<FileUpload.HiddenInput />
-	</FileUpload.Root>
+  <FileUpload.Root capture="environment" class={styles.Root}>
+    <FileUpload.Label class={styles.Label}>{'Capture Photo'}</FileUpload.Label>
+    <FileUpload.Trigger class={styles.Trigger}>
+      <Camera style={{ width: '1rem', height: '1rem' }} />
+      {' Open Camera'}
+    </FileUpload.Trigger>
+    <FileUpload.ItemGroup class={styles.ItemGroup}>
+      <FileUpload.Context>
+        component children({ context }) {
+          for (const file of @context.acceptedFiles; key file.name) {
+            <FileUpload.Item {file} class={styles.Item}>
+              <FileUpload.ItemPreview type="image/*" class={styles.ItemPreview}>
+                <FileUpload.ItemPreviewImage class={styles.ItemPreviewImage} />
+              </FileUpload.ItemPreview>
+              <FileUpload.ItemPreview type=".*" class={styles.ItemPreview}>
+                <File />
+              </FileUpload.ItemPreview>
+              <FileUpload.ItemName class={styles.ItemName}>
+                {file.webkitRelativePath || file.name}
+              </FileUpload.ItemName>
+              <FileUpload.ItemSizeText class={styles.ItemSizeText} />
+              <FileUpload.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                <X />
+              </FileUpload.ItemDeleteTrigger>
+            </FileUpload.Item>
+          }
+        }
+      </FileUpload.Context>
+    </FileUpload.ItemGroup>
+    <FileUpload.HiddenInput />
+  </FileUpload.Root>
 }

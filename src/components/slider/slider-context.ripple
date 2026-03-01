@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useSliderContext, type UseSliderContext } from './use-slider-context';
 
 export interface SliderContextProps {
-	children: (context: UseSliderContext) => any;
+  children: (context: UseSliderContext) => any;
 }
 
 export component SliderContext(props: SliderContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useSliderContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useSliderContext();
 
-	<@children {context} />
+  <@children {context} />
 }

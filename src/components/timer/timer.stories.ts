@@ -7,31 +7,31 @@ import { Pomodoro as PomodoroExample } from './examples/pomodoro.ripple';
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Timer',
+  title: 'Components/Timer',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Countdown = {
-	render: () => ({ Component: CountdownExample }),
+  render: () => ({ Component: CountdownExample }),
 };
 
 export const Events = {
-	render: () => ({ Component: EventsExample }),
+  render: () => ({ Component: EventsExample }),
 };
 
 export const Interval = {
-	render: () => ({ Component: IntervalExample }),
+  render: () => ({ Component: IntervalExample }),
 };
 
 export const Pomodoro = {
-	render: () => ({ Component: PomodoroExample }),
+  render: () => ({ Component: PomodoroExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

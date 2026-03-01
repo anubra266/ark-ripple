@@ -8,9 +8,9 @@ export interface UseFilterProps extends FilterOptions {}
 export interface UseFilterReturn extends FilterReturn {}
 
 export function useFilter(props: UseFilterProps): UseFilterReturn {
-	let [localeProp, rest] = trackSplit(props, ['locale']);
-	const env = useLocaleContext();
+  let [localeProp, rest] = trackSplit(props, ['locale']);
+  const env = useLocaleContext();
 
-	const locale = track(() => @localeProp ?? @env.locale);
-	return track(() => createFilter(mergeProps(@rest, { locale: @locale })));
+  const locale = track(() => @localeProp ?? @env.locale);
+  return track(() => createFilter(mergeProps(@rest, { locale: @locale })));
 }

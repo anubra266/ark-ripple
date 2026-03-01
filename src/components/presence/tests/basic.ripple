@@ -2,29 +2,29 @@ import { track } from 'ripple';
 import { Presence } from '../index';
 
 export component ComponentUnderTest(props: {
-	present?: boolean;
-	lazyMount?: boolean;
-	unmountOnExit?: boolean;
-	skipAnimationOnMount?: boolean;
-	[key: string]: any;
+  present?: boolean;
+  lazyMount?: boolean;
+  unmountOnExit?: boolean;
+  skipAnimationOnMount?: boolean;
+  [key: string]: any;
 }) {
-	let present = track(props.present ?? false);
+  let present = track(props.present ?? false);
 
-	<div>
-		<button
-			onClick={() => {
-				@present = !@present;
-			}}
-		>
-			{'Toggle'}
-		</button>
-		<Presence
-			lazyMount={props.lazyMount}
-			unmountOnExit={props.unmountOnExit}
-			skipAnimationOnMount={props.skipAnimationOnMount}
-			{@present}
-		>
-			{'Content'}
-		</Presence>
-	</div>
+  <div>
+    <button
+      onClick={() => {
+        @present = !@present;
+      }}
+    >
+      {'Toggle'}
+    </button>
+    <Presence
+      lazyMount={props.lazyMount}
+      unmountOnExit={props.unmountOnExit}
+      skipAnimationOnMount={props.skipAnimationOnMount}
+      {@present}
+    >
+      {'Content'}
+    </Presence>
+  </div>
 }

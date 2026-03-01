@@ -4,22 +4,22 @@ import button from 'styles/button.module.css';
 import styles from 'styles/dialog.module.css';
 
 export component AlertDialog() {
-	<Dialog.Root role="alertdialog">
-		<Dialog.Trigger class={button.Root}>{'Delete Account'}</Dialog.Trigger>
-		<Portal>
-			<Dialog.Backdrop class={styles.Backdrop} />
-			<Dialog.Positioner class={styles.Positioner}>
-				<Dialog.Content class={styles.Content}>
-					<Dialog.Title class={styles.Title}>{'Are you absolutely sure?'}</Dialog.Title>
-					<Dialog.Description class={styles.Description}>
-						{'This action cannot be undone. This will permanently delete your account and remove your data from our servers.'}
-					</Dialog.Description>
-					<div class={styles.Actions}>
-						<Dialog.CloseTrigger class={button.Root}>{'Cancel'}</Dialog.CloseTrigger>
-						<button class={button.Root} data-variant="solid">{'Delete Account'}</button>
-					</div>
-				</Dialog.Content>
-			</Dialog.Positioner>
-		</Portal>
-	</Dialog.Root>
+  <Dialog.Root role="alertdialog">
+    <Dialog.Trigger class={button.Root}>{'Delete Account'}</Dialog.Trigger>
+    <Portal>
+      <Dialog.Backdrop class={styles.Backdrop} />
+      <Dialog.Positioner class={styles.Positioner}>
+        <Dialog.Content class={styles.Content}>
+          <Dialog.Title class={styles.Title}>{'Are you absolutely sure?'}</Dialog.Title>
+          <Dialog.Description class={styles.Description}>
+            {'This action cannot be undone. This will permanently delete your account and remove your data from our servers.'}
+          </Dialog.Description>
+          <div class={styles.Actions}>
+            <Dialog.CloseTrigger class={button.Root}>{'Cancel'}</Dialog.CloseTrigger>
+            <button class={button.Root} data-variant="solid">{'Delete Account'}</button>
+          </div>
+        </Dialog.Content>
+      </Dialog.Positioner>
+    </Portal>
+  </Dialog.Root>
 }

@@ -2,12 +2,12 @@ import { Highlight } from 'ark-ripple/highlight';
 import styles from 'styles/highlight.module.css';
 
 export component RepeatingText() {
-	<p class={styles.Text}>
-		<Highlight
-			class={styles.Mark}
-			query="@ark-ui.com"
-			text="Contact us at support@ark-ui.com or sales@ark-ui.com for assistance."
-			matchAll
-		/>
-	</p>
+  <p class={styles.Text}>
+    <Highlight
+      class={styles.Mark}
+      query="@ark-ui.com"
+      text="Contact us at support@ark-ui.com or sales@ark-ui.com for assistance."
+      matchAll
+    />
+  </p>
 }

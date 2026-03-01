@@ -6,27 +6,27 @@ import { Provider as ProviderExample } from './examples/provider.ripple';
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 
 const meta: Meta = {
-	title: 'Components/Avatar',
+  title: 'Components/Avatar',
 };
 
 export default meta;
 
 export const Basic = {
-	render: () => ({ Component: BasicExample }),
+  render: () => ({ Component: BasicExample }),
 };
 
 export const Context = {
-	render: () => ({ Component: ContextExample }),
+  render: () => ({ Component: ContextExample }),
 };
 
 export const Events = {
-	render: () => ({ Component: EventsExample }),
+  render: () => ({ Component: EventsExample }),
 };
 
 export const Provider = {
-	render: () => ({ Component: ProviderExample }),
+  render: () => ({ Component: ProviderExample }),
 };
 
 export const RootProvider = {
-	render: () => ({ Component: RootProviderExample }),
+  render: () => ({ Component: RootProviderExample }),
 };

@@ -6,21 +6,21 @@ import { splitRatingGroupProps } from './split-rating-group-props.ripple';
 import { ark } from '../factory';
 
 export interface RatingGroupRootBaseProps extends UseRatingGroupProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type RatingGroupRootProps = RatingGroupRootBaseProps;
 
 export component RatingGroupRoot(props: RatingGroupRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [ratingGroupProps, localProps] = splitRatingGroupProps(@rest);
-	const ratingGroup = useRatingGroup(ratingGroupProps);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [ratingGroupProps, localProps] = splitRatingGroupProps(@rest);
+  const ratingGroup = useRatingGroup(ratingGroupProps);
 
-	RatingGroupApiContext.set(ratingGroup);
+  RatingGroupApiContext.set(ratingGroup);
 
-	let mergedProps = track(() => mergeProps(@ratingGroup.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@ratingGroup.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

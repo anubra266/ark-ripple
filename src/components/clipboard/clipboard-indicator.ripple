@@ -4,26 +4,26 @@ import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
 
 export interface ClipboardIndicatorBaseProps {
-	/** Content to show when copied */
-	copied?: any;
-	children?: any;
-	[key: string]: any;
+  /** Content to show when copied */
+  copied?: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ClipboardIndicatorProps = ClipboardIndicatorBaseProps;
 
 export component ClipboardIndicator(props: ClipboardIndicatorProps) {
-	const [copied, children, localProps] = trackSplit(props, ['copied', 'children']);
-	const clipboard = useClipboardContext();
+  const [copied, children, localProps] = trackSplit(props, ['copied', 'children']);
+  const clipboard = useClipboardContext();
 
-	const mergedProps = track(
-		() => mergeProps(@clipboard.getIndicatorProps({ copied: @clipboard.copied }), @localProps),
-	);
+  const mergedProps = track(
+    () => mergeProps(@clipboard.getIndicatorProps({ copied: @clipboard.copied }), @localProps),
+  );
 
-	<ark.div {...@mergedProps}>
-		if (@clipboard.copied) {
-			<@copied />
-		} else {
-			<@children />
-		}
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    if (@clipboard.copied) {
+      <@copied />
+    } else {
+      <@children />
+    }
+  </ark.div>
 }

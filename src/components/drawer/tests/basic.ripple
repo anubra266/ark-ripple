@@ -1,23 +1,23 @@
 import { Drawer } from 'ark-ripple/drawer';
 
 export component ComponentUnderTest(props: {
-	open?: boolean;
-	lazyMount?: boolean;
-	unmountOnExit?: boolean;
-	onOpenChange?: (details: { open: boolean }) => void;
-	[key: string]: any;
+  open?: boolean;
+  lazyMount?: boolean;
+  unmountOnExit?: boolean;
+  onOpenChange?: (details: { open: boolean }) => void;
+  [key: string]: any;
 }) {
-	<Drawer.Root {...props}>
-		<Drawer.Trigger>{'Open Drawer'}</Drawer.Trigger>
-		<Drawer.Backdrop />
-		<Drawer.Positioner data-testid="positioner">
-			<Drawer.Content>
-				<Drawer.Grabber>
-					<Drawer.GrabberIndicator />
-				</Drawer.Grabber>
-				<Drawer.Title>{'Drawer Title'}</Drawer.Title>
-				<Drawer.CloseTrigger>{'Close'}</Drawer.CloseTrigger>
-			</Drawer.Content>
-		</Drawer.Positioner>
-	</Drawer.Root>
+  <Drawer.Root {...props}>
+    <Drawer.Trigger>{'Open Drawer'}</Drawer.Trigger>
+    <Drawer.Backdrop />
+    <Drawer.Positioner data-testid="positioner">
+      <Drawer.Content>
+        <Drawer.Grabber>
+          <Drawer.GrabberIndicator />
+        </Drawer.Grabber>
+        <Drawer.Title>{'Drawer Title'}</Drawer.Title>
+        <Drawer.CloseTrigger>{'Close'}</Drawer.CloseTrigger>
+      </Drawer.Content>
+    </Drawer.Positioner>
+  </Drawer.Root>
 }

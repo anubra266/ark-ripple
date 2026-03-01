@@ -4,7 +4,7 @@ import ripple from '@ripple-ts/eslint-plugin';
 import storybook from 'eslint-plugin-storybook';
 
 export default [
-	{ ignores: ['overrides/**', 'ark/**'] },
-	...ripple.configs.recommended,
-	...storybook.configs['flat/recommended'],
+  { ignores: ['overrides/**', 'ark/**'] },
+  ...ripple.configs.recommended,
+  ...storybook.configs['flat/recommended'],
 ];

@@ -4,25 +4,25 @@ import type { UseDialogProps } from './use-dialog.ripple';
 const splitProps = createSplitProps<UseDialogProps>();
 
 export function splitDialogProps<T extends UseDialogProps & Record<string, any>>(props: T) {
-	return splitProps(props, [
-		'aria-label',
-		'closeOnEscape',
-		'closeOnInteractOutside',
-		'defaultOpen',
-		'finalFocusEl',
-		'id',
-		'ids',
-		'initialFocusEl',
-		'modal',
-		'onEscapeKeyDown',
-		'onFocusOutside',
-		'onInteractOutside',
-		'onOpenChange',
-		'onPointerDownOutside',
-		'open',
-		'preventScroll',
-		'restoreFocus',
-		'role',
-		'trapFocus',
-	]);
+  return splitProps(props, [
+    'aria-label',
+    'closeOnEscape',
+    'closeOnInteractOutside',
+    'defaultOpen',
+    'finalFocusEl',
+    'id',
+    'ids',
+    'initialFocusEl',
+    'modal',
+    'onEscapeKeyDown',
+    'onFocusOutside',
+    'onInteractOutside',
+    'onOpenChange',
+    'onPointerDownOutside',
+    'open',
+    'preventScroll',
+    'restoreFocus',
+    'role',
+    'trapFocus',
+  ]);
 }

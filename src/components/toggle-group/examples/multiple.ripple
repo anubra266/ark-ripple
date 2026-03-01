@@ -3,15 +3,15 @@ import { Bold, Italic, Underline } from 'lucide-ripple';
 import styles from 'styles/toggle-group.module.css';
 
 export component Multiple() {
-	<ToggleGroup.Root defaultValue={['bold']} multiple class={styles.Root}>
-		<ToggleGroup.Item value="bold" class={styles.Item}>
-			<Bold />
-		</ToggleGroup.Item>
-		<ToggleGroup.Item value="italic" class={styles.Item}>
-			<Italic />
-		</ToggleGroup.Item>
-		<ToggleGroup.Item value="underline" class={styles.Item}>
-			<Underline />
-		</ToggleGroup.Item>
-	</ToggleGroup.Root>
+  <ToggleGroup.Root defaultValue={['bold']} multiple class={styles.Root}>
+    <ToggleGroup.Item value="bold" class={styles.Item}>
+      <Bold />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="italic" class={styles.Item}>
+      <Italic />
+    </ToggleGroup.Item>
+    <ToggleGroup.Item value="underline" class={styles.Item}>
+      <Underline />
+    </ToggleGroup.Item>
+  </ToggleGroup.Root>
 }

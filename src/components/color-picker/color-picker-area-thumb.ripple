@@ -5,15 +5,15 @@ import { useColorPickerAreaPropsContext } from './use-color-picker-area-props-co
 import { ark } from '../factory';
 
 export interface ColorPickerAreaThumbBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type ColorPickerAreaThumbProps = ColorPickerAreaThumbBaseProps;
 
 export component ColorPickerAreaThumb(props: ColorPickerAreaThumbProps) {
-	const colorPicker = useColorPickerContext();
-	const areaProps = useColorPickerAreaPropsContext();
+  const colorPicker = useColorPickerContext();
+  const areaProps = useColorPickerAreaPropsContext();
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getAreaThumbProps(@areaProps), @props));
+  let mergedProps = track(() => mergeProps(@colorPicker.getAreaThumbProps(@areaProps), @props));
 
-	<ark.div {...@mergedProps} />
+  <ark.div {...@mergedProps} />
 }

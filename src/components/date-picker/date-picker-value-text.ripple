@@ -5,22 +5,22 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 
 export interface DatePickerValueTextBaseProps {
-	placeholder?: string | undefined;
-	separator?: string | undefined;
-	[key: string]: any;
+  placeholder?: string | undefined;
+  separator?: string | undefined;
+  [key: string]: any;
 }
 export type DatePickerValueTextProps = DatePickerValueTextBaseProps;
 
 export component DatePickerValueText(props: DatePickerValueTextProps) {
-	const [placeholder, separator, localProps] = trackSplit(props, ['placeholder', 'separator']);
-	const datePicker = useDatePickerContext();
+  const [placeholder, separator, localProps] = trackSplit(props, ['placeholder', 'separator']);
+  const datePicker = useDatePickerContext();
 
-	let mergedProps = track(() => mergeProps(datePickerAnatomy.build().valueText.attrs, @localProps));
+  let mergedProps = track(() => mergeProps(datePickerAnatomy.build().valueText.attrs, @localProps));
 
-	const displayText = track(() => {
-		const sep = @separator ?? ', ';
-		return @datePicker.value.length > 0 ? @datePicker.valueAsString.join(sep) : @placeholder ?? '';
-	});
+  const displayText = track(() => {
+    const sep = @separator ?? ', ';
+    return @datePicker.value.length > 0 ? @datePicker.valueAsString.join(sep) : @placeholder ?? '';
+  });
 
-	<ark.span {...@mergedProps}>{@displayText}</ark.span>
+  <ark.span {...@mergedProps}>{@displayText}</ark.span>
 }

@@ -1,70 +1,70 @@
 export type { StepChangeDetails as ChangeDetails } from '@zag-js/steps';
 export {
-	StepsCompletedContent as CompletedContent,
-	type StepsCompletedContentBaseProps as CompletedContentBaseProps,
-	type StepsCompletedContentProps as CompletedContentProps,
+  StepsCompletedContent as CompletedContent,
+  type StepsCompletedContentBaseProps as CompletedContentBaseProps,
+  type StepsCompletedContentProps as CompletedContentProps,
 } from './steps-completed-content.ripple';
 export {
-	StepsContent as Content,
-	type StepsContentBaseProps as ContentBaseProps,
-	type StepsContentProps as ContentProps,
+  StepsContent as Content,
+  type StepsContentBaseProps as ContentBaseProps,
+  type StepsContentProps as ContentProps,
 } from './steps-content.ripple';
 export {
-	StepsContext as Context,
-	type StepsContextProps as ContextProps,
+  StepsContext as Context,
+  type StepsContextProps as ContextProps,
 } from './steps-context.ripple';
 export {
-	StepsIndicator as Indicator,
-	type StepsIndicatorBaseProps as IndicatorBaseProps,
-	type StepsIndicatorProps as IndicatorProps,
+  StepsIndicator as Indicator,
+  type StepsIndicatorBaseProps as IndicatorBaseProps,
+  type StepsIndicatorProps as IndicatorProps,
 } from './steps-indicator.ripple';
 export {
-	StepsItem as Item,
-	type StepsItemBaseProps as ItemBaseProps,
-	type StepsItemProps as ItemProps,
+  StepsItem as Item,
+  type StepsItemBaseProps as ItemBaseProps,
+  type StepsItemProps as ItemProps,
 } from './steps-item.ripple';
 export {
-	StepsItemContext as ItemContext,
-	type StepsItemContextProps as ItemContextProps,
+  StepsItemContext as ItemContext,
+  type StepsItemContextProps as ItemContextProps,
 } from './steps-item-context.ripple';
 export {
-	StepsList as List,
-	type StepsListBaseProps as ListBaseProps,
-	type StepsListProps as ListProps,
+  StepsList as List,
+  type StepsListBaseProps as ListBaseProps,
+  type StepsListProps as ListProps,
 } from './steps-list.ripple';
 export {
-	StepsNextTrigger as NextTrigger,
-	type StepsNextTriggerBaseProps as NextTriggerBaseProps,
-	type StepsNextTriggerProps as NextTriggerProps,
+  StepsNextTrigger as NextTrigger,
+  type StepsNextTriggerBaseProps as NextTriggerBaseProps,
+  type StepsNextTriggerProps as NextTriggerProps,
 } from './steps-next-trigger.ripple';
 export {
-	StepsPrevTrigger as PrevTrigger,
-	type StepsPrevTriggerBaseProps as PrevTriggerBaseProps,
-	type StepsPrevTriggerProps as PrevTriggerProps,
+  StepsPrevTrigger as PrevTrigger,
+  type StepsPrevTriggerBaseProps as PrevTriggerBaseProps,
+  type StepsPrevTriggerProps as PrevTriggerProps,
 } from './steps-prev-trigger.ripple';
 export {
-	StepsProgress as Progress,
-	type StepsProgressBaseProps as ProgressBaseProps,
-	type StepsProgressProps as ProgressProps,
+  StepsProgress as Progress,
+  type StepsProgressBaseProps as ProgressBaseProps,
+  type StepsProgressProps as ProgressProps,
 } from './steps-progress.ripple';
 export {
-	StepsRoot as Root,
-	type StepsRootBaseProps as RootBaseProps,
-	type StepsRootProps as RootProps,
+  StepsRoot as Root,
+  type StepsRootBaseProps as RootBaseProps,
+  type StepsRootProps as RootProps,
 } from './steps-root.ripple';
 export {
-	StepsRootProvider as RootProvider,
-	type StepsRootProviderBaseProps as RootProviderBaseProps,
-	type StepsRootProviderProps as RootProviderProps,
+  StepsRootProvider as RootProvider,
+  type StepsRootProviderBaseProps as RootProviderBaseProps,
+  type StepsRootProviderProps as RootProviderProps,
 } from './steps-root-provider.ripple';
 export {
-	StepsSeparator as Separator,
-	type StepsSeparatorBaseProps as SeparatorBaseProps,
-	type StepsSeparatorProps as SeparatorProps,
+  StepsSeparator as Separator,
+  type StepsSeparatorBaseProps as SeparatorBaseProps,
+  type StepsSeparatorProps as SeparatorProps,
 } from './steps-separator.ripple';
 export {
-	StepsTrigger as Trigger,
-	type StepsTriggerBaseProps as TriggerBaseProps,
-	type StepsTriggerProps as TriggerProps,
+  StepsTrigger as Trigger,
+  type StepsTriggerBaseProps as TriggerBaseProps,
+  type StepsTriggerProps as TriggerProps,
 } from './steps-trigger.ripple';
 export { stepsAnatomy } from './steps.anatomy';

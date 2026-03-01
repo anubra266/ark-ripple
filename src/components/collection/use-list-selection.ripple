@@ -3,187 +3,187 @@ import { track, trackSplit, untrack, effect } from 'ripple';
 import type { CollectionItem, ListCollection } from './list-collection';
 
 export interface UseListSelectionProps<T extends CollectionItem> {
-	/**
+  /**
  * The selection mode.
  */
-	selectionMode?: SelectionMode;
-	/**
+  selectionMode?: SelectionMode;
+  /**
  * Whether the selection is deselectable.
  */
-	deselectable?: boolean;
-	/**
+  deselectable?: boolean;
+  /**
  * The initial selected values.
  */
-	initialSelectedValues?: string[];
-	/**
+  initialSelectedValues?: string[];
+  /**
  * Whether to reset the selection when the collection changes.
  */
-	resetOnCollectionChange?: boolean;
-	/**
+  resetOnCollectionChange?: boolean;
+  /**
  * The collection to use.
  */
-	collection: ListCollection<T>;
+  collection: ListCollection<T>;
 }
 
 export interface UseListSelectionReturn {
-	/**
+  /**
  * The selected values as an array.
  */
-	selectedValues: string[];
-	/**
+  selectedValues: string[];
+  /**
  * Whether the selection is empty.
  */
-	isEmpty: boolean;
-	/**
+  isEmpty: boolean;
+  /**
  * The first selected value.
  */
-	firstSelectedValue: string | null;
-	/**
+  firstSelectedValue: string | null;
+  /**
  * The last selected value.
  */
-	lastSelectedValue: string | null;
-	/**
+  lastSelectedValue: string | null;
+  /**
  * Check if a value is selected.
  */
-	isSelected: (value: string | null) => boolean;
-	/**
+  isSelected: (value: string | null) => boolean;
+  /**
  * Check if a value can be selected.
  */
-	/**
+  /**
  * Check if a value can be selected.
  */
-	canSelect: (value: string) => boolean;
-	/**
+  canSelect: (value: string) => boolean;
+  /**
  * Select a value.
  */
-	/**
+  /**
  * Select a value.
  */
-	select: (value: string, forceToggle?: boolean) => void;
-	/**
+  select: (value: string, forceToggle?: boolean) => void;
+  /**
  * Deselect a value.
  */
-	deselect: (value: string) => void;
-	/**
+  deselect: (value: string) => void;
+  /**
  * Toggle selection of a value.
  */
-	toggle: (value: string) => void;
-	/**
+  toggle: (value: string) => void;
+  /**
  * Replace the selection with a single value.
  */
-	replace: (value: string | null) => void;
-	/**
+  replace: (value: string | null) => void;
+  /**
  * Extend the selection from anchor to target.
  */
-	extend: (anchorValue: string, targetValue: string) => void;
-	/**
+  extend: (anchorValue: string, targetValue: string) => void;
+  /**
  * Set the selected values.
  */
-	setSelectedValues: (values: string[]) => void;
-	/**
+  setSelectedValues: (values: string[]) => void;
+  /**
  * Clear the selection.
  */
-	clear: () => void;
-	/**
+  clear: () => void;
+  /**
  * Reset the selection.
  */
-	resetSelection: () => void;
-	/**
+  resetSelection: () => void;
+  /**
  * Returns true if all items from the collection are selected.
  */
-	isAllSelected: () => boolean;
-	/**
+  isAllSelected: () => boolean;
+  /**
  * Returns true if at least one item from the collection is selected.
  */
-	/**
+  /**
  * Returns true if at least one item from the collection is selected.
  */
-	isSomeSelected: () => boolean;
+  isSomeSelected: () => boolean;
 }
 
 export function useListSelection<T extends CollectionItem>(props: UseListSelectionProps<T>): () => UseListSelectionReturn {
-	const [collectionProp, selectionModeProp, deselectableProp, initialSelectedValuesProp, resetOnCollectionChangeProp] =
-		trackSplit(props, [
-			'collection',
-			'selectionMode',
-			'deselectable',
-			'initialSelectedValues',
-			'resetOnCollectionChange',
-		]);
+  const [collectionProp, selectionModeProp, deselectableProp, initialSelectedValuesProp, resetOnCollectionChangeProp] =
+    trackSplit(props, [
+      'collection',
+      'selectionMode',
+      'deselectable',
+      'initialSelectedValues',
+      'resetOnCollectionChange',
+    ]);
 
-	const localProps = track(
-		() => ({
-			collection: @collectionProp,
-			selectionMode: @selectionModeProp ?? 'single',
-			deselectable: @deselectableProp ?? true,
-			initialSelectedValues: @initialSelectedValuesProp ?? [],
-			resetOnCollectionChange: @resetOnCollectionChangeProp ?? false,
-		}),
-	);
+  const localProps = track(
+    () => ({
+      collection: @collectionProp,
+      selectionMode: @selectionModeProp ?? 'single',
+      deselectable: @deselectableProp ?? true,
+      initialSelectedValues: @initialSelectedValuesProp ?? [],
+      resetOnCollectionChange: @resetOnCollectionChangeProp ?? false,
+    }),
+  );
 
-	const createSelection = (values: string[] = []) => {
-		const sel = new Selection(values);
-		sel.selectionMode = @localProps.selectionMode;
-		sel.deselectable = @localProps.deselectable;
-		return sel;
-	};
+  const createSelection = (values: string[] = []) => {
+    const sel = new Selection(values);
+    sel.selectionMode = @localProps.selectionMode;
+    sel.deselectable = @localProps.deselectable;
+    return sel;
+  };
 
-	let selection = track(createSelection(untrack(() => @localProps.initialSelectedValues)));
+  let selection = track(createSelection(untrack(() => @localProps.initialSelectedValues)));
 
-	let isFirstRun = true;
-	effect(() => {
-		@localProps.collection.getValues();
+  let isFirstRun = true;
+  effect(() => {
+    @localProps.collection.getValues();
 
-		if (isFirstRun) {
-			isFirstRun = false;
-			return;
-		}
+    if (isFirstRun) {
+      isFirstRun = false;
+      return;
+    }
 
-		if (@localProps.resetOnCollectionChange) {
-			@selection = createSelection();
-		}
-	});
+    if (@localProps.resetOnCollectionChange) {
+      @selection = createSelection();
+    }
+  });
 
-	return track(
-		() => ({
-			selectedValues: Array.from(@selection),
-			isEmpty: @selection.isEmpty(),
-			firstSelectedValue: @selection.firstSelectedValue(@localProps.collection),
-			lastSelectedValue: @selection.lastSelectedValue(@localProps.collection),
-			isSelected: (value) => @selection.isSelected(value),
-			isAllSelected: () => {
-				const allValues = @localProps.collection.getValues();
-				return allValues.length > 0 && allValues.every((value) => @selection.isSelected(value));
-			},
-			isSomeSelected: () => {
-				const allValues = @localProps.collection.getValues();
-				return allValues.some((value) => @selection.isSelected(value));
-			},
-			canSelect: (value) => @selection.canSelect(@localProps.collection, value),
-			select: (value, forceToggle) => {
-				@selection = @selection.select(@localProps.collection, value, forceToggle);
-			},
-			deselect: (value) => {
-				@selection = @selection.deselect(value);
-			},
-			toggle: (value) => {
-				@selection = @selection.toggleSelection(@localProps.collection, value);
-			},
-			replace: (value) => {
-				@selection = @selection.replaceSelection(@localProps.collection, value);
-			},
-			extend: (anchorValue, targetValue) => {
-				@selection = @selection.extendSelection(@localProps.collection, anchorValue, targetValue);
-			},
-			setSelectedValues: (values) => {
-				@selection = @selection.setSelection(values);
-			},
-			clear: () => {
-				@selection = @selection.clearSelection();
-			},
-			resetSelection: () => {
-				@selection = createSelection();
-			},
-		}),
-	);
+  return track(
+    () => ({
+      selectedValues: Array.from(@selection),
+      isEmpty: @selection.isEmpty(),
+      firstSelectedValue: @selection.firstSelectedValue(@localProps.collection),
+      lastSelectedValue: @selection.lastSelectedValue(@localProps.collection),
+      isSelected: (value) => @selection.isSelected(value),
+      isAllSelected: () => {
+        const allValues = @localProps.collection.getValues();
+        return allValues.length > 0 && allValues.every((value) => @selection.isSelected(value));
+      },
+      isSomeSelected: () => {
+        const allValues = @localProps.collection.getValues();
+        return allValues.some((value) => @selection.isSelected(value));
+      },
+      canSelect: (value) => @selection.canSelect(@localProps.collection, value),
+      select: (value, forceToggle) => {
+        @selection = @selection.select(@localProps.collection, value, forceToggle);
+      },
+      deselect: (value) => {
+        @selection = @selection.deselect(value);
+      },
+      toggle: (value) => {
+        @selection = @selection.toggleSelection(@localProps.collection, value);
+      },
+      replace: (value) => {
+        @selection = @selection.replaceSelection(@localProps.collection, value);
+      },
+      extend: (anchorValue, targetValue) => {
+        @selection = @selection.extendSelection(@localProps.collection, anchorValue, targetValue);
+      },
+      setSelectedValues: (values) => {
+        @selection = @selection.setSelection(values);
+      },
+      clear: () => {
+        @selection = @selection.clearSelection();
+      },
+      resetSelection: () => {
+        @selection = createSelection();
+      },
+    }),
+  );
 }

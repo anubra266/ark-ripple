@@ -5,21 +5,21 @@ import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
 
 export interface ColorPickerPositionerBaseProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type ColorPickerPositionerProps = ColorPickerPositionerBaseProps;
 
 export component ColorPickerPositioner(props: ColorPickerPositionerProps) {
-	const [children, localProps] = trackSplit(props, ['children']);
-	const colorPicker = useColorPickerContext();
-	const presence = usePresenceContext();
+  const [children, localProps] = trackSplit(props, ['children']);
+  const colorPicker = useColorPickerContext();
+  const presence = usePresenceContext();
 
-	let mergedProps = track(() => mergeProps(@colorPicker.getPositionerProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@colorPicker.getPositionerProps(), @localProps));
 
-	if (!@presence.unmounted) {
-		<ark.div {...@mergedProps}>
-			<@children />
-		</ark.div>
-	}
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
 }

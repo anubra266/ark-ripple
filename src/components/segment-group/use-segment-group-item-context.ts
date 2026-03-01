@@ -6,4 +6,4 @@ export type UseSegmentGroupItemContext = ItemState;
 export const SegmentGroupItemApiContext = new Context<UseSegmentGroupItemContext>();
 
 export const useSegmentGroupItemContext = (): UseSegmentGroupItemContext =>
-	SegmentGroupItemApiContext.get();
+  SegmentGroupItemApiContext.get();

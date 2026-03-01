@@ -4,14 +4,14 @@ import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
 
 export interface AngleSliderHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type AngleSliderHiddenInputProps = AngleSliderHiddenInputBaseProps;
 
 export component AngleSliderHiddenInput(props: AngleSliderHiddenInputProps) {
-	const angleSlider = useAngleSliderContext();
+  const angleSlider = useAngleSliderContext();
 
-	let mergedProps = track(() => mergeProps(@angleSlider.getHiddenInputProps(), props));
+  let mergedProps = track(() => mergeProps(@angleSlider.getHiddenInputProps(), props));
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

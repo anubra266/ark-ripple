@@ -1,79 +1,79 @@
 import { createListCollection, useListSelection } from 'ark-ripple/collection';
 
 const collection = createListCollection(
-	{
-		items: [
-			{ label: 'React', value: 'react' },
-			{ label: 'Vue', value: 'vue' },
-			{ label: 'Angular', value: 'angular' },
-		],
-	},
+  {
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Angular', value: 'angular' },
+    ],
+  },
 );
 
 export component BasicSelectionTest() {
-	const selection = useListSelection({ collection });
+  const selection = useListSelection({ collection });
 
-	<div>
-		<output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
-		for (const item of collection.items; key item.value) {
-			<button
-				data-testid={item.value}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				onClick={() => @selection.select(item.value)}
-			>
-				{item.label}
-			</button>
-		}
-	</div>
+  <div>
+    <output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
+    for (const item of collection.items; key item.value) {
+      <button
+        data-testid={item.value}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        onClick={() => @selection.select(item.value)}
+      >
+        {item.label}
+      </button>
+    }
+  </div>
 }
 
 export component MultipleSelectionTest() {
-	const selection = useListSelection({ collection, selectionMode: 'multiple' });
+  const selection = useListSelection({ collection, selectionMode: 'multiple' });
 
-	<div>
-		<output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
-		<output data-testid="count">{@selection.selectedValues.length}</output>
-		<button
-			data-testid="select-all"
-			onClick={() => @selection.setSelectedValues(collection.getValues())}
-		>
-			{'Select All'}
-		</button>
-		<button data-testid="clear" onClick={() => @selection.clear()}>{'Clear'}</button>
-		for (const item of collection.items; key item.value) {
-			<button
-				data-testid={item.value}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				onClick={() => @selection.select(item.value)}
-			>
-				{item.label}
-			</button>
-		}
-	</div>
+  <div>
+    <output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
+    <output data-testid="count">{@selection.selectedValues.length}</output>
+    <button
+      data-testid="select-all"
+      onClick={() => @selection.setSelectedValues(collection.getValues())}
+    >
+      {'Select All'}
+    </button>
+    <button data-testid="clear" onClick={() => @selection.clear()}>{'Clear'}</button>
+    for (const item of collection.items; key item.value) {
+      <button
+        data-testid={item.value}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        onClick={() => @selection.select(item.value)}
+      >
+        {item.label}
+      </button>
+    }
+  </div>
 }
 
 export component RangeSelectionTest() {
-	const selection = useListSelection({ collection, selectionMode: 'multiple' });
+  const selection = useListSelection({ collection, selectionMode: 'multiple' });
 
-	const handleClick = (value: string, event: MouseEvent) => {
-		const firstSelected = @selection.firstSelectedValue;
-		if (event.shiftKey && firstSelected) {
-			@selection.extend(firstSelected, value);
-		} else {
-			@selection.replace(value);
-		}
-	};
+  const handleClick = (value: string, event: MouseEvent) => {
+    const firstSelected = @selection.firstSelectedValue;
+    if (event.shiftKey && firstSelected) {
+      @selection.extend(firstSelected, value);
+    } else {
+      @selection.replace(value);
+    }
+  };
 
-	<div>
-		<output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
-		for (const item of collection.items; key item.value) {
-			<button
-				data-testid={item.value}
-				data-selected={@selection.isSelected(item.value) || undefined}
-				onClick={(e) => handleClick(item.value, e)}
-			>
-				{item.label}
-			</button>
-		}
-	</div>
+  <div>
+    <output data-testid="selected">{@selection.selectedValues.join(', ')}</output>
+    for (const item of collection.items; key item.value) {
+      <button
+        data-testid={item.value}
+        data-selected={@selection.isSelected(item.value) || undefined}
+        onClick={(e) => handleClick(item.value, e)}
+      >
+        {item.label}
+      </button>
+    }
+  </div>
 }

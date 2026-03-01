@@ -5,16 +5,16 @@ import { useSliderThumbPropsContext } from './use-slider-thumb-props-context';
 import { ark } from '../factory';
 
 export interface SliderHiddenInputBaseProps {
-	[key: string]: any;
+  [key: string]: any;
 }
 export type SliderHiddenInputProps = SliderHiddenInputBaseProps;
 
 export component SliderHiddenInput(props: SliderHiddenInputProps) {
-	const [localProps] = trackSplit(props, []);
-	const slider = useSliderContext();
-	const thumbProps = useSliderThumbPropsContext();
+  const [localProps] = trackSplit(props, []);
+  const slider = useSliderContext();
+  const thumbProps = useSliderThumbPropsContext();
 
-	let mergedProps = track(() => mergeProps(@slider.getHiddenInputProps(@thumbProps), @localProps));
+  let mergedProps = track(() => mergeProps(@slider.getHiddenInputProps(@thumbProps), @localProps));
 
-	<ark.input {...@mergedProps} />
+  <ark.input {...@mergedProps} />
 }

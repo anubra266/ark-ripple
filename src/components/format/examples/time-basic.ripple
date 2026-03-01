@@ -2,7 +2,7 @@ import { Format } from 'ark-ripple/format';
 import styles from 'styles/format.module.css';
 
 export component TimeBasic() {
-	<span class={styles.Value}>
-		<Format.Time value="18:47:12" format="12h" />
-	</span>
+  <span class={styles.Value}>
+    <Format.Time value="18:47:12" format="12h" />
+  </span>
 }

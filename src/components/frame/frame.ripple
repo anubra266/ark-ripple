@@ -5,19 +5,19 @@ import { FrameContent } from './frame-content.ripple';
 import { ark } from '../factory';
 
 export interface FrameBaseProps {
-	/**
+  /**
  * Additional content to be inserted into the frame's <head>.
  * Should be a named Ripple component, e.g. `component Head() { <style>...</style> }`
 */
-	head?: Component;
-	/** Callback function to be executed when the frame is mounted */
-	onMount?: () => void;
-	/** Callback function to be executed when the frame is unmounted */
-	onUnmount?: () => void;
-	/** The HTML content to use as the initial document for the frame */
-	srcDoc?: string;
-	children?: Component;
-	[key: string]: any;
+  head?: Component;
+  /** Callback function to be executed when the frame is mounted */
+  onMount?: () => void;
+  /** Callback function to be executed when the frame is unmounted */
+  onUnmount?: () => void;
+  /** The HTML content to use as the initial document for the frame */
+  srcDoc?: string;
+  children?: Component;
+  [key: string]: any;
 }
 
 export interface FrameProps extends FrameBaseProps {}
@@ -27,89 +27,89 @@ const resetStyle = '<style>*,*::before,*::after { margin: 0; padding: 0; box-siz
 const initialSrcDoc = `<html><head>${resetStyle}</head><body><div class="${CUSTOM_ROOT_CLASS}"></div></body></html>`;
 
 function getMountNode(frame: HTMLIFrameElement): HTMLElement | null {
-	const doc = frame.contentWindow?.document;
-	if (!doc) return null;
-	return doc.body.querySelector<HTMLElement>(`.${CUSTOM_ROOT_CLASS}`) || doc.body;
+  const doc = frame.contentWindow?.document;
+  if (!doc) return null;
+  return doc.body.querySelector<HTMLElement>(`.${CUSTOM_ROOT_CLASS}`) || doc.body;
 }
 
 export component Frame(props: FrameProps) {
-	// head is a reserved keyword in ripple, so we use headProp instead
-	const [children, headProp, onMount, onUnmount, srcDoc, localProps] = trackSplit(props, [
-		'children',
-		'head',
-		'onMount',
-		'onUnmount',
-		'srcDoc',
-	]);
+  // head is a reserved keyword in ripple, so we use headProp instead
+  const [children, headProp, onMount, onUnmount, srcDoc, localProps] = trackSplit(props, [
+    'children',
+    'head',
+    'onMount',
+    'onUnmount',
+    'srcDoc',
+  ]);
 
-	let frameRef = track<HTMLIFrameElement | null>(null);
-	let mountNode = track<HTMLElement | null>(() => @frameRef ? getMountNode(@frameRef) : null);
+  let frameRef = track<HTMLIFrameElement | null>(null);
+  let mountNode = track<HTMLElement | null>(() => @frameRef ? getMountNode(@frameRef) : null);
 
-	effect(() => {
-		if (!@frameRef) return;
+  effect(() => {
+    if (!@frameRef) return;
 
-		const doc = @frameRef.contentWindow?.document;
-		if (!doc) return;
+    const doc = @frameRef.contentWindow?.document;
+    if (!doc) return;
 
-		doc.open();
-		doc.write(@srcDoc ?? initialSrcDoc);
-		doc.close();
-	});
+    doc.open();
+    doc.write(@srcDoc ?? initialSrcDoc);
+    doc.close();
+  });
 
-	effect(() => {
-		const frame = @frameRef;
-		if (!frame || !frame.contentDocument) return;
+  effect(() => {
+    const frame = @frameRef;
+    if (!frame || !frame.contentDocument) return;
 
-		const win = frame.contentWindow as Window & typeof globalThis;
-		if (!win || !@mountNode) return;
+    const win = frame.contentWindow as Window & typeof globalThis;
+    if (!win || !@mountNode) return;
 
-		const exec = () => {
-			win.requestAnimationFrame(() => {
-				if (!(@mountNode && frame && frame.contentDocument)) return;
+    const exec = () => {
+      win.requestAnimationFrame(() => {
+        if (!(@mountNode && frame && frame.contentDocument)) return;
 
-				const rootEl = frame.contentDocument?.documentElement;
-				if (!rootEl) return;
-				frame.style.setProperty('--width', `${@mountNode.scrollWidth}px`);
-				frame.style.setProperty('--height', `${@mountNode.scrollHeight}px`);
-			});
-		};
+        const rootEl = frame.contentDocument?.documentElement;
+        if (!rootEl) return;
+        frame.style.setProperty('--width', `${@mountNode.scrollWidth}px`);
+        frame.style.setProperty('--height', `${@mountNode.scrollHeight}px`);
+      });
+    };
 
-		const ResizeObserverImpl = win.ResizeObserver ?? globalThis.ResizeObserver;
-		const resizeObserver = new ResizeObserverImpl(exec);
+    const ResizeObserverImpl = win.ResizeObserver ?? globalThis.ResizeObserver;
+    const resizeObserver = new ResizeObserverImpl(exec);
 
-		exec();
+    exec();
 
-		if (@frameRef.contentDocument) {
-			resizeObserver.observe(@mountNode);
-		}
+    if (@frameRef.contentDocument) {
+      resizeObserver.observe(@mountNode);
+    }
 
-		return () => {
-			resizeObserver.disconnect();
-		};
-	});
+    return () => {
+      resizeObserver.disconnect();
+    };
+  });
 
-	const rootNode = track(() => @frameRef?.contentDocument ?? document);
-	const headNode = track(() => @frameRef?.contentDocument.head);
+  const rootNode = track(() => @frameRef?.contentDocument ?? document);
+  const headNode = track(() => @frameRef?.contentDocument.head);
 
-	<ark.iframe
-		{ref (el: HTMLIFrameElement | null) => {
-			@frameRef = el;
-		}}
-		{...@localProps}
-	>
-		<EnvironmentProvider value={rootNode}>
-			if (@mountNode) {
-				<Portal container={mountNode}>
-					<FrameContent {onMount} {onUnmount}>
-						<@children />
-					</FrameContent>
-				</Portal>
-			}
-			if (@mountNode && @headProp && @frameRef?.contentDocument?.head) {
-				<Portal container={headNode}>
-					<@headProp />
-				</Portal>
-			}
-		</EnvironmentProvider>
-	</ark.iframe>
+  <ark.iframe
+    {ref (el: HTMLIFrameElement | null) => {
+      @frameRef = el;
+    }}
+    {...@localProps}
+  >
+    <EnvironmentProvider value={rootNode}>
+      if (@mountNode) {
+        <Portal container={mountNode}>
+          <FrameContent {onMount} {onUnmount}>
+            <@children />
+          </FrameContent>
+        </Portal>
+      }
+      if (@mountNode && @headProp && @frameRef?.contentDocument?.head) {
+        <Portal container={headNode}>
+          <@headProp />
+        </Portal>
+      }
+    </EnvironmentProvider>
+  </ark.iframe>
 }

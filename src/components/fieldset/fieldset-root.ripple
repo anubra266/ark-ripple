@@ -7,36 +7,36 @@ import { useId } from '../../utils/use-id';
 import { ark } from '../factory';
 
 export interface FieldsetRootBaseProps extends UseFieldsetProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type FieldsetRootProps = FieldsetRootBaseProps;
 
 export component FieldsetRoot(props: FieldsetRootProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const [useFieldsetProps, localProps] = splitFieldsetProps(@rest);
+  const [children, rest] = trackSplit(props, ['children']);
+  const [useFieldsetProps, localProps] = splitFieldsetProps(@rest);
 
-	const providedId = useId();
+  const providedId = useId();
 
-	const fieldsetProps = track(
-		() => ({
-			...@useFieldsetProps,
-			id: @useFieldsetProps.id ?? providedId,
-		}),
-	);
+  const fieldsetProps = track(
+    () => ({
+      ...@useFieldsetProps,
+      id: @useFieldsetProps.id ?? providedId,
+    }),
+  );
 
-	const fieldset = useFieldset(fieldsetProps);
+  const fieldset = useFieldset(fieldsetProps);
 
-	FieldsetApiContext.set(fieldset);
+  FieldsetApiContext.set(fieldset);
 
-	let mergedProps = track(() => mergeProps(@fieldset.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@fieldset.getRootProps(), @localProps));
 
-	<ark.fieldset
-		{...@mergedProps}
-		{ref (el: HTMLFieldSetElement) => {
-			@fieldset.setRootRef(el);
-		}}
-	>
-		<@children />
-	</ark.fieldset>
+  <ark.fieldset
+    {...@mergedProps}
+    {ref (el: HTMLFieldSetElement) => {
+      @fieldset.setRootRef(el);
+    }}
+  >
+    <@children />
+  </ark.fieldset>
 }

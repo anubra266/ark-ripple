@@ -5,18 +5,18 @@ import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
 
 export interface SliderMarkerBaseProps extends MarkerProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type SliderMarkerProps = SliderMarkerBaseProps;
 
 export component SliderMarker(props: SliderMarkerProps) {
-	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
-	const slider = useSliderContext();
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  const slider = useSliderContext();
 
-	let mergedProps = track(() => mergeProps(@slider.getMarkerProps({ value: @value }), @localProps));
+  let mergedProps = track(() => mergeProps(@slider.getMarkerProps({ value: @value }), @localProps));
 
-	<ark.span {...@mergedProps}>
-		<@children />
-	</ark.span>
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
 }

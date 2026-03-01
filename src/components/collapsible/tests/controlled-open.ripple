@@ -7,20 +7,20 @@ import * as Collapsible from '../collapsible';
  * This tests whether CollapsibleRoot reacts to external `open` changes.
  */
 export component ControlledOpenTest() {
-	let open = track(false);
+  let open = track(false);
 
-	<div>
-		<button
-			data-testid="toggle"
-			onClick={() => {
-				@open = !@open;
-			}}
-		>
-			{'Toggle'}
-		</button>
-		<span data-testid="open-state">{String(@open)}</span>
-		<Collapsible.Root {@open}>
-			<Collapsible.Content data-testid="content">{'Content'}</Collapsible.Content>
-		</Collapsible.Root>
-	</div>
+  <div>
+    <button
+      data-testid="toggle"
+      onClick={() => {
+        @open = !@open;
+      }}
+    >
+      {'Toggle'}
+    </button>
+    <span data-testid="open-state">{String(@open)}</span>
+    <Collapsible.Root {@open}>
+      <Collapsible.Content data-testid="content">{'Content'}</Collapsible.Content>
+    </Collapsible.Root>
+  </div>
 }

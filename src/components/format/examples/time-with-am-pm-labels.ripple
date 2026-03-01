@@ -2,10 +2,10 @@ import { Format } from 'ark-ripple/format';
 import styles from 'styles/format.module.css';
 
 export component TimeWithAmPmLabels() {
-	<div class={styles.Inline}>
-		<span class={styles.InlineLabel}>{'Boarding'}</span>
-		<span class={styles.InlineValue}>
-			<Format.Time value={new Date(2026, 1, 27, 18, 45, 34)} />
-		</span>
-	</div>
+  <div class={styles.Inline}>
+    <span class={styles.InlineLabel}>{'Boarding'}</span>
+    <span class={styles.InlineValue}>
+      <Format.Time value={new Date(2026, 1, 27, 18, 45, 34)} />
+    </span>
+  </div>
 }

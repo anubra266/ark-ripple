@@ -2,10 +2,10 @@ import { Format } from 'ark-ripple/format';
 import styles from 'styles/format.module.css';
 
 export component ByteWithUnit() {
-	<div class={styles.Inline}>
-		<span class={styles.InlineLabel}>{'File size:'}</span>
-		<span class={styles.InlineValue}>
-			<Format.Byte value={1450.45} unit="bit" />
-		</span>
-	</div>
+  <div class={styles.Inline}>
+    <span class={styles.InlineLabel}>{'File size:'}</span>
+    <span class={styles.InlineValue}>
+      <Format.Byte value={1450.45} unit="bit" />
+    </span>
+  </div>
 }

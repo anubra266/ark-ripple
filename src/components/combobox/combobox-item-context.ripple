@@ -2,12 +2,12 @@ import { trackSplit } from 'ripple';
 import { useComboboxItemContext, type UseComboboxItemContext } from './use-combobox-item-context';
 
 export interface ComboboxItemContextProps {
-	children: (context: UseComboboxItemContext) => any;
+  children: (context: UseComboboxItemContext) => any;
 }
 
 export component ComboboxItemContext(props: ComboboxItemContextProps) {
-	const [children] = trackSplit(props, ['children']);
-	const context = useComboboxItemContext();
+  const [children] = trackSplit(props, ['children']);
+  const context = useComboboxItemContext();
 
-	<@children {context} />
+  <@children {context} />
 }

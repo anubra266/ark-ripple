@@ -2,35 +2,35 @@ import { Carousel } from 'ark-ripple/carousel';
 import styles from 'styles/carousel.module.css';
 
 const images = [
-	{ src: 'https://picsum.photos/seed/1/500/300', alt: 'Nature landscape', index: 0 },
-	{ src: 'https://picsum.photos/seed/2/500/300', alt: 'City skyline', index: 1 },
-	{ src: 'https://picsum.photos/seed/3/500/300', alt: 'Mountain view', index: 2 },
-	{ src: 'https://picsum.photos/seed/4/500/300', alt: 'Ocean sunset', index: 3 },
-	{ src: 'https://picsum.photos/seed/5/500/300', alt: 'Forest path', index: 4 },
+  { src: 'https://picsum.photos/seed/1/500/300', alt: 'Nature landscape', index: 0 },
+  { src: 'https://picsum.photos/seed/2/500/300', alt: 'City skyline', index: 1 },
+  { src: 'https://picsum.photos/seed/3/500/300', alt: 'Mountain view', index: 2 },
+  { src: 'https://picsum.photos/seed/4/500/300', alt: 'Ocean sunset', index: 3 },
+  { src: 'https://picsum.photos/seed/5/500/300', alt: 'Forest path', index: 4 },
 ];
 
 export component Vertical() {
-	<Carousel.Root
-		class={styles.Root}
-		defaultPage={0}
-		orientation="vertical"
-		slideCount={images.length}
-	>
-		<Carousel.ItemGroup class={styles.ItemGroup}>
-			for (const image of images; key image.index) {
-				<Carousel.Item class={styles.Item} index={image.index}>
-					<img src={image.src} alt={image.alt} width="500" height="300" />
-				</Carousel.Item>
-			}
-		</Carousel.ItemGroup>
-		<Carousel.Control class={styles.Control}>
-			<Carousel.PrevTrigger class={styles.Trigger}>{'↑'}</Carousel.PrevTrigger>
-			<Carousel.IndicatorGroup class={styles.IndicatorGroup}>
-				for (const image of images; key image.index) {
-					<Carousel.Indicator class={styles.Indicator} index={image.index} />
-				}
-			</Carousel.IndicatorGroup>
-			<Carousel.NextTrigger class={styles.Trigger}>{'↓'}</Carousel.NextTrigger>
-		</Carousel.Control>
-	</Carousel.Root>
+  <Carousel.Root
+    class={styles.Root}
+    defaultPage={0}
+    orientation="vertical"
+    slideCount={images.length}
+  >
+    <Carousel.ItemGroup class={styles.ItemGroup}>
+      for (const image of images; key image.index) {
+        <Carousel.Item class={styles.Item} index={image.index}>
+          <img src={image.src} alt={image.alt} width="500" height="300" />
+        </Carousel.Item>
+      }
+    </Carousel.ItemGroup>
+    <Carousel.Control class={styles.Control}>
+      <Carousel.PrevTrigger class={styles.Trigger}>{'↑'}</Carousel.PrevTrigger>
+      <Carousel.IndicatorGroup class={styles.IndicatorGroup}>
+        for (const image of images; key image.index) {
+          <Carousel.Indicator class={styles.Indicator} index={image.index} />
+        }
+      </Carousel.IndicatorGroup>
+      <Carousel.NextTrigger class={styles.Trigger}>{'↓'}</Carousel.NextTrigger>
+    </Carousel.Control>
+  </Carousel.Root>
 }

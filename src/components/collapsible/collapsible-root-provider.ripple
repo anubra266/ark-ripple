@@ -5,21 +5,21 @@ import type { UseCollapsibleReturn } from './use-collapsible.ripple';
 import { ark } from '../factory';
 
 export interface CollapsibleRootProviderBaseProps {
-	value: UseCollapsibleReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseCollapsibleReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type CollapsibleRootProviderProps = CollapsibleRootProviderBaseProps;
 
 export component CollapsibleRootProvider(props: CollapsibleRootProviderProps) {
-	const [children, rest] = trackSplit(props, ['children']);
-	const collapsible = props.value;
+  const [children, rest] = trackSplit(props, ['children']);
+  const collapsible = props.value;
 
-	CollapsibleApiContext.set(collapsible);
+  CollapsibleApiContext.set(collapsible);
 
-	let mergedProps = track(() => mergeProps(@collapsible.getRootProps(), @rest));
+  let mergedProps = track(() => mergeProps(@collapsible.getRootProps(), @rest));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

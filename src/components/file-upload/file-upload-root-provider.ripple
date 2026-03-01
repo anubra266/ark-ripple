@@ -5,20 +5,20 @@ import type { UseFileUploadReturn } from './use-file-upload.ripple';
 import { ark } from '../factory';
 
 export interface FileUploadRootProviderBaseProps {
-	value: UseFileUploadReturn;
-	children?: any;
-	[key: string]: any;
+  value: UseFileUploadReturn;
+  children?: any;
+  [key: string]: any;
 }
 export type FileUploadRootProviderProps = FileUploadRootProviderBaseProps;
 
 export component FileUploadRootProvider(props: FileUploadRootProviderProps) {
-	const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
 
-	FileUploadApiContext.set(value);
+  FileUploadApiContext.set(value);
 
-	let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
 
-	<ark.div {...@mergedProps}>
-		<@children />
-	</ark.div>
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
 }

@@ -5,25 +5,25 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 
 export interface DatePickerWeekNumberCellBaseProps extends WeekNumberCellProps {
-	children?: any;
-	[key: string]: any;
+  children?: any;
+  [key: string]: any;
 }
 export type DatePickerWeekNumberCellProps = DatePickerWeekNumberCellBaseProps;
 
 export component DatePickerWeekNumberCell(props: DatePickerWeekNumberCellProps) {
-	const [children, weekIndex, week, localProps] = trackSplit(props, [
-		'children',
-		'weekIndex',
-		'week',
-	]);
-	const datePicker = useDatePickerContext();
+  const [children, weekIndex, week, localProps] = trackSplit(props, [
+    'children',
+    'weekIndex',
+    'week',
+  ]);
+  const datePicker = useDatePickerContext();
 
-	const cellProps = track(() => ({ weekIndex: @weekIndex, week: @week as DateValue[] }));
-	let mergedProps = track(
-		() => mergeProps(@datePicker.getWeekNumberCellProps(@cellProps), @localProps),
-	);
+  const cellProps = track(() => ({ weekIndex: @weekIndex, week: @week as DateValue[] }));
+  let mergedProps = track(
+    () => mergeProps(@datePicker.getWeekNumberCellProps(@cellProps), @localProps),
+  );
 
-	<ark.td {...@mergedProps}>
-		<@children />
-	</ark.td>
+  <ark.td {...@mergedProps}>
+    <@children />
+  </ark.td>
 }
