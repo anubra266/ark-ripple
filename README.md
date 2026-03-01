@@ -25,9 +25,6 @@
   <a href="https://github.com/chakra-ui/ark">
     <img alt="GitHub stars" src="https://img.shields.io/github/stars/chakra-ui/ark?style=flat-square&color=f59e0b">
   </a>
-  <a href="https://ark-ui.com">
-    <img alt="docs" src="https://img.shields.io/badge/docs-ark--ui.com-10b981?style=flat-square">
-  </a>
 </p>
 
 ---
