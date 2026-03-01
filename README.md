@@ -1,9 +1,9 @@
 <p align="center">
-  <a href="https://ark-ui.com">
+  <a href="https://ark-ui.rip">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="https://ark-ui.com/logos/logotype-white.svg">
       <source media="(prefers-color-scheme: light)" srcset="https://ark-ui.com/logos/logotype-black.svg">
-      <img alt="Ark UI" src="https://ark-ui.com/logos/logotype-black.svg" width="280">
+      <img alt="Ark Ripple" src="./assets/logo.png" width="280">
     </picture>
   </a>
 </p>
