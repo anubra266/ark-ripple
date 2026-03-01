@@ -382,6 +382,21 @@ The only differences allowed are Ripple syntax translations:
 
 When implementing a Ripple example, always read the React example first and translate it directly. Never invent content, structure, or props that differ from the React version.
 
+### Adding examples to stories
+
+Every example file **must** be imported and exported in the component's `.stories.ts` file. When you create a new example, add it to the story file following the existing pattern:
+
+```typescript
+// component-name.stories.ts
+import { CustomCalendar as CustomCalendarExample } from './examples/custom-calendar.ripple';
+
+export const CustomCalendar = {
+  render: () => ({ Component: CustomCalendarExample }),
+};
+```
+
+Never create an example without also adding its corresponding story export.
+
 React examples location: `ark/packages/react/src/components/[component]/examples/`
 Ripple examples location: `packages/ripple/src/components/[component]/examples/`
 

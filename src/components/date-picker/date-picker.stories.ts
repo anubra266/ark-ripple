@@ -26,6 +26,7 @@ import { WeekNumbers as WeekNumbersExample } from './examples/week-numbers.rippl
 import { WithTime as WithTimeExample } from './examples/with-time.ripple';
 import { YearPicker as YearPickerExample } from './examples/year-picker.ripple';
 import { YearPickerRange as YearPickerRangeExample } from './examples/year-picker-range.ripple';
+import { CustomCalendar as CustomCalendarExample } from './examples/custom-calendar.ripple';
 
 const meta: Meta = {
 	title: 'Components/DatePicker',
@@ -139,4 +140,8 @@ export const YearPicker = {
 
 export const YearPickerRange = {
 	render: () => ({ Component: YearPickerRangeExample }),
+};
+
+export const CustomCalendar = {
+	render: () => ({ Component: CustomCalendarExample }),
 };
