@@ -103,7 +103,7 @@ export default defineConfig(({ mode }) => {
 			alias: {
 				styles: path.resolve(__dirname, './ark/.storybook/modules'),
 				...(mode !== 'production' && {
-					'zag-ripple': env.VITE_ZAG_RIPPLE_PATH
+					'zag-ripple': env.VITE_ZAG_RIPPLE_PATH,
 				}),
 			},
 		},

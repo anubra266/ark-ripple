@@ -1,7 +1,11 @@
-import { Ark } from './ark.ripple';
 import type { JsxElements } from '../../types';
+// @ts-expect-error
+import { Ark } from './ark.ripple';
 
-var cache = new Map<string, (anchor: unknown, props: Record<string, unknown>, block: unknown) => void>();
+var cache = new Map<
+	string,
+	(anchor: unknown, props: Record<string, unknown>, block: unknown) => void
+>();
 
 /**
  * Creates a Ripple component for the given HTML tag name.
@@ -10,7 +14,6 @@ var cache = new Map<string, (anchor: unknown, props: Record<string, unknown>, bl
 function create_factory_component(tag: string) {
 	var cached = cache.get(tag);
 	if (cached) return cached;
-
 
 	function factory_component(anchor: unknown, props: Record<string, unknown>, block: unknown) {
 		var element_props = new Proxy(props, {
@@ -54,9 +57,6 @@ export var factory = new Proxy(create_factory_component, {
 		return undefined;
 	},
 	apply(target, _, args) {
-		return target(/** @type {string} */(args[0]));
+		return target(/** @type {string} */ args[0]);
 	},
 }) as unknown as JsxElements;
-
-
-

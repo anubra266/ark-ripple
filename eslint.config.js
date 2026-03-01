@@ -3,4 +3,8 @@ import storybook from 'eslint-plugin-storybook';
 
 import ripple from '@ripple-ts/eslint-plugin';
 
-export default [...ripple.configs.recommended, ...storybook.configs['flat/recommended']];
+export default [
+	{ ignores: ['overrides/**'] },
+	...ripple.configs.recommended,
+	...storybook.configs['flat/recommended'],
+];

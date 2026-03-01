@@ -12,6 +12,7 @@ AGENTS.md
 # Changesets
 .changeset/
 ark/
+overrides/
 
 # Build outputs
 **/dist/
