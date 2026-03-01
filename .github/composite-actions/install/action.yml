@@ -1,0 +1,20 @@
+name: 'Install'
+description: 'Sets up Bun and runs install'
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version-file: 'package.json'
+
+    - name: Setup Git User
+      shell: bash
+      run: |
+        git config --global user.email "anubra266@gmail.com"
+        git config --global user.name "Abraham Anuoluwapo"
+
+    - name: Install dependencies
+      shell: bash
+      run: bun install
