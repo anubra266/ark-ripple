@@ -19,10 +19,10 @@ if (!global.PointerEvent) {
 
 global.document.execCommand = () => true;
 global.URL.createObjectURL = () => 'https://i.pravatar.cc/300';
-global.URL.revokeObjectURL = () => {};
+global.URL.revokeObjectURL = () => { };
 
-global.Element.prototype.scrollIntoView = () => {};
-Element.prototype.scrollTo = () => {};
+global.Element.prototype.scrollIntoView = () => { };
+Element.prototype.scrollTo = () => { };
 
 let now = 1000;
 vi.spyOn(globalThis.performance, 'now').mockImplementation(() => now);
@@ -56,12 +56,15 @@ Object.defineProperty(window, 'navigator', {
 	},
 });
 
-const IntersectionObserverMock = vi.fn(() => ({
-	disconnect: vi.fn(),
-	observe: vi.fn(),
-	takeRecords: vi.fn(),
-	unobserve: vi.fn(),
-}));
+// biome-ignore lint/complexity/useArrowFunction: zag-js carousel/scroll-area code uses new IntersectionObserver(...), which requires a constructor (class/function, not arrow function).
+const IntersectionObserverMock = vi.fn(function () {
+	return {
+		disconnect: vi.fn(),
+		observe: vi.fn(),
+		takeRecords: vi.fn(),
+		unobserve: vi.fn(),
+	};
+});
 
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 
