@@ -2,4 +2,4 @@
 'ark-ripple': patch
 ---
 
-Add hover card component
+Add Hover Card component
