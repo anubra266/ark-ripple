@@ -1,0 +1,31 @@
+import * as imageCropper from '@zag-js/image-cropper';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional } from '../../types';
+
+export interface UseImageCropperProps
+  extends Optional<Omit<imageCropper.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export type UseImageCropperReturn = ReturnType<typeof useImageCropper>;
+
+export function useImageCropper(props: UseImageCropperProps = {}) {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
+
+  const service = useMachine(imageCropper.machine, machineProps);
+  const api = track(() => imageCropper.connect(service, normalizeProps));
+
+  return api;
+}

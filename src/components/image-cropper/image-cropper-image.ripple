@@ -1,0 +1,17 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useImageCropperContext } from './use-image-cropper-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface ImageCropperImageBaseProps extends PolymorphicProps<'img'> {}
+export interface ImageCropperImageProps extends HTMLProps<'img'>, ImageCropperImageBaseProps {}
+
+export component ImageCropperImage(props: MaybeTracked<ImageCropperImageProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const imageCropper = useImageCropperContext();
+
+  let mergedProps = track(() => mergeProps(@imageCropper.getImageProps(), @localProps));
+
+  <ark.img {...@mergedProps} />
+}

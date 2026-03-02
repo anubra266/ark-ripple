@@ -1,0 +1,42 @@
+import { ImageCropper } from 'ark-ripple/image-cropper';
+import { ZoomIn, ZoomOut } from 'lucide-ripple';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/image-cropper.module.css';
+
+export component ControlledZoom() {
+  let zoom = track(1);
+
+  <div class={styles.Layout}>
+    <div class={button.Group}>
+      <button type="button" class={button.Root} onClick={() => { @zoom = @zoom - 0.1 }}>
+        <ZoomOut />
+      </button>
+      <span style={{ fontSize: '0.875rem', minWidth: '3rem', textAlign: 'center' }}>
+        {@zoom.toFixed(1)}{'x'}
+      </span>
+      <button type="button" class={button.Root} onClick={() => { @zoom = @zoom + 0.1 }}>
+        <ZoomIn />
+      </button>
+    </div>
+
+    <ImageCropper.Root class={styles.Root} zoom={@zoom} onZoomChange={(e) => { @zoom = e.zoom }}>
+      <ImageCropper.Viewport class={styles.Viewport}>
+        <ImageCropper.Image
+          class={styles.Image}
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+          alt="Sample"
+        />
+        <ImageCropper.Selection class={styles.Selection}>
+          for (const position of ImageCropper.handles; key position) {
+            <ImageCropper.Handle class={styles.Handle} {position}>
+              <div />
+            </ImageCropper.Handle>
+          }
+          <ImageCropper.Grid class={styles.Grid} axis="horizontal" />
+          <ImageCropper.Grid class={styles.Grid} axis="vertical" />
+        </ImageCropper.Selection>
+      </ImageCropper.Viewport>
+    </ImageCropper.Root>
+  </div>
+}

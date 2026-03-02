@@ -1,0 +1,51 @@
+import { ImageCropper } from 'ark-ripple/image-cropper';
+import { RectangleHorizontal, Square, RectangleVertical } from 'lucide-ripple';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/image-cropper.module.css';
+
+const aspects = [
+  { label: '16:9', value: 16 / 9 },
+  { label: '1:1', value: 1 },
+  { label: '9:16', value: 9 / 16 },
+];
+
+const icons = [RectangleHorizontal, Square, RectangleVertical];
+
+export component AspectRatio() {
+  let aspectRatio = track(16 / 9);
+
+  <div class={styles.Layout}>
+    <div class={button.Group}>
+      for (const aspect of aspects; key aspect.label) {
+        <button
+          type="button"
+          class={button.Root}
+          data-variant={@aspectRatio === aspect.value ? 'solid' : undefined}
+          onClick={() => { @aspectRatio = aspect.value }}
+        >
+          {aspect.label}
+        </button>
+      }
+    </div>
+
+    <ImageCropper.Root class={styles.Root} aspectRatio={@aspectRatio}>
+      <ImageCropper.Viewport class={styles.Viewport}>
+        <ImageCropper.Image
+          class={styles.Image}
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+          alt="Sample"
+        />
+        <ImageCropper.Selection class={styles.Selection}>
+          for (const position of ImageCropper.handles; key position) {
+            <ImageCropper.Handle class={styles.Handle} {position}>
+              <div />
+            </ImageCropper.Handle>
+          }
+          <ImageCropper.Grid class={styles.Grid} axis="horizontal" />
+          <ImageCropper.Grid class={styles.Grid} axis="vertical" />
+        </ImageCropper.Selection>
+      </ImageCropper.Viewport>
+    </ImageCropper.Root>
+  </div>
+}

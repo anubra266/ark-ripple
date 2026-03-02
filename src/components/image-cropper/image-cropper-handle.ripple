@@ -1,0 +1,22 @@
+import type { HandleProps } from '@zag-js/image-cropper';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useImageCropperContext } from './use-image-cropper-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface ImageCropperHandleBaseProps extends PolymorphicProps<'div'>, HandleProps {}
+export interface ImageCropperHandleProps extends HTMLProps<'div'>, ImageCropperHandleBaseProps {}
+
+export component ImageCropperHandle(props: MaybeTracked<ImageCropperHandleProps>) {
+  const [children, position, localProps] = trackSplit(props, ['children', 'position']);
+  const imageCropper = useImageCropperContext();
+
+  let mergedProps = track(
+    () => mergeProps(@imageCropper.getHandleProps({ position: @position }), @localProps),
+  );
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

@@ -1,0 +1,51 @@
+import { ImageCropper } from 'ark-ripple/image-cropper';
+import { FlipHorizontal, FlipVertical } from 'lucide-ripple';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/image-cropper.module.css';
+
+export component Flip() {
+  let flip = track({ horizontal: false, vertical: false });
+
+  <div class={styles.Layout}>
+    <div class={button.Group}>
+      <button
+        type="button"
+        class={button.Root}
+        data-variant={@flip.horizontal ? 'solid' : undefined}
+        onClick={() => { @flip = { ...@flip, horizontal: !@flip.horizontal } }}
+      >
+        <FlipHorizontal />
+        {'Horizontal'}
+      </button>
+      <button
+        type="button"
+        class={button.Root}
+        data-variant={@flip.vertical ? 'solid' : undefined}
+        onClick={() => { @flip = { ...@flip, vertical: !@flip.vertical } }}
+      >
+        <FlipVertical />
+        {'Vertical'}
+      </button>
+    </div>
+
+    <ImageCropper.Root class={styles.Root} flip={@flip} onFlipChange={(e) => { @flip = e.flip }}>
+      <ImageCropper.Viewport class={styles.Viewport}>
+        <ImageCropper.Image
+          class={styles.Image}
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+          alt="Sample"
+        />
+        <ImageCropper.Selection class={styles.Selection}>
+          for (const position of ImageCropper.handles; key position) {
+            <ImageCropper.Handle class={styles.Handle} {position}>
+              <div />
+            </ImageCropper.Handle>
+          }
+          <ImageCropper.Grid class={styles.Grid} axis="horizontal" />
+          <ImageCropper.Grid class={styles.Grid} axis="vertical" />
+        </ImageCropper.Selection>
+      </ImageCropper.Viewport>
+    </ImageCropper.Root>
+  </div>
+}

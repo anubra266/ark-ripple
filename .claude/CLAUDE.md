@@ -113,6 +113,19 @@ let open = track(false)    // declare reactive signal
 { @open }                   // use in JSX expression
 ```
 
+**Never unbox a tracked value into a `const` and then use `@` on it.** The `@` operator only works on tracked variables — once you unbox with `@`, the result is a plain snapshot and re-applying `@` does nothing. Use the tracked variable directly with `@`.
+
+```ripple
+const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+// ✅ CORRECT — use tracked variable directly
+let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+// ❌ WRONG — unboxing into const loses reactivity, @imageCropper is meaningless
+const imageCropper = @value;
+let mergedProps = track(() => mergeProps(@imageCropper.getRootProps(), @localProps));
+```
+
 ### 7. `effect` vs `onMount`
 
 Use `effect` when the setup depends on reactive values or needs cleanup. The return value of an `effect` is the cleanup function (like React's `useEffect`). Use `onMount` only for one-time, non-reactive initialization with no cleanup.

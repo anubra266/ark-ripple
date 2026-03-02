@@ -1,0 +1,11 @@
+import { type UseImageCropperContext, useImageCropperContext } from './use-image-cropper-context';
+
+export interface ImageCropperContextProps {
+  children: (context: UseImageCropperContext) => any;
+}
+
+export component ImageCropperContext(props: ImageCropperContextProps) {
+  const context = useImageCropperContext();
+
+  <props.children context={context} />
+}
