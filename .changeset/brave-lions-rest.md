@@ -2,4 +2,4 @@
 'ark-ripple': patch
 ---
 
-Add Listbox component
+Add Listbox component.

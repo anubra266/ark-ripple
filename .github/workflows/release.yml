@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          registry-url: "https://registry.npmjs.org"
+          node-version: "22"
 
       - name: Install
         uses: ./.github/composite-actions/install
