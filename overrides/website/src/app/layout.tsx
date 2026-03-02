@@ -1,0 +1,52 @@
+import type { Metadata } from 'next'
+import { ThemeProvider } from 'next-themes'
+import { Roboto_Mono, Wix_Madefor_Text } from 'next/font/google'
+import Script from 'next/script'
+import type { PropsWithChildren } from 'react'
+import { cx } from 'styled-system/css'
+import { Toaster } from '~/components/toaster'
+import { getPublicUrl } from '~/lib/get-public-url'
+import './global.css'
+
+const wixMadeforText = Wix_Madefor_Text({ subsets: ['latin'], variable: '--font-wix-madefor-text' })
+const roboto = Roboto_Mono({
+  subsets: ['latin'],
+  variable: '--font-roboto-mono',
+})
+
+const description =
+  'A headless UI library with over 45+ components designed to build reusable, scalable Design Systems that works optimally in Ripple TS.'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(getPublicUrl()),
+  title: {
+    default: 'Home | Ark Ripple',
+    template: '%s | Ark Ripple',
+  },
+  description,
+  keywords: ['ripple', 'ripple-ts', 'typescript', 'design systems', 'headless', 'components', 'library'],
+  openGraph: {
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@anubra66',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+}
+
+export default function RootLayout(props: PropsWithChildren) {
+  return (
+    <html lang="en" className={cx(wixMadeforText.variable, roboto.variable)} suppressHydrationWarning>
+      <head>
+        <Script src="https://plausible.io/js/plausible.js" data-domain="ark-ui.com" />
+      </head>
+      <body suppressHydrationWarning>
+        <ThemeProvider attribute="class">
+          {props.children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}

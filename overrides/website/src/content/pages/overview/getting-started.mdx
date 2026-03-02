@@ -1,0 +1,64 @@
+---
+id: getting-started
+title: Getting Started
+description: A Step-by-step Guide to Using Ark Ripple
+---
+
+## Quickstart
+
+Running tight on schedule? No worries! Check out our quickstart example to get started with Ark Ripple in seconds.
+
+<Quickstart />
+
+## Setup Guide
+
+<Steps>
+<Step title="Prerequisite" number="1">
+
+Before you start, ensure you have a proper project setup. If not, follow your preferred application framework setup
+guide and then return to this guide.
+
+</Step>
+<Step title="Install Ark Ripple" number="2">
+
+Install the Ark UI dependency using your preferred package manager.
+
+<InstallCmd />
+
+</Step>
+<Step number="3" title="Add a component">
+
+In this guide, we will be adding a Slider component. Copy the following code to your project.
+
+<ExampleCode component="slider" id="basic" />
+
+</Step>
+
+<Step number="4" title="Style a component">
+Ark UI is a headless component library that doesn't include default styles.
+You can leverage the `data-scope` and `data-part` attributes to style your components with custom CSS.
+
+For example, to style a slider component, you can target its parts using these attributes:
+
+```css
+/* Targets the <Slider.Root /> */
+[data-scope='slider'][data-part='root'] {
+  display: flex;
+  flex-direction: column;
+}
+```
+
+Check out the [Styling Components guide](/react/docs/guides/styling) to learn more about styling components in Ark Ripple.
+
+</Step>
+
+<Step number="5" title="That's it">
+
+Congratulations! You've successfully set up and styled your components using Ark UI. If you run into any issues or have
+questions, open an issue on our [GitHub](https://github.com/anubra266/ark-ripple/issues/new) or reach out on
+[Discord](https://discord.gg/3kjgmUWj).
+
+Happy hacking! ✌️
+
+</Step>
+</Steps>

@@ -1,0 +1,240 @@
+---
+id: combobox
+title: Combobox
+description: A single input field that combines the functionality of a select and input.
+---
+
+<ComponentPreview id="Combobox" />
+
+## Anatomy
+
+<Anatomy id="combobox" />
+
+```tsx
+<Combobox.Root>
+  <Combobox.Label />
+  <Combobox.Control>
+    <Combobox.Input />
+    <Combobox.Trigger />
+    <Combobox.ClearTrigger />
+  </Combobox.Control>
+  <Combobox.Positioner>
+    <Combobox.Content>
+      <Combobox.ItemGroup>
+        <Combobox.ItemGroupLabel />
+        <Combobox.Item>
+          <Combobox.ItemText />
+          <Combobox.ItemIndicator />
+        </Combobox.Item>
+      </Combobox.ItemGroup>
+    </Combobox.Content>
+  </Combobox.Positioner>
+</Combobox.Root>
+```
+
+## Examples
+
+<Example id="basic" />
+
+### Auto Highlight
+
+Automatically highlight the first matching item as the user types by setting `inputBehavior="autohighlight"`.
+
+<Example id="auto-highlight" />
+
+### Inline Autocomplete
+
+Complete the input value with the first matching item by setting `inputBehavior="autocomplete"`. Use with `startsWith`
+filter for best results.
+
+<Example id="inline-autocomplete" />
+
+### Grouping
+
+To group related combobox items, use the `groupBy` prop on the collection and `collection.group()` to iterate the
+groups.
+
+<Example id="grouping" />
+
+### Field
+
+The `Field` component helps manage form-related state and accessibility attributes of a combobox. It includes handling
+ARIA labels, helper text, and error text to ensure proper accessibility.
+
+<Example id="with-field" />
+
+### Context
+
+Access the combobox's state with `Combobox.Context` or the `useComboboxContext` hook—useful for displaying the selected
+value or building custom UI.
+
+<Example id="context" />
+
+### Root Provider
+
+An alternative way to control the combobox is to use the `RootProvider` component and the `useCombobox` hook. This way
+you can access the state and methods from outside the component.
+
+<Example id="root-provider" />
+
+### Links
+
+Use the `asChild` prop to render the combobox items as links.
+
+<Example id="links" />
+
+### Rehydrate
+
+When a combobox has a `defaultValue` or `value` but the `collection` is not loaded yet, you can rehydrate the value to
+populate the input.
+
+<Example id="rehydrate-value" />
+
+### Highlight Text
+
+Highlight the matching search text in combobox items based on the user's input.
+
+<Example id="highlight-matching-text" />
+
+### Dynamic
+
+Generate combobox items dynamically based on user input. This is useful for creating suggestions or autocomplete
+functionality.
+
+<Example id="dynamic" />
+
+### Creatable
+
+Allow users to create new options when their search doesn't match any existing items. This is useful for tags,
+categories, or other custom values.
+
+<Example id="creatable" />
+
+### Multiple Selection
+
+Enable multiple selection by setting the `multiple` prop. Selected items can be displayed as tags above the input.
+
+<Example id="multiple" />
+
+### Async Search
+
+Load options asynchronously based on user input using the `useAsyncList` hook. This is useful for searching large
+datasets or fetching data from an API.
+
+<Example id="async-search" />
+
+### Virtualized
+
+For very large lists, use virtualization with `@tanstack/virtual` to render only the visible items. Pass the
+`scrollToIndexFn` prop to enable keyboard navigation within the virtualized list.
+
+<Example id="virtualized" />
+
+### Custom Object
+
+Use the `itemToString` and `itemToValue` props to map custom objects to the required interface.
+
+<Example id="custom-object" />
+
+### Limit Results
+
+Use the `limit` property on `useListCollection` to limit the number of rendered items in the DOM.
+
+<Example id="limit-results" />
+
+## Guides
+
+### Router Links
+
+Customize the `navigate` prop on `Combobox.Root` to integrate with your router. Using Tanstack Router:
+
+```tsx
+import { Combobox } from '@ark-ui/<framework>/combobox'
+import { useNavigate } from '@tanstack/react-router'
+
+function Demo() {
+  const navigate = useNavigate()
+  return (
+    <Combobox.Root
+      navigate={(e) => {
+        navigate({ to: e.node.href })
+      }}
+    >
+      {/* ... */}
+    </Combobox.Root>
+  )
+}
+```
+
+### Custom Objects
+
+By default, the combobox collection expects an array of objects with `label` and `value` properties. In some cases, you
+may need to deal with custom objects.
+
+Use the `itemToString` and `itemToValue` props to map the custom object to the required interface.
+
+```tsx
+const items = [
+  { country: 'United States', code: 'US', flag: '🇺🇸' },
+  { country: 'Canada', code: 'CA', flag: '🇨🇦' },
+  { country: 'Australia', code: 'AU', flag: '🇦🇺' },
+  // ...
+]
+
+const { collection } = useListCollection({
+  initialItems: items,
+  itemToString: (item) => item.country,
+  itemToValue: (item) => item.code,
+})
+```
+
+### Large Datasets
+
+The recommended way of managing large lists is to use the `limit` property on the `useListCollection` hook. This will
+limit the number of rendered items in the DOM to improve performance.
+
+```tsx {3}
+const { collection } = useListCollection({
+  initialItems: items,
+  limit: 10,
+})
+```
+
+### Available Size
+
+The following css variables are exposed to the `Combobox.Positioner` which you can use to style the `Combobox.Content`
+
+```css
+/* width of the combobox control */
+--reference-width: <pixel-value>;
+/* width of the available viewport */
+--available-width: <pixel-value>;
+/* height of the available viewport */
+--available-height: <pixel-value>;
+```
+
+For example, if you want to make sure the maximum height doesn't exceed the available height, you can use the following:
+
+```css
+[data-scope='combobox'][data-part='content'] {
+  max-height: calc(var(--available-height) - 100px);
+}
+```
+
+## API Reference
+
+### Props
+
+<ComponentTypes id="combobox" />
+
+### Context
+
+<ContextType id="combobox" />
+
+## Accessibility
+
+Complies with the [Combobox WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/).
+
+### Keyboard Support
+
+<KeyBindingsTable id="combobox" />

@@ -1,5 +1,5 @@
 {
-  "buildCommand": "bun run ark:push && cd ark/website && bun run build",
+  "buildCommand": "bun run ark:push && cd ark/scripts && bun run document:types react && cd ../website && bun run build",
   "installCommand": "git submodule update --init && bun install && cd ark && bun install",
   "framework": "nextjs",
   "outputDirectory": "ark/website/.next"

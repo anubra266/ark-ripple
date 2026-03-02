@@ -1,0 +1,118 @@
+---
+id: listbox
+title: Listbox
+description: A component for selecting a single or multiple items from a list.
+---
+
+<ComponentPreview id="Listbox" />
+
+## Anatomy
+
+{/* <Anatomy id="listbox" /> */}
+
+```tsx
+<Listbox.Root>
+  <Listbox.Label />
+  <Listbox.Content>
+    <Listbox.ItemGroup>
+      <Listbox.ItemGroupLabel />
+      <Listbox.Item>
+        <Listbox.ItemText />
+        <Listbox.ItemIndicator />
+      </Listbox.Item>
+    </Listbox.ItemGroup>
+  </Listbox.Content>
+  <Listbox.ValueText />
+</Listbox.Root>
+```
+
+## Examples
+
+### Basic
+
+Here's a basic example of the Listbox component.
+
+<Example id="basic" />
+
+### Controlled
+
+The Listbox component can be controlled by using the `value` and `onValueChange` props. This allows you to manage the
+selected value externally.
+
+<Example id="controlled" />
+
+### Root Provider
+
+An alternative way to control the listbox is to use the `RootProvider` component and the `useListbox` hook. This way you
+can access the state and methods from outside the component.
+
+<Example id="root-provider" />
+
+### Disabled Item
+
+Listbox items can be disabled using the `disabled` prop on the collection item.
+
+<Example id="disabled-item" />
+
+> You can also use the `isItemDisabled` within the `createListCollection` to disable items based on a condition.
+
+### Multiple
+
+You can set the `selectionMode` property as `multiple` to allow the user to select multiple items at a time.
+
+<Example id="multiple" />
+
+### Grouping
+
+The Listbox component supports grouping items. You can use the `groupBy` function to group items based on a specific
+property.
+
+<Example id="group" />
+
+### Extended Selection
+
+The extended selection mode allows users to select multiple items using keyboard modifiers like `Cmd` (Mac) or `Ctrl`
+(Windows/Linux).
+
+<Example id="extended-select" />
+
+### Horizontal
+
+Use the `orientation` prop to display the listbox items horizontally.
+
+<Example id="horizontal" />
+
+### Grid Layout
+
+Use `createGridCollection` to display items in a grid layout with keyboard navigation support.
+
+<Example id="grid" />
+
+### Filtering
+
+Use `useListCollection` with the `filter` function to enable filtering of items.
+
+<Example id="filtering" />
+
+### Select All
+
+Use `useListboxContext` to implement a "Select All" functionality that allows users to select or deselect all items at
+once.
+
+<Example id="select-all" />
+
+### Value Text
+
+Use `Listbox.ValueText` to display the selected values as a comma-separated string.
+
+<Example id="value-text" />
+
+## API Reference
+
+### Props
+
+<ComponentTypes id="listbox" />
+
+### Context
+
+<ContextType id="listbox" />

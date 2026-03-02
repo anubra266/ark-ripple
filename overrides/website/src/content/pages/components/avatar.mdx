@@ -1,0 +1,49 @@
+---
+id: avatar
+title: Avatar
+description: A graphical representation of the user, often used in profile sections.
+---
+
+<ComponentPreview id="Avatar" />
+
+## Anatomy
+
+<Anatomy id="avatar" />
+
+```tsx
+<Avatar.Root>
+  <Avatar.Fallback />
+  <Avatar.Image />
+</Avatar.Root>
+```
+
+## Examples
+
+### Basic
+
+Display a user's profile image with a fallback.
+
+<Example id="basic" />
+
+### Events
+
+Use `onStatusChange` to listen for loading state changes.
+
+<Example id="events" />
+
+### Root Provider
+
+An alternative way to control the avatar is to use the `RootProvider` component and the `useAvatar` hook. This way you
+can access the state and methods from outside the component.
+
+<Example id="root-provider" />
+
+## API Reference
+
+### Props
+
+<ComponentTypes id="avatar" />
+
+### Context
+
+<ContextType id="avatar" />

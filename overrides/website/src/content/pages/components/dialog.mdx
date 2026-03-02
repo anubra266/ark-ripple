@@ -1,0 +1,158 @@
+---
+id: dialog
+title: Dialog
+description: A modal window that appears on top of the main content.
+---
+
+<ComponentPreview id="Dialog" />
+
+## Anatomy
+
+<Anatomy id="dialog" />
+
+```tsx
+<Dialog.Root>
+  <Dialog.Trigger />
+  <Dialog.Backdrop />
+  <Dialog.Positioner>
+    <Dialog.Content>
+      <Dialog.Title />
+      <Dialog.Description />
+      <Dialog.CloseTrigger />
+    </Dialog.Content>
+  </Dialog.Positioner>
+</Dialog.Root>
+```
+
+## Examples
+
+<Example id="basic" />
+
+### Controlled
+
+Manage the dialog state using the `open` and `onOpenChange` props.
+
+<Example id="controlled" />
+
+### Root Provider
+
+An alternative way to control the dialog is to use the `RootProvider` component and the `useDialog` hook. This way you
+can access the state and methods from outside the component.
+
+<Example id="root-provider" />
+
+### Alert Dialog
+
+For critical confirmations or destructive actions, use `role="alertdialog"`. Alert dialogs differ from regular dialogs
+in important ways:
+
+- **Automatic focus**: The close/cancel button receives focus when opened, prioritizing the safest action
+- **Requires explicit dismissal**: Cannot be closed by clicking outside, only via button clicks or Escape key
+
+<Example id="alert-dialog" />
+
+### Lazy Mount
+
+Use `lazyMount` to render dialog content only when first opened. Combine with `unmountOnExit` to unmount when closed,
+freeing up resources.
+
+<Example id="lazy-mount" />
+
+### Initial Focus
+
+Use `initialFocusEl` to control which element receives focus when the dialog opens.
+
+<Example id="initial-focus" />
+
+### Final Focus
+
+Use `finalFocusEl` to control which element receives focus when the dialog closes. Defaults to the trigger element.
+
+<Example id="final-focus" />
+
+### Non-Modal
+
+Use `modal={false}` to allow interaction with elements outside the dialog. Disables focus trapping and scroll
+prevention.
+
+<Example id="non-modal" />
+
+### Inside Scroll
+
+Make the content area scrollable while keeping header and footer fixed using `maxHeight` and `overflow: auto`.
+
+<Example id="inside-scroll" />
+
+### Outside Scroll
+
+Make the positioner scrollable so the dialog can extend beyond the viewport.
+
+<Example id="outside-scroll" />
+
+### Context
+
+Access the dialog's state and methods with `Dialog.Context` or the `useDialogContext` hook.
+
+<Example id="context" />
+
+### Open from Menu
+
+Open a dialog imperatively from a menu item using the `onClick` handler.
+
+<Example id="open-from-menu" />
+
+### Nested
+
+Nest dialogs within one another. The parent receives `data-has-nested` and `--nested-layer-count` CSS variable for
+styling effects like zoom-out:
+
+```css
+[data-part='content'][data-has-nested] {
+  transform: scale(calc(1 - var(--nested-layer-count) * 0.05));
+}
+```
+
+<Example id="nested" />
+
+### Confirmation
+
+Intercept close attempts to show confirmation prompts, preventing data loss from unsaved changes.
+
+<Example id="confirmation" />
+
+## Guides
+
+### Close Behavior
+
+- `closeOnEscape={false}` - Prevent closing on <kbd>Escape</kbd>
+- `closeOnInteractOutside={false}` - Prevent closing on outside click
+
+For conditional control, use `onEscapeKeyDown` or `onInteractOutside` with `e.preventDefault()`.
+
+### Z-Index Stacking
+
+Use the `--layer-index` CSS variable for z-index management of stacked dialogs:
+
+```css
+[data-part='content'] {
+  z-index: calc(var(--layer-index));
+}
+```
+
+## API Reference
+
+### Props
+
+<ComponentTypes id="dialog" />
+
+### Context
+
+<ContextType id="dialog" />
+
+## Accessibility
+
+Complies with the [Dialog WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/).
+
+### Keyboard Support
+
+<KeyBindingsTable id="dialog" />

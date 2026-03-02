@@ -1,0 +1,220 @@
+---
+id: forms
+title: Forms
+description: A guide to building forms with Ark Ripple components.
+---
+
+Ark Ripple provides the `Field` and `Fieldset` components for integrating with native `form` element or any form library.
+
+## Field Context
+
+Form components in Ark Ripple automatically integrate with `Field` through context. When nested inside a `Field.Root`, they
+inherit `disabled`, `invalid`, `required`, and `readOnly` states automatically.
+
+```ripple
+import { Field } from 'ark-ripple/field'
+import { NumberInput } from 'ark-ripple/number-input'
+
+component Demo() {
+  <Field.Root disabled>
+    <NumberInput.Root />  // NumberInput will be disabled
+  </Field.Root>
+}
+```
+
+### Accessible Labels
+
+When building accessible forms, you need to ensure that they are properly labeled and described.
+
+- `Field.Label`: Used to provide an accessible label the input.
+- `Field.HelperText`: Used to provide additional instructions about the input.
+
+These components are automatically linked to the input element via the `aria-describedby` attribute.
+
+> **Best practice**: Make sure that labels are visible (and not just used as placeholders) for screen readers to read
+> them.
+
+```ripple
+import { Field } from 'ark-ripple/field'
+
+component Demo() {
+  <form>
+    <Field.Root>
+      <Field.Label>{"Username"}</Field.Label>
+      <Field.Input placeholder="Enter your username" />
+      <Field.HelperText>{"This will be your public display name."}</Field.HelperText>
+    </Field.Root>
+  </form>
+}
+```
+
+### Error Handling and Validation
+
+When the input is invalid, you can use the `Field.ErrorText` component to provide an error message for the input, and
+pass the `invalid` prop to the `Field.Root` component.
+
+> **Best practice**: Make sure to provide clear, specific error messages that are easy to understand and fix.
+
+```ripple
+import { Field } from 'ark-ripple/field'
+
+component Demo() {
+  <form>
+    <Field.Root invalid>
+      <Field.Label>{"Username"}</Field.Label>
+      <Field.Input placeholder="Enter your username" />
+      <Field.ErrorText>{"Username is required."}</Field.ErrorText>
+    </Field.Root>
+  </form>
+}
+```
+
+### Required Fields
+
+To indicate that a field is required, you can pass the `required` prop to the `Field.Root` component. Optionally, you
+can use the `Field.RequiredIndicator` component to indicate that the field is required.
+
+> **Best practice**: Don't rely solely on color to indicate required status
+
+```ripple
+import { Field } from 'ark-ripple/field'
+
+export component Demo() {
+  <form>
+    <Field.Root required>
+      <Field.Label>
+        {"Username"}
+        <Field.RequiredIndicator>{"(required)"}</Field.RequiredIndicator>
+      </Field.Label>
+      <Field.Input placeholder="Enter your username" />
+      <Field.ErrorText>{"Username is required."}</Field.ErrorText>
+    </Field.Root>
+  </form>
+}
+```
+
+To indicate that a field is optional, use the `fallback` prop on the `Field.RequiredIndicator` component.
+
+```ripple
+<Field.RequiredIndicator fallback="Optional">{"(required)"}</Field.RequiredIndicator>
+```
+
+### Native Controls
+
+Field supports native HTML form controls including `input`, `textarea`, and `select`:
+
+```ripple
+import { Field } from 'ark-ripple/field'
+
+export component Demo(){
+  <form>
+    // Input
+    <Field.Root>
+      <Field.Label>{"Email"}</Field.Label>
+      <Field.Input type="email" placeholder="you@example.com" />
+    </Field.Root>
+
+    // Textarea
+    <Field.Root>
+      <Field.Label>{"Bio"}</Field.Label>
+      <Field.Textarea placeholder="Tell us about yourself" />
+    </Field.Root>
+
+    // Select
+    <Field.Root>
+      <Field.Label>{"Country"}</Field.Label>
+      <Field.Select>
+        <option value="us">{"United States"}</option>
+        <option value="uk">{"United Kingdom"}</option>
+        <option value="de">{"Germany"}</option>
+      </Field.Select>
+    </Field.Root>
+  </form>
+}
+```
+
+### Form Reset
+
+When the `reset` event is triggered on a form, all Ark Ripple components automatically sync their internal state with the
+form's reset values.
+
+> **Note**: For this to work correctly, always include the `HiddenInput` component in your form controls. The hidden
+> input participates in the native form reset mechanism, and Ark Ripple listens for this to sync the component state.
+
+```ripple
+import { Checkbox } from 'ark-ripple/checkbox'
+
+component Demo() {
+  <form>
+    <Checkbox.Root name="terms" defaultChecked>
+      <Checkbox.Label>{"I agree to the terms"}</Checkbox.Label>
+      <Checkbox.Control>
+        <Checkbox.Indicator />
+      </Checkbox.Control>
+      <Checkbox.HiddenInput />
+    </Checkbox.Root>
+
+    // Clicking reset will restore checkbox to defaultChecked state
+    <button type="reset">{"Reset"}</button>
+    <button type="submit">{"Submit"}</button>
+  </form>
+}
+```
+
+## Fieldset Context
+
+When you have multiple fields in a form or a component that renders multiple `input` elements, you can use the
+`Fieldset` component to group them together.
+
+Common use cases checkbox group, radio group, input + select composition, etc.
+
+### Checkbox Group
+
+```ripple
+import { Fieldset } from 'ark-ripple/fieldset'
+
+const items = [
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'Svelte', value: 'svelte' },
+]
+
+component Demo() {
+  <Fieldset.Root>
+    <Fieldset.Legend>{"Frameworks"}</Fieldset.Legend>
+    <Checkbox.Group name="framework">
+      for (const item of items; key item.value) {
+        <Checkbox.Root value={item.value} />
+      }
+    </Checkbox.Group>
+    <Fieldset.HelperText>{"Choose your preferred frameworks"}</Fieldset.HelperText>
+  </Fieldset.Root>
+}
+```
+
+### Radio Group
+
+```ripple
+import { Fieldset } from 'ark-ripple/fieldset'
+import { RadioGroup } from 'ark-ripple/radio-group'
+
+const items = [
+  { label: 'React', value: 'react' },
+  { label: 'Solid', value: 'solid' },
+  { label: 'Vue', value: 'vue' },
+  { label: 'Svelte', value: 'svelte' },
+]
+
+component Demo() {
+  <Fieldset.Root>
+    <Fieldset.Legend>{"Frameworks"}</Fieldset.Legend>
+    <RadioGroup.Root name="framework">
+      for (const item of items; key item.value) {
+        <RadioGroup.Item value={item.value} key={item.value} />
+      }
+    </RadioGroup.Root>
+    <Fieldset.HelperText>{"Choose your preferred framework"}</Fieldset.HelperText>
+  </Fieldset.Root>
+}
+```

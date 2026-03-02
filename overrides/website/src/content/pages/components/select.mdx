@@ -1,0 +1,209 @@
+---
+id: select
+title: Select
+description: Displays a list of options for the user to pick from.
+---
+
+<ComponentPreview id="Select" />
+
+## Anatomy
+
+<Anatomy id="select" />
+
+```tsx
+<Select.Root>
+  <Select.Label />
+  <Select.Control>
+    <Select.Trigger>
+      <Select.ValueText />
+    </Select.Trigger>
+    <Select.ClearTrigger />
+    <Select.Indicator />
+  </Select.Control>
+  <Select.Positioner>
+    <Select.Content>
+      <Select.ItemGroup>
+        <Select.ItemGroupLabel />
+        <Select.Item>
+          <Select.ItemText />
+          <Select.ItemIndicator />
+        </Select.Item>
+      </Select.ItemGroup>
+    </Select.Content>
+  </Select.Positioner>
+  <Select.HiddenSelect />
+</Select.Root>
+```
+
+## Examples
+
+<Example id="basic" />
+
+### Controlled
+
+Use the `value` and `onValueChange` props to control the selected items.
+
+<Example id="controlled" />
+
+### Root Provider
+
+An alternative way to control the select is to use the `RootProvider` component and the `useSelect` hook. This way you
+can access the state and methods from outside the component.
+
+<Example id="root-provider" />
+
+### Multiple
+
+To enable `multiple` item selection:
+
+<Example id="multiple" />
+
+### Grouping
+
+Grouping related options can be useful for organizing options into categories.
+
+- Use the `groupBy` prop to configure the grouping of the items.
+- Use the `collection.group()` method to get the grouped items.
+- Use the `Select.ItemGroup` and `Select.ItemGroupLabel` components to render the grouped items.
+
+<Example id="grouping" />
+
+### Field
+
+Use `Field` to manage form state, ARIA labels, helper text, and error text.
+
+<Example id="with-field" />
+
+### Form Usage
+
+Here's an example of integrating the `Select` component with a form library.
+
+<Example id="form-library" />
+
+### Async Loading
+
+Here's an example of how to load the items asynchronously when the select is opened.
+
+<Example id="async" />
+
+### Lazy Mount
+
+Use `lazyMount` and `unmountOnExit` to control when content is mounted, improving performance.
+
+<Example id="lazy-mount" />
+
+### Select on Highlight
+
+Here's an example of automatically selecting items when they are highlighted (hovered or navigated to with keyboard).
+
+<Example id="select-on-highlight" />
+
+### Max Selection
+
+Here's an example of limiting the number of items that can be selected in a multiple select.
+
+<Example id="max-selected" />
+
+### Select All
+
+Use `selectAll()` from the select context to select all items at once.
+
+<Example id="select-all" />
+
+### Overflow
+
+For selects with many items, use `positioning.fitViewport` to ensure the dropdown fits within the viewport. Combine with
+a max-height on the content to enable scrolling.
+
+<Example id="overflow" />
+
+## Guides
+
+### Nested Usage
+
+When using the Select component within a `Popover` or `Dialog`, avoid rendering its content within a `Portal` or
+`Teleport`.
+
+This ensures the Select's content stays within the Popover/Dialog's DOM hierarchy rather than being portalled to the
+document body, maintaining proper interaction and accessibility behavior.
+
+### Hidden Select
+
+The `Select.HiddenSelect` component renders a native HTML `<select>` element that's visually hidden but remains in the
+DOM. This component is essential for:
+
+- **Form submission**: Native form submission and serialization work seamlessly since the actual `<select>` element
+  exists in the DOM
+- **Browser auto-fill**: Browsers can properly auto-fill the select based on previously submitted form data
+- **Progressive enhancement**: Forms remain functional even if JavaScript fails to load
+
+```tsx
+<Select.Root>
+  <Select.HiddenSelect />
+  {/* Other Select components */}
+</Select.Root>
+```
+
+The hidden select automatically syncs with the Select component's value, ensuring form data is always up-to-date.
+
+### Empty State
+
+You can create an empty state component that displays when there are no items in the collection. Use the
+`useSelectContext` hook to check the collection size:
+
+```tsx
+component SelectEmpty(props) {
+  const select = useSelectContext()
+  if (@select.collection.size === 0) {
+    <div {...props} role="presentation" />
+  }
+}
+```
+
+Then use it within your Select content:
+
+```tsx
+<Select.Content>
+  <SelectEmpty>{"No items to display"}</SelectEmpty>
+  {/* Your items */}
+</Select.Content>
+```
+
+### Available Size
+
+The following css variables are exposed to the `Select.Positioner` which you can use to style the `Select.Content`
+
+```css
+/* width of the select trigger */
+--reference-width: <pixel-value>;
+/* width of the available viewport */
+--available-width: <pixel-value>;
+/* height of the available viewport */
+--available-height: <pixel-value>;
+```
+
+For example, if you want to make sure the maximum height doesn't exceed the available height, you can use the following:
+
+```css
+[data-scope='select'][data-part='content'] {
+  max-height: calc(var(--available-height) - 100px);
+}
+```
+
+## API Reference
+
+### Props
+
+<ComponentTypes id="select" />
+
+### Context
+
+<ContextType id="select" />
+
+## Accessibility
+
+Complies with the [Listbox WAI-ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/listbox/).
+
+### Keyboard Support
+
+<KeyBindingsTable id="select" />

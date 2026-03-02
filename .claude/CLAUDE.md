@@ -244,8 +244,9 @@ export component FileUploadItemPreview(props: MaybeTracked<FileUploadItemPreview
 ### Barrel exports and anatomy
 
 When developing a new component, **always** update these files:
-- `src/components/index.ts` — add the component's public export
-- `src/components/anatomy.ts` — add the component's anatomy export
+- `src/components/index.ts` — uncomment/add the component's public export
+- `src/components/anatomy.ts` — uncomment/add the component's anatomy export
+- `overrides/website/src/lib/sidebar-config.ts` — uncomment the component's sidebar entry so it appears on the website
 
 ### Export parity with React
 
