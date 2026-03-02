@@ -42,11 +42,10 @@
   "homepage": "https://ark-ui.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chakra-ui/ark.git",
-    "directory": "packages/ripple"
+    "url": "git+https://github.com/anubra266/ark-ripple.git"
   },
   "bugs": {
-    "url": "https://github.com/chakra-ui/ark/issues"
+    "url": "https://github.com/anubra266/ark-ripple/issues"
   },
   "files": [
     "dist"
