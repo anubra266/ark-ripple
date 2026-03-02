@@ -3,14 +3,16 @@ import { Check } from 'lucide-ripple';
 import styles from 'styles/listbox.module.css';
 
 export component DisabledItem() {
-  const collection = createListCollection({
-    items: [
-      { label: 'Free', value: 'free' },
-      { label: 'Pro', value: 'pro' },
-      { label: 'Enterprise', value: 'enterprise', disabled: true },
-      { label: 'Custom', value: 'custom' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'Free', value: 'free' },
+        { label: 'Pro', value: 'pro' },
+        { label: 'Enterprise', value: 'enterprise', disabled: true },
+        { label: 'Custom', value: 'custom' },
+      ],
+    },
+  );
 
   <Listbox.Root class={styles.Root} {collection}>
     <Listbox.Label class={styles.Label}>{'Select Plan'}</Listbox.Label>

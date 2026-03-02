@@ -7,5 +7,5 @@ export interface ImageCropperContextProps {
 export component ImageCropperContext(props: ImageCropperContextProps) {
   const context = useImageCropperContext();
 
-  <props.children context={context} />
+  <props.children {context} />
 }

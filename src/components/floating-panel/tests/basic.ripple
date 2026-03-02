@@ -16,8 +16,12 @@ export component ComponentUnderTest(props: {
           <FloatingPanel.Header>
             <FloatingPanel.Title>{'Floating Panel'}</FloatingPanel.Title>
             <FloatingPanel.Control>
-              <FloatingPanel.StageTrigger stage="minimized">{'minimize'}</FloatingPanel.StageTrigger>
-              <FloatingPanel.StageTrigger stage="maximized">{'maximize'}</FloatingPanel.StageTrigger>
+              <FloatingPanel.StageTrigger stage="minimized">
+                {'minimize'}
+              </FloatingPanel.StageTrigger>
+              <FloatingPanel.StageTrigger stage="maximized">
+                {'maximize'}
+              </FloatingPanel.StageTrigger>
               <FloatingPanel.StageTrigger stage="default">{'restore'}</FloatingPanel.StageTrigger>
               <FloatingPanel.CloseTrigger>{'close'}</FloatingPanel.CloseTrigger>
             </FloatingPanel.Control>

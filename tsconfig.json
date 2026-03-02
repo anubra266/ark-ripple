@@ -18,7 +18,10 @@
     "jsxImportSource": "ripple",
     "plugins": [{ "name": "@ripple-ts/typescript-plugin" }],
     "types": ["vitest/globals"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "styles/*": ["./ark/.storybook/modules/*"]
+    }
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist", "overrides", "ark"]

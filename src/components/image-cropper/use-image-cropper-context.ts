@@ -5,5 +5,4 @@ export type UseImageCropperContext = UseImageCropperReturn;
 
 export const ImageCropperApiContext = new Context<UseImageCropperContext>();
 
-export const useImageCropperContext = (): UseImageCropperContext =>
-  ImageCropperApiContext.get();
+export const useImageCropperContext = (): UseImageCropperContext => ImageCropperApiContext.get();

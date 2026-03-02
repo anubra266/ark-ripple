@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface NumberInputIncrementTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface NumberInputIncrementTriggerProps extends HTMLProps<'button'>, NumberInputIncrementTriggerBaseProps {}
+export interface NumberInputIncrementTriggerProps extends HTMLProps<
+  'button'
+>, NumberInputIncrementTriggerBaseProps {}
 
 export component NumberInputIncrementTrigger(props: MaybeTracked<NumberInputIncrementTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

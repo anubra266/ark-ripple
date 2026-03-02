@@ -27,9 +27,7 @@ describe('Listbox', () => {
     fireEvent.click(screen.getByRole('option', { name: 'React' }));
 
     await waitFor(() => {
-      expect(onValueChange).toHaveBeenCalledWith(
-        expect.objectContaining({ value: ['react'] }),
-      );
+      expect(onValueChange).toHaveBeenCalledWith(expect.objectContaining({ value: ['react'] }));
     });
   });
 
@@ -55,7 +53,11 @@ describe('Listbox', () => {
 
   it('should allow multiple selections when selectionMode is multiple', async () => {
     const onValueChange = vi.fn();
-    render(ComponentUnderTest, { defaultValue: ['react'], onValueChange, selectionMode: 'multiple' });
+    render(ComponentUnderTest, {
+      defaultValue: ['react'],
+      onValueChange,
+      selectionMode: 'multiple',
+    });
 
     await waitFor(() => expect(screen.getByRole('option', { name: 'Solid' })).toBeInTheDocument());
     fireEvent.click(screen.getByRole('option', { name: 'Solid' }));
@@ -92,9 +94,7 @@ describe('Listbox', () => {
     fireEvent.click(screen.getByRole('option', { name: 'React' }));
 
     await waitFor(() => {
-      expect(onValueChange).toHaveBeenCalledWith(
-        expect.objectContaining({ value: [] }),
-      );
+      expect(onValueChange).toHaveBeenCalledWith(expect.objectContaining({ value: [] }));
     });
   });
 });

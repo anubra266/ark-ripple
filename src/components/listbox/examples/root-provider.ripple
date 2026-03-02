@@ -4,19 +4,27 @@ import button from 'styles/button.module.css';
 import styles from 'styles/listbox.module.css';
 
 export component RootProvider() {
-  const collection = createListCollection({
-    items: [
-      { label: 'Low', value: 'low' },
-      { label: 'Medium', value: 'medium' },
-      { label: 'High', value: 'high' },
-      { label: 'Critical', value: 'critical' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'Low', value: 'low' },
+        { label: 'Medium', value: 'medium' },
+        { label: 'High', value: 'high' },
+        { label: 'Critical', value: 'critical' },
+      ],
+    },
+  );
 
   const listbox = useListbox({ collection });
 
   <div class="stack">
-    <button type="button" class={button.Root} onClick={() => { @listbox.setValue(['high']) }}>
+    <button
+      type="button"
+      class={button.Root}
+      onClick={() => {
+        @listbox.setValue(['high']);
+      }}
+    >
       {'Set to High'}
     </button>
     <Listbox.RootProvider class={styles.Root} value={listbox}>

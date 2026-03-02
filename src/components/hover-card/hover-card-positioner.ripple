@@ -6,9 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface HoverCardPositionerBaseProps extends PolymorphicProps<'div'> {}
-export interface HoverCardPositionerProps
-  extends HTMLProps<'div'>,
-    HoverCardPositionerBaseProps {}
+export interface HoverCardPositionerProps extends HTMLProps<'div'>, HoverCardPositionerBaseProps {}
 
 export component HoverCardPositioner(props: MaybeTracked<HoverCardPositionerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

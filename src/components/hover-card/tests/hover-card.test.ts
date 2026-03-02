@@ -45,9 +45,7 @@ describe('HoverCard', () => {
     await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
 
     fireEvent.pointerLeave(screen.getByText('hover me'));
-    await waitFor(() =>
-      expect(screen.queryByTestId('positioner')).not.toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.queryByTestId('positioner')).not.toBeInTheDocument());
   });
 
   it('should open by default', async () => {

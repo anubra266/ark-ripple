@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface NumberInputValueTextBaseProps extends PolymorphicProps<'span'> {}
-export interface NumberInputValueTextProps extends HTMLProps<'span'>, NumberInputValueTextBaseProps {}
+export interface NumberInputValueTextProps extends HTMLProps<
+  'span'
+>, NumberInputValueTextBaseProps {}
 
 export component NumberInputValueText(props: MaybeTracked<NumberInputValueTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

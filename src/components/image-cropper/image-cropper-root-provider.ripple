@@ -9,8 +9,12 @@ interface RootProviderProps {
   value: UseImageCropperReturn;
 }
 
-export interface ImageCropperRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
-export interface ImageCropperRootProviderProps extends HTMLProps<'div'>, ImageCropperRootProviderBaseProps {}
+export interface ImageCropperRootProviderBaseProps extends RootProviderProps, PolymorphicProps<
+  'div'
+> {}
+export interface ImageCropperRootProviderProps extends HTMLProps<
+  'div'
+>, ImageCropperRootProviderBaseProps {}
 
 export component ImageCropperRootProvider(props: MaybeTracked<ImageCropperRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

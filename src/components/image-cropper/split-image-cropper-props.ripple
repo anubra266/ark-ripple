@@ -3,9 +3,7 @@ import type { UseImageCropperProps } from './use-image-cropper.ripple';
 
 const splitProps = createSplitProps<UseImageCropperProps>();
 
-export function splitImageCropperProps<T extends UseImageCropperProps & Record<string, any>>(
-  props: T,
-) {
+export function splitImageCropperProps<T extends UseImageCropperProps & Record<string, any>>(props: T) {
   return splitProps(props, [
     'aspectRatio',
     'cropShape',

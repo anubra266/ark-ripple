@@ -12,7 +12,9 @@ export component PaginationEllipsis(props: MaybeTracked<PaginationEllipsisProps>
   const [children, index, localProps] = trackSplit(props, ['children', 'index']);
   const pagination = usePaginationContext();
 
-  let mergedProps = track(() => mergeProps(@pagination.getEllipsisProps({ index: @index }), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@pagination.getEllipsisProps({ index: @index }), @localProps),
+  );
 
   <ark.div {...@mergedProps}>
     <@children />

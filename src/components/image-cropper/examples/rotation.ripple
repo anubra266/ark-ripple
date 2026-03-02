@@ -9,18 +9,37 @@ export component Rotation() {
 
   <div class={styles.Layout}>
     <div class={button.Group}>
-      <button type="button" class={button.Root} onClick={() => { @rotation = @rotation - 90 }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @rotation = @rotation - 90;
+        }}
+      >
         <RotateCcw />
       </button>
-      <button type="button" class={button.Root} onClick={() => { @rotation = @rotation + 90 }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @rotation = @rotation + 90;
+        }}
+      >
         <RotateCw />
       </button>
       <span style={{ fontSize: '0.875rem', padding: '0 0.5rem' }}>
-        {@rotation}{'\u00b0'}
+        {@rotation}
+        {'°'}
       </span>
     </div>
 
-    <ImageCropper.Root class={styles.Root} rotation={@rotation} onRotationChange={(e) => { @rotation = e.rotation }}>
+    <ImageCropper.Root
+      class={styles.Root}
+      {@rotation}
+      onRotationChange={(e) => {
+        @rotation = e.rotation;
+      }}
+    >
       <ImageCropper.Viewport class={styles.Viewport}>
         <ImageCropper.Image
           class={styles.Image}

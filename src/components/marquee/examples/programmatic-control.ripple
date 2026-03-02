@@ -29,10 +29,22 @@ export component ProgrammaticControl() {
     </Marquee.RootProvider>
 
     <div class="hstack">
-      <button type="button" class={button.Root} onClick={() => { @marquee.pause() }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @marquee.pause();
+        }}
+      >
         {'Pause'}
       </button>
-      <button type="button" class={button.Root} onClick={() => { @marquee.resume() }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @marquee.resume();
+        }}
+      >
         {'Resume'}
       </button>
     </div>

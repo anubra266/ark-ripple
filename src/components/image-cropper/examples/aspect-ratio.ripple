@@ -22,14 +22,16 @@ export component AspectRatio() {
           type="button"
           class={button.Root}
           data-variant={@aspectRatio === aspect.value ? 'solid' : undefined}
-          onClick={() => { @aspectRatio = aspect.value }}
+          onClick={() => {
+            @aspectRatio = aspect.value;
+          }}
         >
           {aspect.label}
         </button>
       }
     </div>
 
-    <ImageCropper.Root class={styles.Root} aspectRatio={@aspectRatio}>
+    <ImageCropper.Root class={styles.Root} {@aspectRatio}>
       <ImageCropper.Viewport class={styles.Viewport}>
         <ImageCropper.Image
           class={styles.Image}

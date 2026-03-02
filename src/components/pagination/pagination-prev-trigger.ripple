@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface PaginationPrevTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface PaginationPrevTriggerProps extends HTMLProps<'button'>, PaginationPrevTriggerBaseProps {}
+export interface PaginationPrevTriggerProps extends HTMLProps<
+  'button'
+>, PaginationPrevTriggerBaseProps {}
 
 export component PaginationPrevTrigger(props: MaybeTracked<PaginationPrevTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

@@ -3,20 +3,26 @@ import { Check } from 'lucide-ripple';
 import styles from 'styles/listbox.module.css';
 
 export component ExtendedSelect() {
-  const collection = createListCollection({
-    items: [
-      { label: 'React', value: 'react' },
-      { label: 'Vue', value: 'vue' },
-      { label: 'Angular', value: 'angular' },
-      { label: 'Svelte', value: 'svelte' },
-      { label: 'Solid', value: 'solid' },
-      { label: 'Preact', value: 'preact' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'React', value: 'react' },
+        { label: 'Vue', value: 'vue' },
+        { label: 'Angular', value: 'angular' },
+        { label: 'Svelte', value: 'svelte' },
+        { label: 'Solid', value: 'solid' },
+        { label: 'Preact', value: 'preact' },
+      ],
+    },
+  );
 
   <Listbox.Root class={styles.Root} {collection} selectionMode="extended">
     <Listbox.Label class={styles.Label}>
-      {'Hold '}<kbd>{'⌘'}</kbd>{' or '}<kbd>{'Ctrl'}</kbd>{' to select multiple'}
+      {'Hold '}
+      <kbd>{'⌘'}</kbd>
+      {' or '}
+      <kbd>{'Ctrl'}</kbd>
+      {' to select multiple'}
     </Listbox.Label>
     <Listbox.Content class={styles.Content}>
       for (const item of collection.items; key item.value) {

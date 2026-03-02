@@ -8,13 +8,22 @@ export component RootProvider() {
 
   <div class={styles.Layout}>
     <div class={button.Group}>
-      <button type="button" class={button.Root} onClick={() => @imageCropper.setZoom(@imageCropper.zoom - 0.1)}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => @imageCropper.setZoom(@imageCropper.zoom - 0.1)}
+      >
         <ZoomOut />
       </button>
       <span style={{ fontSize: '0.875rem', minWidth: '3rem', textAlign: 'center' }}>
-        {@imageCropper.zoom.toFixed(1)}{'x'}
+        {@imageCropper.zoom.toFixed(1)}
+        {'x'}
       </span>
-      <button type="button" class={button.Root} onClick={() => @imageCropper.setZoom(@imageCropper.zoom + 0.1)}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => @imageCropper.setZoom(@imageCropper.zoom + 0.1)}
+      >
         <ZoomIn />
       </button>
     </div>

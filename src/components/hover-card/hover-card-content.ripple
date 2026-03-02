@@ -14,12 +14,7 @@ export component HoverCardContent(props: MaybeTracked<HoverCardContentProps>) {
   const presence = usePresenceContext();
 
   let mergedProps = track(
-    () =>
-      mergeProps(
-        @hoverCard.getContentProps(),
-        @presence.getPresenceProps(),
-        @localProps,
-      ),
+    () => mergeProps(@hoverCard.getContentProps(), @presence.getPresenceProps(), @localProps),
   );
 
   if (!@presence.unmounted) {

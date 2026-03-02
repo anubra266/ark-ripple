@@ -14,7 +14,10 @@ export component Context() {
             <ChevronLeft />
           </button>
           <p class={styles.Text} style="min-width: 120px; text-align: center">
-            {'Page '}{@context.page}{' of '}{@context.totalPages}
+            {'Page '}
+            {@context.page}
+            {' of '}
+            {@context.totalPages}
           </p>
           <button class={styles.Trigger} onClick={() => @context.goToNextPage()}>
             <ChevronRight />

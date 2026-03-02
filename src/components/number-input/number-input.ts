@@ -1,4 +1,8 @@
-export type { FocusChangeDetails, ValueChangeDetails, ValueInvalidDetails } from '@zag-js/number-input';
+export type {
+  FocusChangeDetails,
+  ValueChangeDetails,
+  ValueInvalidDetails,
+} from '@zag-js/number-input';
 export {
   NumberInputContext as Context,
   type NumberInputContextProps as ContextProps,

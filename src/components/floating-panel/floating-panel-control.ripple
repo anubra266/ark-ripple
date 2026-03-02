@@ -5,9 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FloatingPanelControlBaseProps extends PolymorphicProps<'div'> {}
-export interface FloatingPanelControlProps
-  extends HTMLProps<'div'>,
-    FloatingPanelControlBaseProps {}
+export interface FloatingPanelControlProps extends HTMLProps<
+  'div'
+>, FloatingPanelControlBaseProps {}
 
 export component FloatingPanelControl(props: MaybeTracked<FloatingPanelControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

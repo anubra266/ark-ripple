@@ -19,10 +19,7 @@ export {
   type HoverCardContentBaseProps,
   type HoverCardContentProps,
 } from './hover-card-content.ripple';
-export {
-  HoverCardContext,
-  type HoverCardContextProps,
-} from './hover-card-context.ripple';
+export { HoverCardContext, type HoverCardContextProps } from './hover-card-context.ripple';
 export {
   HoverCardPositioner,
   type HoverCardPositionerBaseProps,
@@ -49,9 +46,6 @@ export {
   type UseHoverCardProps,
   type UseHoverCardReturn,
 } from './use-hover-card.ripple';
-export {
-  useHoverCardContext,
-  type UseHoverCardContext,
-} from './use-hover-card-context';
+export { useHoverCardContext, type UseHoverCardContext } from './use-hover-card-context';
 
 export * as HoverCard from './hover-card';

@@ -3,17 +3,19 @@ import { Check } from 'lucide-ripple';
 import styles from 'styles/listbox.module.css';
 
 export component Basic() {
-  const collection = createListCollection({
-    items: [
-      { label: 'United States', value: 'us' },
-      { label: 'United Kingdom', value: 'uk' },
-      { label: 'Canada', value: 'ca' },
-      { label: 'Australia', value: 'au' },
-      { label: 'Germany', value: 'de' },
-      { label: 'France', value: 'fr' },
-      { label: 'Japan', value: 'jp' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'United States', value: 'us' },
+        { label: 'United Kingdom', value: 'uk' },
+        { label: 'Canada', value: 'ca' },
+        { label: 'Australia', value: 'au' },
+        { label: 'Germany', value: 'de' },
+        { label: 'France', value: 'fr' },
+        { label: 'Japan', value: 'jp' },
+      ],
+    },
+  );
 
   <Listbox.Root class={styles.Root} {collection}>
     <Listbox.Label class={styles.Label}>{'Select Country'}</Listbox.Label>

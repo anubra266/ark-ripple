@@ -9,9 +9,7 @@ export component ComponentUnderTest(props: {
   [key: string]: any;
 }) {
   <HoverCard.Root {...props}>
-    <HoverCard.Trigger>
-      {'hover me'}
-    </HoverCard.Trigger>
+    <HoverCard.Trigger>{'hover me'}</HoverCard.Trigger>
     <HoverCard.Positioner data-testid="positioner">
       <HoverCard.Content>
         <HoverCard.Arrow>

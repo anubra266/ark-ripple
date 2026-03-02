@@ -12,7 +12,9 @@ export component PaginationItem(props: MaybeTracked<PaginationItemProps>) {
   const [children, value, type, localProps] = trackSplit(props, ['children', 'value', 'type']);
   const pagination = usePaginationContext();
 
-  let mergedProps = track(() => mergeProps(@pagination.getItemProps({ value: @value, type: @type }), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@pagination.getItemProps({ value: @value, type: @type }), @localProps),
+  );
 
   <ark.button {...@mergedProps}>
     <@children />

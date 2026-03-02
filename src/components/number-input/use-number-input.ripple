@@ -7,7 +7,10 @@ import { useId } from '../../utils/use-id';
 import { useFieldContext } from '../field/use-field-context';
 import type { Optional, Accessor } from '../../types';
 
-export interface UseNumberInputProps extends Optional<Omit<numberInput.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export interface UseNumberInputProps extends Optional<
+  Omit<numberInput.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
 
 export interface UseNumberInputReturn extends Accessor<numberInput.Api<PropTypes>> {}
 

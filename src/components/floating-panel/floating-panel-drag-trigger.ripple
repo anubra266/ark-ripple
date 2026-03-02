@@ -5,9 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FloatingPanelDragTriggerBaseProps extends PolymorphicProps<'div'> {}
-export interface FloatingPanelDragTriggerProps
-  extends HTMLProps<'div'>,
-    FloatingPanelDragTriggerBaseProps {}
+export interface FloatingPanelDragTriggerProps extends HTMLProps<
+  'div'
+>, FloatingPanelDragTriggerBaseProps {}
 
 export component FloatingPanelDragTrigger(props: MaybeTracked<FloatingPanelDragTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

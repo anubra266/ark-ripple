@@ -6,8 +6,7 @@ import { useLocaleContext } from '../../providers/locale';
 import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
-export interface UseHoverCardProps
-  extends Optional<Omit<hoverCard.Props, 'getRootNode'>, 'id'> {}
+export interface UseHoverCardProps extends Optional<Omit<hoverCard.Props, 'getRootNode'>, 'id'> {}
 export type UseHoverCardReturn = ReturnType<typeof useHoverCard>;
 
 export function useHoverCard(props: UseHoverCardProps = {}) {

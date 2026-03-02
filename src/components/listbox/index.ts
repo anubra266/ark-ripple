@@ -5,11 +5,7 @@ export type {
   SelectionMode as ListboxSelectionMode,
   ValueChangeDetails as ListboxValueChangeDetails,
 } from '@zag-js/listbox';
-export {
-  createListCollection,
-  type CollectionItem,
-  type ListCollection,
-} from '../collection';
+export { createListCollection, type CollectionItem, type ListCollection } from '../collection';
 export {
   ListboxContent,
   type ListboxContentBaseProps,
@@ -26,7 +22,11 @@ export {
   type ListboxInputBaseProps,
   type ListboxInputProps,
 } from './listbox-input.ripple';
-export { ListboxItem, type ListboxItemBaseProps, type ListboxItemProps } from './listbox-item.ripple';
+export {
+  ListboxItem,
+  type ListboxItemBaseProps,
+  type ListboxItemProps,
+} from './listbox-item.ripple';
 export { ListboxItemContext, type ListboxItemContextProps } from './listbox-item-context.ripple';
 export {
   ListboxItemGroup,
@@ -53,7 +53,11 @@ export {
   type ListboxLabelBaseProps,
   type ListboxLabelProps,
 } from './listbox-label.ripple';
-export { ListboxRoot, type ListboxRootBaseProps, type ListboxRootProps } from './listbox-root.ripple';
+export {
+  ListboxRoot,
+  type ListboxRootBaseProps,
+  type ListboxRootProps,
+} from './listbox-root.ripple';
 export {
   ListboxRootProvider,
   type ListboxRootProviderBaseProps,

@@ -1,8 +1,5 @@
 import { trackSplit } from 'ripple';
-import {
-  useHoverCardContext,
-  type UseHoverCardContext,
-} from './use-hover-card-context';
+import { useHoverCardContext, type UseHoverCardContext } from './use-hover-card-context';
 
 export interface HoverCardContextProps {
   children: (context: UseHoverCardContext) => any;

@@ -3,20 +3,22 @@ import { Check } from 'lucide-ripple';
 import styles from 'styles/listbox.module.css';
 
 export component Group() {
-  const collection = createListCollection({
-    items: [
-      { label: 'New York', value: 'nyc', region: 'North America' },
-      { label: 'Los Angeles', value: 'lax', region: 'North America' },
-      { label: 'Toronto', value: 'yyz', region: 'North America' },
-      { label: 'London', value: 'lhr', region: 'Europe' },
-      { label: 'Paris', value: 'cdg', region: 'Europe' },
-      { label: 'Berlin', value: 'ber', region: 'Europe' },
-      { label: 'Tokyo', value: 'nrt', region: 'Asia Pacific' },
-      { label: 'Singapore', value: 'sin', region: 'Asia Pacific' },
-      { label: 'Sydney', value: 'syd', region: 'Asia Pacific' },
-    ],
-    groupBy: (item) => item.region,
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'New York', value: 'nyc', region: 'North America' },
+        { label: 'Los Angeles', value: 'lax', region: 'North America' },
+        { label: 'Toronto', value: 'yyz', region: 'North America' },
+        { label: 'London', value: 'lhr', region: 'Europe' },
+        { label: 'Paris', value: 'cdg', region: 'Europe' },
+        { label: 'Berlin', value: 'ber', region: 'Europe' },
+        { label: 'Tokyo', value: 'nrt', region: 'Asia Pacific' },
+        { label: 'Singapore', value: 'sin', region: 'Asia Pacific' },
+        { label: 'Sydney', value: 'syd', region: 'Asia Pacific' },
+      ],
+      groupBy: (item) => item.region,
+    },
+  );
 
   <Listbox.Root class={styles.Root} {collection}>
     <Listbox.Label class={styles.Label}>{'Select Region'}</Listbox.Label>

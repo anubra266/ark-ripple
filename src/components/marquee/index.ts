@@ -18,7 +18,11 @@ export {
   type MarqueeItemBaseProps,
   type MarqueeItemProps,
 } from './marquee-item.ripple';
-export { MarqueeRoot, type MarqueeRootBaseProps, type MarqueeRootProps } from './marquee-root.ripple';
+export {
+  MarqueeRoot,
+  type MarqueeRootBaseProps,
+  type MarqueeRootProps,
+} from './marquee-root.ripple';
 export {
   MarqueeRootProvider,
   type MarqueeRootProviderBaseProps,

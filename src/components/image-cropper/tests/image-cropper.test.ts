@@ -21,9 +21,7 @@ describe('ImageCropper', () => {
 
   it('should render the image', async () => {
     render(ComponentUnderTest);
-    await waitFor(() =>
-      expect(screen.getByAltText('Sample')).toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.getByAltText('Sample')).toBeInTheDocument());
   });
 
   it('should render the selection with slider role', async () => {

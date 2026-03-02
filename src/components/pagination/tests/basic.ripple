@@ -3,25 +3,25 @@ import { Pagination } from 'ark-ripple/pagination';
 export component ComponentUnderTest(props: Pagination.RootProps) {
   <Pagination.Root {...props}>
     <Pagination.PrevTrigger>
-      {'Previous '}<span class="visually-hidden">{'Page'}</span>
+      {'Previous '}
+      <span class="visually-hidden">{'Page'}</span>
     </Pagination.PrevTrigger>
     <Pagination.Context>
       component children({ context }) {
-        for (const [index, page] of @context.pages.entries(); key `${page.type}-${page.value || index}`) {
+        for (const [index, page] of @context.pages.entries(); key `${page.type}-${
+          page.value || index
+        }`) {
           if (page.type === 'page') {
-            <Pagination.Item {...page}>
-              {page.value}
-            </Pagination.Item>
+            <Pagination.Item {...page}>{page.value}</Pagination.Item>
           } else {
-            <Pagination.Ellipsis {index}>
-              {'\u2026'}
-            </Pagination.Ellipsis>
+            <Pagination.Ellipsis {index}>{'…'}</Pagination.Ellipsis>
           }
         }
       }
     </Pagination.Context>
     <Pagination.NextTrigger>
-      {'Next '}<span class="visually-hidden">{'Page'}</span>
+      {'Next '}
+      <span class="visually-hidden">{'Page'}</span>
     </Pagination.NextTrigger>
   </Pagination.Root>
 }

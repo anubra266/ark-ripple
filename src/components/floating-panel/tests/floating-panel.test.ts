@@ -55,9 +55,7 @@ describe('FloatingPanel', () => {
     await waitFor(() => expect(screen.getByTestId('positioner')).toBeInTheDocument());
 
     fireEvent.click(screen.getByRole('button', { name: 'Close Window' }));
-    await waitFor(() =>
-      expect(screen.queryByTestId('positioner')).not.toBeInTheDocument(),
-    );
+    await waitFor(() => expect(screen.queryByTestId('positioner')).not.toBeInTheDocument());
   });
 
   it('should open by default', async () => {

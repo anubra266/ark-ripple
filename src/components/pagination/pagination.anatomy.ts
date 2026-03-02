@@ -1,1 +1,1 @@
-export { anatomy as paginationAnatomy } from '@zag-js/pagination'
+export { anatomy as paginationAnatomy } from '@zag-js/pagination';

@@ -6,9 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FloatingPanelTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface FloatingPanelTriggerProps
-  extends HTMLProps<'button'>,
-    FloatingPanelTriggerBaseProps {}
+export interface FloatingPanelTriggerProps extends HTMLProps<
+  'button'
+>, FloatingPanelTriggerBaseProps {}
 
 export component FloatingPanelTrigger(props: MaybeTracked<FloatingPanelTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
@@ -17,14 +17,13 @@ export component FloatingPanelTrigger(props: MaybeTracked<FloatingPanelTriggerPr
 
   let triggerBaseProps = track(() => @floatingPanel.getTriggerProps());
   let mergedProps = track(
-    () =>
-      mergeProps(
-        {
-          ...@triggerBaseProps,
-          'aria-controls': @presence.unmounted ? undefined : @triggerBaseProps['aria-controls'],
-        },
-        @localProps,
-      ),
+    () => mergeProps(
+      {
+        ...@triggerBaseProps,
+        'aria-controls': @presence.unmounted ? undefined : @triggerBaseProps['aria-controls'],
+      },
+      @localProps,
+    ),
   );
 
   <ark.button {...@mergedProps}>

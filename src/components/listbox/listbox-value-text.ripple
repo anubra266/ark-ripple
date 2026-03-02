@@ -6,8 +6,8 @@ import { useListboxContext } from './use-listbox-context';
 
 export interface ListboxValueTextBaseProps extends PolymorphicProps<'span'> {
   /**
-   * Text to display when no value is selected.
-   */
+ * Text to display when no value is selected.
+ */
   placeholder?: string | undefined;
 }
 export interface ListboxValueTextProps extends HTMLProps<'span'>, ListboxValueTextBaseProps {}

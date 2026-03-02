@@ -13,7 +13,7 @@ export interface FloatingPanelResizeTriggerProps extends HTMLProps<
 >, FloatingPanelResizeTriggerBaseProps {}
 
 export component FloatingPanelResizeTrigger(props: MaybeTracked<FloatingPanelResizeTriggerProps>) {
-  const [children, axis, localProps] = trackSplit(props, ['children','axis']);
+  const [children, axis, localProps] = trackSplit(props, ['children', 'axis']);
   const floatingPanel = useFloatingPanelContext();
 
   let mergedProps = track(

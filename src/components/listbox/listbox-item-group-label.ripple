@@ -6,7 +6,9 @@ import { useListboxContext } from './use-listbox-context';
 import { useListboxItemGroupPropsContext } from './use-listbox-item-group-props-context';
 
 export interface ListboxItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
-export interface ListboxItemGroupLabelProps extends HTMLProps<'div'>, ListboxItemGroupLabelBaseProps {}
+export interface ListboxItemGroupLabelProps extends HTMLProps<
+  'div'
+>, ListboxItemGroupLabelBaseProps {}
 
 export component ListboxItemGroupLabel(props: MaybeTracked<ListboxItemGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

@@ -6,7 +6,10 @@ export component RootProvider() {
   const hoverCard = useHoverCard();
 
   <div class="stack">
-    <output>{'Open: '}{String(@hoverCard.open)}</output>
+    <output>
+      {'Open: '}
+      {String(@hoverCard.open)}
+    </output>
     <HoverCard.RootProvider value={hoverCard}>
       <p>
         {'Liked by '}

@@ -7,7 +7,12 @@ import styles from 'styles/floating-panel.module.css';
 export component ControlledSize() {
   let size = track({ width: 400, height: 300 });
 
-  <FloatingPanel.Root {@size} onSizeChange={(e) => { @size = e.size }}>
+  <FloatingPanel.Root
+    {@size}
+    onSizeChange={(e) => {
+      @size = e.size;
+    }}
+  >
     <FloatingPanel.Trigger class={styles.Trigger}>{'Toggle Panel'}</FloatingPanel.Trigger>
     <Portal>
       <FloatingPanel.Positioner class={styles.Positioner}>

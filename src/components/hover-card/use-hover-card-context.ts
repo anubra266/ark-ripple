@@ -5,5 +5,4 @@ export type UseHoverCardContext = UseHoverCardReturn;
 
 export const HoverCardApiContext = new Context<UseHoverCardContext>();
 
-export const useHoverCardContext = (): UseHoverCardContext =>
-  HoverCardApiContext.get();
+export const useHoverCardContext = (): UseHoverCardContext => HoverCardApiContext.get();

@@ -46,7 +46,11 @@ export {
   type PaginationRootProviderProps,
 } from './pagination-root-provider.ripple';
 export { paginationAnatomy } from './pagination.anatomy';
-export { usePagination, type UsePaginationProps, type UsePaginationReturn } from './use-pagination.ripple';
+export {
+  usePagination,
+  type UsePaginationProps,
+  type UsePaginationReturn,
+} from './use-pagination.ripple';
 export { usePaginationContext, type UsePaginationContext } from './use-pagination-context';
 
 export * as Pagination from './pagination';

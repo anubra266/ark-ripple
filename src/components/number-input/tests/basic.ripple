@@ -6,7 +6,8 @@ export component ComponentUnderTest(props: {
 }) {
   <NumberInput.Root {...props}>
     <NumberInput.Label>
-      {'Label: '}<NumberInput.ValueText />
+      {'Label: '}
+      <NumberInput.ValueText />
     </NumberInput.Label>
     <NumberInput.Input />
     <NumberInput.Scrubber />

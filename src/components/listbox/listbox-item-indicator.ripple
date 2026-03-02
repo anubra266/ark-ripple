@@ -6,14 +6,18 @@ import { useListboxContext } from './use-listbox-context';
 import { useListboxItemPropsContext } from './use-listbox-item-props-context';
 
 export interface ListboxItemIndicatorBaseProps extends PolymorphicProps<'div'> {}
-export interface ListboxItemIndicatorProps extends HTMLProps<'div'>, ListboxItemIndicatorBaseProps {}
+export interface ListboxItemIndicatorProps extends HTMLProps<
+  'div'
+>, ListboxItemIndicatorBaseProps {}
 
 export component ListboxItemIndicator(props: MaybeTracked<ListboxItemIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const listbox = useListboxContext();
   const itemProps = useListboxItemPropsContext();
 
-  let mergedProps = track(() => mergeProps(@listbox.getItemIndicatorProps(@itemProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@listbox.getItemIndicatorProps(@itemProps), @localProps),
+  );
 
   <ark.div {...@mergedProps}>
     <@children />

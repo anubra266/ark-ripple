@@ -3,18 +3,21 @@ import { Listbox, createListCollection } from 'ark-ripple/listbox';
 export component ComponentUnderTest(props: {
   [key: string]: any;
 }) {
-  const collection = createListCollection({
-    items: [
-      { label: 'React', value: 'react' },
-      { label: 'Solid', value: 'solid' },
-      { label: 'Svelte', value: 'svelte', disabled: true },
-      { label: 'Vue', value: 'vue' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'React', value: 'react' },
+        { label: 'Solid', value: 'solid' },
+        { label: 'Svelte', value: 'svelte', disabled: true },
+        { label: 'Vue', value: 'vue' },
+      ],
+    },
+  );
 
   <Listbox.Root {collection} {...props}>
     <Listbox.Label>
-      {'Select your Framework: '}<Listbox.ValueText />
+      {'Select your Framework: '}
+      <Listbox.ValueText />
     </Listbox.Label>
     <Listbox.Content data-testid="content">
       <Listbox.ItemGroup>

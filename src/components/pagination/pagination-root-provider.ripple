@@ -9,8 +9,12 @@ interface RootProviderProps {
   value: UsePaginationReturn;
 }
 
-export interface PaginationRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'nav'> {}
-export interface PaginationRootProviderProps extends HTMLProps<'nav'>, PaginationRootProviderBaseProps {}
+export interface PaginationRootProviderBaseProps extends RootProviderProps, PolymorphicProps<
+  'nav'
+> {}
+export interface PaginationRootProviderProps extends HTMLProps<
+  'nav'
+>, PaginationRootProviderBaseProps {}
 
 export component PaginationRootProvider(props: MaybeTracked<PaginationRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

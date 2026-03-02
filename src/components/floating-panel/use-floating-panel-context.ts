@@ -5,5 +5,4 @@ export type UseFloatingPanelContext = UseFloatingPanelReturn;
 
 export const FloatingPanelApiContext = new Context<UseFloatingPanelContext>();
 
-export const useFloatingPanelContext = (): UseFloatingPanelContext =>
-  FloatingPanelApiContext.get();
+export const useFloatingPanelContext = (): UseFloatingPanelContext => FloatingPanelApiContext.get();

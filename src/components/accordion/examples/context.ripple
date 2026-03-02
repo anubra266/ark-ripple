@@ -7,8 +7,14 @@ export component Context() {
     <Accordion.Context>
       component children({ context }) {
         <output>
-          <div>{"context.value: "}{JSON.stringify(@context.value)}</div>
-          <div>{"context.focusedValue: "}{@context.focusedValue || 'null'}</div>
+          <div>
+            {'context.value: '}
+            {JSON.stringify(@context.value)}
+          </div>
+          <div>
+            {'context.focusedValue: '}
+            {@context.focusedValue || 'null'}
+          </div>
         </output>
       }
     </Accordion.Context>

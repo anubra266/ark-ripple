@@ -3,9 +3,7 @@ import type { UseHoverCardProps } from './use-hover-card.ripple';
 
 const splitProps = createSplitProps<UseHoverCardProps>();
 
-export function splitHoverCardProps<T extends UseHoverCardProps & Record<string, any>>(
-  props: T,
-) {
+export function splitHoverCardProps<T extends UseHoverCardProps & Record<string, any>>(props: T) {
   return splitProps(props, [
     'closeDelay',
     'defaultOpen',

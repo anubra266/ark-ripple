@@ -3,9 +3,7 @@ import type { UseFloatingPanelProps } from './use-floating-panel.ripple';
 
 const splitProps = createSplitProps<UseFloatingPanelProps>();
 
-export function splitFloatingPanelProps<T extends UseFloatingPanelProps & Record<string, any>>(
-  props: T,
-) {
+export function splitFloatingPanelProps<T extends UseFloatingPanelProps & Record<string, any>>(props: T) {
   return splitProps(props, [
     'allowOverflow',
     'closeOnEscape',

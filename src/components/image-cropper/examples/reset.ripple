@@ -23,7 +23,12 @@ export component Reset() {
       <button type="button" class={button.Root} onClick={() => @imageCropper.flipHorizontally()}>
         <FlipHorizontal />
       </button>
-      <button type="button" class={button.Root} data-variant="surface" onClick={() => @imageCropper.reset()}>
+      <button
+        type="button"
+        class={button.Root}
+        data-variant="surface"
+        onClick={() => @imageCropper.reset()}
+      >
         <RefreshCw />
         {'Reset'}
       </button>

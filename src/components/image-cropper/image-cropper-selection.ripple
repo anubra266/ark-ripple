@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ImageCropperSelectionBaseProps extends PolymorphicProps<'div'> {}
-export interface ImageCropperSelectionProps extends HTMLProps<'div'>, ImageCropperSelectionBaseProps {}
+export interface ImageCropperSelectionProps extends HTMLProps<
+  'div'
+>, ImageCropperSelectionBaseProps {}
 
 export component ImageCropperSelection(props: MaybeTracked<ImageCropperSelectionProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

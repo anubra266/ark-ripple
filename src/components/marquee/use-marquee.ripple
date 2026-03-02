@@ -6,7 +6,10 @@ import { useLocaleContext } from '../../providers/locale';
 import { useId } from '../../utils/use-id';
 import type { Optional, Accessor } from '../../types';
 
-export interface UseMarqueeProps extends Optional<Omit<marquee.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export interface UseMarqueeProps extends Optional<
+  Omit<marquee.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
 
 export interface UseMarqueeReturn extends Accessor<marquee.Api<PropTypes>> {}
 

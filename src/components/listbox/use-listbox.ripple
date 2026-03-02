@@ -12,8 +12,8 @@ export interface UseListboxProps<T extends CollectionItem = CollectionItem> exte
   'id'
 > {
   /**
-   * The collection of items
-   */
+ * The collection of items
+ */
   collection: ListCollection<T>;
 }
 

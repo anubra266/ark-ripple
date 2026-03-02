@@ -7,7 +7,12 @@ import styles from 'styles/floating-panel.module.css';
 export component ControlledOpen() {
   let open = track(false);
 
-  <FloatingPanel.Root {@open} onOpenChange={(e) => { @open = e.open }}>
+  <FloatingPanel.Root
+    {@open}
+    onOpenChange={(e) => {
+      @open = e.open;
+    }}
+  >
     <FloatingPanel.Trigger class={styles.Trigger}>{'Toggle Panel'}</FloatingPanel.Trigger>
     <Portal>
       <FloatingPanel.Positioner class={styles.Positioner}>

@@ -5,7 +5,13 @@ export component MinMaxSize() {
   <div class={styles.Layout}>
     <p class={styles.Description}>{'Crop area constrained to min 80px and max 200px'}</p>
 
-    <ImageCropper.Root class={styles.Root} minWidth={80} minHeight={80} maxWidth={200} maxHeight={200}>
+    <ImageCropper.Root
+      class={styles.Root}
+      minWidth={80}
+      minHeight={80}
+      maxWidth={200}
+      maxHeight={200}
+    >
       <ImageCropper.Viewport class={styles.Viewport}>
         <ImageCropper.Image
           class={styles.Image}

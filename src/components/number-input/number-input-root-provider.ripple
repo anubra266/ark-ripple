@@ -9,8 +9,12 @@ interface RootProviderProps {
   value: UseNumberInputReturn;
 }
 
-export interface NumberInputRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
-export interface NumberInputRootProviderProps extends HTMLProps<'div'>, NumberInputRootProviderBaseProps {}
+export interface NumberInputRootProviderBaseProps extends RootProviderProps, PolymorphicProps<
+  'div'
+> {}
+export interface NumberInputRootProviderProps extends HTMLProps<
+  'div'
+>, NumberInputRootProviderBaseProps {}
 
 export component NumberInputRootProvider(props: MaybeTracked<NumberInputRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

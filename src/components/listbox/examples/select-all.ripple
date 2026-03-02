@@ -2,23 +2,26 @@ import { Listbox, createListCollection, useListboxContext } from 'ark-ripple/lis
 import { Check, Minus } from 'lucide-ripple';
 import styles from 'styles/listbox.module.css';
 
-const frameworks = createListCollection({
-  items: [
-    { label: 'React', value: 'react' },
-    { label: 'Vue', value: 'vue' },
-    { label: 'Angular', value: 'angular' },
-    { label: 'Svelte', value: 'svelte' },
-    { label: 'Next.js', value: 'nextjs' },
-    { label: 'Nuxt.js', value: 'nuxtjs' },
-    { label: 'Remix', value: 'remix' },
-    { label: 'Gatsby', value: 'gatsby' },
-  ],
-});
+const frameworks = createListCollection(
+  {
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Vue', value: 'vue' },
+      { label: 'Angular', value: 'angular' },
+      { label: 'Svelte', value: 'svelte' },
+      { label: 'Next.js', value: 'nextjs' },
+      { label: 'Nuxt.js', value: 'nuxtjs' },
+      { label: 'Remix', value: 'remix' },
+      { label: 'Gatsby', value: 'gatsby' },
+    ],
+  },
+);
 
 component SelectAllHeader() {
   const listbox = useListboxContext();
   const isAllSelected = @listbox.value.length === frameworks.items.length;
-  const isSomeSelected = @listbox.value.length > 0 && @listbox.value.length < frameworks.items.length;
+  const isSomeSelected =
+    @listbox.value.length > 0 && @listbox.value.length < frameworks.items.length;
 
   const handleSelectAll = () => {
     if (isAllSelected) {

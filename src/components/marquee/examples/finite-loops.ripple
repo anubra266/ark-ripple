@@ -18,8 +18,12 @@ export component FiniteLoops() {
   <div class="stack">
     <Marquee.Root
       loopCount={3}
-      onLoopComplete={() => { @loopCount = @loopCount + 1 }}
-      onComplete={() => { @completedCount = @completedCount + 1 }}
+      onLoopComplete={() => {
+        @loopCount = @loopCount + 1;
+      }}
+      onComplete={() => {
+        @completedCount = @completedCount + 1;
+      }}
       class={styles.Root}
     >
       <Marquee.Viewport class={styles.Viewport}>
@@ -35,8 +39,16 @@ export component FiniteLoops() {
     </Marquee.Root>
 
     <div>
-      <p>{'Loop completed: '}{@loopCount}{' times'}</p>
-      <p>{'Animation completed: '}{@completedCount}{' times'}</p>
+      <p>
+        {'Loop completed: '}
+        {@loopCount}
+        {' times'}
+      </p>
+      <p>
+        {'Animation completed: '}
+        {@completedCount}
+        {' times'}
+      </p>
     </div>
   </div>
 }

@@ -12,8 +12,16 @@ export component Context() {
             <button type="button" class={button.Root} onClick={() => @context.zoomBy(-0.1)}>
               <ZoomOut />
             </button>
-            <span style={{ fontSize: '0.875rem', padding: '0 0.5rem', minWidth: '3rem', textAlign: 'center' }}>
-              {@context.zoom.toFixed(1)}{'x'}
+            <span
+              style={{
+                fontSize: '0.875rem',
+                padding: '0 0.5rem',
+                minWidth: '3rem',
+                textAlign: 'center',
+              }}
+            >
+              {@context.zoom.toFixed(1)}
+              {'x'}
             </span>
             <button type="button" class={button.Root} onClick={() => @context.zoomBy(0.1)}>
               <ZoomIn />

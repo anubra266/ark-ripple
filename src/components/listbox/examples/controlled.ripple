@@ -4,22 +4,26 @@ import { track } from 'ripple';
 import styles from 'styles/listbox.module.css';
 
 export component Controlled() {
-  const collection = createListCollection({
-    items: [
-      { label: 'Small', value: 'sm' },
-      { label: 'Medium', value: 'md' },
-      { label: 'Large', value: 'lg' },
-      { label: 'Extra Large', value: 'xl' },
-    ],
-  });
+  const collection = createListCollection(
+    {
+      items: [
+        { label: 'Small', value: 'sm' },
+        { label: 'Medium', value: 'md' },
+        { label: 'Large', value: 'lg' },
+        { label: 'Extra Large', value: 'xl' },
+      ],
+    },
+  );
 
   let value = track(['md']);
 
   <Listbox.Root
     class={styles.Root}
     {collection}
-    value={@value}
-    onValueChange={(e) => { @value = e.value }}
+    {@value}
+    onValueChange={(e) => {
+      @value = e.value;
+    }}
   >
     <Listbox.Label class={styles.Label}>{'Select Size'}</Listbox.Label>
     <Listbox.Content class={styles.Content}>

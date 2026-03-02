@@ -6,9 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FloatingPanelContentBaseProps extends PolymorphicProps<'div'> {}
-export interface FloatingPanelContentProps
-  extends HTMLProps<'div'>,
-    FloatingPanelContentBaseProps {}
+export interface FloatingPanelContentProps extends HTMLProps<
+  'div'
+>, FloatingPanelContentBaseProps {}
 
 export component FloatingPanelContent(props: MaybeTracked<FloatingPanelContentProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
@@ -16,12 +16,7 @@ export component FloatingPanelContent(props: MaybeTracked<FloatingPanelContentPr
   const presence = usePresenceContext();
 
   let mergedProps = track(
-    () =>
-      mergeProps(
-        @floatingPanel.getContentProps(),
-        @presence.getPresenceProps(),
-        @localProps,
-      ),
+    () => mergeProps(@floatingPanel.getContentProps(), @presence.getPresenceProps(), @localProps),
   );
 
   if (!@presence.unmounted) {

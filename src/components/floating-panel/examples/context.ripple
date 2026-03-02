@@ -8,7 +8,10 @@ export component Context() {
     <FloatingPanel.Trigger class={styles.Trigger}>{'Toggle Panel'}</FloatingPanel.Trigger>
     <FloatingPanel.Context>
       component children({ context }) {
-        <p>{'floatingPanel is '}{@context.open ? 'open' : 'closed'}</p>
+        <p>
+          {'floatingPanel is '}
+          {@context.open ? 'open' : 'closed'}
+        </p>
       }
     </FloatingPanel.Context>
     <Portal>

@@ -11,25 +11,46 @@ export component ZoomLimits() {
 
   <div class={styles.Layout}>
     <div class={button.Group}>
-      <button type="button" class={button.Root} onClick={() => { @zoom = Math.max(minZoom, @zoom - 0.1) }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @zoom = Math.max(minZoom, @zoom - 0.1);
+        }}
+      >
         <ZoomOut />
       </button>
-      <span style={{ fontSize: '0.875rem', padding: '0 0.5rem', minWidth: '3rem', textAlign: 'center' }}>
-        {@zoom.toFixed(1)}{'x'}
+      <span
+        style={{ fontSize: '0.875rem', padding: '0 0.5rem', minWidth: '3rem', textAlign: 'center' }}
+      >
+        {@zoom.toFixed(1)}
+        {'x'}
       </span>
-      <button type="button" class={button.Root} onClick={() => { @zoom = Math.min(maxZoom, @zoom + 0.1) }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => {
+          @zoom = Math.min(maxZoom, @zoom + 0.1);
+        }}
+      >
         <ZoomIn />
       </button>
     </div>
 
     <p class={styles.Description}>
-      {'Zoom constrained between '}{minZoom}{'x and '}{maxZoom}{'x'}
+      {'Zoom constrained between '}
+      {minZoom}
+      {'x and '}
+      {maxZoom}
+      {'x'}
     </p>
 
     <ImageCropper.Root
       class={styles.Root}
-      zoom={@zoom}
-      onZoomChange={(e) => { @zoom = e.zoom }}
+      {@zoom}
+      onZoomChange={(e) => {
+        @zoom = e.zoom;
+      }}
       {minZoom}
       {maxZoom}
     >

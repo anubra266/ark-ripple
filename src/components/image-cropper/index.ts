@@ -6,10 +6,7 @@ export type {
   RotationChangeDetails as ImageCropperRotationChangeDetails,
   ZoomChangeDetails as ImageCropperZoomChangeDetails,
 } from '@zag-js/image-cropper';
-export {
-  ImageCropperContext,
-  type ImageCropperContextProps,
-} from './image-cropper-context.ripple';
+export { ImageCropperContext, type ImageCropperContextProps } from './image-cropper-context.ripple';
 export {
   ImageCropperGrid,
   type ImageCropperGridBaseProps,
@@ -51,9 +48,6 @@ export {
   type UseImageCropperProps,
   type UseImageCropperReturn,
 } from './use-image-cropper.ripple';
-export {
-  useImageCropperContext,
-  type UseImageCropperContext,
-} from './use-image-cropper-context';
+export { useImageCropperContext, type UseImageCropperContext } from './use-image-cropper-context';
 
 export * as ImageCropper from './image-cropper';
