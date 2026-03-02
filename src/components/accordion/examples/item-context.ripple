@@ -14,14 +14,12 @@ export component ItemContext() {
           <Accordion.ItemContext>
             component children({ context }) {
               <code style="display:inline-flex;gap:0.5rem;font-size:0.75rem">
-                <span>
-                  {'Expanded: '}
-                  {String(@context.expanded)}
-                </span>
-                <span>
-                  {'Focused: '}
-                  {String(@context.focused)}
-                </span>
+                if(@context.expanded) {
+                  <span>{"Expanded"}</span>
+                }
+                if(@context.focused) {
+                  <span>{"Focused"}</span>
+                }
               </code>
             }
           </Accordion.ItemContext>
