@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useMarqueeContext } from './use-marquee-context';
+
+export interface MarqueeViewportBaseProps extends PolymorphicProps<'div'> {}
+export interface MarqueeViewportProps extends HTMLProps<'div'>, MarqueeViewportBaseProps {}
+
+export component MarqueeViewport(props: MaybeTracked<MarqueeViewportProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const marquee = useMarqueeContext();
+
+  let mergedProps = track(() => mergeProps(@marquee.getViewportProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

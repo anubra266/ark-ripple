@@ -59,7 +59,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'hover-card' },
       { id: 'image-cropper' },
       { id: 'listbox' },
-      // { id: 'marquee' },
+      { id: 'marquee' },
       { id: 'menu' },
       // { id: 'number-input' },
       // { id: 'pagination' },

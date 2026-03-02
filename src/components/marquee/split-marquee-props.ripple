@@ -1,0 +1,25 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseMarqueeProps } from './use-marquee.ripple';
+
+const splitProps = createSplitProps<UseMarqueeProps>();
+
+export function splitMarqueeProps<T extends UseMarqueeProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'autoFill',
+    'defaultPaused',
+    'delay',
+    'id',
+    'ids',
+    'loopCount',
+    'onComplete',
+    'onLoopComplete',
+    'onPauseChange',
+    'paused',
+    'pauseOnInteraction',
+    'reverse',
+    'side',
+    'spacing',
+    'speed',
+    'translations',
+  ]);
+}

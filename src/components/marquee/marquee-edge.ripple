@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { EdgeProps } from '@zag-js/marquee';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useMarqueeContext } from './use-marquee-context';
+
+export interface MarqueeEdgeBaseProps extends EdgeProps, PolymorphicProps<'div'> {}
+export interface MarqueeEdgeProps extends HTMLProps<'div'>, MarqueeEdgeBaseProps {}
+
+export component MarqueeEdge(props: MaybeTracked<MarqueeEdgeProps>) {
+  const [side, children, localProps] = trackSplit(props, ['side', 'children']);
+  const marquee = useMarqueeContext();
+
+  const edgeProps = track(() => ({ side: @side }));
+  let mergedProps = track(() => mergeProps(@marquee.getEdgeProps(@edgeProps), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

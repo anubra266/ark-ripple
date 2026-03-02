@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useMarqueeContext, type UseMarqueeContext } from './use-marquee-context';
+
+export interface MarqueeContextProps {
+  children: (context: UseMarqueeContext) => any;
+}
+
+export component MarqueeContext(props: MarqueeContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useMarqueeContext();
+
+  <@children {context} />
+}

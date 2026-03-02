@@ -1,0 +1,31 @@
+import * as marquee from '@zag-js/marquee';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor } from '../../types';
+
+export interface UseMarqueeProps extends Optional<Omit<marquee.Props, 'dir' | 'getRootNode'>, 'id'> {}
+
+export interface UseMarqueeReturn extends Accessor<marquee.Api<PropTypes>> {}
+
+export function useMarquee(props: Tracked<UseMarqueeProps>): UseMarqueeReturn {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
+
+  const service = useMachine(marquee.machine, machineProps);
+  const api = track(() => marquee.connect(service, normalizeProps));
+
+  return api;
+}

@@ -1,0 +1,24 @@
+import { Marquee } from 'ark-ripple/marquee';
+
+export component ComponentUnderTest(props: {
+  [key: string]: any;
+}) {
+  <Marquee.Root {...props}>
+    <Marquee.Viewport data-testid="viewport">
+      <Marquee.Content data-testid="content">
+        <Marquee.Item data-testid="item-apple">
+          <span>{'🍎'}</span>
+          <span>{'Apple'}</span>
+        </Marquee.Item>
+        <Marquee.Item data-testid="item-banana">
+          <span>{'🍌'}</span>
+          <span>{'Banana'}</span>
+        </Marquee.Item>
+        <Marquee.Item data-testid="item-cherry">
+          <span>{'🍒'}</span>
+          <span>{'Cherry'}</span>
+        </Marquee.Item>
+      </Marquee.Content>
+    </Marquee.Viewport>
+  </Marquee.Root>
+}
