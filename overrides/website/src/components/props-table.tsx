@@ -1,0 +1,92 @@
+import { MinusIcon } from 'lucide-react'
+import NextLink from 'next/link'
+import { Box, Stack } from 'styled-system/jsx'
+import { Code } from '~/components/ui/code'
+import { Icon } from '~/components/ui/icon'
+import { Link } from '~/components/ui/link'
+import { Table } from '~/components/ui/table'
+import { Text } from '~/components/ui/text'
+
+interface Props {
+  framework: string
+  properties: Record<
+    string,
+    {
+      type: string
+      isRequired: boolean
+      defaultValue?: string | undefined
+      description?: string | undefined
+    }
+  >
+  replace?: Record<string, string>
+}
+
+
+const asChildCode = `Component<{ propsFn: (userProps?: Record<string, any>) => Record<string, any> }>`
+const asChildDescription = `Use the provided named component as the default rendered element, combining their props and behavior.`
+
+export const PropsTable = (props: Props) => {
+  const { properties, framework, replace } = props
+
+  const replaceFn = (value: string | undefined) => {
+    if (!replace || !value) return value
+    return Object.entries(replace).reduce((acc, [key, value]) => {
+      return acc.replaceAll(key, value)
+    }, value)
+  }
+
+  return (
+    <Box borderWidth="1px" borderRadius="lg" overflowX="auto" className="not-prose" my="8">
+      <Table.Root variant="outline" size="sm" border={0}>
+        <Table.Head>
+          <Table.Row>
+            <Table.Header px="4" bg="gray.2" h="10">
+              Prop
+            </Table.Header>
+            <Table.Header px="4" bg="gray.2" h="10">
+              Default
+            </Table.Header>
+            <Table.Header px="4" bg="gray.2" h="10">
+              Type
+            </Table.Header>
+          </Table.Row>
+        </Table.Head>
+        <Table.Body>
+          {Object.entries(properties).map(([name, property]) => (
+            <Table.Row key={name}>
+              <Table.Cell width="36" px="4" py="2" verticalAlign="top">
+                <Code size="sm" color="colorPalette.default">
+                  {name}
+                </Code>
+              </Table.Cell>
+              <Table.Cell width="28" px="4" py="2" verticalAlign="top">
+                {property.defaultValue ? (
+                  <Code size="sm">{property.defaultValue.replaceAll('"', "'")}</Code>
+                ) : (
+                  <Icon size="xs" color="fg.muted">
+                    <MinusIcon />
+                  </Icon>
+                )}
+              </Table.Cell>
+              <Table.Cell px="4" py="2" verticalAlign="top">
+                <Stack gap="1" align="start">
+                  {name === 'asChild' ? <Code size="sm">{asChildCode}</Code> : <Code size="sm">{property.type}</Code>}
+                  <Text>{ name === 'asChild' ? asChildDescription : replaceFn(property.description)}</Text>
+                  {name === 'asChild' && (
+                    <Text as="span">
+                      For more details, read our{' '}
+                      <Link asChild>
+                        <NextLink href={`/${framework}/docs/guides/composition`}>Composition</NextLink>
+                      </Link>{' '}
+                      guide.
+                    </Text>
+                  )}
+                </Stack>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
+    </Box>
+  )
+}
