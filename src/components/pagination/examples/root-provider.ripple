@@ -1,0 +1,33 @@
+import { Pagination, usePagination } from 'ark-ripple/pagination';
+import { ChevronLeft, ChevronRight } from 'lucide-ripple';
+import styles from 'styles/pagination.module.css';
+
+export component RootProvider() {
+  const pagination = usePagination({ count: 5000, pageSize: 10, siblingCount: 2 });
+
+  <div class="stack">
+    <button class={styles.Trigger} onClick={() => @pagination.goToNextPage()}>{'Next Page'}</button>
+
+    <Pagination.RootProvider value={pagination} class={styles.Root}>
+      <div class={styles.Controls}>
+        <Pagination.PrevTrigger class={styles.Trigger}>
+          <ChevronLeft />
+        </Pagination.PrevTrigger>
+        <Pagination.Context>
+          component children({ context }) {
+            for (const [index, page] of @context.pages.entries(); key page.value) {
+              if (page.type === 'page') {
+                <Pagination.Item {...page} class={styles.Item}>{page.value}</Pagination.Item>
+              } else {
+                <Pagination.Ellipsis {index} class={styles.Ellipsis}>{'…'}</Pagination.Ellipsis>
+              }
+            }
+          }
+        </Pagination.Context>
+        <Pagination.NextTrigger class={styles.Trigger}>
+          <ChevronRight />
+        </Pagination.NextTrigger>
+      </div>
+    </Pagination.RootProvider>
+  </div>
+}

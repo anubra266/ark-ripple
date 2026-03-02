@@ -1,0 +1,50 @@
+import { Pagination } from 'ark-ripple/pagination';
+import { ChevronLeft, ChevronRight } from 'lucide-ripple';
+import styles from 'styles/pagination.module.css';
+
+export component PageSizeControl() {
+  <Pagination.Root count={100} defaultPageSize={10} class={styles.Root}>
+    <Pagination.Context>
+      component children({ context }) {
+        <div class="hstack">
+          <label class={styles.Text}>{'Items per page:'}</label>
+          <select
+            class={styles.PageSizeSelect}
+            value={@context.pageSize}
+            onChange={(e) => @context.setPageSize(Number(e.target.value))}
+          >
+            <option value={5}>{'5'}</option>
+            <option value={10}>{'10'}</option>
+            <option value={20}>{'20'}</option>
+            <option value={50}>{'50'}</option>
+          </select>
+        </div>
+
+        <div class={styles.Controls}>
+          <Pagination.PrevTrigger class={styles.Trigger}>
+            <ChevronLeft />
+          </Pagination.PrevTrigger>
+
+          for (const [index, page] of @context.pages.entries(); key page.value) {
+            if (page.type === 'page') {
+              <Pagination.Item {...page} class={styles.Item}>{page.value}</Pagination.Item>
+            } else {
+              <Pagination.Ellipsis {index} class={styles.Ellipsis}>{'…'}</Pagination.Ellipsis>
+            }
+          }
+
+          <Pagination.NextTrigger class={styles.Trigger}>
+            <ChevronRight />
+          </Pagination.NextTrigger>
+        </div>
+
+        <p class={styles.Text}>
+          {'Page '}
+          {@context.page}
+          {' of '}
+          {@context.totalPages}
+        </p>
+      }
+    </Pagination.Context>
+  </Pagination.Root>
+}

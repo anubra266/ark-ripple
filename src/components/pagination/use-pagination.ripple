@@ -1,0 +1,31 @@
+import * as pagination from '@zag-js/pagination';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor } from '../../types';
+
+export interface UsePaginationProps extends Optional<Omit<pagination.Props, 'dir' | 'getRootNode'>, 'id'> {}
+
+export interface UsePaginationReturn extends Accessor<pagination.Api<PropTypes>> {}
+
+export function usePagination(props?: UsePaginationProps): Tracked<UsePaginationReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
+
+  const service = useMachine(pagination.machine, machineProps);
+  const api = track(() => pagination.connect(service, normalizeProps));
+
+  return api;
+}

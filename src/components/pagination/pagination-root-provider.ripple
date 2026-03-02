@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import type { UsePaginationReturn } from './use-pagination.ripple';
+import { PaginationApiContext } from './use-pagination-context';
+
+interface RootProviderProps {
+  value: UsePaginationReturn;
+}
+
+export interface PaginationRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'nav'> {}
+export interface PaginationRootProviderProps extends HTMLProps<'nav'>, PaginationRootProviderBaseProps {}
+
+export component PaginationRootProvider(props: MaybeTracked<PaginationRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+  PaginationApiContext.set(value);
+
+  <ark.nav {...@mergedProps}>
+    <@children />
+  </ark.nav>
+}

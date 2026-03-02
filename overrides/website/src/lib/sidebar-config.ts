@@ -62,7 +62,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'marquee' },
       { id: 'menu' },
       { id: 'number-input' },
-      // { id: 'pagination' },
+      { id: 'pagination' },
       // { id: 'password-input' },
       // { id: 'pin-input' },
       { id: 'popover' },

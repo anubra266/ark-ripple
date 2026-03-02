@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { usePaginationContext, type UsePaginationContext } from './use-pagination-context';
+
+export interface PaginationContextProps {
+  children: (context: UsePaginationContext) => any;
+}
+
+export component PaginationContext(props: PaginationContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = usePaginationContext();
+
+  <@children {context} />
+}

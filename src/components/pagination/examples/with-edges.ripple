@@ -1,0 +1,37 @@
+import { Pagination } from 'ark-ripple/pagination';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-ripple';
+import styles from 'styles/pagination.module.css';
+
+export component WithEdges() {
+  <Pagination.Root count={5000} pageSize={20} siblingCount={2} class={styles.Root}>
+    <div class={styles.Controls}>
+      <Pagination.FirstTrigger class={styles.Trigger}>
+        <ChevronsLeft />
+      </Pagination.FirstTrigger>
+
+      <Pagination.PrevTrigger class={styles.Trigger}>
+        <ChevronLeft />
+      </Pagination.PrevTrigger>
+
+      <Pagination.Context>
+        component children({ context }) {
+          for (const [index, page] of @context.pages.entries(); key page.value) {
+            if (page.type === 'page') {
+              <Pagination.Item {...page} class={styles.Item}>{page.value}</Pagination.Item>
+            } else {
+              <Pagination.Ellipsis {index} class={styles.Ellipsis}>{'…'}</Pagination.Ellipsis>
+            }
+          }
+        }
+      </Pagination.Context>
+
+      <Pagination.NextTrigger class={styles.Trigger}>
+        <ChevronRight />
+      </Pagination.NextTrigger>
+
+      <Pagination.LastTrigger class={styles.Trigger}>
+        <ChevronsRight />
+      </Pagination.LastTrigger>
+    </div>
+  </Pagination.Root>
+}

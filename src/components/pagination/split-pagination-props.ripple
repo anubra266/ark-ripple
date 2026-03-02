@@ -1,0 +1,23 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UsePaginationProps } from './use-pagination.ripple';
+
+const splitProps = createSplitProps<UsePaginationProps>();
+
+export function splitPaginationProps<T extends UsePaginationProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'boundaryCount',
+    'count',
+    'defaultPage',
+    'defaultPageSize',
+    'getPageUrl',
+    'id',
+    'ids',
+    'onPageChange',
+    'onPageSizeChange',
+    'page',
+    'pageSize',
+    'siblingCount',
+    'translations',
+    'type',
+  ]);
+}

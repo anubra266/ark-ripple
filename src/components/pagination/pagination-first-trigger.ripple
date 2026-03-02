@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { usePaginationContext } from './use-pagination-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface PaginationFirstTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface PaginationFirstTriggerProps extends HTMLProps<'button'>, PaginationFirstTriggerBaseProps {}
+
+export component PaginationFirstTrigger(props: MaybeTracked<PaginationFirstTriggerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const pagination = usePaginationContext();
+
+  let mergedProps = track(() => mergeProps(@pagination.getFirstTriggerProps(), @localProps));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

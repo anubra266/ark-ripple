@@ -1,0 +1,29 @@
+import { Pagination } from 'ark-ripple/pagination';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-ripple';
+import styles from 'styles/pagination.module.css';
+
+export component Context() {
+  <Pagination.Root count={100} pageSize={10} class={styles.Root}>
+    <Pagination.Context>
+      component children({ context }) {
+        <div class={styles.Controls}>
+          <button class={styles.Trigger} onClick={() => @context.goToFirstPage()}>
+            <ChevronsLeft />
+          </button>
+          <button class={styles.Trigger} onClick={() => @context.goToPrevPage()}>
+            <ChevronLeft />
+          </button>
+          <p class={styles.Text} style="min-width: 120px; text-align: center">
+            {'Page '}{@context.page}{' of '}{@context.totalPages}
+          </p>
+          <button class={styles.Trigger} onClick={() => @context.goToNextPage()}>
+            <ChevronRight />
+          </button>
+          <button class={styles.Trigger} onClick={() => @context.goToLastPage()}>
+            <ChevronsRight />
+          </button>
+        </div>
+      }
+    </Pagination.Context>
+  </Pagination.Root>
+}
