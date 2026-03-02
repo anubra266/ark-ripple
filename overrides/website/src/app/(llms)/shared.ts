@@ -100,7 +100,9 @@ const formatComponentType = (key: string, part: Part, id: string) => {
 }
 
 const replaceComponentTypes = (id: string, framework: string) => {
-  const api = types.find((type) => type.component === id && type.framework === framework)
+  const api =
+    types.find((type) => type.component === id && type.framework === framework) ??
+    types.find((type) => type.component === id && type.framework === 'react')
   if (!api) return ''
 
   return Object.entries(api.parts)
