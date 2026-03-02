@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useNumberInput, type UseNumberInputProps } from './use-number-input.ripple';
+import { splitNumberInputProps } from './split-number-input-props.ripple';
+import { NumberInputApiContext } from './use-number-input-context';
+
+export interface NumberInputRootBaseProps extends PolymorphicProps<'div'>, UseNumberInputProps {}
+export interface NumberInputRootProps extends HTMLProps<'div'>, NumberInputRootBaseProps {}
+
+export component NumberInputRoot(props: MaybeTracked<NumberInputRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [numberInputProps, localProps] = splitNumberInputProps(@rest);
+
+  const numberInput = useNumberInput(numberInputProps);
+  let mergedProps = track(() => mergeProps(@numberInput.getRootProps(), @localProps));
+
+  NumberInputApiContext.set(numberInput);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useNumberInputContext } from './use-number-input-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface NumberInputDecrementTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface NumberInputDecrementTriggerProps extends HTMLProps<'button'>, NumberInputDecrementTriggerBaseProps {}
+
+export component NumberInputDecrementTrigger(props: MaybeTracked<NumberInputDecrementTriggerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const numberInput = useNumberInputContext();
+
+  let mergedProps = track(() => mergeProps(@numberInput.getDecrementTriggerProps(), @localProps));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

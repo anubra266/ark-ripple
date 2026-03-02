@@ -384,15 +384,20 @@ import { PresenceApiContext, usePresenceContext } from '../presence/use-presence
 
 ### Hook pattern
 
+Hooks that return a `track()` value must declare `Tracked<T>` in their return type — reflect what the function actually returns.
+
 ```ripple
 import * as dialog from '@zag-js/dialog'
 import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple'
-import { track } from 'ripple'
+import { track, type Tracked } from 'ripple'
 import { useEnvironmentContext } from '../../providers/environment'
 import { useLocaleContext } from '../../providers/locale'
 import { useId } from '../../utils/use-id'
 
-export function useDialog(props: UseDialogProps = {}) {
+export interface UseDialogReturn extends Accessor<dialog.Api<PropTypes>> {}
+
+// ✅ CORRECT — returns track(), so return type is Tracked<T>
+export function useDialog(props?: UseDialogProps): Tracked<UseDialogReturn> {
   const locale = useLocaleContext()
   const env = useEnvironmentContext()
   const id = useId()

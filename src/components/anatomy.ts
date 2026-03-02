@@ -22,7 +22,7 @@ export { listboxAnatomy } from './listbox/listbox.anatomy';
 export { marqueeAnatomy } from './marquee/marquee.anatomy';
 export { menuAnatomy } from './menu/menu.anatomy';
 // export { navigationMenuAnatomy } from './navigation-menu/navigation-menu.anatomy';
-// export { numberInputAnatomy } from './number-input/number-input.anatomy';
+export { numberInputAnatomy } from './number-input/number-input.anatomy';
 // export { paginationAnatomy } from './pagination/pagination.anatomy';
 // export { passwordInputAnatomy } from './password-input/password-input.anatomy';
 // export { pinInputAnatomy } from './pin-input/pin-input.anatomy';

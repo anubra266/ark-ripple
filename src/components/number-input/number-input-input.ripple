@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useNumberInputContext } from './use-number-input-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface NumberInputInputBaseProps extends PolymorphicProps<'input'> {}
+export interface NumberInputInputProps extends HTMLProps<'input'>, NumberInputInputBaseProps {}
+
+export component NumberInputInput(props: MaybeTracked<NumberInputInputProps>) {
+  const [localProps] = trackSplit(props, []);
+  const numberInput = useNumberInputContext();
+  const field = useFieldContext();
+
+  let mergedProps = track(() => mergeProps(@numberInput.getInputProps(), @localProps));
+
+  <ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+}

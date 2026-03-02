@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useNumberInputContext } from './use-number-input-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface NumberInputValueTextBaseProps extends PolymorphicProps<'span'> {}
+export interface NumberInputValueTextProps extends HTMLProps<'span'>, NumberInputValueTextBaseProps {}
+
+export component NumberInputValueText(props: MaybeTracked<NumberInputValueTextProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const numberInput = useNumberInputContext();
+
+  let mergedProps = track(() => mergeProps(@numberInput.getValueTextProps(), @localProps));
+
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@numberInput.value}
+    }
+  </ark.span>
+}

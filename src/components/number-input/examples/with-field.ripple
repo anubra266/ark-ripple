@@ -1,0 +1,26 @@
+import { Field } from 'ark-ripple/field';
+import { NumberInput } from 'ark-ripple/number-input';
+import { ChevronUp, ChevronDown } from 'lucide-ripple';
+import field from 'styles/field.module.css';
+import styles from 'styles/number-input.module.css';
+
+export component WithField() {
+  <Field.Root class={field.Root}>
+    <NumberInput.Root class={styles.Root}>
+      <NumberInput.Label class={styles.Label}>{'Label'}</NumberInput.Label>
+      <NumberInput.Control class={styles.Control}>
+        <NumberInput.Input class={styles.Input} />
+        <div class={styles.TriggerGroup}>
+          <NumberInput.IncrementTrigger class={styles.IncrementTrigger}>
+            <ChevronUp />
+          </NumberInput.IncrementTrigger>
+          <NumberInput.DecrementTrigger class={styles.DecrementTrigger}>
+            <ChevronDown />
+          </NumberInput.DecrementTrigger>
+        </div>
+      </NumberInput.Control>
+    </NumberInput.Root>
+    <Field.HelperText class={field.HelperText}>{'Additional Info'}</Field.HelperText>
+    <Field.ErrorText class={field.ErrorText}>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
+}

@@ -1,0 +1,36 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseNumberInputProps } from './use-number-input.ripple';
+
+const splitProps = createSplitProps<UseNumberInputProps>();
+
+export function splitNumberInputProps<T extends UseNumberInputProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'allowMouseWheel',
+    'allowOverflow',
+    'clampValueOnBlur',
+    'defaultValue',
+    'disabled',
+    'focusInputOnChange',
+    'form',
+    'formatOptions',
+    'id',
+    'ids',
+    'inputMode',
+    'invalid',
+    'locale',
+    'max',
+    'min',
+    'name',
+    'onFocusChange',
+    'onValueChange',
+    'onValueCommit',
+    'onValueInvalid',
+    'pattern',
+    'readOnly',
+    'required',
+    'spinOnPress',
+    'step',
+    'translations',
+    'value',
+  ]);
+}

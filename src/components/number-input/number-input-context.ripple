@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useNumberInputContext, type UseNumberInputContext } from './use-number-input-context';
+
+export interface NumberInputContextProps {
+  children: (context: UseNumberInputContext) => any;
+}
+
+export component NumberInputContext(props: NumberInputContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useNumberInputContext();
+
+  <@children {context} />
+}

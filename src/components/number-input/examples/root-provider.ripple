@@ -1,0 +1,25 @@
+import { NumberInput, useNumberInput } from 'ark-ripple/number-input';
+import { ChevronUp, ChevronDown } from 'lucide-ripple';
+import styles from 'styles/number-input.module.css';
+
+export component RootProvider() {
+  const numberInput = useNumberInput();
+
+  <div class="stack">
+    <output>{'valueAsNumber: '}{@numberInput.valueAsNumber}</output>
+    <NumberInput.RootProvider class={styles.Root} value={numberInput}>
+      <NumberInput.Label class={styles.Label}>{'Label'}</NumberInput.Label>
+      <NumberInput.Control class={styles.Control}>
+        <NumberInput.Input class={styles.Input} />
+        <div class={styles.TriggerGroup}>
+          <NumberInput.IncrementTrigger class={styles.IncrementTrigger}>
+            <ChevronUp />
+          </NumberInput.IncrementTrigger>
+          <NumberInput.DecrementTrigger class={styles.DecrementTrigger}>
+            <ChevronDown />
+          </NumberInput.DecrementTrigger>
+        </div>
+      </NumberInput.Control>
+    </NumberInput.RootProvider>
+  </div>
+}
