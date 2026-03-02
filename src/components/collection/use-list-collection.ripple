@@ -1,4 +1,4 @@
-import { track, trackSplit } from 'ripple';
+import { type MaybeTracked, track, trackSplit } from 'ripple';
 import {
   type CollectionOptions,
   type ListCollection,
@@ -96,7 +96,7 @@ export interface UseListCollectionReturn<T> {
   update: (value: string, item: T) => void;
 }
 
-export function useListCollection<T>(props: UseListCollectionProps<T>): () => UseListCollectionReturn<T> {
+export function useListCollection<T>(props: UseListCollectionProps<T>): MaybeTracked<UseListCollectionReturn<T>> {
   const [initialItems, filterProp, limitProp, collectionOptions] = trackSplit(props, [
     'initialItems',
     'filter',

@@ -1,0 +1,26 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { ItemProps } from '@zag-js/listbox';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useListboxContext } from './use-listbox-context';
+import { ListboxItemApiContext } from './use-listbox-item-context';
+import { ListboxItemPropsContext } from './use-listbox-item-props-context';
+
+export interface ListboxItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface ListboxItemProps extends HTMLProps<'div'>, ListboxItemBaseProps {}
+
+export component ListboxItem(props: MaybeTracked<ListboxItemProps>) {
+  const [item, highlightOnHover, children, rest] = trackSplit(props, ['item', 'highlightOnHover', 'children']);
+  const listbox = useListboxContext();
+
+  const itemProps = track(() => ({ item: @item, highlightOnHover: @highlightOnHover }));
+  let mergedProps = track(() => mergeProps(@listbox.getItemProps(@itemProps), @rest));
+
+  ListboxItemApiContext.set(track(() => @listbox.getItemState(@itemProps)));
+  ListboxItemPropsContext.set(itemProps);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

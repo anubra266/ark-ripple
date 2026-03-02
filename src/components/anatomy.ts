@@ -18,7 +18,7 @@ export { fileUploadAnatomy } from './file-upload/file-upload.anatomy';
 export { floatingPanelAnatomy } from './floating-panel/floating-panel.anatomy';
 export { hoverCardAnatomy } from './hover-card/hover-card.anatomy';
 export { imageCropperAnatomy } from './image-cropper/image-cropper.anatomy';
-// export { listboxAnatomy } from './listbox/listbox.anatomy';
+export { listboxAnatomy } from './listbox/listbox.anatomy';
 // export { marqueeAnatomy } from './marquee/marquee.anatomy';
 export { menuAnatomy } from './menu/menu.anatomy';
 // export { navigationMenuAnatomy } from './navigation-menu/navigation-menu.anatomy';

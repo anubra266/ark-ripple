@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { InputProps } from '@zag-js/listbox';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useListboxContext } from './use-listbox-context';
+
+export interface ListboxInputBaseProps extends InputProps, PolymorphicProps<'input'> {}
+export interface ListboxInputProps extends HTMLProps<'input'>, ListboxInputBaseProps {}
+
+export component ListboxInput(props: MaybeTracked<ListboxInputProps>) {
+  const [autoHighlight, localProps] = trackSplit(props, ['autoHighlight']);
+  const listbox = useListboxContext();
+
+  const inputProps = track(() => ({ autoHighlight: @autoHighlight }));
+  let mergedProps = track(() => mergeProps(@listbox.getInputProps(@inputProps), @localProps));
+
+  <ark.input {...@mergedProps} />
+}

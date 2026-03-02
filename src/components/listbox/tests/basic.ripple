@@ -1,0 +1,31 @@
+import { Listbox, createListCollection } from 'ark-ripple/listbox';
+
+export component ComponentUnderTest(props: {
+  [key: string]: any;
+}) {
+  const collection = createListCollection({
+    items: [
+      { label: 'React', value: 'react' },
+      { label: 'Solid', value: 'solid' },
+      { label: 'Svelte', value: 'svelte', disabled: true },
+      { label: 'Vue', value: 'vue' },
+    ],
+  });
+
+  <Listbox.Root {collection} {...props}>
+    <Listbox.Label>
+      {'Select your Framework: '}<Listbox.ValueText />
+    </Listbox.Label>
+    <Listbox.Content data-testid="content">
+      <Listbox.ItemGroup>
+        <Listbox.ItemGroupLabel>{'JS Frameworks'}</Listbox.ItemGroupLabel>
+        for (const item of collection.items; key item.value) {
+          <Listbox.Item {item}>
+            <Listbox.ItemText>{item.label}</Listbox.ItemText>
+            <Listbox.ItemIndicator />
+          </Listbox.Item>
+        }
+      </Listbox.ItemGroup>
+    </Listbox.Content>
+  </Listbox.Root>
+}

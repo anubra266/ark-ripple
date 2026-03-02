@@ -126,6 +126,19 @@ const imageCropper = @value;
 let mergedProps = track(() => mergeProps(@imageCropper.getRootProps(), @localProps));
 ```
 
+**Never unbox tracked values when passing them as props.** Props should receive the tracked signal so the child component stays reactive. Only use `@` when you actually need to read/consume the value (e.g. in `for` loops, expressions, conditions).
+
+```ripple
+const { collection, filter } = useListCollection({ ... });
+
+// ✅ CORRECT — pass tracked value as prop, unbox when reading
+<Listbox.Root {collection}>
+for (const item of @collection.items; key item.value) { ... }
+
+// ❌ WRONG — unboxing with @ when passing as prop
+<Listbox.Root collection={@collection}>
+```
+
 ### 7. `effect` vs `onMount`
 
 Use `effect` when the setup depends on reactive values or needs cleanup. The return value of an `effect` is the cleanup function (like React's `useEffect`). Use `onMount` only for one-time, non-reactive initialization with no cleanup.
@@ -529,6 +542,24 @@ bun run check:examples
 ```
 
 This script verifies that every React example has a corresponding Ripple example. Fix any missing examples it reports before considering the component done.
+
+## Changesets
+
+After developing a new component, **always** add a changeset to document the addition:
+
+```bash
+# Create a changeset file in .changeset/ with a random name
+```
+
+Changeset format (use `patch` for new components):
+
+```markdown
+---
+'ark-ripple': patch
+---
+
+Add [ComponentName] component
+```
 
 ## Storybook
 

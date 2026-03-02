@@ -26,7 +26,7 @@ export * from './highlight';
 export * from './hover-card';
 export * from './image-cropper';
 // export * from './json-tree-view';
-// export * from './listbox';
+export * from './listbox';
 // export * from './marquee';
 export * from './menu';
 // export * from './number-input';

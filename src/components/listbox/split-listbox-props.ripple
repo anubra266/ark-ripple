@@ -1,0 +1,28 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseListboxProps } from './use-listbox.ripple';
+
+const splitProps = createSplitProps<UseListboxProps>();
+
+export function splitListboxProps<T extends UseListboxProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'collection',
+    'defaultHighlightedValue',
+    'defaultValue',
+    'deselectable',
+    'disabled',
+    'disallowSelectAll',
+    'highlightedValue',
+    'id',
+    'ids',
+    'loopFocus',
+    'onHighlightChange',
+    'onSelect',
+    'onValueChange',
+    'orientation',
+    'scrollToIndexFn',
+    'selectionMode',
+    'selectOnHighlight',
+    'typeahead',
+    'value',
+  ]);
+}

@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useListboxContext, type UseListboxContext } from './use-listbox-context';
+
+export interface ListboxContextProps {
+  children: (context: UseListboxContext) => any;
+}
+
+export component ListboxContext(props: ListboxContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useListboxContext();
+
+  <@children {context} />
+}

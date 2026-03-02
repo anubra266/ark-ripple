@@ -1,0 +1,28 @@
+import { Listbox, createListCollection } from 'ark-ripple/listbox';
+import { Check } from 'lucide-ripple';
+import styles from 'styles/listbox.module.css';
+
+export component DisabledItem() {
+  const collection = createListCollection({
+    items: [
+      { label: 'Free', value: 'free' },
+      { label: 'Pro', value: 'pro' },
+      { label: 'Enterprise', value: 'enterprise', disabled: true },
+      { label: 'Custom', value: 'custom' },
+    ],
+  });
+
+  <Listbox.Root class={styles.Root} {collection}>
+    <Listbox.Label class={styles.Label}>{'Select Plan'}</Listbox.Label>
+    <Listbox.Content class={styles.Content}>
+      for (const item of collection.items; key item.value) {
+        <Listbox.Item class={styles.Item} {item}>
+          <Listbox.ItemText class={styles.ItemText}>{item.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator class={styles.ItemIndicator}>
+            <Check />
+          </Listbox.ItemIndicator>
+        </Listbox.Item>
+      }
+    </Listbox.Content>
+  </Listbox.Root>
+}

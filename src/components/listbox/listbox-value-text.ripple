@@ -1,0 +1,28 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useListboxContext } from './use-listbox-context';
+
+export interface ListboxValueTextBaseProps extends PolymorphicProps<'span'> {
+  /**
+   * Text to display when no value is selected.
+   */
+  placeholder?: string | undefined;
+}
+export interface ListboxValueTextProps extends HTMLProps<'span'>, ListboxValueTextBaseProps {}
+
+export component ListboxValueText(props: MaybeTracked<ListboxValueTextProps>) {
+  const [placeholder, children, localProps] = trackSplit(props, ['placeholder', 'children']);
+  const listbox = useListboxContext();
+
+  let mergedProps = track(() => mergeProps(@listbox.getValueTextProps(), @localProps));
+
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@listbox.valueAsString || @placeholder}
+    }
+  </ark.span>
+}

@@ -1,0 +1,36 @@
+import { Listbox, createListCollection, useListbox } from 'ark-ripple/listbox';
+import { Check } from 'lucide-ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/listbox.module.css';
+
+export component RootProvider() {
+  const collection = createListCollection({
+    items: [
+      { label: 'Low', value: 'low' },
+      { label: 'Medium', value: 'medium' },
+      { label: 'High', value: 'high' },
+      { label: 'Critical', value: 'critical' },
+    ],
+  });
+
+  const listbox = useListbox({ collection });
+
+  <div class="stack">
+    <button type="button" class={button.Root} onClick={() => { @listbox.setValue(['high']) }}>
+      {'Set to High'}
+    </button>
+    <Listbox.RootProvider class={styles.Root} value={listbox}>
+      <Listbox.Label class={styles.Label}>{'Select Priority'}</Listbox.Label>
+      <Listbox.Content class={styles.Content}>
+        for (const item of collection.items; key item.value) {
+          <Listbox.Item class={styles.Item} {item}>
+            <Listbox.ItemText class={styles.ItemText}>{item.label}</Listbox.ItemText>
+            <Listbox.ItemIndicator class={styles.ItemIndicator}>
+              <Check />
+            </Listbox.ItemIndicator>
+          </Listbox.Item>
+        }
+      </Listbox.Content>
+    </Listbox.RootProvider>
+  </div>
+}

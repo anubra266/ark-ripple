@@ -1,0 +1,57 @@
+import { Listbox, createListCollection, useListboxContext } from 'ark-ripple/listbox';
+import { Check, Minus } from 'lucide-ripple';
+import styles from 'styles/listbox.module.css';
+
+const frameworks = createListCollection({
+  items: [
+    { label: 'React', value: 'react' },
+    { label: 'Vue', value: 'vue' },
+    { label: 'Angular', value: 'angular' },
+    { label: 'Svelte', value: 'svelte' },
+    { label: 'Next.js', value: 'nextjs' },
+    { label: 'Nuxt.js', value: 'nuxtjs' },
+    { label: 'Remix', value: 'remix' },
+    { label: 'Gatsby', value: 'gatsby' },
+  ],
+});
+
+component SelectAllHeader() {
+  const listbox = useListboxContext();
+  const isAllSelected = @listbox.value.length === frameworks.items.length;
+  const isSomeSelected = @listbox.value.length > 0 && @listbox.value.length < frameworks.items.length;
+
+  const handleSelectAll = () => {
+    if (isAllSelected) {
+      @listbox.setValue([]);
+    } else {
+      @listbox.setValue(frameworks.items.map((item) => item.value));
+    }
+  };
+
+  <button class={styles.SelectAllHeader} type="button" onClick={handleSelectAll}>
+    <span class={styles.SelectAllHeaderIndicator}>
+      if (isAllSelected) {
+        <Check />
+      } else if (isSomeSelected) {
+        <Minus />
+      }
+    </span>
+    <span class={styles.Label}>{'Select All'}</span>
+  </button>
+}
+
+export component SelectAll() {
+  <Listbox.Root class={styles.Root} collection={frameworks} selectionMode="multiple">
+    <SelectAllHeader />
+    <Listbox.Content class={styles.Content}>
+      for (const item of frameworks.items; key item.value) {
+        <Listbox.Item class={styles.Item} {item}>
+          <Listbox.ItemText class={styles.ItemText}>{item.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator class={styles.ItemIndicator}>
+            <Check />
+          </Listbox.ItemIndicator>
+        </Listbox.Item>
+      }
+    </Listbox.Content>
+  </Listbox.Root>
+}

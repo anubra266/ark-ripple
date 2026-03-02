@@ -1,0 +1,36 @@
+import { Listbox, createListCollection } from 'ark-ripple/listbox';
+import { Check } from 'lucide-ripple';
+import styles from 'styles/listbox.module.css';
+
+export component ValueText() {
+  const collection = createListCollection({
+    items: [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+      { label: 'Yellow', value: 'yellow' },
+      { label: 'Purple', value: 'purple' },
+    ],
+  });
+
+  <Listbox.Root
+    class={styles.Root}
+    {collection}
+    selectionMode="multiple"
+    defaultValue={['red', 'blue']}
+  >
+    <Listbox.Label class={styles.Label}>
+      {'Colors: '}<Listbox.ValueText class={styles.ValueText} />
+    </Listbox.Label>
+    <Listbox.Content class={styles.Content}>
+      for (const item of collection.items; key item.value) {
+        <Listbox.Item class={styles.Item} {item}>
+          <Listbox.ItemText class={styles.ItemText}>{item.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator class={styles.ItemIndicator}>
+            <Check />
+          </Listbox.ItemIndicator>
+        </Listbox.Item>
+      }
+    </Listbox.Content>
+  </Listbox.Root>
+}

@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useListbox, type UseListboxProps } from './use-listbox.ripple';
+import { splitListboxProps } from './split-listbox-props.ripple';
+import { ListboxApiContext } from './use-listbox-context';
+
+export interface ListboxRootBaseProps extends PolymorphicProps<'div'>, UseListboxProps {}
+export interface ListboxRootProps extends HTMLProps<'div'>, ListboxRootBaseProps {}
+
+export component ListboxRoot(props: MaybeTracked<ListboxRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [listboxProps, localProps] = splitListboxProps(@rest);
+
+  const listbox = useListbox(listboxProps);
+  let mergedProps = track(() => mergeProps(@listbox.getRootProps(), @localProps));
+
+  ListboxApiContext.set(listbox);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

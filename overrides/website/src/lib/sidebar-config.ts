@@ -58,7 +58,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'floating-panel' },
       { id: 'hover-card' },
       { id: 'image-cropper' },
-      // { id: 'listbox' },
+      { id: 'listbox' },
       // { id: 'marquee' },
       { id: 'menu' },
       // { id: 'number-input' },

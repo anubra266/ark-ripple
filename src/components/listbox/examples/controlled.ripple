@@ -1,0 +1,36 @@
+import { Listbox, createListCollection } from 'ark-ripple/listbox';
+import { Check } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/listbox.module.css';
+
+export component Controlled() {
+  const collection = createListCollection({
+    items: [
+      { label: 'Small', value: 'sm' },
+      { label: 'Medium', value: 'md' },
+      { label: 'Large', value: 'lg' },
+      { label: 'Extra Large', value: 'xl' },
+    ],
+  });
+
+  let value = track(['md']);
+
+  <Listbox.Root
+    class={styles.Root}
+    {collection}
+    value={@value}
+    onValueChange={(e) => { @value = e.value }}
+  >
+    <Listbox.Label class={styles.Label}>{'Select Size'}</Listbox.Label>
+    <Listbox.Content class={styles.Content}>
+      for (const item of collection.items; key item.value) {
+        <Listbox.Item class={styles.Item} {item}>
+          <Listbox.ItemText class={styles.ItemText}>{item.label}</Listbox.ItemText>
+          <Listbox.ItemIndicator class={styles.ItemIndicator}>
+            <Check />
+          </Listbox.ItemIndicator>
+        </Listbox.Item>
+      }
+    </Listbox.Content>
+  </Listbox.Root>
+}

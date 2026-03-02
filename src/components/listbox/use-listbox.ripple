@@ -1,0 +1,42 @@
+import * as listbox from '@zag-js/listbox';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor } from '../../types';
+import type { CollectionItem, ListCollection } from '../collection';
+
+export interface UseListboxProps<T extends CollectionItem = CollectionItem> extends Optional<
+  Omit<listbox.Props<T>, 'dir' | 'getRootNode' | 'collection'>,
+  'id'
+> {
+  /**
+   * The collection of items
+   */
+  collection: ListCollection<T>;
+}
+
+export interface UseListboxReturn<T extends CollectionItem = CollectionItem> extends Accessor<
+  listbox.Api<PropTypes, T>
+> {}
+
+export function useListbox<T extends CollectionItem>(props: Tracked<UseListboxProps<T>>): UseListboxReturn<T> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
+
+  const service = useMachine(listbox.machine, machineProps);
+  const api = track(() => listbox.connect(service, normalizeProps));
+
+  return api;
+}

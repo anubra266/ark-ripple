@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useListboxContext } from './use-listbox-context';
+import { useListboxItemGroupPropsContext } from './use-listbox-item-group-props-context';
+
+export interface ListboxItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
+export interface ListboxItemGroupLabelProps extends HTMLProps<'div'>, ListboxItemGroupLabelBaseProps {}
+
+export component ListboxItemGroupLabel(props: MaybeTracked<ListboxItemGroupLabelProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const listbox = useListboxContext();
+  const itemGroupProps = useListboxItemGroupPropsContext();
+
+  let mergedProps = track(
+    () => mergeProps(@listbox.getItemGroupLabelProps({ htmlFor: @itemGroupProps.id }), @localProps),
+  );
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}
