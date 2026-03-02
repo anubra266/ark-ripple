@@ -15,7 +15,7 @@
   <a href="https://bundlephobia.com/package/ark-ripple">
     <img alt="bundle size" src="https://img.shields.io/bundlephobia/minzip/ark-ripple?style=for-the-badge&color=6366f1&label=bundle">
   </a>
-  <a href="https://github.com/anubra66/ark-ripple/blob/main/LICENSE">
+  <a href="https://github.com/anubra266/ark-ripple/blob/main/LICENSE">
     <img alt="license" src="https://img.shields.io/npm/l/ark-ripple?style=for-the-badge&color=0ea5e9">
   </a>
   <a href="https://github.com/anubra266/ark-ripple">

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    creator: '@anubra66',
+    creator: '@anubra266',
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
 }

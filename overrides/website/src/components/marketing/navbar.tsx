@@ -60,7 +60,7 @@ export const Navbar = () => (
         <HStack gap="1">
           <MobileNavbar />
           <IconButton asChild variant="ghost" hideBelow="sm">
-            <a href="https://github.com/anubra66/ark-ripple" target="_blank" rel="noreferrer">
+            <a href="https://github.com/anubra266/ark-ripple" target="_blank" rel="noreferrer">
               <SiGithub />
             </a>
           </IconButton>

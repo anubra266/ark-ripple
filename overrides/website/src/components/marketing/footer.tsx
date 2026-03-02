@@ -6,7 +6,7 @@ import { Logo } from '../logo'
 const resources = [
   {
     name: 'GitHub',
-    href: 'https://github.com/anubra66/ark-ripple',
+    href: 'https://github.com/anubra266/ark-ripple',
   },
   {
     name: 'Ark UI',
@@ -26,7 +26,7 @@ export const Footer = () => {
         >
           <Stack gap="1" align="start">
             <Logo />
-            <Text color="fg.muted">Built with ❤️ by <a target="_blank" rel="noreferrer" href="https://github.com/anubra66">anubra266</a></Text>
+            <Text color="fg.muted">Built with ❤️ by <a target="_blank" rel="noreferrer" href="https://github.com/anubra266">anubra266</a></Text>
           </Stack>
           <Stack direction="row" gap="8">
             <NextLink href="/docs/overview/getting-started">Docs</NextLink>
