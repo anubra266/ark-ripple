@@ -7,9 +7,9 @@ on:
       - "src/**"
     branches:
       - main
-
+      
 permissions:
-  id-token: write # Required for OIDC
+  id-token: write  # Required for OIDC
   contents: write
   pull-requests: write
 
@@ -23,22 +23,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       - name: Install
-        uses: ./.github/composite-actions/install
+        uses: ./.github/composite-actions/pnpm-install
 
       - name: Build packages
-        run: bun run build
+        run: pnpm build
 
       - name: Create release Pull Request or publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: bun run release
+          publish: pnpm release
           commit: "ci(changesets): version packages"
           createGithubReleases: true
         env:
