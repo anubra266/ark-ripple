@@ -1,0 +1,24 @@
+import { HoverCard } from 'ark-ripple/hover-card';
+
+export component ComponentUnderTest(props: {
+  open?: boolean;
+  defaultOpen?: boolean;
+  lazyMount?: boolean;
+  unmountOnExit?: boolean;
+  onOpenChange?: (details: { open: boolean }) => void;
+  [key: string]: any;
+}) {
+  <HoverCard.Root {...props}>
+    <HoverCard.Trigger>
+      {'hover me'}
+    </HoverCard.Trigger>
+    <HoverCard.Positioner data-testid="positioner">
+      <HoverCard.Content>
+        <HoverCard.Arrow>
+          <HoverCard.ArrowTip />
+        </HoverCard.Arrow>
+        <p>{'content'}</p>
+      </HoverCard.Content>
+    </HoverCard.Positioner>
+  </HoverCard.Root>
+}

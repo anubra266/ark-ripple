@@ -1,0 +1,43 @@
+import { HoverCard } from 'ark-ripple/hover-card';
+import { Portal } from 'ark-ripple/portal';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/hover-card.module.css';
+
+export component Controlled() {
+  let open = track(false);
+
+  <div class="stack">
+    <button type="button" class={button.Root} onClick={() => { @open = !@open }}>
+      {'Toggle'}
+    </button>
+    <HoverCard.Root {@open} onOpenChange={(e) => { @open = e.open }}>
+      <p>
+        {'Liked by '}
+        <HoverCard.Trigger class={styles.Trigger}>
+          component asChild({ propsFn }) {
+            <a {...propsFn({ href: '#profile' })}>{'@sarah_chen'}</a>
+          }
+        </HoverCard.Trigger>
+        {' and 3 others'}
+      </p>
+      <Portal>
+        <HoverCard.Positioner>
+          <HoverCard.Content class={styles.Content}>
+            <HoverCard.Arrow class={styles.Arrow}>
+              <HoverCard.ArrowTip class={styles.ArrowTip} />
+            </HoverCard.Arrow>
+            <div class={styles.Body}>
+              <img class={styles.Avatar} src="https://i.pravatar.cc/300?u=sarah" alt="Sarah Chen" />
+              <div>
+                <p class={styles.Name}>{'Sarah Chen'}</p>
+                <p class={styles.Username}>{'@sarah_chen'}</p>
+              </div>
+              <p class={styles.Bio}>{'Design Engineer at Acme Inc.'}</p>
+            </div>
+          </HoverCard.Content>
+        </HoverCard.Positioner>
+      </Portal>
+    </HoverCard.Root>
+  </div>
+}

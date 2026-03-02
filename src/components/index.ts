@@ -23,7 +23,7 @@ export * from './focus-trap';
 export * from './format';
 export * from './frame';
 export * from './highlight';
-// export * from './hover-card';
+export * from './hover-card';
 // export * from './image-cropper';
 // export * from './json-tree-view';
 // export * from './listbox';

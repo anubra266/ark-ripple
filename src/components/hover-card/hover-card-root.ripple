@@ -1,0 +1,34 @@
+import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
+import { HoverCardApiContext } from './use-hover-card-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import { useHoverCard, type UseHoverCardProps } from './use-hover-card.ripple';
+import { splitHoverCardProps } from './split-hover-card-props.ripple';
+import {
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+export interface HoverCardRootBaseProps extends UseHoverCardProps, UsePresenceProps {
+  children?: any;
+}
+export interface HoverCardRootProps extends HoverCardRootBaseProps {}
+
+export component HoverCardRoot(props: MaybeTracked<HoverCardRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+  const [hoverCardProps] = splitHoverCardProps(@localProps);
+
+  const hoverCard = useHoverCard(hoverCardProps);
+  const present = track(() => @hoverCard.open);
+  const presence = usePresence({ present, ...@presenceProps });
+
+  HoverCardApiContext.set(hoverCard);
+  RenderStrategyContext.set(renderStrategyProps);
+  PresenceApiContext.set(presence);
+
+  <@children />
+}

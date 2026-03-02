@@ -1,0 +1,35 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useHoverCardContext } from './use-hover-card-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface HoverCardContentBaseProps extends PolymorphicProps<'div'> {}
+export interface HoverCardContentProps extends HTMLProps<'div'>, HoverCardContentBaseProps {}
+
+export component HoverCardContent(props: MaybeTracked<HoverCardContentProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const hoverCard = useHoverCardContext();
+  const presence = usePresenceContext();
+
+  let mergedProps = track(
+    () =>
+      mergeProps(
+        @hoverCard.getContentProps(),
+        @presence.getPresenceProps(),
+        @localProps,
+      ),
+  );
+
+  if (!@presence.unmounted) {
+    <ark.div
+      {...@mergedProps}
+      {ref (el: HTMLDivElement) => {
+        @presence.setNode(el);
+      }}
+    >
+      <@children />
+    </ark.div>
+  }
+}

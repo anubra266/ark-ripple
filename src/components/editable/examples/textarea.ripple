@@ -10,7 +10,7 @@ export component WithTextarea() {
   >
     <Editable.Label class={styles.Label}>{'Description'}</Editable.Label>
     <Editable.Area class={styles.Area}>
-      <Editable.Input class={styles.Input} asChild>
+      <Editable.Input class={styles.Input}>
         component asChild({ propsFn }) {
           <textarea {...propsFn()} />
         }

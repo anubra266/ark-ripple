@@ -37,7 +37,7 @@ export component Links() {
       <Combobox.Positioner>
         <Combobox.Content class={styles.Content}>
           for (const item of @collection.items; key item.value) {
-            <Combobox.Item class={styles.Item} {item} asChild>
+            <Combobox.Item class={styles.Item} {item}>
               component asChild({ propsFn }) {
                 <a {...propsFn({ href: item.href })}>
                   <Combobox.ItemText class={styles.ItemText}>{item.label}</Combobox.ItemText>

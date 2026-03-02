@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useHoverCardContext } from './use-hover-card-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface HoverCardTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface HoverCardTriggerProps extends HTMLProps<'button'>, HoverCardTriggerBaseProps {}
+
+export component HoverCardTrigger(props: MaybeTracked<HoverCardTriggerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const hoverCard = useHoverCardContext();
+
+  let mergedProps = track(() => mergeProps(@hoverCard.getTriggerProps(), @localProps));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

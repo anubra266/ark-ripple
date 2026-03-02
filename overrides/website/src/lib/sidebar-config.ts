@@ -56,7 +56,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'fieldset' },
       { id: 'file-upload' },
       { id: 'floating-panel' },
-      // { id: 'hover-card' },
+      { id: 'hover-card' },
       // { id: 'image-cropper' },
       // { id: 'listbox' },
       // { id: 'marquee' },

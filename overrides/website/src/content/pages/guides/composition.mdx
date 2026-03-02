@@ -40,19 +40,19 @@ import { Tooltip } from 'ark-ripple/tooltip'
 export component TooltipWithAvatar() {
   const id = ':ark-avatar'
 
-  return (
-    <Tooltip.Root ids={{ trigger: id }}>
-      <Tooltip.Trigger asChild>
-        <Avatar.Root ids={{ root: id }}>
+  <Tooltip.Root ids={{ trigger: id }}>
+    <Tooltip.Trigger>
+      component asChild({ propsFn }){
+        <Avatar.Root {...propsFn({ ids: { root: id } })}>
           <Avatar.Image src="https://bit.ly/sage-adebayo" />
           <Avatar.Fallback>{"SA"}</Avatar.Fallback>
         </Avatar.Root>
-      </Tooltip.Trigger>
-      <Tooltip.Positioner>
-        <Tooltip.Content>{"Abraham Aremu is online"}</Tooltip.Content>
-      </Tooltip.Positioner>
-    </Tooltip.Root>
-  )
+      }
+    </Tooltip.Trigger>
+    <Tooltip.Positioner>
+      <Tooltip.Content>{"Abraham Aremu is online"}</Tooltip.Content>
+    </Tooltip.Positioner>
+  </Tooltip.Root>
 }
 ```
 
