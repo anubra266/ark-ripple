@@ -1,0 +1,46 @@
+import { PasswordInput } from 'ark-ripple/password-input';
+import { passwordStrength, type Options } from 'check-password-strength';
+import { Eye, EyeOff } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/password-input.module.css';
+
+const strengthOptions: Options<string> = [
+  { id: 0, value: 'weak', minDiversity: 0, minLength: 0 },
+  { id: 1, value: 'medium', minDiversity: 2, minLength: 6 },
+  { id: 2, value: 'strong', minDiversity: 4, minLength: 8 },
+];
+
+export component StrengthMeter() {
+  let password = track('asdfasdf');
+
+  let strength = track(() => {
+    if (!@password) return null;
+    const { value } = passwordStrength(@password, strengthOptions);
+    return value;
+  });
+
+  <PasswordInput.Root class={styles.Root}>
+    <PasswordInput.Label class={styles.Label}>{'Password'}</PasswordInput.Label>
+    <PasswordInput.Control class={styles.Control}>
+      <PasswordInput.Input
+        class={styles.Input}
+        value={@password}
+        onInput={(e) => { @password = e.currentTarget.value }}
+        placeholder="Enter your password"
+      />
+      <PasswordInput.VisibilityTrigger class={styles.VisibilityTrigger}>
+        <PasswordInput.Indicator class={styles.Indicator} fallback={EyeOff}>
+          <Eye />
+        </PasswordInput.Indicator>
+      </PasswordInput.VisibilityTrigger>
+    </PasswordInput.Control>
+    if (@strength) {
+      <div class={styles.StrengthMeter}>
+        <div class={styles.StrengthBar}>
+          <div class={styles.StrengthFill} data-strength={@strength} />
+        </div>
+        <div class={styles.StrengthLabel}>{@strength}{' password'}</div>
+      </div>
+    }
+  </PasswordInput.Root>
+}

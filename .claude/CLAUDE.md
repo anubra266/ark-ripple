@@ -185,7 +185,63 @@ import { Pencil, Check, X, ChevronDown, Play } from 'lucide-ripple'
 import { PencilIcon, CheckIcon, XIcon, ChevronDownIcon, PlayIcon } from 'lucide-ripple'
 ```
 
-### 9. `class` not `className`
+### 9. Passing elements/components as props
+
+Don't use `fallback={<EyeOff />}` (instantiated JSX in prop value). Two patterns:
+
+```ripple
+// ✅ CORRECT — pass component reference as prop (preferred when no props needed)
+<PasswordInput.Indicator fallback={EyeOff}>
+  <Eye />
+</PasswordInput.Indicator>
+
+// ✅ CORRECT — named children component inside element body (when you need to pass props or compose)
+<PasswordInput.Indicator>
+  component fallback() {
+    <EyeOff />
+  }
+  <Eye />
+</PasswordInput.Indicator>
+
+// ❌ WRONG — instantiated JSX as prop value
+<PasswordInput.Indicator fallback={<EyeOff />}>
+```
+
+Same applies to any prop that accepts renderable content.
+
+### 10. `track` must be imported in examples
+
+Examples that use `track()` must explicitly import it. Component files under `src/components/` get it auto-injected by the compiler, but example files do not.
+
+```ripple
+// ✅ CORRECT — import track in examples
+import { track } from 'ripple';
+
+export component Controlled() {
+  let open = track(false);
+  // ...
+}
+
+// ❌ WRONG — track not imported, will throw "track is not defined"
+export component Controlled() {
+  let open = track(false);
+}
+```
+
+### 11. Prefer `onInput` over `onChange` for native input elements
+
+`onChange` maps to the DOM `change` event (fires on blur/commit). `onInput` maps to the DOM `input` event (fires on every keystroke). When communicating directly with a native `<input>`, prefer `onInput`. Keep `onChange` only for component callback props (e.g. `onValueChange`, `onPageSizeChange`) or `<select>` elements.
+
+```ripple
+// ✅ CORRECT — onInput for native input interactions
+<input onInput={(e) => { @value = e.target.value }} />
+<select onChange={(e) => @context.setPageSize(Number(e.target.value))} />
+
+// ❌ WRONG — onChange on text input only fires on blur
+<input onChange={(e) => { @value = e.target.value }} />
+```
+
+### 12. `class` not `className`
 
 ```ripple
 // ✅ CORRECT
@@ -195,7 +251,35 @@ import { PencilIcon, CheckIcon, XIcon, ChevronDownIcon, PlayIcon } from 'lucide-
 <div className={styles.Root}>
 ```
 
-### 9. Template refs
+### 13. Shorthand props
+
+When prop name matches variable name, use `{varName}` not `varName={varName}`:
+
+```ripple
+// ✅ CORRECT
+<Ellipsis {index}>
+<Combobox.Root {collection}>
+
+// ❌ WRONG
+<Ellipsis index={index}>
+<Combobox.Root collection={collection}>
+```
+
+### 14. Content-based keys for dynamic lists
+
+Ripple's keyed `for` loop reuses components for matching keys WITHOUT updating props. Use content-based keys instead of index keys for lists whose content shifts:
+
+```ripple
+// ✅ CORRECT — content-based key
+for (const [index, page] of @context.pages.entries(); key page.value) { ... }
+
+// ❌ WRONG — index keys cause stale DOM when list content shifts
+for (const [index, page] of @context.pages.entries(); key index) { ... }
+```
+
+Note: `@` in `for` key expressions is parsed as a decorator — avoid it. Use `.entries()` for index access.
+
+### 15. Template refs
 
 ```ripple
 let inputEl: HTMLInputElement
@@ -538,6 +622,24 @@ bun add -d image-conversion
 React examples location: `ark/packages/react/src/components/[component]/examples/`
 Ripple examples location: `packages/ripple/src/components/[component]/examples/`
 
+### Render-testing every example
+
+After building a component, **always** create a temporary test file that renders and interacts with each example before considering the component done. There are almost always bugs that only surface when actually rendering (missing `track` imports, wrong event handlers, etc.).
+
+```typescript
+// tests/examples.test.ts — render every example, click buttons, type in inputs
+import { Basic } from '../examples/basic.ripple'
+// ... import all examples
+
+describe('ComponentName Examples', () => {
+  it('Basic - should render and interact', async () => {
+    render(Basic)
+    // verify key elements render and basic interactions work
+  })
+  // ... test each example
+})
+```
+
 ### Checking example parity
 
 After developing or updating a component's examples, **always** run:
@@ -564,12 +666,4 @@ Changeset format (use `patch` for new components):
 ---
 
 Add [ComponentName] component
-```
-
-## Storybook
-
-New story files require a full server restart to be indexed (HMR does not pick up new files):
-
-```bash
-bun run ripple dev
 ```

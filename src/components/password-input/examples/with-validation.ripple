@@ -1,0 +1,36 @@
+import { PasswordInput } from 'ark-ripple/password-input';
+import { Eye, EyeOff } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/password-input.module.css';
+
+export component WithValidation() {
+  let password = track('');
+  let isValid = track(() => @password.length >= 8);
+
+  <PasswordInput.Root class={styles.Root} invalid={!@isValid && @password.length > 0}>
+    <PasswordInput.Label class={styles.Label}>{'Password (min 8 characters)'}</PasswordInput.Label>
+    <PasswordInput.Control class={styles.Control}>
+      <PasswordInput.Input
+        class={styles.Input}
+        value={@password}
+        onInput={(e) => { @password = e.target.value }}
+        placeholder="Enter your password"
+      />
+      <PasswordInput.VisibilityTrigger class={styles.VisibilityTrigger}>
+        <PasswordInput.Indicator class={styles.Indicator} fallback={EyeOff}>
+          <Eye />
+        </PasswordInput.Indicator>
+      </PasswordInput.VisibilityTrigger>
+    </PasswordInput.Control>
+    if (@password.length > 0 && !@isValid) {
+      <p class={styles.ValidationMessage} data-valid="false">
+        {'Password must be at least 8 characters'}
+      </p>
+    }
+    if (@isValid && @password.length > 0) {
+      <p class={styles.ValidationMessage} data-valid="true">
+        {'Password is valid'}
+      </p>
+    }
+  </PasswordInput.Root>
+}
