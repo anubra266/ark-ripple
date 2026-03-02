@@ -12,7 +12,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
   {
     title: 'Overview',
     items: [{ id: 'getting-started' }, 
-      // { id: 'changelog' }, 
+      { id: 'changelog' }, 
       // { id: 'about', title: 'About' }
     ],
   },

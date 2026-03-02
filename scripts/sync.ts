@@ -36,6 +36,13 @@ function syncRipplePackage() {
   log('Copying src/ → ark/packages/ripple/src/');
   mkdirSync(RIPPLE_DEST, { recursive: true });
   cpSync(SRC, RIPPLE_DEST, { recursive: true });
+
+  const changelog = join(ROOT, 'CHANGELOG.md');
+  if (existsSync(changelog)) {
+    const dest = join(dirname(RIPPLE_DEST), 'CHANGELOG.md');
+    log('Copying CHANGELOG.md → ark/packages/ripple/CHANGELOG.md');
+    cpSync(changelog, dest);
+  }
 }
 
 function syncOverrides() {
