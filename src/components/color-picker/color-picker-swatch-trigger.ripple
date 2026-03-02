@@ -5,10 +5,12 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerSwatchTriggerBaseProps extends PolymorphicProps<'button'> {
-value: any;
+  value: any;
   disabled?: boolean | undefined;
 }
-export interface ColorPickerSwatchTriggerProps extends HTMLProps<'button'>, ColorPickerSwatchTriggerBaseProps {}
+export interface ColorPickerSwatchTriggerProps extends HTMLProps<
+  'button'
+>, ColorPickerSwatchTriggerBaseProps {}
 
 export component ColorPickerSwatchTrigger(props: MaybeTracked<ColorPickerSwatchTriggerProps>) {
   const [children, value, disabled, localProps] = trackSplit(props, [

@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SignaturePadRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseSignaturePadReturn;
+  value: UseSignaturePadReturn;
 }
-export interface SignaturePadRootProviderProps extends HTMLProps<'div'>, SignaturePadRootProviderBaseProps {}
+export interface SignaturePadRootProviderProps extends HTMLProps<
+  'div'
+>, SignaturePadRootProviderBaseProps {}
 
 export component SignaturePadRootProvider(props: MaybeTracked<SignaturePadRootProviderProps>) {
   const [signaturePad, children, rest] = trackSplit(props, ['value', 'children']);

@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface RadioGroupItemControlBaseProps extends PolymorphicProps<'div'> {}
-export interface RadioGroupItemControlProps extends HTMLProps<'div'>, RadioGroupItemControlBaseProps {}
+export interface RadioGroupItemControlProps extends HTMLProps<
+  'div'
+>, RadioGroupItemControlBaseProps {}
 
 export component RadioGroupItemControl(props: MaybeTracked<RadioGroupItemControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

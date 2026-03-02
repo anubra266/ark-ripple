@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface RatingGroupHiddenInputBaseProps extends PolymorphicProps<'input'> {}
-export interface RatingGroupHiddenInputProps extends HTMLProps<'input'>, RatingGroupHiddenInputBaseProps {}
+export interface RatingGroupHiddenInputProps extends HTMLProps<
+  'input'
+>, RatingGroupHiddenInputBaseProps {}
 
 export component RatingGroupHiddenInput(props: MaybeTracked<RatingGroupHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);

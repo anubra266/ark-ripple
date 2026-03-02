@@ -9,9 +9,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ComboboxRootProviderBaseProps extends PolymorphicProps<'div'>, UsePresenceProps {
-value: UseComboboxReturn<any>;
+  value: UseComboboxReturn<any>;
 }
-export interface ComboboxRootProviderProps extends HTMLProps<'div'>, ComboboxRootProviderBaseProps {}
+export interface ComboboxRootProviderProps extends HTMLProps<
+  'div'
+>, ComboboxRootProviderBaseProps {}
 
 export component ComboboxRootProvider(props: MaybeTracked<ComboboxRootProviderProps>) {
   const [children, value, rest] = trackSplit(props, ['children', 'value']);

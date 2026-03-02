@@ -22,7 +22,9 @@ export component InitialFocusEl() {
               class={field.Input}
               placeholder="First Name"
               value="John"
-              {ref (el: HTMLInputElement) => { inputEl = el }}
+              {ref (el: HTMLInputElement) => {
+                inputEl = el;
+              }}
             />
             <input class={field.Input} placeholder="Last Name" />
             <textarea class={field.Textarea} placeholder="Add details" />

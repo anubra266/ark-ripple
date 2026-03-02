@@ -8,7 +8,9 @@ import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const splitActionTriggerProps = createSplitProps<ActionTriggerProps>();
 
-export interface TimerActionTriggerBaseProps extends PolymorphicProps<'button'>, ActionTriggerProps {}
+export interface TimerActionTriggerBaseProps extends PolymorphicProps<
+  'button'
+>, ActionTriggerProps {}
 export interface TimerActionTriggerProps extends HTMLProps<'button'>, TimerActionTriggerBaseProps {}
 
 export component TimerActionTrigger(props: MaybeTracked<TimerActionTriggerProps>) {

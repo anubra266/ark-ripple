@@ -7,7 +7,9 @@ import { useAccordionItemPropsContext } from './use-accordion-item-props-context
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface AccordionItemContentBaseProps extends PolymorphicProps<'div'> {}
-export interface AccordionItemContentProps extends HTMLProps<'div'>, AccordionItemContentBaseProps {}
+export interface AccordionItemContentProps extends HTMLProps<
+  'div'
+>, AccordionItemContentBaseProps {}
 
 export component AccordionItemContent(props: MaybeTracked<AccordionItemContentProps>) {
   const [children, rest] = trackSplit(props, ['children']);

@@ -5,9 +5,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerTransparencyGridBaseProps extends PolymorphicProps<'div'> {
-size?: string | undefined;
+  size?: string | undefined;
 }
-export interface ColorPickerTransparencyGridProps extends HTMLProps<'div'>, ColorPickerTransparencyGridBaseProps {}
+export interface ColorPickerTransparencyGridProps extends HTMLProps<
+  'div'
+>, ColorPickerTransparencyGridBaseProps {}
 
 export component ColorPickerTransparencyGrid(props: MaybeTracked<ColorPickerTransparencyGridProps>) {
   const [size, localProps] = trackSplit(props, ['size']);

@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TimerRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseTimerReturn;
+  value: UseTimerReturn;
 }
 export interface TimerRootProviderProps extends HTMLProps<'div'>, TimerRootProviderBaseProps {}
 

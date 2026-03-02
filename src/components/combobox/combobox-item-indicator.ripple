@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ComboboxItemIndicatorBaseProps extends PolymorphicProps<'div'> {}
-export interface ComboboxItemIndicatorProps extends HTMLProps<'div'>, ComboboxItemIndicatorBaseProps {}
+export interface ComboboxItemIndicatorProps extends HTMLProps<
+  'div'
+>, ComboboxItemIndicatorBaseProps {}
 
 export component ComboboxItemIndicator(props: MaybeTracked<ComboboxItemIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

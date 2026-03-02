@@ -6,8 +6,10 @@ import { useLocaleContext } from '../../providers/locale';
 import { useId } from '../../utils/use-id';
 import type { Optional } from '../../types';
 
-export interface UsePopoverProps
-  extends Optional<Omit<popover.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export interface UsePopoverProps extends Optional<
+  Omit<popover.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
 export type UsePopoverReturn = ReturnType<typeof usePopover>;
 
 export function usePopover(props: UsePopoverProps = {}) {

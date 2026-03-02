@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SliderDraggingIndicatorBaseProps extends PolymorphicProps<'span'> {}
-export interface SliderDraggingIndicatorProps extends HTMLProps<'span'>, SliderDraggingIndicatorBaseProps {}
+export interface SliderDraggingIndicatorProps extends HTMLProps<
+  'span'
+>, SliderDraggingIndicatorBaseProps {}
 
 export component SliderDraggingIndicator(props: MaybeTracked<SliderDraggingIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

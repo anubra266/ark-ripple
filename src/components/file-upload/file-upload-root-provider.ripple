@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FileUploadRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseFileUploadReturn;
+  value: UseFileUploadReturn;
 }
-export interface FileUploadRootProviderProps extends HTMLProps<'div'>, FileUploadRootProviderBaseProps {}
+export interface FileUploadRootProviderProps extends HTMLProps<
+  'div'
+>, FileUploadRootProviderBaseProps {}
 
 export component FileUploadRootProvider(props: MaybeTracked<FileUploadRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

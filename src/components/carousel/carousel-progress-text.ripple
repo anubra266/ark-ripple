@@ -8,7 +8,9 @@ import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 const parts = carouselAnatomy.build();
 
 export interface CarouselProgressTextBaseProps extends PolymorphicProps<'span'> {}
-export interface CarouselProgressTextProps extends HTMLProps<'span'>, CarouselProgressTextBaseProps {}
+export interface CarouselProgressTextProps extends HTMLProps<
+  'span'
+>, CarouselProgressTextBaseProps {}
 
 export component CarouselProgressText(props: MaybeTracked<CarouselProgressTextProps>) {
   const [children, rest] = trackSplit(props, ['children']);

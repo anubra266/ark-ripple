@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ScrollAreaScrollbarBaseProps extends PolymorphicProps<'div'> {
-orientation?: 'horizontal' | 'vertical';
+  orientation?: 'horizontal' | 'vertical';
 }
 export interface ScrollAreaScrollbarProps extends HTMLProps<'div'>, ScrollAreaScrollbarBaseProps {}
 

@@ -11,7 +11,9 @@ import { splitAccordionProps } from './split-accordion-props.ripple';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionRootBaseProps extends PolymorphicProps<'div'>, UseAccordionProps, RenderStrategyProps {}
+export interface AccordionRootBaseProps extends PolymorphicProps<
+  'div'
+>, UseAccordionProps, RenderStrategyProps {}
 export interface AccordionRootProps extends HTMLProps<'div'>, AccordionRootBaseProps {}
 
 export component AccordionRoot(props: MaybeTracked<AccordionRootProps>) {

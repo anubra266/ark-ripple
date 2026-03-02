@@ -8,7 +8,10 @@ import { useId } from '../../utils/use-id';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerTableBaseProps extends PolymorphicProps<'table'>, Pick<TableProps, 'columns'> {}
+export interface DatePickerTableBaseProps extends PolymorphicProps<'table'>, Pick<
+  TableProps,
+  'columns'
+> {}
 export interface DatePickerTableProps extends HTMLProps<'table'>, DatePickerTableBaseProps {}
 
 export component DatePickerTable(props: MaybeTracked<DatePickerTableProps>) {

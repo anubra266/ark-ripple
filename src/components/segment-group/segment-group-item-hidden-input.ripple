@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SegmentGroupItemHiddenInputBaseProps extends PolymorphicProps<'input'> {}
-export interface SegmentGroupItemHiddenInputProps extends HTMLProps<'input'>, SegmentGroupItemHiddenInputBaseProps {}
+export interface SegmentGroupItemHiddenInputProps extends HTMLProps<
+  'input'
+>, SegmentGroupItemHiddenInputBaseProps {}
 
 export component SegmentGroupItemHiddenInput(props: MaybeTracked<SegmentGroupItemHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);

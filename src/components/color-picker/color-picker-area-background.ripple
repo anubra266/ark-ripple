@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerAreaBackgroundBaseProps extends PolymorphicProps<'div'> {}
-export interface ColorPickerAreaBackgroundProps extends HTMLProps<'div'>, ColorPickerAreaBackgroundBaseProps {}
+export interface ColorPickerAreaBackgroundProps extends HTMLProps<
+  'div'
+>, ColorPickerAreaBackgroundBaseProps {}
 
 export component ColorPickerAreaBackground(props: MaybeTracked<ColorPickerAreaBackgroundProps>) {
   const colorPicker = useColorPickerContext();

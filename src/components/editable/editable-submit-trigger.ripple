@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface EditableSubmitTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface EditableSubmitTriggerProps extends HTMLProps<'button'>, EditableSubmitTriggerBaseProps {}
+export interface EditableSubmitTriggerProps extends HTMLProps<
+  'button'
+>, EditableSubmitTriggerBaseProps {}
 
 export component EditableSubmitTrigger(props: MaybeTracked<EditableSubmitTriggerProps>) {
   const [children, rest] = trackSplit(props, ['children']);

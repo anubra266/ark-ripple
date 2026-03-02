@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SelectItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
-export interface SelectItemGroupLabelProps extends HTMLProps<'div'>, SelectItemGroupLabelBaseProps {}
+export interface SelectItemGroupLabelProps extends HTMLProps<
+  'div'
+>, SelectItemGroupLabelBaseProps {}
 
 export component SelectItemGroupLabel(props: MaybeTracked<SelectItemGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

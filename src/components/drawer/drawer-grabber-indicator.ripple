@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DrawerGrabberIndicatorBaseProps extends PolymorphicProps<'div'> {}
-export interface DrawerGrabberIndicatorProps extends HTMLProps<'div'>, DrawerGrabberIndicatorBaseProps {}
+export interface DrawerGrabberIndicatorProps extends HTMLProps<
+  'div'
+>, DrawerGrabberIndicatorBaseProps {}
 
 export component DrawerGrabberIndicator(props: MaybeTracked<DrawerGrabberIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

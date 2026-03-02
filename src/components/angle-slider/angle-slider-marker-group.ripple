@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface AngleSliderMarkerGroupBaseProps extends PolymorphicProps<'div'> {}
-export interface AngleSliderMarkerGroupProps extends HTMLProps<'div'>, AngleSliderMarkerGroupBaseProps {}
+export interface AngleSliderMarkerGroupProps extends HTMLProps<
+  'div'
+>, AngleSliderMarkerGroupBaseProps {}
 
 export component AngleSliderMarkerGroup(props: MaybeTracked<AngleSliderMarkerGroupProps>) {
   const [children, rest] = trackSplit(props, ['children']);

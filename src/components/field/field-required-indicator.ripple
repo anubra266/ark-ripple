@@ -5,10 +5,12 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FieldRequiredIndicatorBaseProps extends PolymorphicProps<'span'> {
-fallback?: Component;
+  fallback?: Component;
   children?: Component;
 }
-export interface FieldRequiredIndicatorProps extends HTMLProps<'span'>, FieldRequiredIndicatorBaseProps {}
+export interface FieldRequiredIndicatorProps extends HTMLProps<
+  'span'
+>, FieldRequiredIndicatorBaseProps {}
 
 export component FieldRequiredIndicator(props: MaybeTracked<FieldRequiredIndicatorProps>) {
   const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);

@@ -10,7 +10,9 @@ import type { UsePresenceProps } from '../presence/use-presence.ripple';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxRootBaseProps<T = any> extends PolymorphicProps<'div'>, UseComboboxProps<T>, UsePresenceProps {}
+export interface ComboboxRootBaseProps<T = any> extends PolymorphicProps<'div'>, UseComboboxProps<
+  T
+>, UsePresenceProps {}
 export interface ComboboxRootProps<T = any> extends HTMLProps<'div'>, ComboboxRootBaseProps<T> {}
 
 export component ComboboxRoot(props: MaybeTracked<ComboboxRootProps>) {

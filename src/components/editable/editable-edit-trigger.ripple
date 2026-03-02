@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface EditableEditTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface EditableEditTriggerProps extends HTMLProps<'button'>, EditableEditTriggerBaseProps {}
+export interface EditableEditTriggerProps extends HTMLProps<
+  'button'
+>, EditableEditTriggerBaseProps {}
 
 export component EditableEditTrigger(props: MaybeTracked<EditableEditTriggerProps>) {
   const [children, rest] = trackSplit(props, ['children']);

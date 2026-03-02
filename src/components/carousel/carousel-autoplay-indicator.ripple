@@ -8,12 +8,14 @@ import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 const parts = carouselAnatomy.build();
 
 export interface CarouselAutoplayIndicatorBaseProps extends PolymorphicProps<'span'> {
-/**
+  /**
  * The fallback snippet to render when autoplay is paused.
 */
   fallback?: Component;
 }
-export interface CarouselAutoplayIndicatorProps extends HTMLProps<'span'>, CarouselAutoplayIndicatorBaseProps {}
+export interface CarouselAutoplayIndicatorProps extends HTMLProps<
+  'span'
+>, CarouselAutoplayIndicatorBaseProps {}
 
 export component CarouselAutoplayIndicator(props: MaybeTracked<CarouselAutoplayIndicatorProps>) {
   const [children, fallback, rest] = trackSplit(props, ['children', 'fallback']);

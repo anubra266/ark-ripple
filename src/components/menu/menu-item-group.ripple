@@ -7,7 +7,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface MenuItemGroupBaseProps extends PolymorphicProps<'div'> {
-id?: string | undefined;
+  id?: string | undefined;
 }
 export interface MenuItemGroupProps extends HTMLProps<'div'>, MenuItemGroupBaseProps {}
 

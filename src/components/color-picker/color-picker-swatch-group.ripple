@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerSwatchGroupBaseProps extends PolymorphicProps<'div'> {}
-export interface ColorPickerSwatchGroupProps extends HTMLProps<'div'>, ColorPickerSwatchGroupBaseProps {}
+export interface ColorPickerSwatchGroupProps extends HTMLProps<
+  'div'
+>, ColorPickerSwatchGroupBaseProps {}
 
 export component ColorPickerSwatchGroup(props: MaybeTracked<ColorPickerSwatchGroupProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

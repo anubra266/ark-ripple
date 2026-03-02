@@ -7,7 +7,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DatePickerTableCellTriggerBaseProps extends PolymorphicProps<'div'> {}
-export interface DatePickerTableCellTriggerProps extends HTMLProps<'div'>, DatePickerTableCellTriggerBaseProps {}
+export interface DatePickerTableCellTriggerProps extends HTMLProps<
+  'div'
+>, DatePickerTableCellTriggerBaseProps {}
 
 export component DatePickerTableCellTrigger(props: MaybeTracked<DatePickerTableCellTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DatePickerViewControlBaseProps extends PolymorphicProps<'div'> {}
-export interface DatePickerViewControlProps extends HTMLProps<'div'>, DatePickerViewControlBaseProps {}
+export interface DatePickerViewControlProps extends HTMLProps<
+  'div'
+>, DatePickerViewControlBaseProps {}
 
 export component DatePickerViewControl(props: MaybeTracked<DatePickerViewControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

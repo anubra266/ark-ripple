@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CheckboxGroupProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseCheckboxGroupReturn;
+  value: UseCheckboxGroupReturn;
 }
-export interface CheckboxGroupProviderProps extends HTMLProps<'div'>, CheckboxGroupProviderBaseProps {}
+export interface CheckboxGroupProviderProps extends HTMLProps<
+  'div'
+>, CheckboxGroupProviderBaseProps {}
 
 export component CheckboxGroupProvider(props: MaybeTracked<CheckboxGroupProviderProps>) {
   const [group, children, localProps] = trackSplit(props, ['value', 'children']);

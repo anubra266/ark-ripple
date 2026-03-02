@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CheckboxHiddenInputBaseProps extends PolymorphicProps<'input'> {}
-export interface CheckboxHiddenInputProps extends HTMLProps<'input'>, CheckboxHiddenInputBaseProps {}
+export interface CheckboxHiddenInputProps extends HTMLProps<
+  'input'
+>, CheckboxHiddenInputBaseProps {}
 
 export component CheckboxHiddenInput(props: MaybeTracked<CheckboxHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);

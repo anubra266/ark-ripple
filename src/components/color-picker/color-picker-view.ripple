@@ -7,7 +7,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerViewBaseProps extends PolymorphicProps<'div'> {
-format: ColorFormat;
+  format: ColorFormat;
 }
 export interface ColorPickerViewProps extends HTMLProps<'div'>, ColorPickerViewBaseProps {}
 

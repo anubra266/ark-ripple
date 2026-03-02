@@ -2,10 +2,11 @@ import { Popover } from 'ark-ripple/popover';
 
 export component AsChild() {
   <Popover.Root>
-    <Popover.Trigger asChild={component(propsFn) {
-      <button {...propsFn()}>{'Open Popover'}</button>
-    }}>
-    </Popover.Trigger>
+    <Popover.Trigger
+      asChild={component(propsFn) {
+        <button {...propsFn()}>{'Open Popover'}</button>
+      }}
+    />
     <Popover.Positioner>
       <Popover.Content>{'Content'}</Popover.Content>
     </Popover.Positioner>

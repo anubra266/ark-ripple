@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerChannelSliderLabelBaseProps extends PolymorphicProps<'label'> {}
-export interface ColorPickerChannelSliderLabelProps extends HTMLProps<'label'>, ColorPickerChannelSliderLabelBaseProps {}
+export interface ColorPickerChannelSliderLabelProps extends HTMLProps<
+  'label'
+>, ColorPickerChannelSliderLabelBaseProps {}
 
 export component ColorPickerChannelSliderLabel(props: MaybeTracked<ColorPickerChannelSliderLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

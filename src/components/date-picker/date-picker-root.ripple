@@ -10,7 +10,9 @@ import type { UsePresenceProps } from '../presence/use-presence.ripple';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerRootBaseProps extends PolymorphicProps<'div'>, UseDatePickerProps, UsePresenceProps {}
+export interface DatePickerRootBaseProps extends PolymorphicProps<
+  'div'
+>, UseDatePickerProps, UsePresenceProps {}
 export interface DatePickerRootProps extends HTMLProps<'div'>, DatePickerRootBaseProps {}
 
 export component DatePickerRoot(props: MaybeTracked<DatePickerRootProps>) {

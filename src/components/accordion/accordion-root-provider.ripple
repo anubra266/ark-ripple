@@ -10,10 +10,14 @@ import type { UseAccordionReturn } from './use-accordion.ripple';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionRootProviderBaseProps extends PolymorphicProps<'div'>, RenderStrategyProps {
-value: UseAccordionReturn;
+export interface AccordionRootProviderBaseProps extends PolymorphicProps<
+  'div'
+>, RenderStrategyProps {
+  value: UseAccordionReturn;
 }
-export interface AccordionRootProviderProps extends HTMLProps<'div'>, AccordionRootProviderBaseProps {}
+export interface AccordionRootProviderProps extends HTMLProps<
+  'div'
+>, AccordionRootProviderBaseProps {}
 
 export component AccordionRootProvider(props: MaybeTracked<AccordionRootProviderProps>) {
   const [children, rest] = trackSplit(props, ['children']);

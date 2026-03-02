@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FileUploadHiddenInputBaseProps extends PolymorphicProps<'input'> {}
-export interface FileUploadHiddenInputProps extends HTMLProps<'input'>, FileUploadHiddenInputBaseProps {}
+export interface FileUploadHiddenInputProps extends HTMLProps<
+  'input'
+>, FileUploadHiddenInputBaseProps {}
 
 export component FileUploadHiddenInput(props: MaybeTracked<FileUploadHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);

@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CarouselAutoplayTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface CarouselAutoplayTriggerProps extends HTMLProps<'button'>, CarouselAutoplayTriggerBaseProps {}
+export interface CarouselAutoplayTriggerProps extends HTMLProps<
+  'button'
+>, CarouselAutoplayTriggerBaseProps {}
 
 export component CarouselAutoplayTrigger(props: MaybeTracked<CarouselAutoplayTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

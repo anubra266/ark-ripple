@@ -29,10 +29,7 @@ export {
   type PopoverContentBaseProps,
   type PopoverContentProps,
 } from './popover-content.ripple';
-export {
-  PopoverContext,
-  type PopoverContextProps,
-} from './popover-context.ripple';
+export { PopoverContext, type PopoverContextProps } from './popover-context.ripple';
 export {
   PopoverDescription,
   type PopoverDescriptionBaseProps,

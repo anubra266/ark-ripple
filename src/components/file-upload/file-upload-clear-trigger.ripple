@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FileUploadClearTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface FileUploadClearTriggerProps extends HTMLProps<'button'>, FileUploadClearTriggerBaseProps {}
+export interface FileUploadClearTriggerProps extends HTMLProps<
+  'button'
+>, FileUploadClearTriggerBaseProps {}
 
 export component FileUploadClearTrigger(props: MaybeTracked<FileUploadClearTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

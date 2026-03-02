@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface EditableRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseEditableReturn;
+  value: UseEditableReturn;
 }
-export interface EditableRootProviderProps extends HTMLProps<'div'>, EditableRootProviderBaseProps {}
+export interface EditableRootProviderProps extends HTMLProps<
+  'div'
+>, EditableRootProviderBaseProps {}
 
 export component EditableRootProvider(props: MaybeTracked<EditableRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CarouselRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseCarouselReturn;
+  value: UseCarouselReturn;
 }
-export interface CarouselRootProviderProps extends HTMLProps<'div'>, CarouselRootProviderBaseProps {}
+export interface CarouselRootProviderProps extends HTMLProps<
+  'div'
+>, CarouselRootProviderBaseProps {}
 
 export component CarouselRootProvider(props: MaybeTracked<CarouselRootProviderProps>) {
   const [carousel, children, rest] = trackSplit(props, ['value', 'children']);

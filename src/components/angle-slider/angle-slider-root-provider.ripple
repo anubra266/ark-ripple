@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface AngleSliderRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseAngleSliderReturn;
+  value: UseAngleSliderReturn;
 }
-export interface AngleSliderRootProviderProps extends HTMLProps<'div'>, AngleSliderRootProviderBaseProps {}
+export interface AngleSliderRootProviderProps extends HTMLProps<
+  'div'
+>, AngleSliderRootProviderBaseProps {}
 
 export component AngleSliderRootProvider(props: MaybeTracked<AngleSliderRootProviderProps>) {
   const [angleSlider, children, rest] = trackSplit(props, ['value', 'children']);

@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DatePickerWeekNumberHeaderCellBaseProps extends PolymorphicProps<'th'> {}
-export interface DatePickerWeekNumberHeaderCellProps extends HTMLProps<'th'>, DatePickerWeekNumberHeaderCellBaseProps {}
+export interface DatePickerWeekNumberHeaderCellProps extends HTMLProps<
+  'th'
+>, DatePickerWeekNumberHeaderCellBaseProps {}
 
 export component DatePickerWeekNumberHeaderCell(props: MaybeTracked<DatePickerWeekNumberHeaderCellProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

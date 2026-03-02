@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DatePickerValueTextBaseProps extends PolymorphicProps<'span'> {
-placeholder?: string | undefined;
+  placeholder?: string | undefined;
   separator?: string | undefined;
 }
 export interface DatePickerValueTextProps extends HTMLProps<'span'>, DatePickerValueTextBaseProps {}

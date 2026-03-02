@@ -8,7 +8,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerChannelSliderBaseProps extends PolymorphicProps<'div'>, ChannelProps {}
-export interface ColorPickerChannelSliderProps extends HTMLProps<'div'>, ColorPickerChannelSliderBaseProps {}
+export interface ColorPickerChannelSliderProps extends HTMLProps<
+  'div'
+>, ColorPickerChannelSliderBaseProps {}
 
 export component ColorPickerChannelSlider(props: MaybeTracked<ColorPickerChannelSliderProps>) {
   const [children, channel, orientation, localProps] = trackSplit(props, [

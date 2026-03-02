@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CollapsibleIndicatorBaseProps extends PolymorphicProps<'div'> {}
-export interface CollapsibleIndicatorProps extends HTMLProps<'div'>, CollapsibleIndicatorBaseProps {}
+export interface CollapsibleIndicatorProps extends HTMLProps<
+  'div'
+>, CollapsibleIndicatorBaseProps {}
 
 export component CollapsibleIndicator(props: MaybeTracked<CollapsibleIndicatorProps>) {
   const [children, rest] = trackSplit(props, ['children']);

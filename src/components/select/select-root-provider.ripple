@@ -9,7 +9,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SelectRootProviderBaseProps extends PolymorphicProps<'div'>, UsePresenceProps {
-value: UseSelectReturn;
+  value: UseSelectReturn;
 }
 export interface SelectRootProviderProps extends HTMLProps<'div'>, SelectRootProviderBaseProps {}
 

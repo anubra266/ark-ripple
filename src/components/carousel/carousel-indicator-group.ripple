@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CarouselIndicatorGroupBaseProps extends PolymorphicProps<'div'> {}
-export interface CarouselIndicatorGroupProps extends HTMLProps<'div'>, CarouselIndicatorGroupBaseProps {}
+export interface CarouselIndicatorGroupProps extends HTMLProps<
+  'div'
+>, CarouselIndicatorGroupBaseProps {}
 
 export component CarouselIndicatorGroup(props: MaybeTracked<CarouselIndicatorGroupProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

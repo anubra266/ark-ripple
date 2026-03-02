@@ -10,7 +10,9 @@ import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
 
-export interface MenuCheckboxItemBaseProps extends PolymorphicProps<'div'>, PartialOptionItemProps {}
+export interface MenuCheckboxItemBaseProps extends PolymorphicProps<
+  'div'
+>, PartialOptionItemProps {}
 export interface MenuCheckboxItemProps extends HTMLProps<'div'>, MenuCheckboxItemBaseProps {}
 
 export component MenuCheckboxItem(props: MaybeTracked<MenuCheckboxItemProps>) {

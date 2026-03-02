@@ -5,7 +5,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ClipboardIndicatorBaseProps extends PolymorphicProps<'div'> {
-/** Content to show when copied */
+  /** Content to show when copied */
   copied?: any;
 }
 export interface ClipboardIndicatorProps extends HTMLProps<'div'>, ClipboardIndicatorBaseProps {}

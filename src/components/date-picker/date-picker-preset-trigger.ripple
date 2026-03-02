@@ -5,8 +5,12 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerPresetTriggerBaseProps extends PolymorphicProps<'button'>, PresetTriggerProps {}
-export interface DatePickerPresetTriggerProps extends HTMLProps<'button'>, DatePickerPresetTriggerBaseProps {}
+export interface DatePickerPresetTriggerBaseProps extends PolymorphicProps<
+  'button'
+>, PresetTriggerProps {}
+export interface DatePickerPresetTriggerProps extends HTMLProps<
+  'button'
+>, DatePickerPresetTriggerBaseProps {}
 
 export component DatePickerPresetTrigger(props: MaybeTracked<DatePickerPresetTriggerProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

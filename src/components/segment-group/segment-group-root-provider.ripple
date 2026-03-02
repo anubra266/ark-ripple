@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SegmentGroupRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseSegmentGroupReturn;
+  value: UseSegmentGroupReturn;
 }
-export interface SegmentGroupRootProviderProps extends HTMLProps<'div'>, SegmentGroupRootProviderBaseProps {}
+export interface SegmentGroupRootProviderProps extends HTMLProps<
+  'div'
+>, SegmentGroupRootProviderBaseProps {}
 
 export component SegmentGroupRootProvider(props: MaybeTracked<SegmentGroupRootProviderProps>) {
   const [segmentGroup, children, rest] = trackSplit(props, ['value', 'children']);

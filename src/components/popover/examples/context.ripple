@@ -14,7 +14,10 @@ export component Context() {
           <Popover.Description class={styles.Description}>
             <Popover.Context>
               component children({ context }) {
-                <span>{'Popover is '}{@context.open ? 'visible' : 'hidden'}</span>
+                <span>
+                  {'Popover is '}
+                  {@context.open ? 'visible' : 'hidden'}
+                </span>
               }
             </Popover.Context>
           </Popover.Description>

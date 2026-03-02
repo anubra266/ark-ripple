@@ -5,8 +5,12 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerChannelInputBaseProps extends PolymorphicProps<'input'>, ChannelInputProps {}
-export interface ColorPickerChannelInputProps extends HTMLProps<'input'>, ColorPickerChannelInputBaseProps {}
+export interface ColorPickerChannelInputBaseProps extends PolymorphicProps<
+  'input'
+>, ChannelInputProps {}
+export interface ColorPickerChannelInputProps extends HTMLProps<
+  'input'
+>, ColorPickerChannelInputBaseProps {}
 
 export component ColorPickerChannelInput(props: MaybeTracked<ColorPickerChannelInputProps>) {
   const [channel, orientation, localProps] = trackSplit(props, ['channel', 'orientation']);

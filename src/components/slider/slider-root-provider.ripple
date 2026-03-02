@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SliderRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseSliderReturn;
+  value: UseSliderReturn;
 }
 export interface SliderRootProviderProps extends HTMLProps<'div'>, SliderRootProviderBaseProps {}
 

@@ -21,10 +21,13 @@ export interface UseEnvironmentContext {
   getWindow(): Window & typeof globalThis;
 }
 
-export const EnvironmentContext = new Context<Tracked<UseEnvironmentContext>| UseEnvironmentContext>({
+export const EnvironmentContext = new Context<
+  Tracked<UseEnvironmentContext> | UseEnvironmentContext
+>({
   getRootNode: () => document,
   getDocument: () => document,
   getWindow: () => window,
 });
 
-export const useEnvironmentContext = (): Tracked<UseEnvironmentContext> | UseEnvironmentContext => EnvironmentContext.get();
+export const useEnvironmentContext = (): Tracked<UseEnvironmentContext> | UseEnvironmentContext =>
+  EnvironmentContext.get();

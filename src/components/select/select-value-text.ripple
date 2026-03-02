@@ -5,7 +5,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SelectValueTextBaseProps extends PolymorphicProps<'span'> {
-placeholder?: string | undefined;
+  placeholder?: string | undefined;
 }
 export interface SelectValueTextProps extends HTMLProps<'span'>, SelectValueTextBaseProps {}
 

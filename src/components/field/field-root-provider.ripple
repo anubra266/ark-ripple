@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FieldRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseFieldReturn;
+  value: UseFieldReturn;
 }
 export interface FieldRootProviderProps extends HTMLProps<'div'>, FieldRootProviderBaseProps {}
 

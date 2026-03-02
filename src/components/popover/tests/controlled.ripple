@@ -9,6 +9,13 @@ export component ControlledComponentUnderTest(props: {
 }) {
   let open = track(false);
 
-  <button type="button" onClick={() => { @open = !@open }}>{'toggle'}</button>
-  <ComponentUnderTest {...props} open={@open} />
+  <button
+    type="button"
+    onClick={() => {
+      @open = !@open;
+    }}
+  >
+    {'toggle'}
+  </button>
+  <ComponentUnderTest {...props} {@open} />
 }

@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ToggleGroupRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseToggleGroupReturn;
+  value: UseToggleGroupReturn;
 }
-export interface ToggleGroupRootProviderProps extends HTMLProps<'div'>, ToggleGroupRootProviderBaseProps {}
+export interface ToggleGroupRootProviderProps extends HTMLProps<
+  'div'
+>, ToggleGroupRootProviderBaseProps {}
 
 export component ToggleGroupRootProvider(props: MaybeTracked<ToggleGroupRootProviderProps>) {
   const [toggleGroup, children, rest] = trackSplit(props, ['value', 'children']);

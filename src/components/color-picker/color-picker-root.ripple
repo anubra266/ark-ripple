@@ -9,7 +9,9 @@ import { usePresence, type UsePresenceProps } from '../presence/use-presence.rip
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerRootBaseProps extends PolymorphicProps<'div'>, UseColorPickerProps, UsePresenceProps {}
+export interface ColorPickerRootBaseProps extends PolymorphicProps<
+  'div'
+>, UseColorPickerProps, UsePresenceProps {}
 export interface ColorPickerRootProps extends HTMLProps<'div'>, ColorPickerRootBaseProps {}
 
 export component ColorPickerRoot(props: MaybeTracked<ColorPickerRootProps>) {

@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DrawerIndentBackgroundBaseProps extends PolymorphicProps<'div'> {}
-export interface DrawerIndentBackgroundProps extends HTMLProps<'div'>, DrawerIndentBackgroundBaseProps {}
+export interface DrawerIndentBackgroundProps extends HTMLProps<
+  'div'
+>, DrawerIndentBackgroundBaseProps {}
 
 export component DrawerIndentBackground(props: MaybeTracked<DrawerIndentBackgroundProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

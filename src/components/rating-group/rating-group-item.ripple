@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface RatingGroupItemBaseProps extends PolymorphicProps<'span'> {
-index: number;
+  index: number;
 }
 export interface RatingGroupItemProps extends HTMLProps<'span'>, RatingGroupItemBaseProps {}
 

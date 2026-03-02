@@ -1,7 +1,11 @@
 import { getDocument, getWindow } from '@zag-js/dom-query';
 import { trackSplit, track, type Component, type Tracked } from 'ripple';
 import { runIfFn } from '../../utils/run-if-fn';
-import { EnvironmentContext, type RootNode, type UseEnvironmentContext } from './use-environment-context';
+import {
+  EnvironmentContext,
+  type RootNode,
+  type UseEnvironmentContext,
+} from './use-environment-context';
 import type { MaybeTracked } from '../../types';
 
 export interface EnvironmentProviderProps {

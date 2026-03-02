@@ -5,7 +5,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ToggleIndicatorBaseProps extends PolymorphicProps<'div'> {
-fallback?: any;
+  fallback?: any;
 }
 export interface ToggleIndicatorProps extends HTMLProps<'div'>, ToggleIndicatorBaseProps {}
 

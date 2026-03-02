@@ -6,10 +6,12 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ClipboardRootProviderBaseProps extends PolymorphicProps<'div'> {
-/** The clipboard machine api */
+  /** The clipboard machine api */
   value: UseClipboardReturn;
 }
-export interface ClipboardRootProviderProps extends HTMLProps<'div'>, ClipboardRootProviderBaseProps {}
+export interface ClipboardRootProviderProps extends HTMLProps<
+  'div'
+>, ClipboardRootProviderBaseProps {}
 
 export component ClipboardRootProvider(props: MaybeTracked<ClipboardRootProviderProps>) {
   const [clipboard, children, rest] = trackSplit(props, ['value', 'children']);

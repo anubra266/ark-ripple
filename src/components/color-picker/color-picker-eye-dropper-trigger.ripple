@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerEyeDropperTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface ColorPickerEyeDropperTriggerProps extends HTMLProps<'button'>, ColorPickerEyeDropperTriggerBaseProps {}
+export interface ColorPickerEyeDropperTriggerProps extends HTMLProps<
+  'button'
+>, ColorPickerEyeDropperTriggerBaseProps {}
 
 export component ColorPickerEyeDropperTrigger(props: MaybeTracked<ColorPickerEyeDropperTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

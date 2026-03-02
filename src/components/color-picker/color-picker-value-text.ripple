@@ -5,9 +5,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerValueTextBaseProps extends PolymorphicProps<'span'> {
-format?: string | undefined;
+  format?: string | undefined;
 }
-export interface ColorPickerValueTextProps extends HTMLProps<'span'>, ColorPickerValueTextBaseProps {}
+export interface ColorPickerValueTextProps extends HTMLProps<
+  'span'
+>, ColorPickerValueTextBaseProps {}
 
 export component ColorPickerValueText(props: MaybeTracked<ColorPickerValueTextProps>) {
   const [children, format, localProps] = trackSplit(props, ['children', 'format']);

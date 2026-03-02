@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ScrollAreaRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseScrollAreaReturn;
+  value: UseScrollAreaReturn;
 }
-export interface ScrollAreaRootProviderProps extends HTMLProps<'div'>, ScrollAreaRootProviderBaseProps {}
+export interface ScrollAreaRootProviderProps extends HTMLProps<
+  'div'
+>, ScrollAreaRootProviderBaseProps {}
 
 export component ScrollAreaRootProvider(props: MaybeTracked<ScrollAreaRootProviderProps>) {
   const [scrollArea, children, rest] = trackSplit(props, ['value', 'children']);

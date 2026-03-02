@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface DrawerContentBaseProps extends PolymorphicProps<'div'> {
-draggable?: boolean;
+  draggable?: boolean;
 }
 export interface DrawerContentProps extends HTMLProps<'div'>, DrawerContentBaseProps {}
 

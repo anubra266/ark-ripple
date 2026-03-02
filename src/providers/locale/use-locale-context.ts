@@ -8,4 +8,5 @@ export const LocaleContext = new Context<Tracked<UseLocaleContext> | UseLocaleCo
   locale: 'en-US',
 });
 
-export const useLocaleContext = (): Tracked<UseLocaleContext> | UseLocaleContext => LocaleContext.get();
+export const useLocaleContext = (): Tracked<UseLocaleContext> | UseLocaleContext =>
+  LocaleContext.get();

@@ -5,7 +5,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface CheckboxIndicatorBaseProps extends PolymorphicProps<'div'> {
-indeterminate?: boolean;
+  indeterminate?: boolean;
 }
 export interface CheckboxIndicatorProps extends HTMLProps<'div'>, CheckboxIndicatorBaseProps {}
 

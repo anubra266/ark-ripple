@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SegmentGroupItemTextBaseProps extends PolymorphicProps<'span'> {}
-export interface SegmentGroupItemTextProps extends HTMLProps<'span'>, SegmentGroupItemTextBaseProps {}
+export interface SegmentGroupItemTextProps extends HTMLProps<
+  'span'
+>, SegmentGroupItemTextBaseProps {}
 
 export component SegmentGroupItemText(props: MaybeTracked<SegmentGroupItemTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

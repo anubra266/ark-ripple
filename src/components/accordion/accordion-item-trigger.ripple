@@ -7,7 +7,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface AccordionItemTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface AccordionItemTriggerProps extends HTMLProps<'button'>, AccordionItemTriggerBaseProps {}
+export interface AccordionItemTriggerProps extends HTMLProps<
+  'button'
+>, AccordionItemTriggerBaseProps {}
 
 export component AccordionItemTrigger(props: MaybeTracked<AccordionItemTriggerProps>) {
   const [children, rest] = trackSplit(props, ['children']);

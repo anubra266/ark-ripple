@@ -7,7 +7,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerChannelSliderTrackBaseProps extends PolymorphicProps<'div'> {}
-export interface ColorPickerChannelSliderTrackProps extends HTMLProps<'div'>, ColorPickerChannelSliderTrackBaseProps {}
+export interface ColorPickerChannelSliderTrackProps extends HTMLProps<
+  'div'
+>, ColorPickerChannelSliderTrackBaseProps {}
 
 export component ColorPickerChannelSliderTrack(props: MaybeTracked<ColorPickerChannelSliderTrackProps>) {
   const colorPicker = useColorPickerContext();

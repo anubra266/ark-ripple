@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ColorPickerValueSwatchBaseProps extends PolymorphicProps<'div'> {
-respectAlpha?: boolean | undefined;
+  respectAlpha?: boolean | undefined;
 }
-export interface ColorPickerValueSwatchProps extends HTMLProps<'div'>, ColorPickerValueSwatchBaseProps {}
+export interface ColorPickerValueSwatchProps extends HTMLProps<
+  'div'
+>, ColorPickerValueSwatchBaseProps {}
 
 export component ColorPickerValueSwatch(props: MaybeTracked<ColorPickerValueSwatchProps>) {
   const [children, respectAlpha, localProps] = trackSplit(props, ['children', 'respectAlpha']);

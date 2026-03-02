@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FieldTextareaBaseProps extends PolymorphicProps<'textarea'> {
-/**
+  /**
  * Whether the textarea should autoresize
  * @default false
  */

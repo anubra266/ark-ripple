@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SwapRootProviderBaseProps extends PolymorphicProps<'span'> {
-value: UseSwapReturn;
+  value: UseSwapReturn;
 }
 export interface SwapRootProviderProps extends HTMLProps<'span'>, SwapRootProviderBaseProps {}
 

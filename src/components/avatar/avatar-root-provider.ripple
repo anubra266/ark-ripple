@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface AvatarRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseAvatarReturn;
+  value: UseAvatarReturn;
 }
 export interface AvatarRootProviderProps extends HTMLProps<'div'>, AvatarRootProviderBaseProps {}
 

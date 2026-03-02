@@ -6,9 +6,11 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface RatingGroupRootProviderBaseProps extends PolymorphicProps<'div'> {
-value: UseRatingGroupReturn;
+  value: UseRatingGroupReturn;
 }
-export interface RatingGroupRootProviderProps extends HTMLProps<'div'>, RatingGroupRootProviderBaseProps {}
+export interface RatingGroupRootProviderProps extends HTMLProps<
+  'div'
+>, RatingGroupRootProviderBaseProps {}
 
 export component RatingGroupRootProvider(props: MaybeTracked<RatingGroupRootProviderProps>) {
   const [ratingGroup, children, rest] = trackSplit(props, ['value', 'children']);

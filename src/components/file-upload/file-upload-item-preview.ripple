@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> {
-/**
+  /**
  * The file type to match against. Matches all file types by default.
  * @default '.*'
  */

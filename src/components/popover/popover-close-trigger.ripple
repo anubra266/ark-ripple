@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface PopoverCloseTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface PopoverCloseTriggerProps extends HTMLProps<'button'>, PopoverCloseTriggerBaseProps {}
+export interface PopoverCloseTriggerProps extends HTMLProps<
+  'button'
+>, PopoverCloseTriggerBaseProps {}
 
 export component PopoverCloseTrigger(props: MaybeTracked<PopoverCloseTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

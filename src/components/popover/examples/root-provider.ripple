@@ -4,11 +4,13 @@ import button from 'styles/button.module.css';
 import styles from 'styles/popover.module.css';
 
 export component RootProvider() {
-  const popover = usePopover({
-    positioning: {
-      placement: 'bottom-start',
+  const popover = usePopover(
+    {
+      positioning: {
+        placement: 'bottom-start',
+      },
     },
-  });
+  );
 
   <div class="stack">
     <button class={button.Root} onClick={() => @popover.setOpen(true)}>

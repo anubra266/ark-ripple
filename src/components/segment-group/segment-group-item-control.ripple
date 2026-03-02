@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface SegmentGroupItemControlBaseProps extends PolymorphicProps<'div'> {}
-export interface SegmentGroupItemControlProps extends HTMLProps<'div'>, SegmentGroupItemControlBaseProps {}
+export interface SegmentGroupItemControlProps extends HTMLProps<
+  'div'
+>, SegmentGroupItemControlBaseProps {}
 
 export component SegmentGroupItemControl(props: MaybeTracked<SegmentGroupItemControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

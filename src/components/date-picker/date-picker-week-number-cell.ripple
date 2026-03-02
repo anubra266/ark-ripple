@@ -5,8 +5,12 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerWeekNumberCellBaseProps extends PolymorphicProps<'td'>, WeekNumberCellProps {}
-export interface DatePickerWeekNumberCellProps extends HTMLProps<'td'>, DatePickerWeekNumberCellBaseProps {}
+export interface DatePickerWeekNumberCellBaseProps extends PolymorphicProps<
+  'td'
+>, WeekNumberCellProps {}
+export interface DatePickerWeekNumberCellProps extends HTMLProps<
+  'td'
+>, DatePickerWeekNumberCellBaseProps {}
 
 export component DatePickerWeekNumberCell(props: MaybeTracked<DatePickerWeekNumberCellProps>) {
   const [children, weekIndex, week, localProps] = trackSplit(props, [

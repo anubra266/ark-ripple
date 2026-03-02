@@ -6,7 +6,7 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FrameBaseProps extends PolymorphicProps<'iframe'> {
-/**
+  /**
  * Additional content to be inserted into the frame's <head>.
  * Should be a named Ripple component, e.g. `component Head() { <style>...</style>
 }`
