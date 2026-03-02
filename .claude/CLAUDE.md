@@ -413,8 +413,8 @@ cd packages/ripple && bun run test:ci
 
 ```ripple
 // ✅ CORRECT — import namespace, use dot notation
-import { Editable } from '@ark-ui/ripple/editable'
-import { Field } from '@ark-ui/ripple/field'
+import { Editable } from 'ark-ripple/editable'
+import { Field } from 'ark-ripple/field'
 
 <Editable.Root ...>
   <Editable.Label ...>
@@ -425,7 +425,7 @@ import { Field } from '@ark-ui/ripple/field'
 </Editable.Root>
 
 // ❌ WRONG — never import individual long-named components
-import { EditableRoot, EditableLabel, EditableArea } from '@ark-ui/ripple/editable'
+import { EditableRoot, EditableLabel, EditableArea } from 'ark-ripple/editable'
 ```
 
 ### Test imports
@@ -434,15 +434,15 @@ Always import components from their package path — never use relative imports 
 
 ```typescript
 // ✅ CORRECT — package path, destructured
-import { Dialog } from '@ark-ui/ripple/dialog'
-import { Select } from '@ark-ui/ripple/select'
+import { Dialog } from 'ark-ripple/dialog'
+import { Select } from 'ark-ripple/select'
 import { render, screen, fireEvent, waitFor } from '../../../test-utils'
 
 // ❌ WRONG — relative path
 import { Dialog } from '../dialog'
 
 // ❌ WRONG — import * as
-import * as Dialog from '@ark-ui/ripple/dialog'
+import * as Dialog from 'ark-ripple/dialog'
 ```
 
 ### fireEvent vs user.click
