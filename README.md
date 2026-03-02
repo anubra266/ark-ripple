@@ -45,7 +45,7 @@ npm install ark-ripple
 
 ## Quick Start
 
-```ripple
+```jsx
 import { Accordion } from 'ark-ripple/accordion';
 
 export component Demo() {
@@ -64,7 +64,7 @@ export component Demo() {
 
 Every component follows a consistent parts-based API:
 
-```ripple
+```jsx
 import { Dialog } from 'ark-ripple/dialog';
 
 export component MyDialog() {
@@ -86,7 +86,7 @@ export component MyDialog() {
 
 Access component state from any descendant using the Context part:
 
-```ripple
+```jsx
 import { Dialog } from 'ark-ripple/dialog';
 
 export component DialogStatus() {

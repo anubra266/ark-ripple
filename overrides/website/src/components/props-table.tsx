@@ -22,7 +22,7 @@ interface Props {
 }
 
 
-const asChildCode = `Component<{ propsFn: (userProps?: Record<string, any>) => Record<string, any> }>`
+const asChildCode = `Component<{ propsFn: (userProps?: Object) => Object }>`
 const asChildDescription = `Use the provided named component as the default rendered element, combining their props and behavior.`
 
 export const PropsTable = (props: Props) => {
