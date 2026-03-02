@@ -4,14 +4,12 @@ import { StepsApiContext } from './use-steps-context';
 import { useSteps, type UseStepsProps } from './use-steps.ripple';
 import { splitStepsProps } from './split-steps-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsRootBaseProps extends UseStepsProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsRootProps = StepsRootBaseProps;
+export interface StepsRootBaseProps extends PolymorphicProps<'div'>, UseStepsProps {}
+export interface StepsRootProps extends HTMLProps<'div'>, StepsRootBaseProps {}
 
-export component StepsRoot(props: StepsRootProps) {
+export component StepsRoot(props: MaybeTracked<StepsRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [stepsProps, localProps] = splitStepsProps(@rest);
   const stepsApi = useSteps(stepsProps);

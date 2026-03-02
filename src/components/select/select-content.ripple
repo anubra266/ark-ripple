@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectContentBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectContentProps = SelectContentBaseProps;
+export interface SelectContentBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectContentProps extends HTMLProps<'div'>, SelectContentBaseProps {}
 
-export component SelectContent(props: SelectContentProps) {
+export component SelectContent(props: MaybeTracked<SelectContentProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const select = useSelectContext();
   const presence = usePresenceContext();

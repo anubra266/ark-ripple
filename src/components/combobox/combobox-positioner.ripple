@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxPositionerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxPositionerProps = ComboboxPositionerBaseProps;
+export interface ComboboxPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface ComboboxPositionerProps extends HTMLProps<'div'>, ComboboxPositionerBaseProps {}
 
-export component ComboboxPositioner(props: ComboboxPositionerProps) {
+export component ComboboxPositioner(props: MaybeTracked<ComboboxPositionerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const combobox = useComboboxContext();
   const presence = usePresenceContext();

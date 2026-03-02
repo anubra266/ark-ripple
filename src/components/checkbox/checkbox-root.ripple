@@ -4,14 +4,12 @@ import { CheckboxApiContext } from './use-checkbox-context';
 import { useCheckbox, type UseCheckboxProps } from './use-checkbox.ripple';
 import { splitCheckboxProps } from './split-checkbox-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxRootBaseProps extends UseCheckboxProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CheckboxRootProps = CheckboxRootBaseProps;
+export interface CheckboxRootBaseProps extends PolymorphicProps<'label'>, UseCheckboxProps {}
+export interface CheckboxRootProps extends HTMLProps<'label'>, CheckboxRootBaseProps {}
 
-export component CheckboxRoot(props: CheckboxRootProps) {
+export component CheckboxRoot(props: MaybeTracked<CheckboxRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useCheckboxProps, localProps] = splitCheckboxProps(@rest);
   const checkbox = useCheckbox(useCheckboxProps);

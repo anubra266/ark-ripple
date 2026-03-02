@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { useSelectItemGroupPropsContext } from './use-select-item-group-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectItemGroupLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectItemGroupLabelProps = SelectItemGroupLabelBaseProps;
+export interface SelectItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectItemGroupLabelProps extends HTMLProps<'div'>, SelectItemGroupLabelBaseProps {}
 
-export component SelectItemGroupLabel(props: SelectItemGroupLabelProps) {
+export component SelectItemGroupLabel(props: MaybeTracked<SelectItemGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const select = useSelectContext();
   const itemGroupProps = useSelectItemGroupPropsContext();

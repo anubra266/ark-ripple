@@ -4,14 +4,12 @@ import { useDrawerContext } from './use-drawer-context';
 import { usePresence } from '../presence/use-presence.ripple';
 import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DrawerBackdropBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DrawerBackdropProps = DrawerBackdropBaseProps;
+export interface DrawerBackdropBaseProps extends PolymorphicProps<'div'> {}
+export interface DrawerBackdropProps extends HTMLProps<'div'>, DrawerBackdropBaseProps {}
 
-export component DrawerBackdrop(props: DrawerBackdropProps) {
+export component DrawerBackdrop(props: MaybeTracked<DrawerBackdropProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const drawer = useDrawerContext();
   const renderStrategy = useRenderStrategyContext();

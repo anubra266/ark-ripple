@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSliderContext } from './use-slider-context';
 import { useSliderThumbPropsContext } from './use-slider-thumb-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderDraggingIndicatorBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderDraggingIndicatorProps = SliderDraggingIndicatorBaseProps;
+export interface SliderDraggingIndicatorBaseProps extends PolymorphicProps<'span'> {}
+export interface SliderDraggingIndicatorProps extends HTMLProps<'span'>, SliderDraggingIndicatorBaseProps {}
 
-export component SliderDraggingIndicator(props: SliderDraggingIndicatorProps) {
+export component SliderDraggingIndicator(props: MaybeTracked<SliderDraggingIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const slider = useSliderContext();
   const thumbProps = useSliderThumbPropsContext();

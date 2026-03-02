@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import type { MarkerProps } from '@zag-js/slider';
 import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderMarkerBaseProps extends MarkerProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderMarkerProps = SliderMarkerBaseProps;
+export interface SliderMarkerBaseProps extends PolymorphicProps<'span'>, MarkerProps {}
+export interface SliderMarkerProps extends HTMLProps<'span'>, SliderMarkerBaseProps {}
 
-export component SliderMarker(props: SliderMarkerProps) {
+export component SliderMarker(props: MaybeTracked<SliderMarkerProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);
   const slider = useSliderContext();
 

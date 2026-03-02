@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { SliderApiContext } from './use-slider-context';
 import type { UseSliderReturn } from './use-slider.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderRootProviderBaseProps {
-  value: UseSliderReturn;
-  children?: any;
-  [key: string]: any;
+export interface SliderRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseSliderReturn;
 }
-export type SliderRootProviderProps = SliderRootProviderBaseProps;
+export interface SliderRootProviderProps extends HTMLProps<'div'>, SliderRootProviderBaseProps {}
 
-export component SliderRootProvider(props: SliderRootProviderProps) {
+export component SliderRootProvider(props: MaybeTracked<SliderRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);
 
   let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));

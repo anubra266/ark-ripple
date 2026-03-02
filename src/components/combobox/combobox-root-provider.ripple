@@ -6,15 +6,14 @@ import { splitPresenceProps } from '../presence/split-presence-props.ripple';
 import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
 import type { UseComboboxReturn } from './use-combobox.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxRootProviderBaseProps extends UsePresenceProps {
-  value: UseComboboxReturn<any>;
-  children?: any;
-  [key: string]: any;
+export interface ComboboxRootProviderBaseProps extends PolymorphicProps<'div'>, UsePresenceProps {
+value: UseComboboxReturn<any>;
 }
-export type ComboboxRootProviderProps = ComboboxRootProviderBaseProps;
+export interface ComboboxRootProviderProps extends HTMLProps<'div'>, ComboboxRootProviderBaseProps {}
 
-export component ComboboxRootProvider(props: ComboboxRootProviderProps) {
+export component ComboboxRootProvider(props: MaybeTracked<ComboboxRootProviderProps>) {
   const [children, value, rest] = trackSplit(props, ['children', 'value']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
 

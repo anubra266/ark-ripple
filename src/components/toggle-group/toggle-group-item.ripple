@@ -2,16 +2,15 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useToggleGroupContext } from './use-toggle-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ToggleGroupItemBaseProps {
-  value: string;
+export interface ToggleGroupItemBaseProps extends PolymorphicProps<'button'> {
+value: string;
   disabled?: boolean | undefined;
-  children?: any;
-  [key: string]: any;
 }
-export type ToggleGroupItemProps = ToggleGroupItemBaseProps;
+export interface ToggleGroupItemProps extends HTMLProps<'button'>, ToggleGroupItemBaseProps {}
 
-export component ToggleGroupItem(props: ToggleGroupItemProps) {
+export component ToggleGroupItem(props: MaybeTracked<ToggleGroupItemProps>) {
   const [value, disabled, children, localProps] = trackSplit(props, [
     'value',
     'disabled',

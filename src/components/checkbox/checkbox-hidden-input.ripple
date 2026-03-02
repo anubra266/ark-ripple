@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useFieldContext } from '../field/use-field-context';
 import { useCheckboxContext } from './use-checkbox-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxHiddenInputBaseProps {
-  [key: string]: any;
-}
-export type CheckboxHiddenInputProps = CheckboxHiddenInputBaseProps;
+export interface CheckboxHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface CheckboxHiddenInputProps extends HTMLProps<'input'>, CheckboxHiddenInputBaseProps {}
 
-export component CheckboxHiddenInput(props: CheckboxHiddenInputProps) {
+export component CheckboxHiddenInput(props: MaybeTracked<CheckboxHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);
   const checkbox = useCheckboxContext();
   const field = useFieldContext();

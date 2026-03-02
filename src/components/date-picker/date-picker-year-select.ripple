@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerYearSelectBaseProps {
-  [key: string]: any;
-}
-export type DatePickerYearSelectProps = DatePickerYearSelectBaseProps;
+export interface DatePickerYearSelectBaseProps extends PolymorphicProps<'select'> {}
+export interface DatePickerYearSelectProps extends HTMLProps<'select'>, DatePickerYearSelectBaseProps {}
 
-export component DatePickerYearSelect(props: DatePickerYearSelectProps) {
+export component DatePickerYearSelect(props: MaybeTracked<DatePickerYearSelectProps>) {
   const [localProps] = trackSplit(props, []);
   const datePicker = useDatePickerContext();
 

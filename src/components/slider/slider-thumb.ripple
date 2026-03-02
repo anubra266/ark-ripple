@@ -4,14 +4,12 @@ import type { ThumbProps } from '@zag-js/slider';
 import { useSliderContext } from './use-slider-context';
 import { SliderThumbPropsContext } from './use-slider-thumb-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderThumbBaseProps extends ThumbProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderThumbProps = SliderThumbBaseProps;
+export interface SliderThumbBaseProps extends PolymorphicProps<'div'>, ThumbProps {}
+export interface SliderThumbProps extends HTMLProps<'div'>, SliderThumbBaseProps {}
 
-export component SliderThumb(props: SliderThumbProps) {
+export component SliderThumb(props: MaybeTracked<SliderThumbProps>) {
   const [children, index, name, localProps] = trackSplit(props, ['children', 'index', 'name']);
   const slider = useSliderContext();
 

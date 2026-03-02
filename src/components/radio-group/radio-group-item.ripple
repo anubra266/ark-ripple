@@ -4,17 +4,16 @@ import { useRadioGroupContext } from './use-radio-group-context';
 import { RadioGroupItemApiContext } from './use-radio-group-item-context';
 import { RadioGroupItemPropsContext } from './use-radio-group-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RadioGroupItemBaseProps {
-  value: string;
+export interface RadioGroupItemBaseProps extends PolymorphicProps<'label'> {
+value: string;
   disabled?: boolean;
   invalid?: boolean;
-  children?: any;
-  [key: string]: any;
 }
-export type RadioGroupItemProps = RadioGroupItemBaseProps;
+export interface RadioGroupItemProps extends HTMLProps<'label'>, RadioGroupItemBaseProps {}
 
-export component RadioGroupItem(props: RadioGroupItemProps) {
+export component RadioGroupItem(props: MaybeTracked<RadioGroupItemProps>) {
   const [children, value, disabled, invalid, localProps] = trackSplit(props, [
     'children',
     'value',

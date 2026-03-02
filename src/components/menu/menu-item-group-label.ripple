@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { useMenuItemGroupContext } from './use-menu-item-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuItemGroupLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type MenuItemGroupLabelProps = MenuItemGroupLabelBaseProps;
+export interface MenuItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
+export interface MenuItemGroupLabelProps extends HTMLProps<'div'>, MenuItemGroupLabelBaseProps {}
 
-export component MenuItemGroupLabel(props: MenuItemGroupLabelProps) {
+export component MenuItemGroupLabel(props: MaybeTracked<MenuItemGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const menu = useMenuContext();
   const itemGroup = useMenuItemGroupContext();

@@ -3,21 +3,19 @@ import { trackSplit, track, type Component } from 'ripple';
 import { carouselAnatomy } from './carousel.anatomy';
 import { useCarouselContext } from './use-carousel-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const parts = carouselAnatomy.build();
 
-export interface CarouselAutoplayIndicatorBaseProps {
-  /**
+export interface CarouselAutoplayIndicatorBaseProps extends PolymorphicProps<'span'> {
+/**
  * The fallback snippet to render when autoplay is paused.
 */
   fallback?: Component;
-  [key: string]: any;
 }
-export interface CarouselAutoplayIndicatorProps extends CarouselAutoplayIndicatorBaseProps {
-  children?: Component;
-}
+export interface CarouselAutoplayIndicatorProps extends HTMLProps<'span'>, CarouselAutoplayIndicatorBaseProps {}
 
-export component CarouselAutoplayIndicator(props: CarouselAutoplayIndicatorProps) {
+export component CarouselAutoplayIndicator(props: MaybeTracked<CarouselAutoplayIndicatorProps>) {
   const [children, fallback, rest] = trackSplit(props, ['children', 'fallback']);
   const carousel = useCarouselContext();
 

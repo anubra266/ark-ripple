@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadTriggerProps = FileUploadTriggerBaseProps;
+export interface FileUploadTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface FileUploadTriggerProps extends HTMLProps<'button'>, FileUploadTriggerBaseProps {}
 
-export component FileUploadTrigger(props: FileUploadTriggerProps) {
+export component FileUploadTrigger(props: MaybeTracked<FileUploadTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const fileUpload = useFileUploadContext();
 

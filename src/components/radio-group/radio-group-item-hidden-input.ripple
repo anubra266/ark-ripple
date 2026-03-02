@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useRadioGroupContext } from './use-radio-group-context';
 import { useRadioGroupItemPropsContext } from './use-radio-group-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RadioGroupItemHiddenInputBaseProps {
-  [key: string]: any;
-}
-export type RadioGroupItemHiddenInputProps = RadioGroupItemHiddenInputBaseProps;
+export interface RadioGroupItemHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface RadioGroupItemHiddenInputProps extends HTMLProps<'input'>, RadioGroupItemHiddenInputBaseProps {}
 
-export component RadioGroupItemHiddenInput(props: RadioGroupItemHiddenInputProps) {
+export component RadioGroupItemHiddenInput(props: MaybeTracked<RadioGroupItemHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);
   const radioGroup = useRadioGroupContext();
   const itemProps = useRadioGroupItemPropsContext();

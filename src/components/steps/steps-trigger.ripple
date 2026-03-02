@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useStepsContext } from './use-steps-context';
 import { useStepsItemPropsContext } from './use-steps-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsTriggerProps = StepsTriggerBaseProps;
+export interface StepsTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface StepsTriggerProps extends HTMLProps<'button'>, StepsTriggerBaseProps {}
 
-export component StepsTrigger(props: StepsTriggerProps) {
+export component StepsTrigger(props: MaybeTracked<StepsTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const stepsApi = useStepsContext();
   const itemProps = useStepsItemPropsContext();

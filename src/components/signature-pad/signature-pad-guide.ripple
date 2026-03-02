@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSignaturePadContext } from './use-signature-pad-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SignaturePadGuideBaseProps {
-  [key: string]: any;
-}
-export type SignaturePadGuideProps = SignaturePadGuideBaseProps;
+export interface SignaturePadGuideBaseProps extends PolymorphicProps<'div'> {}
+export interface SignaturePadGuideProps extends HTMLProps<'div'>, SignaturePadGuideBaseProps {}
 
-export component SignaturePadGuide(props: SignaturePadGuideProps) {
+export component SignaturePadGuide(props: MaybeTracked<SignaturePadGuideProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const signaturePad = useSignaturePadContext();
 

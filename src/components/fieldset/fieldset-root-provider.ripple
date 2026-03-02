@@ -3,15 +3,14 @@ import { track, trackSplit } from 'ripple';
 import { FieldsetApiContext } from './use-fieldset-context';
 import type { UseFieldsetReturn } from './use-fieldset.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldsetRootProviderBaseProps {
-  value: UseFieldsetReturn;
-  children?: any;
-  [key: string]: any;
+export interface FieldsetRootProviderBaseProps extends PolymorphicProps<'fieldset'> {
+value: UseFieldsetReturn;
 }
-export type FieldsetRootProviderProps = FieldsetRootProviderBaseProps;
+export interface FieldsetRootProviderProps extends HTMLProps<'fieldset'>, FieldsetRootProviderBaseProps {}
 
-export component FieldsetRootProvider(props: FieldsetRootProviderProps) {
+export component FieldsetRootProvider(props: MaybeTracked<FieldsetRootProviderProps>) {
   const [fieldset, children, rest] = trackSplit(props, ['value', 'children']);
 
   FieldsetApiContext.set(fieldset);

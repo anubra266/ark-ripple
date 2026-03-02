@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { TimerApiContext } from './use-timer-context';
 import type { UseTimerReturn } from './use-timer.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface TimerRootProviderBaseProps {
-  value: UseTimerReturn;
-  children?: any;
-  [key: string]: any;
+export interface TimerRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseTimerReturn;
 }
-export type TimerRootProviderProps = TimerRootProviderBaseProps;
+export interface TimerRootProviderProps extends HTMLProps<'div'>, TimerRootProviderBaseProps {}
 
-export component TimerRootProvider(props: TimerRootProviderProps) {
+export component TimerRootProvider(props: MaybeTracked<TimerRootProviderProps>) {
   const [timer, children, localProps] = trackSplit(props, ['value', 'children']);
 
   TimerApiContext.set(timer);

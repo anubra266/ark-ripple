@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDialogContext } from './use-dialog-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DialogCloseTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DialogCloseTriggerProps = DialogCloseTriggerBaseProps;
+export interface DialogCloseTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface DialogCloseTriggerProps extends HTMLProps<'button'>, DialogCloseTriggerBaseProps {}
 
-export component DialogCloseTrigger(props: DialogCloseTriggerProps) {
+export component DialogCloseTrigger(props: MaybeTracked<DialogCloseTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const dialog = useDialogContext();
 

@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerLabelProps = DatePickerLabelBaseProps;
+export interface DatePickerLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface DatePickerLabelProps extends HTMLProps<'label'>, DatePickerLabelBaseProps {}
 
-export component DatePickerLabel(props: DatePickerLabelProps) {
+export component DatePickerLabel(props: MaybeTracked<DatePickerLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
 

@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useRatingGroupContext } from './use-rating-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RatingGroupControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type RatingGroupControlProps = RatingGroupControlBaseProps;
+export interface RatingGroupControlBaseProps extends PolymorphicProps<'div'> {}
+export interface RatingGroupControlProps extends HTMLProps<'div'>, RatingGroupControlBaseProps {}
 
-export component RatingGroupControl(props: RatingGroupControlProps) {
+export component RatingGroupControl(props: MaybeTracked<RatingGroupControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const ratingGroup = useRatingGroupContext();
 

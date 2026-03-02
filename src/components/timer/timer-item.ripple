@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useTimerContext } from './use-timer-context';
 import type { ItemProps } from '@zag-js/timer';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface TimerItemBaseProps extends ItemProps {
-  [key: string]: any;
-}
-export type TimerItemProps = TimerItemBaseProps;
+export interface TimerItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface TimerItemProps extends HTMLProps<'div'>, TimerItemBaseProps {}
 
-export component TimerItem(props: TimerItemProps) {
+export component TimerItem(props: MaybeTracked<TimerItemProps>) {
   const [children, type, localProps] = trackSplit(props, ['children', 'type']);
   const timer = useTimerContext();
 

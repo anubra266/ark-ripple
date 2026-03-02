@@ -2,14 +2,14 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerTransparencyGridBaseProps {
-  size?: string | undefined;
-  [key: string]: any;
+export interface ColorPickerTransparencyGridBaseProps extends PolymorphicProps<'div'> {
+size?: string | undefined;
 }
-export type ColorPickerTransparencyGridProps = ColorPickerTransparencyGridBaseProps;
+export interface ColorPickerTransparencyGridProps extends HTMLProps<'div'>, ColorPickerTransparencyGridBaseProps {}
 
-export component ColorPickerTransparencyGrid(props: ColorPickerTransparencyGridProps) {
+export component ColorPickerTransparencyGrid(props: MaybeTracked<ColorPickerTransparencyGridProps>) {
   const [size, localProps] = trackSplit(props, ['size']);
   const colorPicker = useColorPickerContext();
 

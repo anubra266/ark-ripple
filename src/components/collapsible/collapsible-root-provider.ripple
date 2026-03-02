@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { CollapsibleApiContext } from './use-collapsible-context';
 import type { UseCollapsibleReturn } from './use-collapsible.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CollapsibleRootProviderBaseProps {
-  value: UseCollapsibleReturn;
-  children?: any;
-  [key: string]: any;
+export interface CollapsibleRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseCollapsibleReturn;
 }
-export type CollapsibleRootProviderProps = CollapsibleRootProviderBaseProps;
+export interface CollapsibleRootProviderProps extends HTMLProps<'div'>, CollapsibleRootProviderBaseProps {}
 
-export component CollapsibleRootProvider(props: CollapsibleRootProviderProps) {
+export component CollapsibleRootProvider(props: MaybeTracked<CollapsibleRootProviderProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const collapsible = props.value;
 

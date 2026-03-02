@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectPositionerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectPositionerProps = SelectPositionerBaseProps;
+export interface SelectPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectPositionerProps extends HTMLProps<'div'>, SelectPositionerBaseProps {}
 
-export component SelectPositioner(props: SelectPositionerProps) {
+export component SelectPositioner(props: MaybeTracked<SelectPositionerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const select = useSelectContext();
   const presence = usePresenceContext();

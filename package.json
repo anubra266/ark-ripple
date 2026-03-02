@@ -72,7 +72,7 @@
     "test:coverage": "vitest run --coverage",
     "test:ci": "vitest --run",
     "check:examples": "bun scripts/check-examples-parity.ts",
-    "typecheck": "echo 'Typecheck not configured yet'",
+    "typecheck": "tsc",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write .",
     "format": "prettier --write .",

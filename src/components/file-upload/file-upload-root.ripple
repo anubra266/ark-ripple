@@ -4,14 +4,12 @@ import { FileUploadApiContext } from './use-file-upload-context';
 import { useFileUpload, type UseFileUploadProps } from './use-file-upload.ripple';
 import { splitFileUploadProps } from './split-file-upload-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadRootBaseProps extends UseFileUploadProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadRootProps = FileUploadRootBaseProps;
+export interface FileUploadRootBaseProps extends PolymorphicProps<'div'>, UseFileUploadProps {}
+export interface FileUploadRootProps extends HTMLProps<'div'>, FileUploadRootBaseProps {}
 
-export component FileUploadRoot(props: FileUploadRootProps) {
+export component FileUploadRoot(props: MaybeTracked<FileUploadRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useFileUploadProps, localProps] = splitFileUploadProps(@rest);
   const fileUpload = useFileUpload(useFileUploadProps);

@@ -3,15 +3,14 @@ import { CheckboxGroupApiContext } from './use-checkbox-group-context';
 import type { UseCheckboxGroupReturn } from './use-checkbox-group.ripple';
 import { checkboxAnatomy } from './checkbox.anatomy';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxGroupProviderBaseProps {
-  value: UseCheckboxGroupReturn;
-  children?: any;
-  [key: string]: any;
+export interface CheckboxGroupProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseCheckboxGroupReturn;
 }
-export type CheckboxGroupProviderProps = CheckboxGroupProviderBaseProps;
+export interface CheckboxGroupProviderProps extends HTMLProps<'div'>, CheckboxGroupProviderBaseProps {}
 
-export component CheckboxGroupProvider(props: CheckboxGroupProviderProps) {
+export component CheckboxGroupProvider(props: MaybeTracked<CheckboxGroupProviderProps>) {
   const [group, children, localProps] = trackSplit(props, ['value', 'children']);
 
   CheckboxGroupApiContext.set(group);

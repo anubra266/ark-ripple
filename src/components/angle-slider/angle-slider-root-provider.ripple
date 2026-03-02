@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { AngleSliderApiContext } from './use-angle-slider-context';
 import type { UseAngleSliderReturn } from './use-angle-slider.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AngleSliderRootProviderBaseProps {
-  value: UseAngleSliderReturn;
-  children?: any;
-  [key: string]: any;
+export interface AngleSliderRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseAngleSliderReturn;
 }
-export type AngleSliderRootProviderProps = AngleSliderRootProviderBaseProps;
+export interface AngleSliderRootProviderProps extends HTMLProps<'div'>, AngleSliderRootProviderBaseProps {}
 
-export component AngleSliderRootProvider(props: AngleSliderRootProviderProps) {
+export component AngleSliderRootProvider(props: MaybeTracked<AngleSliderRootProviderProps>) {
   const [angleSlider, children, rest] = trackSplit(props, ['value', 'children']);
 
   AngleSliderApiContext.set(angleSlider);

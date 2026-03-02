@@ -5,14 +5,12 @@ import { useComboboxContext } from './use-combobox-context';
 import { ComboboxItemApiContext } from './use-combobox-item-context';
 import { ComboboxItemPropsContext } from './use-combobox-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxItemBaseProps extends ItemProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxItemProps = ComboboxItemBaseProps;
+export interface ComboboxItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface ComboboxItemProps extends HTMLProps<'div'>, ComboboxItemBaseProps {}
 
-export component ComboboxItem(props: ComboboxItemProps) {
+export component ComboboxItem(props: MaybeTracked<ComboboxItemProps>) {
   const [item, persistFocus, disabled, children, rest] = trackSplit(props, [
     'item',
     'persistFocus',

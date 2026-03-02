@@ -4,15 +4,14 @@ import { colorPickerAnatomy } from './color-picker.anatomy';
 import { ColorPickerFormatContext } from './use-color-picker-format-context';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerViewBaseProps {
-  format: ColorFormat;
-  children?: any;
-  [key: string]: any;
+export interface ColorPickerViewBaseProps extends PolymorphicProps<'div'> {
+format: ColorFormat;
 }
-export type ColorPickerViewProps = ColorPickerViewBaseProps;
+export interface ColorPickerViewProps extends HTMLProps<'div'>, ColorPickerViewBaseProps {}
 
-export component ColorPickerView(props: ColorPickerViewProps) {
+export component ColorPickerView(props: MaybeTracked<ColorPickerViewProps>) {
   const [children, format, localProps] = trackSplit(props, ['children', 'format']);
   const colorPicker = useColorPickerContext();
 

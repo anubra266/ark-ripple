@@ -5,16 +5,15 @@ import { CollapsibleRoot } from '../collapsible/collapsible-root.ripple';
 import { useAccordionContext } from './use-accordion-context';
 import { AccordionItemApiContext } from './use-accordion-item-context';
 import { AccordionItemPropsContext } from './use-accordion-item-props-context';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionItemBaseProps {
+export interface AccordionItemBaseProps extends PolymorphicProps<'div'> {
   value: string;
   disabled?: boolean;
-  children?: any;
-  [key: string]: any;
 }
-export type AccordionItemProps = AccordionItemBaseProps;
+export interface AccordionItemProps extends HTMLProps<'div'>, AccordionItemBaseProps {}
 
-export component AccordionItem(props: AccordionItemProps) {
+export component AccordionItem(props: MaybeTracked<AccordionItemProps>) {
   const [children, value, disabled, localProps] = trackSplit(props, [
     'children',
     'value',

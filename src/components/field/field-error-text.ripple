@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldErrorTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldErrorTextProps = FieldErrorTextBaseProps;
+export interface FieldErrorTextBaseProps extends PolymorphicProps<'span'> {}
+export interface FieldErrorTextProps extends HTMLProps<'span'>, FieldErrorTextBaseProps {}
 
-export component FieldErrorText(props: FieldErrorTextProps) {
+export component FieldErrorText(props: MaybeTracked<FieldErrorTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const field = useFieldContext();
 

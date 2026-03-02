@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuArrowBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type MenuArrowProps = MenuArrowBaseProps;
+export interface MenuArrowBaseProps extends PolymorphicProps<'div'> {}
+export interface MenuArrowProps extends HTMLProps<'div'>, MenuArrowBaseProps {}
 
-export component MenuArrow(props: MenuArrowProps) {
+export component MenuArrow(props: MaybeTracked<MenuArrowProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const menu = useMenuContext();
 

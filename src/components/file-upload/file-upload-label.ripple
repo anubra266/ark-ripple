@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadLabelProps = FileUploadLabelBaseProps;
+export interface FileUploadLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface FileUploadLabelProps extends HTMLProps<'label'>, FileUploadLabelBaseProps {}
 
-export component FileUploadLabel(props: FileUploadLabelProps) {
+export component FileUploadLabel(props: MaybeTracked<FileUploadLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const fileUpload = useFileUploadContext();
 

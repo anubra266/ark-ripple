@@ -1,14 +1,12 @@
 import { trackSplit } from 'ripple';
 import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardValueTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ClipboardValueTextProps = ClipboardValueTextBaseProps;
+export interface ClipboardValueTextBaseProps extends PolymorphicProps<'span'> {}
+export interface ClipboardValueTextProps extends HTMLProps<'span'>, ClipboardValueTextBaseProps {}
 
-export component ClipboardValueText(props: ClipboardValueTextProps) {
+export component ClipboardValueText(props: MaybeTracked<ClipboardValueTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const clipboard = useClipboardContext();
 

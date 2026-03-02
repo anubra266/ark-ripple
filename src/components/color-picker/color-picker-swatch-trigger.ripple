@@ -2,16 +2,15 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerSwatchTriggerBaseProps {
-  value: any;
+export interface ColorPickerSwatchTriggerBaseProps extends PolymorphicProps<'button'> {
+value: any;
   disabled?: boolean | undefined;
-  children?: any;
-  [key: string]: any;
 }
-export type ColorPickerSwatchTriggerProps = ColorPickerSwatchTriggerBaseProps;
+export interface ColorPickerSwatchTriggerProps extends HTMLProps<'button'>, ColorPickerSwatchTriggerBaseProps {}
 
-export component ColorPickerSwatchTrigger(props: ColorPickerSwatchTriggerProps) {
+export component ColorPickerSwatchTrigger(props: MaybeTracked<ColorPickerSwatchTriggerProps>) {
   const [children, value, disabled, localProps] = trackSplit(props, [
     'children',
     'value',

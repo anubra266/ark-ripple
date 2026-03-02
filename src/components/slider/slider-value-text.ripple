@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderValueTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderValueTextProps = SliderValueTextBaseProps;
+export interface SliderValueTextBaseProps extends PolymorphicProps<'span'> {}
+export interface SliderValueTextProps extends HTMLProps<'span'>, SliderValueTextBaseProps {}
 
-export component SliderValueText(props: SliderValueTextProps) {
+export component SliderValueText(props: MaybeTracked<SliderValueTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const slider = useSliderContext();
 

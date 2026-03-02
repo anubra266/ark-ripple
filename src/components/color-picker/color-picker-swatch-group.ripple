@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerSwatchGroupBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerSwatchGroupProps = ColorPickerSwatchGroupBaseProps;
+export interface ColorPickerSwatchGroupBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerSwatchGroupProps extends HTMLProps<'div'>, ColorPickerSwatchGroupBaseProps {}
 
-export component ColorPickerSwatchGroup(props: ColorPickerSwatchGroupProps) {
+export component ColorPickerSwatchGroup(props: MaybeTracked<ColorPickerSwatchGroupProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const colorPicker = useColorPickerContext();
 

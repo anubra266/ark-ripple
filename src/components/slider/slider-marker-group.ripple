@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderMarkerGroupBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderMarkerGroupProps = SliderMarkerGroupBaseProps;
+export interface SliderMarkerGroupBaseProps extends PolymorphicProps<'div'> {}
+export interface SliderMarkerGroupProps extends HTMLProps<'div'>, SliderMarkerGroupBaseProps {}
 
-export component SliderMarkerGroup(props: SliderMarkerGroupProps) {
+export component SliderMarkerGroup(props: MaybeTracked<SliderMarkerGroupProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const slider = useSliderContext();
 

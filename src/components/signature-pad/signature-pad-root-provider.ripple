@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { SignaturePadApiContext } from './use-signature-pad-context';
 import type { UseSignaturePadReturn } from './use-signature-pad.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SignaturePadRootProviderBaseProps {
-  value: UseSignaturePadReturn;
-  children?: any;
-  [key: string]: any;
+export interface SignaturePadRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseSignaturePadReturn;
 }
-export type SignaturePadRootProviderProps = SignaturePadRootProviderBaseProps;
+export interface SignaturePadRootProviderProps extends HTMLProps<'div'>, SignaturePadRootProviderBaseProps {}
 
-export component SignaturePadRootProvider(props: SignaturePadRootProviderProps) {
+export component SignaturePadRootProvider(props: MaybeTracked<SignaturePadRootProviderProps>) {
   const [signaturePad, children, rest] = trackSplit(props, ['value', 'children']);
 
   SignaturePadApiContext.set(signaturePad);

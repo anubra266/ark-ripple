@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldLabelProps = FieldLabelBaseProps;
+export interface FieldLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface FieldLabelProps extends HTMLProps<'label'>, FieldLabelBaseProps {}
 
-export component FieldLabel(props: FieldLabelProps) {
+export component FieldLabel(props: MaybeTracked<FieldLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const field = useFieldContext();
 

@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldHelperTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldHelperTextProps = FieldHelperTextBaseProps;
+export interface FieldHelperTextBaseProps extends PolymorphicProps<'span'> {}
+export interface FieldHelperTextProps extends HTMLProps<'span'>, FieldHelperTextBaseProps {}
 
-export component FieldHelperText(props: FieldHelperTextProps) {
+export component FieldHelperText(props: MaybeTracked<FieldHelperTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const field = useFieldContext();
   const mergedProps = track(() => mergeProps(@field?.getHelperTextProps(), @localProps));

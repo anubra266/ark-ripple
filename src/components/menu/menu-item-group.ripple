@@ -4,15 +4,14 @@ import { useId } from '../../utils/use-id';
 import { useMenuContext } from './use-menu-context';
 import { MenuItemGroupContext } from './use-menu-item-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuItemGroupBaseProps {
-  id?: string | undefined;
-  children?: any;
-  [key: string]: any;
+export interface MenuItemGroupBaseProps extends PolymorphicProps<'div'> {
+id?: string | undefined;
 }
-export type MenuItemGroupProps = MenuItemGroupBaseProps;
+export interface MenuItemGroupProps extends HTMLProps<'div'>, MenuItemGroupBaseProps {}
 
-export component MenuItemGroup(props: MenuItemGroupProps) {
+export component MenuItemGroup(props: MaybeTracked<MenuItemGroupProps>) {
   const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
   const fallbackId = useId();
   const menu = useMenuContext();

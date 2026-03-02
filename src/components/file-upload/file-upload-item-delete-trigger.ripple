@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { useFileUploadItemPropsContext } from './use-file-upload-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadItemDeleteTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadItemDeleteTriggerProps = FileUploadItemDeleteTriggerBaseProps;
+export interface FileUploadItemDeleteTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface FileUploadItemDeleteTriggerProps extends HTMLProps<'button'>, FileUploadItemDeleteTriggerBaseProps {}
 
-export component FileUploadItemDeleteTrigger(props: FileUploadItemDeleteTriggerProps) {
+export component FileUploadItemDeleteTrigger(props: MaybeTracked<FileUploadItemDeleteTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const fileUpload = useFileUploadContext();
   const itemProps = useFileUploadItemPropsContext();

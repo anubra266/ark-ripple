@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerSwatchPropsContext } from './use-color-picker-swatch-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerSwatchIndicatorBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerSwatchIndicatorProps = ColorPickerSwatchIndicatorBaseProps;
+export interface ColorPickerSwatchIndicatorBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerSwatchIndicatorProps extends HTMLProps<'div'>, ColorPickerSwatchIndicatorBaseProps {}
 
-export component ColorPickerSwatchIndicator(props: ColorPickerSwatchIndicatorProps) {
+export component ColorPickerSwatchIndicator(props: MaybeTracked<ColorPickerSwatchIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const colorPicker = useColorPickerContext();
   const swatchProps = useColorPickerSwatchPropsContext();

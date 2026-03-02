@@ -4,14 +4,12 @@ import { useCollapsibleContext } from '../collapsible/use-collapsible-context';
 import { useAccordionContext } from './use-accordion-context';
 import { useAccordionItemPropsContext } from './use-accordion-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionItemTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AccordionItemTriggerProps = AccordionItemTriggerBaseProps;
+export interface AccordionItemTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface AccordionItemTriggerProps extends HTMLProps<'button'>, AccordionItemTriggerBaseProps {}
 
-export component AccordionItemTrigger(props: AccordionItemTriggerProps) {
+export component AccordionItemTrigger(props: MaybeTracked<AccordionItemTriggerProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const accordion = useAccordionContext();
   const itemProps = useAccordionItemPropsContext();

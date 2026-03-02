@@ -4,16 +4,14 @@ import { useCheckboxGroup, type UseCheckboxGroupProps } from './use-checkbox-gro
 import { checkboxAnatomy } from './checkbox.anatomy';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const splitGroupProps = createSplitProps<UseCheckboxGroupProps>();
 
-export interface CheckboxGroupBaseProps extends UseCheckboxGroupProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CheckboxGroupProps = CheckboxGroupBaseProps;
+export interface CheckboxGroupBaseProps extends PolymorphicProps<'div'>, UseCheckboxGroupProps {}
+export interface CheckboxGroupProps extends HTMLProps<'div'>, CheckboxGroupBaseProps {}
 
-export component CheckboxGroup(props: CheckboxGroupProps) {
+export component CheckboxGroup(props: MaybeTracked<CheckboxGroupProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [checkboxGroupProps, localProps] = splitGroupProps(@rest, [
     'defaultValue',

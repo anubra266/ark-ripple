@@ -4,14 +4,12 @@ import { useLocaleContext } from '../../providers/locale';
 import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerChannelPropsContext } from './use-color-picker-channel-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerChannelSliderValueTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerChannelSliderValueTextProps = ColorPickerChannelSliderValueTextBaseProps;
+export interface ColorPickerChannelSliderValueTextBaseProps extends PolymorphicProps<'span'> {}
+export interface ColorPickerChannelSliderValueTextProps extends HTMLProps<'span'>, ColorPickerChannelSliderValueTextBaseProps {}
 
-export component ColorPickerChannelSliderValueText(props: ColorPickerChannelSliderValueTextProps) {
+export component ColorPickerChannelSliderValueText(props: MaybeTracked<ColorPickerChannelSliderValueTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const locale = useLocaleContext();
   const colorPicker = useColorPickerContext();

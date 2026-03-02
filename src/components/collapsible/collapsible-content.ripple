@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useCollapsibleContext } from './use-collapsible-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CollapsibleContentBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CollapsibleContentProps = CollapsibleContentBaseProps;
+export interface CollapsibleContentBaseProps extends PolymorphicProps<'div'> {}
+export interface CollapsibleContentProps extends HTMLProps<'div'>, CollapsibleContentBaseProps {}
 
-export component CollapsibleContent(props: CollapsibleContentProps) {
+export component CollapsibleContent(props: MaybeTracked<CollapsibleContentProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const collapsible = useCollapsibleContext();
 

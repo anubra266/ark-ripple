@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { useRatingGroupContext } from './use-rating-group-context';
 import { RatingGroupItemApiContext } from './use-rating-group-item-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RatingGroupItemBaseProps {
-  index: number;
-  children?: any;
-  [key: string]: any;
+export interface RatingGroupItemBaseProps extends PolymorphicProps<'span'> {
+index: number;
 }
-export type RatingGroupItemProps = RatingGroupItemBaseProps;
+export interface RatingGroupItemProps extends HTMLProps<'span'>, RatingGroupItemBaseProps {}
 
-export component RatingGroupItem(props: RatingGroupItemProps) {
+export component RatingGroupItem(props: MaybeTracked<RatingGroupItemProps>) {
   const [children, index, localProps] = trackSplit(props, ['children', 'index']);
   const ratingGroup = useRatingGroupContext();
 

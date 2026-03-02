@@ -5,14 +5,12 @@ import { useFieldset, type UseFieldsetProps } from './use-fieldset.ripple';
 import { splitFieldsetProps } from './split-fieldset-props.ripple';
 import { useId } from '../../utils/use-id';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldsetRootBaseProps extends UseFieldsetProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldsetRootProps = FieldsetRootBaseProps;
+export interface FieldsetRootBaseProps extends PolymorphicProps<'fieldset'>, UseFieldsetProps {}
+export interface FieldsetRootProps extends HTMLProps<'fieldset'>, FieldsetRootBaseProps {}
 
-export component FieldsetRoot(props: FieldsetRootProps) {
+export component FieldsetRoot(props: MaybeTracked<FieldsetRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useFieldsetProps, localProps] = splitFieldsetProps(@rest);
 

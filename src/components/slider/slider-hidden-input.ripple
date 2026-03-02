@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSliderContext } from './use-slider-context';
 import { useSliderThumbPropsContext } from './use-slider-thumb-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderHiddenInputBaseProps {
-  [key: string]: any;
-}
-export type SliderHiddenInputProps = SliderHiddenInputBaseProps;
+export interface SliderHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface SliderHiddenInputProps extends HTMLProps<'input'>, SliderHiddenInputBaseProps {}
 
-export component SliderHiddenInput(props: SliderHiddenInputProps) {
+export component SliderHiddenInput(props: MaybeTracked<SliderHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);
   const slider = useSliderContext();
   const thumbProps = useSliderThumbPropsContext();

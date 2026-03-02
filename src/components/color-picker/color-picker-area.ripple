@@ -4,14 +4,12 @@ import type { AreaProps } from '@zag-js/color-picker';
 import { ColorPickerAreaPropsContext } from './use-color-picker-area-props-context';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerAreaBaseProps extends AreaProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerAreaProps = ColorPickerAreaBaseProps;
+export interface ColorPickerAreaBaseProps extends PolymorphicProps<'div'>, AreaProps {}
+export interface ColorPickerAreaProps extends HTMLProps<'div'>, ColorPickerAreaBaseProps {}
 
-export component ColorPickerArea(props: ColorPickerAreaProps) {
+export component ColorPickerArea(props: MaybeTracked<ColorPickerAreaProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [xChannel, yChannel, localProps] = trackSplit(@rest, ['xChannel', 'yChannel']);
   const colorPicker = useColorPickerContext();

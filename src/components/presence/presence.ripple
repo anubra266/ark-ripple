@@ -3,14 +3,12 @@ import { trackSplit, track, untrack } from 'ripple';
 import { splitPresenceProps } from './split-presence-props.ripple';
 import { usePresence } from './use-presence.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface PresenceBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type PresenceProps = PresenceBaseProps;
+export interface PresenceBaseProps extends PolymorphicProps<'div'> {}
+export interface PresenceProps extends HTMLProps<'div'>, PresenceBaseProps {}
 
-export component Presence(props: PresenceProps) {
+export component Presence(props: MaybeTracked<PresenceProps>) {
   const [presenceProps, localProps] = splitPresenceProps(props);
 
   const presence = usePresence(presenceProps);

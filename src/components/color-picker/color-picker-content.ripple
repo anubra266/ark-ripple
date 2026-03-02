@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { usePresenceContext } from '../presence';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerContentBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerContentProps = ColorPickerContentBaseProps;
+export interface ColorPickerContentBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerContentProps extends HTMLProps<'div'>, ColorPickerContentBaseProps {}
 
-export component ColorPickerContent(props: ColorPickerContentProps) {
+export component ColorPickerContent(props: MaybeTracked<ColorPickerContentProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const colorPicker = useColorPickerContext();
   const presence = usePresenceContext();

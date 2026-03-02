@@ -3,13 +3,12 @@ import { track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerAreaPropsContext } from './use-color-picker-area-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerAreaBackgroundBaseProps {
-  [key: string]: any;
-}
-export type ColorPickerAreaBackgroundProps = ColorPickerAreaBackgroundBaseProps;
+export interface ColorPickerAreaBackgroundBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerAreaBackgroundProps extends HTMLProps<'div'>, ColorPickerAreaBackgroundBaseProps {}
 
-export component ColorPickerAreaBackground(props: ColorPickerAreaBackgroundProps) {
+export component ColorPickerAreaBackground(props: MaybeTracked<ColorPickerAreaBackgroundProps>) {
   const colorPicker = useColorPickerContext();
   const areaProps = useColorPickerAreaPropsContext();
 

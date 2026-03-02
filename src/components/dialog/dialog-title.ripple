@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDialogContext } from './use-dialog-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DialogTitleBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DialogTitleProps = DialogTitleBaseProps;
+export interface DialogTitleBaseProps extends PolymorphicProps<'h2'> {}
+export interface DialogTitleProps extends HTMLProps<'h2'>, DialogTitleBaseProps {}
 
-export component DialogTitle(props: DialogTitleProps) {
+export component DialogTitle(props: MaybeTracked<DialogTitleProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const dialog = useDialogContext();
 

@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { useMenuItemPropsContext } from './use-menu-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuItemTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type MenuItemTextProps = MenuItemTextBaseProps;
+export interface MenuItemTextBaseProps extends PolymorphicProps<'div'> {}
+export interface MenuItemTextProps extends HTMLProps<'div'>, MenuItemTextBaseProps {}
 
-export component MenuItemText(props: MenuItemTextProps) {
+export component MenuItemText(props: MaybeTracked<MenuItemTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const menu = useMenuContext();
   const itemProps = useMenuItemPropsContext();

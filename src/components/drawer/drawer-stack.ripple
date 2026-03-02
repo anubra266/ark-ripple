@@ -1,15 +1,16 @@
 import * as drawer from '@zag-js/drawer';
 import { normalizeProps, type PropTypes } from 'zag-ripple';
 import { trackSplit, track, effect } from 'ripple';
+import type { MaybeTracked } from '../../types';
 import { DrawerStackStoreContext } from './use-drawer-stack-store-context';
 import { DrawerStackApiContext } from './use-drawer-stack-context';
 
-export interface DrawerStackProps {
+export interface DrawerStackBaseProps {
   children?: any;
-  [key: string]: any;
 }
+export interface DrawerStackProps extends DrawerStackBaseProps {}
 
-export component DrawerStack(props: DrawerStackProps) {
+export component DrawerStack(props: MaybeTracked<DrawerStackProps>) {
   const [children] = trackSplit(props, ['children']);
 
   const stack = drawer.createStack();

@@ -5,15 +5,14 @@ import { useMenuContext } from './use-menu-context';
 import { MenuItemGroupContext, type UseMenuItemGroupContext } from './use-menu-item-group-context';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 type OptionalUseMenuItemGroupContext = Optional<UseMenuItemGroupContext, 'id'>;
 
-export interface MenuRadioItemGroupBaseProps extends OptionalUseMenuItemGroupContext {
-  children?: any;
-}
-export type MenuRadioItemGroupProps = MenuRadioItemGroupBaseProps;
+export interface MenuRadioItemGroupBaseProps extends PolymorphicProps<'div'>, OptionalUseMenuItemGroupContext {}
+export interface MenuRadioItemGroupProps extends HTMLProps<'div'>, MenuRadioItemGroupBaseProps {}
 
-export component MenuRadioItemGroup(props: MenuRadioItemGroupProps) {
+export component MenuRadioItemGroup(props: MaybeTracked<MenuRadioItemGroupProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [optionalItemGroupProps, localProps] = createSplitProps<OptionalUseMenuItemGroupContext>()(
     @rest,

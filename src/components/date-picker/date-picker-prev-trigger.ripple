@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useDatePickerContext } from './use-date-picker-context';
 import { useDatePickerViewPropsContext } from './use-date-picker-view-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerPrevTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerPrevTriggerProps = DatePickerPrevTriggerBaseProps;
+export interface DatePickerPrevTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface DatePickerPrevTriggerProps extends HTMLProps<'button'>, DatePickerPrevTriggerBaseProps {}
 
-export component DatePickerPrevTrigger(props: DatePickerPrevTriggerProps) {
+export component DatePickerPrevTrigger(props: MaybeTracked<DatePickerPrevTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
   const viewProps = useDatePickerViewPropsContext();

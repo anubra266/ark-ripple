@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerControlProps = ColorPickerControlBaseProps;
+export interface ColorPickerControlBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerControlProps extends HTMLProps<'div'>, ColorPickerControlBaseProps {}
 
-export component ColorPickerControl(props: ColorPickerControlProps) {
+export component ColorPickerControl(props: MaybeTracked<ColorPickerControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const colorPicker = useColorPickerContext();
 

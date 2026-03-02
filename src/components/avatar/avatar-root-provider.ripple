@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { AvatarApiContext } from './use-avatar-context';
 import type { UseAvatarReturn } from './use-avatar.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AvatarRootProviderBaseProps {
-  value: UseAvatarReturn;
-  children?: any;
-  [key: string]: any;
+export interface AvatarRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseAvatarReturn;
 }
-export type AvatarRootProviderProps = AvatarRootProviderBaseProps;
+export interface AvatarRootProviderProps extends HTMLProps<'div'>, AvatarRootProviderBaseProps {}
 
-export component AvatarRootProvider(props: AvatarRootProviderProps) {
+export component AvatarRootProvider(props: MaybeTracked<AvatarRootProviderProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const avatarApi = props.value;
 

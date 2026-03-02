@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSliderContext } from './use-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderControlProps = SliderControlBaseProps;
+export interface SliderControlBaseProps extends PolymorphicProps<'div'> {}
+export interface SliderControlProps extends HTMLProps<'div'>, SliderControlBaseProps {}
 
-export component SliderControl(props: SliderControlProps) {
+export component SliderControl(props: MaybeTracked<SliderControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const slider = useSliderContext();
 

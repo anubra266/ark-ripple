@@ -2,15 +2,14 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useToggleContext } from './use-toggle-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ToggleIndicatorBaseProps {
-  fallback?: any;
-  children?: any;
-  [key: string]: any;
+export interface ToggleIndicatorBaseProps extends PolymorphicProps<'div'> {
+fallback?: any;
 }
-export type ToggleIndicatorProps = ToggleIndicatorBaseProps;
+export interface ToggleIndicatorProps extends HTMLProps<'div'>, ToggleIndicatorBaseProps {}
 
-export component ToggleIndicator(props: ToggleIndicatorProps) {
+export component ToggleIndicator(props: MaybeTracked<ToggleIndicatorProps>) {
   const [fallback, children, localProps] = trackSplit(props, ['fallback', 'children']);
   const toggle = useToggleContext();
 

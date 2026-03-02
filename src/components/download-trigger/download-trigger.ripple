@@ -2,23 +2,22 @@ import { downloadFile, type FileMimeType } from '@zag-js/file-utils';
 import { isFunction } from '@zag-js/utils';
 import { trackSplit } from 'ripple';
 import { useEnvironmentContext } from '../../providers/environment/index';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export type DownloadableData = string | Blob | File;
 
 type MaybePromise<T> = T | Promise<T>;
 
-export interface DownloadTriggerBaseProps {
+export interface DownloadTriggerBaseProps extends PolymorphicProps<'button'> {
   fileName: string;
   data: DownloadableData | (() => MaybePromise<DownloadableData>);
   mimeType: FileMimeType;
   onClick?: (event: MouseEvent) => void;
-  children?: any;
-  [key: string]: any;
 }
 
-export type DownloadTriggerProps = DownloadTriggerBaseProps;
+export interface DownloadTriggerProps extends HTMLProps<'button'>, DownloadTriggerBaseProps {}
 
-export component DownloadTrigger(props: DownloadTriggerProps) {
+export component DownloadTrigger(props: MaybeTracked<DownloadTriggerProps>) {
   const [children, fileName, data, mimeType, onClick, restProps] = trackSplit(props, [
     'children',
     'fileName',

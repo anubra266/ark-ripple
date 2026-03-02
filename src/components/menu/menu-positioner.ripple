@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { usePresenceContext } from '../presence/use-presence-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuPositionerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type MenuPositionerProps = MenuPositionerBaseProps;
+export interface MenuPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface MenuPositionerProps extends HTMLProps<'div'>, MenuPositionerBaseProps {}
 
-export component MenuPositioner(props: MenuPositionerProps) {
+export component MenuPositioner(props: MaybeTracked<MenuPositionerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const menu = useMenuContext();
   const presence = usePresenceContext();

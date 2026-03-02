@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track } from 'ripple';
 import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AngleSliderThumbBaseProps {
-  [key: string]: any;
-}
-export type AngleSliderThumbProps = AngleSliderThumbBaseProps;
+export interface AngleSliderThumbBaseProps extends PolymorphicProps<'div'> {}
+export interface AngleSliderThumbProps extends HTMLProps<'div'>, AngleSliderThumbBaseProps {}
 
-export component AngleSliderThumb(props: AngleSliderThumbProps) {
+export component AngleSliderThumb(props: MaybeTracked<AngleSliderThumbProps>) {
   const angleSlider = useAngleSliderContext();
 
   let mergedProps = track(() => mergeProps(@angleSlider.getThumbProps(), props));

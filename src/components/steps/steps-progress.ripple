@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useStepsContext } from './use-steps-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsProgressBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsProgressProps = StepsProgressBaseProps;
+export interface StepsProgressBaseProps extends PolymorphicProps<'div'> {}
+export interface StepsProgressProps extends HTMLProps<'div'>, StepsProgressBaseProps {}
 
-export component StepsProgress(props: StepsProgressProps) {
+export component StepsProgress(props: MaybeTracked<StepsProgressProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const stepsApi = useStepsContext();
 

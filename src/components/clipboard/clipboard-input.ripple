@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track, trackSplit } from 'ripple';
 import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardInputBaseProps {
-  [key: string]: any;
-}
-export type ClipboardInputProps = ClipboardInputBaseProps;
+export interface ClipboardInputBaseProps extends PolymorphicProps<'input'> {}
+export interface ClipboardInputProps extends HTMLProps<'input'>, ClipboardInputBaseProps {}
 
-export component ClipboardInput(props: ClipboardInputProps) {
+export component ClipboardInput(props: MaybeTracked<ClipboardInputProps>) {
   const [localProps] = trackSplit(props, []);
   const clipboard = useClipboardContext();
 

@@ -4,17 +4,16 @@ import { useSegmentGroupContext } from './use-segment-group-context';
 import { SegmentGroupItemApiContext } from './use-segment-group-item-context';
 import { SegmentGroupItemPropsContext } from './use-segment-group-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SegmentGroupItemBaseProps {
-  value: string;
+export interface SegmentGroupItemBaseProps extends PolymorphicProps<'label'> {
+value: string;
   disabled?: boolean;
   invalid?: boolean;
-  children?: any;
-  [key: string]: any;
 }
-export type SegmentGroupItemProps = SegmentGroupItemBaseProps;
+export interface SegmentGroupItemProps extends HTMLProps<'label'>, SegmentGroupItemBaseProps {}
 
-export component SegmentGroupItem(props: SegmentGroupItemProps) {
+export component SegmentGroupItem(props: MaybeTracked<SegmentGroupItemProps>) {
   const [children, value, disabled, invalid, localProps] = trackSplit(props, [
     'children',
     'value',

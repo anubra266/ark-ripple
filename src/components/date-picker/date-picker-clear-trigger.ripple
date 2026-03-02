@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerClearTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerClearTriggerProps = DatePickerClearTriggerBaseProps;
+export interface DatePickerClearTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface DatePickerClearTriggerProps extends HTMLProps<'button'>, DatePickerClearTriggerBaseProps {}
 
-export component DatePickerClearTrigger(props: DatePickerClearTriggerProps) {
+export component DatePickerClearTrigger(props: MaybeTracked<DatePickerClearTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
 

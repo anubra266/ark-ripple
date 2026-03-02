@@ -3,16 +3,15 @@ import { track, trackSplit } from 'ripple';
 import { ClipboardApiContext } from './use-clipboard-context';
 import type { UseClipboardReturn } from './use-clipboard.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardRootProviderBaseProps {
-  /** The clipboard machine api */
+export interface ClipboardRootProviderBaseProps extends PolymorphicProps<'div'> {
+/** The clipboard machine api */
   value: UseClipboardReturn;
-  children?: any;
-  [key: string]: any;
 }
-export type ClipboardRootProviderProps = ClipboardRootProviderBaseProps;
+export interface ClipboardRootProviderProps extends HTMLProps<'div'>, ClipboardRootProviderBaseProps {}
 
-export component ClipboardRootProvider(props: ClipboardRootProviderProps) {
+export component ClipboardRootProvider(props: MaybeTracked<ClipboardRootProviderProps>) {
   const [clipboard, children, rest] = trackSplit(props, ['value', 'children']);
 
   ClipboardApiContext.set(clipboard);

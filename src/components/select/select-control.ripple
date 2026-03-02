@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectControlProps = SelectControlBaseProps;
+export interface SelectControlBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectControlProps extends HTMLProps<'div'>, SelectControlBaseProps {}
 
-export component SelectControl(props: SelectControlProps) {
+export component SelectControl(props: MaybeTracked<SelectControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const select = useSelectContext();
 

@@ -2,16 +2,15 @@ import { mergeProps } from 'zag-ripple';
 import { track, trackSplit } from 'ripple';
 import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardIndicatorBaseProps {
-  /** Content to show when copied */
+export interface ClipboardIndicatorBaseProps extends PolymorphicProps<'div'> {
+/** Content to show when copied */
   copied?: any;
-  children?: any;
-  [key: string]: any;
 }
-export type ClipboardIndicatorProps = ClipboardIndicatorBaseProps;
+export interface ClipboardIndicatorProps extends HTMLProps<'div'>, ClipboardIndicatorBaseProps {}
 
-export component ClipboardIndicator(props: ClipboardIndicatorProps) {
+export component ClipboardIndicator(props: MaybeTracked<ClipboardIndicatorProps>) {
   const [copied, children, localProps] = trackSplit(props, ['copied', 'children']);
   const clipboard = useClipboardContext();
 

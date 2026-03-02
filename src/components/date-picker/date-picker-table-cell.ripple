@@ -8,14 +8,12 @@ import {
   type DatePickerTableCellPropsContext as CellPropsContext,
 } from './use-date-picker-table-cell-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerTableCellBaseProps extends CellPropsContext {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerTableCellProps = DatePickerTableCellBaseProps;
+export interface DatePickerTableCellBaseProps extends PolymorphicProps<'td'>, CellPropsContext {}
+export interface DatePickerTableCellProps extends HTMLProps<'td'>, DatePickerTableCellBaseProps {}
 
-export component DatePickerTableCell(props: DatePickerTableCellProps) {
+export component DatePickerTableCell(props: MaybeTracked<DatePickerTableCellProps>) {
   const [children, value, disabled, visibleRange, columns, localProps] = trackSplit(props, [
     'children',
     'value',

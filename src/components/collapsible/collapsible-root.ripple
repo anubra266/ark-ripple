@@ -4,14 +4,12 @@ import { CollapsibleApiContext } from './use-collapsible-context';
 import { useCollapsible, type UseCollapsibleProps } from './use-collapsible.ripple';
 import { splitCollapsibleProps } from './split-collapsible-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CollapsibleRootBaseProps extends UseCollapsibleProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CollapsibleRootProps = CollapsibleRootBaseProps;
+export interface CollapsibleRootBaseProps extends PolymorphicProps<'div'>, UseCollapsibleProps {}
+export interface CollapsibleRootProps extends HTMLProps<'div'>, CollapsibleRootBaseProps {}
 
-export component CollapsibleRoot(props: CollapsibleRootProps) {
+export component CollapsibleRoot(props: MaybeTracked<CollapsibleRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [collapsibleProps, localProps] = splitCollapsibleProps(@rest);
   const collapsible = useCollapsible(collapsibleProps);

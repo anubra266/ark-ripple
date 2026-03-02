@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useEditableContext } from './use-editable-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface EditableSubmitTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type EditableSubmitTriggerProps = EditableSubmitTriggerBaseProps;
+export interface EditableSubmitTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface EditableSubmitTriggerProps extends HTMLProps<'button'>, EditableSubmitTriggerBaseProps {}
 
-export component EditableSubmitTrigger(props: EditableSubmitTriggerProps) {
+export component EditableSubmitTrigger(props: MaybeTracked<EditableSubmitTriggerProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const editable = useEditableContext();
 

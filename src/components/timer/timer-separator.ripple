@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useTimerContext } from './use-timer-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface TimerSeparatorBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type TimerSeparatorProps = TimerSeparatorBaseProps;
+export interface TimerSeparatorBaseProps extends PolymorphicProps<'div'> {}
+export interface TimerSeparatorProps extends HTMLProps<'div'>, TimerSeparatorBaseProps {}
 
-export component TimerSeparator(props: TimerSeparatorProps) {
+export component TimerSeparator(props: MaybeTracked<TimerSeparatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const timer = useTimerContext();
 

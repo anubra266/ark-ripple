@@ -3,18 +3,18 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldTextareaBaseProps {
-  /**
+export interface FieldTextareaBaseProps extends PolymorphicProps<'textarea'> {
+/**
  * Whether the textarea should autoresize
  * @default false
  */
   autoresize?: boolean | undefined;
-  [key: string]: any;
 }
-export type FieldTextareaProps = FieldTextareaBaseProps;
+export interface FieldTextareaProps extends HTMLProps<'textarea'>, FieldTextareaBaseProps {}
 
-export component FieldTextarea(props: FieldTextareaProps) {
+export component FieldTextarea(props: MaybeTracked<FieldTextareaProps>) {
   const [autoresize, localProps] = trackSplit(props, ['autoresize']);
   const field = useFieldContext();
 

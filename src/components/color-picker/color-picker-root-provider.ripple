@@ -5,15 +5,14 @@ import { PresenceApiContext } from '../presence/use-presence-context';
 import { splitPresenceProps } from '../presence/split-presence-props.ripple';
 import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerRootProviderBaseProps extends UsePresenceProps {
-  value: UseColorPickerContext;
-  children?: any;
-  [key: string]: any;
+export interface ColorPickerRootProviderBaseProps extends PolymorphicProps<'div'>, UsePresenceProps {
+value: UseColorPickerContext;
 }
-export type ColorPickerRootProviderProps = ColorPickerRootProviderBaseProps;
+export interface ColorPickerRootProviderProps extends HTMLProps<'div'>, ColorPickerRootProviderBaseProps {}
 
-export component ColorPickerRootProvider(props: ColorPickerRootProviderProps) {
+export component ColorPickerRootProvider(props: MaybeTracked<ColorPickerRootProviderProps>) {
   const [children, value, rest] = trackSplit(props, ['children', 'value']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
 

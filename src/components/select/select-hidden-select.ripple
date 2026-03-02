@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { useFieldContext } from '../field/use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectHiddenSelectBaseProps {
-  [key: string]: any;
-}
-export type SelectHiddenSelectProps = SelectHiddenSelectBaseProps;
+export interface SelectHiddenSelectBaseProps extends PolymorphicProps<'select'> {}
+export interface SelectHiddenSelectProps extends HTMLProps<'select'>, SelectHiddenSelectBaseProps {}
 
-export component SelectHiddenSelect(props: SelectHiddenSelectProps) {
+export component SelectHiddenSelect(props: MaybeTracked<SelectHiddenSelectProps>) {
   const select = useSelectContext();
   const field = useFieldContext();
 

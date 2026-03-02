@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDrawerStackContext } from './use-drawer-stack-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DrawerIndentBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DrawerIndentProps = DrawerIndentBaseProps;
+export interface DrawerIndentBaseProps extends PolymorphicProps<'div'> {}
+export interface DrawerIndentProps extends HTMLProps<'div'>, DrawerIndentBaseProps {}
 
-export component DrawerIndent(props: DrawerIndentProps) {
+export component DrawerIndent(props: MaybeTracked<DrawerIndentProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const stackApi = useDrawerStackContext();
 

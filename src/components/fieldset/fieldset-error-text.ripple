@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track, trackSplit } from 'ripple';
 import { useFieldsetContext } from './use-fieldset-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldsetErrorTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldsetErrorTextProps = FieldsetErrorTextBaseProps;
+export interface FieldsetErrorTextBaseProps extends PolymorphicProps<'span'> {}
+export interface FieldsetErrorTextProps extends HTMLProps<'span'>, FieldsetErrorTextBaseProps {}
 
-export component FieldsetErrorText(props: FieldsetErrorTextProps) {
+export component FieldsetErrorText(props: MaybeTracked<FieldsetErrorTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const fieldset = useFieldsetContext();
 

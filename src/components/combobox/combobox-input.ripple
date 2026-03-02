@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { useFieldContext } from '../field/use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxInputBaseProps {
-  [key: string]: any;
-}
-export type ComboboxInputProps = ComboboxInputBaseProps;
+export interface ComboboxInputBaseProps extends PolymorphicProps<'input'> {}
+export interface ComboboxInputProps extends HTMLProps<'input'>, ComboboxInputBaseProps {}
 
-export component ComboboxInput(props: ComboboxInputProps) {
+export component ComboboxInput(props: MaybeTracked<ComboboxInputProps>) {
   const [localProps] = trackSplit(props, []);
   const combobox = useComboboxContext();
   const field = useFieldContext();

@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { ScrollAreaApiContext } from './use-scroll-area-context';
 import type { UseScrollAreaReturn } from './use-scroll-area.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ScrollAreaRootProviderBaseProps {
-  value: UseScrollAreaReturn;
-  children?: any;
-  [key: string]: any;
+export interface ScrollAreaRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseScrollAreaReturn;
 }
-export type ScrollAreaRootProviderProps = ScrollAreaRootProviderBaseProps;
+export interface ScrollAreaRootProviderProps extends HTMLProps<'div'>, ScrollAreaRootProviderBaseProps {}
 
-export component ScrollAreaRootProvider(props: ScrollAreaRootProviderProps) {
+export component ScrollAreaRootProvider(props: MaybeTracked<ScrollAreaRootProviderProps>) {
   const [scrollArea, children, rest] = trackSplit(props, ['value', 'children']);
 
   ScrollAreaApiContext.set(scrollArea);

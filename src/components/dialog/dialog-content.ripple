@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useDialogContext } from './use-dialog-context';
 import { usePresenceContext } from '../presence/use-presence-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DialogContentBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DialogContentProps = DialogContentBaseProps;
+export interface DialogContentBaseProps extends PolymorphicProps<'div'> {}
+export interface DialogContentProps extends HTMLProps<'div'>, DialogContentBaseProps {}
 
-export component DialogContent(props: DialogContentProps) {
+export component DialogContent(props: MaybeTracked<DialogContentProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const dialog = useDialogContext();
   const presence = usePresenceContext();

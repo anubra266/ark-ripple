@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useDatePickerContext } from './use-date-picker-context';
 import { useDatePickerTablePropsContext } from './use-date-picker-table-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerWeekNumberHeaderCellBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerWeekNumberHeaderCellProps = DatePickerWeekNumberHeaderCellBaseProps;
+export interface DatePickerWeekNumberHeaderCellBaseProps extends PolymorphicProps<'th'> {}
+export interface DatePickerWeekNumberHeaderCellProps extends HTMLProps<'th'>, DatePickerWeekNumberHeaderCellBaseProps {}
 
-export component DatePickerWeekNumberHeaderCell(props: DatePickerWeekNumberHeaderCellProps) {
+export component DatePickerWeekNumberHeaderCell(props: MaybeTracked<DatePickerWeekNumberHeaderCellProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
   const tableProps = useDatePickerTablePropsContext();

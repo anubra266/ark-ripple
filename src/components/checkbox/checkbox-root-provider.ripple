@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { CheckboxApiContext } from './use-checkbox-context';
 import type { UseCheckboxReturn } from './use-checkbox.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxRootProviderBaseProps {
-  value: UseCheckboxReturn;
-  children?: any;
-  [key: string]: any;
+export interface CheckboxRootProviderBaseProps extends PolymorphicProps<'label'> {
+value: UseCheckboxReturn;
 }
-export type CheckboxRootProviderProps = CheckboxRootProviderBaseProps;
+export interface CheckboxRootProviderProps extends HTMLProps<'label'>, CheckboxRootProviderBaseProps {}
 
-export component CheckboxRootProvider(props: CheckboxRootProviderProps) {
+export component CheckboxRootProvider(props: MaybeTracked<CheckboxRootProviderProps>) {
   const [checkbox, children, rest] = trackSplit(props, ['value', 'children']);
 
   CheckboxApiContext.set(checkbox);

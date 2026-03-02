@@ -3,15 +3,15 @@ import { trackSplit, track } from 'ripple';
 import { datePickerAnatomy } from './date-picker.anatomy';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerValueTextBaseProps {
-  placeholder?: string | undefined;
+export interface DatePickerValueTextBaseProps extends PolymorphicProps<'span'> {
+placeholder?: string | undefined;
   separator?: string | undefined;
-  [key: string]: any;
 }
-export type DatePickerValueTextProps = DatePickerValueTextBaseProps;
+export interface DatePickerValueTextProps extends HTMLProps<'span'>, DatePickerValueTextBaseProps {}
 
-export component DatePickerValueText(props: DatePickerValueTextProps) {
+export component DatePickerValueText(props: MaybeTracked<DatePickerValueTextProps>) {
   const [placeholder, separator, localProps] = trackSplit(props, ['placeholder', 'separator']);
   const datePicker = useDatePickerContext();
 

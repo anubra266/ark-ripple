@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { EditableApiContext } from './use-editable-context';
 import type { UseEditableReturn } from './use-editable.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface EditableRootProviderBaseProps {
-  value: UseEditableReturn;
-  children?: any;
-  [key: string]: any;
+export interface EditableRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseEditableReturn;
 }
-export type EditableRootProviderProps = EditableRootProviderBaseProps;
+export interface EditableRootProviderProps extends HTMLProps<'div'>, EditableRootProviderBaseProps {}
 
-export component EditableRootProvider(props: EditableRootProviderProps) {
+export component EditableRootProvider(props: MaybeTracked<EditableRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);
 
   EditableApiContext.set(value);

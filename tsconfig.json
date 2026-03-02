@@ -17,7 +17,9 @@
     "jsx": "preserve",
     "jsxImportSource": "ripple",
     "plugins": [{ "name": "@ripple-ts/typescript-plugin" }],
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "dist", "overrides"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "overrides", "ark"]
 }

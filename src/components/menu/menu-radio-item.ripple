@@ -7,15 +7,14 @@ import { MenuItemContext } from './use-menu-item-context';
 import { MenuItemPropsContext } from './use-menu-item-props-context';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
 
-export interface MenuRadioItemBaseProps extends PartialOptionItemProps {
-  children?: any;
-}
-export type MenuRadioItemProps = MenuRadioItemProps;
+export interface MenuRadioItemBaseProps extends PolymorphicProps<'div'>, PartialOptionItemProps {}
+export interface MenuRadioItemProps extends HTMLProps<'div'>, MenuRadioItemBaseProps {}
 
-export component MenuRadioItem(props: MenuRadioItemProps) {
+export component MenuRadioItem(props: MaybeTracked<MenuRadioItemProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [partialItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
     'closeOnSelect',

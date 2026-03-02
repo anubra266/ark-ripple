@@ -8,14 +8,12 @@ import { useSelect, type UseSelectProps } from './use-select.ripple';
 import { splitSelectProps } from './split-select-props.ripple';
 import type { UsePresenceProps } from '../presence/use-presence.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectRootBaseProps extends UseSelectProps, UsePresenceProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectRootProps = SelectRootBaseProps;
+export interface SelectRootBaseProps extends PolymorphicProps<'div'>, UseSelectProps, UsePresenceProps {}
+export interface SelectRootProps extends HTMLProps<'div'>, SelectRootBaseProps {}
 
-export component SelectRoot(props: SelectRootProps) {
+export component SelectRoot(props: MaybeTracked<SelectRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [presenceProps, selectProps] = splitPresenceProps(@rest);
   const [useSelectProps, localProps] = splitSelectProps(@selectProps);

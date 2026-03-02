@@ -6,14 +6,12 @@ import { StepsItemApiContext } from './use-steps-item-context';
 import { StepsItemPropsContext } from './use-steps-item-props-context';
 import type { ItemProps } from '@zag-js/steps';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsItemBaseProps extends ItemProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsItemProps = StepsItemBaseProps;
+export interface StepsItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface StepsItemProps extends HTMLProps<'div'>, StepsItemBaseProps {}
 
-export component StepsItem(props: StepsItemProps) {
+export component StepsItem(props: MaybeTracked<StepsItemProps>) {
   const [children, index, localProps] = trackSplit(props, ['children', 'index']);
   const stepsApi = useStepsContext();
 

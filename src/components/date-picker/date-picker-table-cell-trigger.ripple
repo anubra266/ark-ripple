@@ -4,14 +4,12 @@ import { useDatePickerContext } from './use-date-picker-context';
 import { useDatePickerViewPropsContext } from './use-date-picker-view-props-context';
 import { useDatePickerTableCellPropsContext } from './use-date-picker-table-cell-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerTableCellTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerTableCellTriggerProps = DatePickerTableCellTriggerBaseProps;
+export interface DatePickerTableCellTriggerBaseProps extends PolymorphicProps<'div'> {}
+export interface DatePickerTableCellTriggerProps extends HTMLProps<'div'>, DatePickerTableCellTriggerBaseProps {}
 
-export component DatePickerTableCellTrigger(props: DatePickerTableCellTriggerProps) {
+export component DatePickerTableCellTrigger(props: MaybeTracked<DatePickerTableCellTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
   const viewProps = useDatePickerViewPropsContext();

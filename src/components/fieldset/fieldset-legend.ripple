@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track, trackSplit } from 'ripple';
 import { useFieldsetContext } from './use-fieldset-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldsetLegendBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldsetLegendProps = FieldsetLegendBaseProps;
+export interface FieldsetLegendBaseProps extends PolymorphicProps<'legend'> {}
+export interface FieldsetLegendProps extends HTMLProps<'legend'>, FieldsetLegendBaseProps {}
 
-export component FieldsetLegend(props: FieldsetLegendProps) {
+export component FieldsetLegend(props: MaybeTracked<FieldsetLegendProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const fieldset = useFieldsetContext();
 

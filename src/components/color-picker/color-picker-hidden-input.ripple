@@ -3,13 +3,12 @@ import { track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { useFieldContext } from '../field/use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerHiddenInputBaseProps {
-  [key: string]: any;
-}
-export type ColorPickerHiddenInputProps = ColorPickerHiddenInputBaseProps;
+export interface ColorPickerHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface ColorPickerHiddenInputProps extends HTMLProps<'input'>, ColorPickerHiddenInputBaseProps {}
 
-export component ColorPickerHiddenInput(props: ColorPickerHiddenInputProps) {
+export component ColorPickerHiddenInput(props: MaybeTracked<ColorPickerHiddenInputProps>) {
   const colorPicker = useColorPickerContext();
   const field = useFieldContext();
 

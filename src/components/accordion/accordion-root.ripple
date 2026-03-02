@@ -9,14 +9,12 @@ import { AccordionApiContext } from './use-accordion-context';
 import { useAccordion, type UseAccordionProps } from './use-accordion.ripple';
 import { splitAccordionProps } from './split-accordion-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionRootBaseProps extends UseAccordionProps, RenderStrategyProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AccordionRootProps = AccordionRootBaseProps;
+export interface AccordionRootBaseProps extends PolymorphicProps<'div'>, UseAccordionProps, RenderStrategyProps {}
+export interface AccordionRootProps extends HTMLProps<'div'>, AccordionRootBaseProps {}
 
-export component AccordionRoot(props: AccordionRootProps) {
+export component AccordionRoot(props: MaybeTracked<AccordionRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [renderStrategyProps, accordionProps] = splitRenderStrategyProps(@rest);
   const [useAccordionProps, localProps] = splitAccordionProps(@accordionProps);

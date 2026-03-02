@@ -4,14 +4,12 @@ import { useId } from '../../utils/use-id';
 import { useSelectContext } from './use-select-context';
 import { SelectItemGroupPropsContext } from './use-select-item-group-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectItemGroupBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectItemGroupProps = SelectItemGroupBaseProps;
+export interface SelectItemGroupBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectItemGroupProps extends HTMLProps<'div'>, SelectItemGroupBaseProps {}
 
-export component SelectItemGroup(props: SelectItemGroupProps) {
+export component SelectItemGroup(props: MaybeTracked<SelectItemGroupProps>) {
   const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
   const id = useId();
   const select = useSelectContext();

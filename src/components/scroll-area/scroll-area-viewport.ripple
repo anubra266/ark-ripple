@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useScrollAreaContext } from './use-scroll-area-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ScrollAreaViewportBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ScrollAreaViewportProps = ScrollAreaViewportBaseProps;
+export interface ScrollAreaViewportBaseProps extends PolymorphicProps<'div'> {}
+export interface ScrollAreaViewportProps extends HTMLProps<'div'>, ScrollAreaViewportBaseProps {}
 
-export component ScrollAreaViewport(props: ScrollAreaViewportProps) {
+export component ScrollAreaViewport(props: MaybeTracked<ScrollAreaViewportProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const scrollArea = useScrollAreaContext();
 

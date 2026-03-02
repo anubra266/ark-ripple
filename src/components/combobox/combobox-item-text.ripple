@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { useComboboxItemPropsContext } from './use-combobox-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxItemTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxItemTextProps = ComboboxItemTextBaseProps;
+export interface ComboboxItemTextBaseProps extends PolymorphicProps<'span'> {}
+export interface ComboboxItemTextProps extends HTMLProps<'span'>, ComboboxItemTextBaseProps {}
 
-export component ComboboxItemText(props: ComboboxItemTextProps) {
+export component ComboboxItemText(props: MaybeTracked<ComboboxItemTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const combobox = useComboboxContext();
   const itemProps = useComboboxItemPropsContext();

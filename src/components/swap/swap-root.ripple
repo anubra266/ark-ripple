@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { SwapApiContext } from './use-swap-context';
 import { useSwap, type UseSwapProps } from './use-swap.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SwapRootBaseProps extends UseSwapProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SwapRootProps = SwapRootBaseProps;
+export interface SwapRootBaseProps extends PolymorphicProps<'span'>, UseSwapProps {}
+export interface SwapRootProps extends HTMLProps<'span'>, SwapRootBaseProps {}
 
-export component SwapRoot(props: SwapRootProps) {
+export component SwapRoot(props: MaybeTracked<SwapRootProps>) {
   const [swap, lazyMount, unmountOnExit, children, localProps] = trackSplit(props, [
     'swap',
     'lazyMount',

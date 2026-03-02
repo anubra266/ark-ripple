@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useRadioGroupContext } from './use-radio-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RadioGroupLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type RadioGroupLabelProps = RadioGroupLabelBaseProps;
+export interface RadioGroupLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface RadioGroupLabelProps extends HTMLProps<'label'>, RadioGroupLabelBaseProps {}
 
-export component RadioGroupLabel(props: RadioGroupLabelProps) {
+export component RadioGroupLabel(props: MaybeTracked<RadioGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const radioGroup = useRadioGroupContext();
 

@@ -6,6 +6,7 @@ import { MenuItemContext } from './use-menu-item-context';
 import { MenuItemPropsContext } from './use-menu-item-props-context';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 interface ItemBaseProps extends ItemProps {
   /**
@@ -14,12 +15,10 @@ interface ItemBaseProps extends ItemProps {
   onSelect?: VoidFunction;
 }
 
-export interface MenuItemBaseProps extends ItemBaseProps {
-  children?: any;
-}
-export type MenuItemProps = MenuItemBaseProps;
+export interface MenuItemBaseProps extends PolymorphicProps<'div'>, ItemBaseProps {}
+export interface MenuItemProps extends HTMLProps<'div'>, MenuItemBaseProps {}
 
-export component MenuItem(props: MenuItemProps) {
+export component MenuItem(props: MaybeTracked<MenuItemProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [itemProps, localProps] = createSplitProps<ItemBaseProps>()(@rest, [
     'value',

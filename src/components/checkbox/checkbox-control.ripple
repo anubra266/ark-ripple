@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useCheckboxContext } from './use-checkbox-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CheckboxControlProps = CheckboxControlBaseProps;
+export interface CheckboxControlBaseProps extends PolymorphicProps<'div'> {}
+export interface CheckboxControlProps extends HTMLProps<'div'>, CheckboxControlBaseProps {}
 
-export component CheckboxControl(props: CheckboxControlProps) {
+export component CheckboxControl(props: MaybeTracked<CheckboxControlProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const checkbox = useCheckboxContext();
 

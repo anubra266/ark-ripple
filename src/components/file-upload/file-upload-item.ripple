@@ -5,16 +5,14 @@ import { useFileUploadContext } from './use-file-upload-context';
 import { useFileUploadItemGroupPropsContext } from './use-file-upload-item-group-props-context';
 import { FileUploadItemPropsContext } from './use-file-upload-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 type ItemBaseProps = Omit<ItemProps, 'type'>;
 
-export interface FileUploadItemBaseProps extends ItemBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadItemProps = FileUploadItemBaseProps;
+export interface FileUploadItemBaseProps extends PolymorphicProps<'li'>, ItemBaseProps {}
+export interface FileUploadItemProps extends HTMLProps<'li'>, FileUploadItemBaseProps {}
 
-export component FileUploadItem(props: FileUploadItemProps) {
+export component FileUploadItem(props: MaybeTracked<FileUploadItemProps>) {
   const [children, file, localProps] = trackSplit(props, ['children', 'file']);
   const fileUpload = useFileUploadContext();
   const itemGroupProps = useFileUploadItemGroupPropsContext();

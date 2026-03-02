@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuContextTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type MenuContextTriggerProps = MenuContextTriggerBaseProps;
+export interface MenuContextTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface MenuContextTriggerProps extends HTMLProps<'button'>, MenuContextTriggerBaseProps {}
 
-export component MenuContextTrigger(props: MenuContextTriggerProps) {
+export component MenuContextTrigger(props: MaybeTracked<MenuContextTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const menu = useMenuContext();
 

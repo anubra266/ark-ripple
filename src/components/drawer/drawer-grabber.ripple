@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useDrawerContext } from './use-drawer-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DrawerGrabberBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DrawerGrabberProps = DrawerGrabberBaseProps;
+export interface DrawerGrabberBaseProps extends PolymorphicProps<'div'> {}
+export interface DrawerGrabberProps extends HTMLProps<'div'>, DrawerGrabberBaseProps {}
 
-export component DrawerGrabber(props: DrawerGrabberProps) {
+export component DrawerGrabber(props: MaybeTracked<DrawerGrabberProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const drawer = useDrawerContext();
 

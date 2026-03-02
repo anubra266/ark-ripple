@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { uniq } from '@zag-js/utils';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerRangeTextBaseProps {
-  [key: string]: any;
-}
-export type DatePickerRangeTextProps = DatePickerRangeTextBaseProps;
+export interface DatePickerRangeTextBaseProps extends PolymorphicProps<'div'> {}
+export interface DatePickerRangeTextProps extends HTMLProps<'div'>, DatePickerRangeTextBaseProps {}
 
-export component DatePickerRangeText(props: DatePickerRangeTextProps) {
+export component DatePickerRangeText(props: MaybeTracked<DatePickerRangeTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const datePicker = useDatePickerContext();
 

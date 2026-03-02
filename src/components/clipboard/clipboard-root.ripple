@@ -4,14 +4,12 @@ import { ClipboardApiContext } from './use-clipboard-context';
 import { useClipboard, type UseClipboardProps } from './use-clipboard.ripple';
 import { splitClipboardProps } from './split-clipboard-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardRootBaseProps extends UseClipboardProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ClipboardRootProps = ClipboardRootBaseProps;
+export interface ClipboardRootBaseProps extends PolymorphicProps<'div'>, UseClipboardProps {}
+export interface ClipboardRootProps extends HTMLProps<'div'>, ClipboardRootBaseProps {}
 
-export component ClipboardRoot(props: ClipboardRootProps) {
+export component ClipboardRoot(props: MaybeTracked<ClipboardRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useClipboardProps, localProps] = splitClipboardProps(@rest);
   const clipboard = useClipboard(useClipboardProps);

@@ -5,14 +5,12 @@ import { useSelectContext } from './use-select-context';
 import { SelectItemApiContext } from './use-select-item-context';
 import { SelectItemPropsContext } from './use-select-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectItemBaseProps extends ItemProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectItemProps = SelectItemBaseProps;
+export interface SelectItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface SelectItemProps extends HTMLProps<'div'>, SelectItemBaseProps {}
 
-export component SelectItem(props: SelectItemProps) {
+export component SelectItem(props: MaybeTracked<SelectItemProps>) {
   const [item, disabled, children, rest] = trackSplit(props, ['item', 'disabled', 'children']);
   const select = useSelectContext();
 

@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useFieldContext } from '../field/use-field-context';
 import { useEditableContext } from './use-editable-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface EditableInputBaseProps {
-  [key: string]: any;
-}
-export type EditableInputProps = EditableInputBaseProps;
+export interface EditableInputBaseProps extends PolymorphicProps<'input'> {}
+export interface EditableInputProps extends HTMLProps<'input'>, EditableInputBaseProps {}
 
-export component EditableInput(props: EditableInputProps) {
+export component EditableInput(props: MaybeTracked<EditableInputProps>) {
   const [rest] = trackSplit(props, []);
   const editable = useEditableContext();
   const field = useFieldContext();

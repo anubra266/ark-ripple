@@ -6,15 +6,14 @@ import { splitPresenceProps } from '../presence/split-presence-props.ripple';
 import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
 import type { UseDatePickerReturn } from './use-date-picker.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerRootProviderBaseProps extends UsePresenceProps {
-  value: UseDatePickerReturn;
-  children?: any;
-  [key: string]: any;
+export interface DatePickerRootProviderBaseProps extends PolymorphicProps<'div'>, UsePresenceProps {
+value: UseDatePickerReturn;
 }
-export type DatePickerRootProviderProps = DatePickerRootProviderBaseProps;
+export interface DatePickerRootProviderProps extends HTMLProps<'div'>, DatePickerRootProviderBaseProps {}
 
-export component DatePickerRootProvider(props: DatePickerRootProviderProps) {
+export component DatePickerRootProvider(props: MaybeTracked<DatePickerRootProviderProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
 

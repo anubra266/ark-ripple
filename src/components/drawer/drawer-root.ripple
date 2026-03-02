@@ -1,4 +1,5 @@
 import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
 import { DrawerApiContext } from './use-drawer-context';
 import { PresenceApiContext } from '../presence/use-presence-context';
 import { splitPresenceProps } from '../presence/split-presence-props.ripple';
@@ -12,11 +13,10 @@ import {
 
 export interface DrawerRootBaseProps extends UseDrawerProps, UsePresenceProps {
   children?: any;
-  [key: string]: any;
 }
-export type DrawerRootProps = DrawerRootBaseProps;
+export interface DrawerRootProps extends DrawerRootBaseProps {}
 
-export component DrawerRoot(props: DrawerRootProps) {
+export component DrawerRoot(props: MaybeTracked<DrawerRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
   const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);

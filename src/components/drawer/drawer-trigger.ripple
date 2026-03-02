@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useDrawerContext } from './use-drawer-context';
 import { usePresenceContext } from '../presence/use-presence-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DrawerTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DrawerTriggerProps = DrawerTriggerBaseProps;
+export interface DrawerTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface DrawerTriggerProps extends HTMLProps<'button'>, DrawerTriggerBaseProps {}
 
-export component DrawerTrigger(props: DrawerTriggerProps) {
+export component DrawerTrigger(props: MaybeTracked<DrawerTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const drawer = useDrawerContext();
   const presence = usePresenceContext();

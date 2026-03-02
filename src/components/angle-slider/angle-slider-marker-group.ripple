@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AngleSliderMarkerGroupBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AngleSliderMarkerGroupProps = AngleSliderMarkerGroupBaseProps;
+export interface AngleSliderMarkerGroupBaseProps extends PolymorphicProps<'div'> {}
+export interface AngleSliderMarkerGroupProps extends HTMLProps<'div'>, AngleSliderMarkerGroupBaseProps {}
 
-export component AngleSliderMarkerGroup(props: AngleSliderMarkerGroupProps) {
+export component AngleSliderMarkerGroup(props: MaybeTracked<AngleSliderMarkerGroupProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const angleSlider = useAngleSliderContext();
 

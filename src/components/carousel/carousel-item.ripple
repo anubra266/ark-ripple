@@ -3,14 +3,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useCarouselContext } from './use-carousel-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CarouselItemBaseProps extends ItemProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CarouselItemProps = CarouselItemBaseProps;
+export interface CarouselItemBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface CarouselItemProps extends HTMLProps<'div'>, CarouselItemBaseProps {}
 
-export component CarouselItem(props: CarouselItemProps) {
+export component CarouselItem(props: MaybeTracked<CarouselItemProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [index, snapAlign, localProps] = trackSplit(@rest, ['index', 'snapAlign']);
   const carousel = useCarouselContext();

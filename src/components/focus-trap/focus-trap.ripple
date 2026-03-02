@@ -3,6 +3,7 @@ import { track, trackSplit, effect } from 'ripple';
 import { mergeProps } from 'zag-ripple';
 import { splitFocusTrapProps } from './split-focus-trap-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TrapOptions extends Pick<
   FocusTrapOptions,
@@ -14,14 +15,11 @@ export interface TrapOptions extends Pick<
   disabled?: boolean;
 }
 
-export interface FocusTrapBaseProps extends TrapOptions {
-  children?: any;
-  [key: string]: any;
-}
+export interface FocusTrapBaseProps extends PolymorphicProps<'div'>, TrapOptions {}
 
-export type FocusTrapProps = FocusTrapBaseProps;
+export interface FocusTrapProps extends HTMLProps<'div'>, FocusTrapBaseProps {}
 
-export component FocusTrap(props: FocusTrapProps) {
+export component FocusTrap(props: MaybeTracked<FocusTrapProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [trapProps, localProps] = splitFocusTrapProps(@rest);
 

@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useEditableContext } from './use-editable-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface EditableControlBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type EditableControlProps = EditableControlBaseProps;
+export interface EditableControlBaseProps extends PolymorphicProps<'div'> {}
+export interface EditableControlProps extends HTMLProps<'div'>, EditableControlBaseProps {}
 
-export component EditableControl(props: EditableControlProps) {
+export component EditableControl(props: MaybeTracked<EditableControlProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const editable = useEditableContext();
 

@@ -4,14 +4,12 @@ import { useDialogContext } from './use-dialog-context';
 import { usePresence } from '../presence/use-presence.ripple';
 import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DialogBackdropBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type DialogBackdropProps = DialogBackdropBaseProps;
+export interface DialogBackdropBaseProps extends PolymorphicProps<'div'> {}
+export interface DialogBackdropProps extends HTMLProps<'div'>, DialogBackdropBaseProps {}
 
-export component DialogBackdrop(props: DialogBackdropProps) {
+export component DialogBackdrop(props: MaybeTracked<DialogBackdropProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const dialog = useDialogContext();
   const renderStrategy = useRenderStrategyContext();

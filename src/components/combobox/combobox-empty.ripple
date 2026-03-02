@@ -2,16 +2,14 @@ import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { comboboxAnatomy } from './combobox.anatomy';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const parts = comboboxAnatomy.build();
 
-export interface ComboboxEmptyBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxEmptyProps = ComboboxEmptyBaseProps;
+export interface ComboboxEmptyBaseProps extends PolymorphicProps<'div'> {}
+export interface ComboboxEmptyProps extends HTMLProps<'div'>, ComboboxEmptyBaseProps {}
 
-export component ComboboxEmpty(props: ComboboxEmptyProps) {
+export component ComboboxEmpty(props: MaybeTracked<ComboboxEmptyProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const combobox = useComboboxContext();
 

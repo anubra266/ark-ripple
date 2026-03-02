@@ -5,14 +5,12 @@ import { ColorPickerChannelPropsContext } from './use-color-picker-channel-props
 import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerFormatContext } from './use-color-picker-format-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerChannelSliderBaseProps extends ChannelProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerChannelSliderProps = ColorPickerChannelSliderBaseProps;
+export interface ColorPickerChannelSliderBaseProps extends PolymorphicProps<'div'>, ChannelProps {}
+export interface ColorPickerChannelSliderProps extends HTMLProps<'div'>, ColorPickerChannelSliderBaseProps {}
 
-export component ColorPickerChannelSlider(props: ColorPickerChannelSliderProps) {
+export component ColorPickerChannelSlider(props: MaybeTracked<ColorPickerChannelSliderProps>) {
   const [children, channel, orientation, localProps] = trackSplit(props, [
     'children',
     'channel',

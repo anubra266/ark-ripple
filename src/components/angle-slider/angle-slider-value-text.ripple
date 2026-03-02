@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AngleSliderValueTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AngleSliderValueTextProps = AngleSliderValueTextBaseProps;
+export interface AngleSliderValueTextBaseProps extends PolymorphicProps<'div'> {}
+export interface AngleSliderValueTextProps extends HTMLProps<'div'>, AngleSliderValueTextBaseProps {}
 
-export component AngleSliderValueText(props: AngleSliderValueTextProps) {
+export component AngleSliderValueText(props: MaybeTracked<AngleSliderValueTextProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const angleSlider = useAngleSliderContext();
 

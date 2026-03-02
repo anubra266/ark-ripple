@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { useSelectItemPropsContext } from './use-select-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectItemIndicatorBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SelectItemIndicatorProps = SelectItemIndicatorBaseProps;
+export interface SelectItemIndicatorBaseProps extends PolymorphicProps<'div'> {}
+export interface SelectItemIndicatorProps extends HTMLProps<'div'>, SelectItemIndicatorBaseProps {}
 
-export component SelectItemIndicator(props: SelectItemIndicatorProps) {
+export component SelectItemIndicator(props: MaybeTracked<SelectItemIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const select = useSelectContext();
   const itemProps = useSelectItemPropsContext();

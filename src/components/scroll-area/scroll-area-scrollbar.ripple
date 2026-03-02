@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { useScrollAreaContext } from './use-scroll-area-context';
 import { ScrollAreaScrollbarContext } from './use-scroll-area-scrollbar-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ScrollAreaScrollbarBaseProps {
-  orientation?: 'horizontal' | 'vertical';
-  children?: any;
-  [key: string]: any;
+export interface ScrollAreaScrollbarBaseProps extends PolymorphicProps<'div'> {
+orientation?: 'horizontal' | 'vertical';
 }
-export type ScrollAreaScrollbarProps = ScrollAreaScrollbarBaseProps;
+export interface ScrollAreaScrollbarProps extends HTMLProps<'div'>, ScrollAreaScrollbarBaseProps {}
 
-export component ScrollAreaScrollbar(props: ScrollAreaScrollbarProps) {
+export component ScrollAreaScrollbar(props: MaybeTracked<ScrollAreaScrollbarProps>) {
   const [children, orientation, localProps] = trackSplit(props, ['children', 'orientation']);
   const scrollArea = useScrollAreaContext();
 

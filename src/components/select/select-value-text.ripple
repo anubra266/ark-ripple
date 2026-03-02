@@ -2,14 +2,14 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSelectContext } from './use-select-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SelectValueTextBaseProps {
-  placeholder?: string | undefined;
-  [key: string]: any;
+export interface SelectValueTextBaseProps extends PolymorphicProps<'span'> {
+placeholder?: string | undefined;
 }
-export type SelectValueTextProps = SelectValueTextBaseProps;
+export interface SelectValueTextProps extends HTMLProps<'span'>, SelectValueTextBaseProps {}
 
-export component SelectValueText(props: SelectValueTextProps) {
+export component SelectValueText(props: MaybeTracked<SelectValueTextProps>) {
   const [placeholder, children, localProps] = trackSplit(props, ['placeholder', 'children']);
   const select = useSelectContext();
 

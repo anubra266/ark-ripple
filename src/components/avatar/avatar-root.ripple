@@ -4,14 +4,12 @@ import { AvatarApiContext } from './use-avatar-context';
 import { useAvatar, type UseAvatarProps } from './use-avatar.ripple';
 import { splitAvatarProps } from './split-avatar-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AvatarRootBaseProps extends UseAvatarProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AvatarRootProps = AvatarRootBaseProps;
+export interface AvatarRootBaseProps extends PolymorphicProps<'div'>, UseAvatarProps {}
+export interface AvatarRootProps extends HTMLProps<'div'>, AvatarRootBaseProps {}
 
-export component AvatarRoot(props: AvatarRootProps) {
+export component AvatarRoot(props: MaybeTracked<AvatarRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useAvatarProps, localProps] = splitAvatarProps(@rest);
   const avatarApi = useAvatar(useAvatarProps);

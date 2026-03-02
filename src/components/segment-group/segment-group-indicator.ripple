@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useSegmentGroupContext } from './use-segment-group-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SegmentGroupIndicatorBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SegmentGroupIndicatorProps = SegmentGroupIndicatorBaseProps;
+export interface SegmentGroupIndicatorBaseProps extends PolymorphicProps<'div'> {}
+export interface SegmentGroupIndicatorProps extends HTMLProps<'div'>, SegmentGroupIndicatorBaseProps {}
 
-export component SegmentGroupIndicator(props: SegmentGroupIndicatorProps) {
+export component SegmentGroupIndicator(props: MaybeTracked<SegmentGroupIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const segmentGroup = useSegmentGroupContext();
 

@@ -2,11 +2,12 @@ import { trackSplit, effect } from 'ripple';
 import { useHighlight, type UseHighlightProps } from './use-highlight.ripple';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface HighlightBaseProps extends UseHighlightProps {}
+export interface HighlightBaseProps extends PolymorphicProps<'mark'>, UseHighlightProps {}
 export interface HighlightProps extends Assign<HTMLProps<'mark'>, HighlightBaseProps> {}
 
-export component Highlight(props: HighlightProps) {
+export component Highlight(props: MaybeTracked<HighlightProps>) {
   const [highlightProps, localProps] = createSplitProps<HighlightBaseProps>()(props, [
     'query',
     'text',

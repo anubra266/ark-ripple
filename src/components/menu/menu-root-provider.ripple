@@ -1,4 +1,5 @@
 import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
 import { MenuApiContext, useMenuContext } from './use-menu-context';
 import { MenuMachineContext, useMenuMachineContext } from './use-menu-machine-context';
 import { MenuTriggerItemContext } from './use-menu-trigger-item-context';
@@ -15,9 +16,9 @@ interface RootProviderProps {
 export interface MenuRootProviderBaseProps extends RootProviderProps, UsePresenceProps {
   children?: any;
 }
-export type MenuRootProviderProps = MenuRootProviderBaseProps;
+export interface MenuRootProviderProps extends MenuRootProviderBaseProps {}
 
-export component MenuRootProvider(props: MenuRootProviderProps) {
+export component MenuRootProvider(props: MaybeTracked<MenuRootProviderProps>) {
   const [children, value, rest] = trackSplit(props, ['children', 'value']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
 

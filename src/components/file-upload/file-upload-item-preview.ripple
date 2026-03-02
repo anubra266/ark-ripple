@@ -3,10 +3,10 @@ import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { useFileUploadItemPropsContext } from './use-file-upload-item-props-context';
 import { ark } from '../factory';
-import type { PolymorphicProps } from '../../types';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface FileUploadItemPreviewBaseProps extends PolymorphicProps<'div'> {
-  /**
+/**
  * The file type to match against. Matches all file types by default.
  * @default '.*'
  */
@@ -16,7 +16,7 @@ export interface FileUploadItemPreviewProps extends HTMLProps<
   'div'
 >, FileUploadItemPreviewBaseProps {}
 
-export component FileUploadItemPreview(props: FileUploadItemPreviewProps) {
+export component FileUploadItemPreview(props: MaybeTracked<FileUploadItemPreviewProps>) {
   const [children, type, localProps] = trackSplit(props, ['children', 'type']);
   const fileUpload = useFileUploadContext();
   const itemProps = useFileUploadItemPropsContext();

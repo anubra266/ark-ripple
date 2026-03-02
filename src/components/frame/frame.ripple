@@ -3,11 +3,13 @@ import { EnvironmentProvider } from '../../providers/environment';
 import { Portal } from '../portal';
 import { FrameContent } from './frame-content.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FrameBaseProps {
-  /**
+export interface FrameBaseProps extends PolymorphicProps<'iframe'> {
+/**
  * Additional content to be inserted into the frame's <head>.
- * Should be a named Ripple component, e.g. `component Head() { <style>...</style> }`
+ * Should be a named Ripple component, e.g. `component Head() { <style>...</style>
+}`
 */
   head?: Component;
   /** Callback function to be executed when the frame is mounted */
@@ -20,7 +22,7 @@ export interface FrameBaseProps {
   [key: string]: any;
 }
 
-export interface FrameProps extends FrameBaseProps {}
+export interface FrameProps extends HTMLProps<'iframe'>, FrameBaseProps {}
 
 const CUSTOM_ROOT_CLASS = 'frame-root';
 const resetStyle = '<style>*,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }</style>';
@@ -32,7 +34,7 @@ function getMountNode(frame: HTMLIFrameElement): HTMLElement | null {
   return doc.body.querySelector<HTMLElement>(`.${CUSTOM_ROOT_CLASS}`) || doc.body;
 }
 
-export component Frame(props: FrameProps) {
+export component Frame(props: MaybeTracked<FrameProps>) {
   // head is a reserved keyword in ripple, so we use headProp instead
   const [children, headProp, onMount, onUnmount, srcDoc, localProps] = trackSplit(props, [
     'children',

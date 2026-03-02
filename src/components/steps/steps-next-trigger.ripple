@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useStepsContext } from './use-steps-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsNextTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsNextTriggerProps = StepsNextTriggerBaseProps;
+export interface StepsNextTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface StepsNextTriggerProps extends HTMLProps<'button'>, StepsNextTriggerBaseProps {}
 
-export component StepsNextTrigger(props: StepsNextTriggerProps) {
+export component StepsNextTrigger(props: MaybeTracked<StepsNextTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const stepsApi = useStepsContext();
 

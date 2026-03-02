@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { useComboboxItemGroupPropsContext } from './use-combobox-item-group-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxItemGroupLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxItemGroupLabelProps = ComboboxItemGroupLabelBaseProps;
+export interface ComboboxItemGroupLabelBaseProps extends PolymorphicProps<'div'> {}
+export interface ComboboxItemGroupLabelProps extends HTMLProps<'div'>, ComboboxItemGroupLabelBaseProps {}
 
-export component ComboboxItemGroupLabel(props: ComboboxItemGroupLabelProps) {
+export component ComboboxItemGroupLabel(props: MaybeTracked<ComboboxItemGroupLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const combobox = useComboboxContext();
   const groupProps = useComboboxItemGroupPropsContext();

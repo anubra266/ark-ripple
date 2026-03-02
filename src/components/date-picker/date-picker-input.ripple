@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import type { InputProps } from '@zag-js/date-picker';
 import { useDatePickerContext } from './use-date-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerInputBaseProps extends InputProps {
-  [key: string]: any;
-}
-export type DatePickerInputProps = DatePickerInputBaseProps;
+export interface DatePickerInputBaseProps extends PolymorphicProps<'input'>, InputProps {}
+export interface DatePickerInputProps extends HTMLProps<'input'>, DatePickerInputBaseProps {}
 
-export component DatePickerInput(props: DatePickerInputProps) {
+export component DatePickerInput(props: MaybeTracked<DatePickerInputProps>) {
   const [index, fixOnBlur, localProps] = trackSplit(props, ['index', 'fixOnBlur']);
   const datePicker = useDatePickerContext();
 

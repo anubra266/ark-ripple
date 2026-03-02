@@ -4,14 +4,12 @@ import { SliderApiContext } from './use-slider-context';
 import { useSlider, type UseSliderProps } from './use-slider.ripple';
 import { splitSliderProps } from './split-slider-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SliderRootBaseProps extends UseSliderProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SliderRootProps = SliderRootBaseProps;
+export interface SliderRootBaseProps extends PolymorphicProps<'div'>, UseSliderProps {}
+export interface SliderRootProps extends HTMLProps<'div'>, SliderRootBaseProps {}
 
-export component SliderRoot(props: SliderRootProps) {
+export component SliderRoot(props: MaybeTracked<SliderRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [sliderProps, localProps] = splitSliderProps(@rest);
 

@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSegmentGroupContext } from './use-segment-group-context';
 import { useSegmentGroupItemPropsContext } from './use-segment-group-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SegmentGroupItemTextBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type SegmentGroupItemTextProps = SegmentGroupItemTextBaseProps;
+export interface SegmentGroupItemTextBaseProps extends PolymorphicProps<'span'> {}
+export interface SegmentGroupItemTextProps extends HTMLProps<'span'>, SegmentGroupItemTextBaseProps {}
 
-export component SegmentGroupItemText(props: SegmentGroupItemTextProps) {
+export component SegmentGroupItemText(props: MaybeTracked<SegmentGroupItemTextProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const segmentGroup = useSegmentGroupContext();
   const itemProps = useSegmentGroupItemPropsContext();

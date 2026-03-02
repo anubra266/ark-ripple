@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerFormatSelectBaseProps {
-  [key: string]: any;
-}
-export type ColorPickerFormatSelectProps = ColorPickerFormatSelectBaseProps;
+export interface ColorPickerFormatSelectBaseProps extends PolymorphicProps<'select'> {}
+export interface ColorPickerFormatSelectProps extends HTMLProps<'select'>, ColorPickerFormatSelectBaseProps {}
 
-export component ColorPickerFormatSelect(props: ColorPickerFormatSelectProps) {
+export component ColorPickerFormatSelect(props: MaybeTracked<ColorPickerFormatSelectProps>) {
   const colorPicker = useColorPickerContext();
 
   let mergedProps = track(() => mergeProps(@colorPicker.getFormatSelectProps(), @props));

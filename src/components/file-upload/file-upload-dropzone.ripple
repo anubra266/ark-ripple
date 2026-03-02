@@ -3,14 +3,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadDropzoneBaseProps extends DropzoneProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadDropzoneProps = FileUploadDropzoneBaseProps;
+export interface FileUploadDropzoneBaseProps extends PolymorphicProps<'div'>, DropzoneProps {}
+export interface FileUploadDropzoneProps extends HTMLProps<'div'>, FileUploadDropzoneBaseProps {}
 
-export component FileUploadDropzone(props: FileUploadDropzoneProps) {
+export component FileUploadDropzone(props: MaybeTracked<FileUploadDropzoneProps>) {
   const [children, disableClick, localProps] = trackSplit(props, ['children', 'disableClick']);
   const fileUpload = useFileUploadContext();
 

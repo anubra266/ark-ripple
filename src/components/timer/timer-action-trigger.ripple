@@ -4,16 +4,14 @@ import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { useTimerContext } from './use-timer-context';
 import type { ActionTriggerProps } from '@zag-js/timer';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const splitActionTriggerProps = createSplitProps<ActionTriggerProps>();
 
-export interface TimerActionTriggerBaseProps extends ActionTriggerProps {
-  children?: any;
-  [key: string]: any;
-}
-export type TimerActionTriggerProps = TimerActionTriggerBaseProps;
+export interface TimerActionTriggerBaseProps extends PolymorphicProps<'button'>, ActionTriggerProps {}
+export interface TimerActionTriggerProps extends HTMLProps<'button'>, TimerActionTriggerBaseProps {}
 
-export component TimerActionTrigger(props: TimerActionTriggerProps) {
+export component TimerActionTrigger(props: MaybeTracked<TimerActionTriggerProps>) {
   const [children, action, localProps] = trackSplit(props, ['children', 'action']);
   const timer = useTimerContext();
 

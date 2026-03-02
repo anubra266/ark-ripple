@@ -4,13 +4,12 @@ import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerChannelPropsContext } from './use-color-picker-channel-props-context';
 import { useColorPickerFormatContext } from './use-color-picker-format-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerChannelSliderThumbBaseProps {
-  [key: string]: any;
-}
-export type ColorPickerChannelSliderThumbProps = ColorPickerChannelSliderThumbBaseProps;
+export interface ColorPickerChannelSliderThumbBaseProps extends PolymorphicProps<'div'> {}
+export interface ColorPickerChannelSliderThumbProps extends HTMLProps<'div'>, ColorPickerChannelSliderThumbBaseProps {}
 
-export component ColorPickerChannelSliderThumb(props: ColorPickerChannelSliderThumbProps) {
+export component ColorPickerChannelSliderThumb(props: MaybeTracked<ColorPickerChannelSliderThumbProps>) {
   const colorPicker = useColorPickerContext();
   const channelProps = useColorPickerChannelPropsContext();
   const formatCtx = useColorPickerFormatContext();

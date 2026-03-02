@@ -2,13 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track } from 'ripple';
 import { useMenuContext } from './use-menu-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface MenuSeparatorBaseProps {
-  [key: string]: any;
-}
-export type MenuSeparatorProps = MenuSeparatorBaseProps;
+export interface MenuSeparatorBaseProps extends PolymorphicProps<'hr'> {}
+export interface MenuSeparatorProps extends HTMLProps<'hr'>, MenuSeparatorBaseProps {}
 
-export component MenuSeparator(props: MenuSeparatorProps) {
+export component MenuSeparator(props: MaybeTracked<MenuSeparatorProps>) {
   const menu = useMenuContext();
 
   let mergedProps = track(() => mergeProps(@menu.getSeparatorProps(), props));

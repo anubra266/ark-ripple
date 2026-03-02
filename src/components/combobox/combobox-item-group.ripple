@@ -4,14 +4,12 @@ import { useId } from '../../utils/use-id';
 import { useComboboxContext } from './use-combobox-context';
 import { ComboboxItemGroupPropsContext } from './use-combobox-item-group-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxItemGroupBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxItemGroupProps = ComboboxItemGroupBaseProps;
+export interface ComboboxItemGroupBaseProps extends PolymorphicProps<'div'> {}
+export interface ComboboxItemGroupProps extends HTMLProps<'div'>, ComboboxItemGroupBaseProps {}
 
-export component ComboboxItemGroup(props: ComboboxItemGroupProps) {
+export component ComboboxItemGroup(props: MaybeTracked<ComboboxItemGroupProps>) {
   const [propId, children, localProps] = trackSplit(props, ['id', 'children']);
   const id = useId();
   const combobox = useComboboxContext();

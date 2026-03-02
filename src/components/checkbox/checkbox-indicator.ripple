@@ -2,15 +2,14 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useCheckboxContext } from './use-checkbox-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CheckboxIndicatorBaseProps {
-  indeterminate?: boolean;
-  children?: any;
-  [key: string]: any;
+export interface CheckboxIndicatorBaseProps extends PolymorphicProps<'div'> {
+indeterminate?: boolean;
 }
-export type CheckboxIndicatorProps = CheckboxIndicatorBaseProps;
+export interface CheckboxIndicatorProps extends HTMLProps<'div'>, CheckboxIndicatorBaseProps {}
 
-export component CheckboxIndicator(props: CheckboxIndicatorProps) {
+export component CheckboxIndicator(props: MaybeTracked<CheckboxIndicatorProps>) {
   const [indeterminate, children, localProps] = trackSplit(props, ['indeterminate', 'children']);
   const checkbox = useCheckboxContext();
 

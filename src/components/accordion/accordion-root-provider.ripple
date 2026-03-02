@@ -8,15 +8,14 @@ import {
 import { AccordionApiContext } from './use-accordion-context';
 import type { UseAccordionReturn } from './use-accordion.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AccordionRootProviderBaseProps extends RenderStrategyProps {
-  value: UseAccordionReturn;
-  children?: any;
-  [key: string]: any;
+export interface AccordionRootProviderBaseProps extends PolymorphicProps<'div'>, RenderStrategyProps {
+value: UseAccordionReturn;
 }
-export type AccordionRootProviderProps = AccordionRootProviderBaseProps;
+export interface AccordionRootProviderProps extends HTMLProps<'div'>, AccordionRootProviderBaseProps {}
 
-export component AccordionRootProvider(props: AccordionRootProviderProps) {
+export component AccordionRootProvider(props: MaybeTracked<AccordionRootProviderProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [renderStrategyProps, localProps] = splitRenderStrategyProps(@rest);
   const accordion = props.value;

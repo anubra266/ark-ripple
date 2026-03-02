@@ -4,14 +4,12 @@ import { DatePickerViewPropsContext } from './use-date-picker-view-props-context
 import { useDatePickerContext } from './use-date-picker-context';
 import { datePickerAnatomy } from './date-picker.anatomy';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface DatePickerViewBaseProps extends Required<ViewProps> {
-  children?: any;
-  [key: string]: any;
-}
-export type DatePickerViewProps = DatePickerViewBaseProps;
+export interface DatePickerViewBaseProps extends PolymorphicProps<'div'>, Required<ViewProps> {}
+export interface DatePickerViewProps extends HTMLProps<'div'>, DatePickerViewBaseProps {}
 
-export component DatePickerView(props: DatePickerViewProps) {
+export component DatePickerView(props: MaybeTracked<DatePickerViewProps>) {
   const [children, view, localProps] = trackSplit(props, ['children', 'view']);
   const datePicker = useDatePickerContext();
 

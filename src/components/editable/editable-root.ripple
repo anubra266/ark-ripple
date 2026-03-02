@@ -4,14 +4,12 @@ import { EditableApiContext } from './use-editable-context';
 import { useEditable, type UseEditableProps } from './use-editable.ripple';
 import { splitEditableProps } from './split-editable-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface EditableRootBaseProps extends UseEditableProps {
-  children?: any;
-  [key: string]: any;
-}
-export type EditableRootProps = EditableRootBaseProps;
+export interface EditableRootBaseProps extends PolymorphicProps<'div'>, UseEditableProps {}
+export interface EditableRootProps extends HTMLProps<'div'>, EditableRootBaseProps {}
 
-export component EditableRoot(props: EditableRootProps) {
+export component EditableRoot(props: MaybeTracked<EditableRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [editableProps, localProps] = splitEditableProps(@rest);
   const editable = useEditable(editableProps);

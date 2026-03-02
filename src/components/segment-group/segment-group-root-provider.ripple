@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { SegmentGroupApiContext } from './use-segment-group-context';
 import type { UseSegmentGroupReturn } from './use-segment-group.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SegmentGroupRootProviderBaseProps {
-  value: UseSegmentGroupReturn;
-  children?: any;
-  [key: string]: any;
+export interface SegmentGroupRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseSegmentGroupReturn;
 }
-export type SegmentGroupRootProviderProps = SegmentGroupRootProviderBaseProps;
+export interface SegmentGroupRootProviderProps extends HTMLProps<'div'>, SegmentGroupRootProviderBaseProps {}
 
-export component SegmentGroupRootProvider(props: SegmentGroupRootProviderProps) {
+export component SegmentGroupRootProvider(props: MaybeTracked<SegmentGroupRootProviderProps>) {
   const [segmentGroup, children, rest] = trackSplit(props, ['value', 'children']);
 
   SegmentGroupApiContext.set(segmentGroup);

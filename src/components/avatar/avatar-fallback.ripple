@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useAvatarContext } from './use-avatar-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AvatarFallbackBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type AvatarFallbackProps = AvatarFallbackBaseProps;
+export interface AvatarFallbackBaseProps extends PolymorphicProps<'span'> {}
+export interface AvatarFallbackProps extends HTMLProps<'span'>, AvatarFallbackBaseProps {}
 
-export component AvatarFallback(props: AvatarFallbackProps) {
+export component AvatarFallback(props: MaybeTracked<AvatarFallbackProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const avatarApi = useAvatarContext();
 

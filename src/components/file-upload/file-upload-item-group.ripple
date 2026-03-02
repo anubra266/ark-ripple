@@ -4,14 +4,12 @@ import { trackSplit, track } from 'ripple';
 import { useFileUploadContext } from './use-file-upload-context';
 import { FileUploadItemGroupPropsContext } from './use-file-upload-item-group-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadItemGroupBaseProps extends ItemGroupProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FileUploadItemGroupProps = FileUploadItemGroupBaseProps;
+export interface FileUploadItemGroupBaseProps extends PolymorphicProps<'ul'>, ItemGroupProps {}
+export interface FileUploadItemGroupProps extends HTMLProps<'ul'>, FileUploadItemGroupBaseProps {}
 
-export component FileUploadItemGroup(props: FileUploadItemGroupProps) {
+export component FileUploadItemGroup(props: MaybeTracked<FileUploadItemGroupProps>) {
   const [children, type, localProps] = trackSplit(props, ['children', 'type']);
   const fileUpload = useFileUploadContext();
 

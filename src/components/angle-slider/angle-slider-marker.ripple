@@ -4,13 +4,12 @@ import { trackSplit, track } from 'ripple';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { useAngleSliderContext } from './use-angle-slider-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface AngleSliderMarkerBaseProps extends MarkerProps {
-  [key: string]: any;
-}
-export type AngleSliderMarkerProps = AngleSliderMarkerBaseProps;
+export interface AngleSliderMarkerBaseProps extends PolymorphicProps<'div'>, MarkerProps {}
+export interface AngleSliderMarkerProps extends HTMLProps<'div'>, AngleSliderMarkerBaseProps {}
 
-export component AngleSliderMarker(props: AngleSliderMarkerProps) {
+export component AngleSliderMarker(props: MaybeTracked<AngleSliderMarkerProps>) {
   const [value, localProps] = trackSplit(props, ['value']);
   const angleSlider = useAngleSliderContext();
 

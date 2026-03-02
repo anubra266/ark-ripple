@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useColorPickerContext } from './use-color-picker-context';
 import { useColorPickerChannelPropsContext } from './use-color-picker-channel-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ColorPickerChannelSliderLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ColorPickerChannelSliderLabelProps = ColorPickerChannelSliderLabelBaseProps;
+export interface ColorPickerChannelSliderLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface ColorPickerChannelSliderLabelProps extends HTMLProps<'label'>, ColorPickerChannelSliderLabelBaseProps {}
 
-export component ColorPickerChannelSliderLabel(props: ColorPickerChannelSliderLabelProps) {
+export component ColorPickerChannelSliderLabel(props: MaybeTracked<ColorPickerChannelSliderLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const colorPicker = useColorPickerContext();
   const channelProps = useColorPickerChannelPropsContext();

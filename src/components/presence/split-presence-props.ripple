@@ -1,9 +1,10 @@
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import type { UsePresenceProps } from './use-presence.ripple';
+import type { Tracked } from 'ripple';
 
 const splitProps = createSplitProps<UsePresenceProps>();
 
-export function splitPresenceProps<T extends UsePresenceProps & Record<string, any>>(props: T) {
+export function splitPresenceProps<T extends UsePresenceProps & Record<string, any>>(props: T | Tracked<T>) {
   return splitProps(props, [
     'immediate',
     'lazyMount',

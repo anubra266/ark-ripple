@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { RadioGroupApiContext } from './use-radio-group-context';
 import type { UseRadioGroupReturn } from './use-radio-group.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RadioGroupRootProviderBaseProps {
-  value: UseRadioGroupReturn;
-  children?: any;
-  [key: string]: any;
+export interface RadioGroupRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseRadioGroupReturn;
 }
-export type RadioGroupRootProviderProps = RadioGroupRootProviderBaseProps;
+export interface RadioGroupRootProviderProps extends HTMLProps<'div'>, RadioGroupRootProviderBaseProps {}
 
-export component RadioGroupRootProvider(props: RadioGroupRootProviderProps) {
+export component RadioGroupRootProvider(props: MaybeTracked<RadioGroupRootProviderProps>) {
   const [radioGroup, children, rest] = trackSplit(props, ['value', 'children']);
 
   RadioGroupApiContext.set(radioGroup);

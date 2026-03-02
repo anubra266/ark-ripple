@@ -1,4 +1,5 @@
 import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
 import { DialogApiContext } from './use-dialog-context';
 import { PresenceApiContext } from '../presence/use-presence-context';
 import { splitPresenceProps } from '../presence/split-presence-props.ripple';
@@ -12,11 +13,10 @@ import {
 
 export interface DialogRootBaseProps extends UseDialogProps, UsePresenceProps {
   children?: any;
-  [key: string]: any;
 }
-export type DialogRootProps = DialogRootBaseProps;
+export interface DialogRootProps extends DialogRootBaseProps {}
 
-export component DialogRoot(props: DialogRootProps) {
+export component DialogRoot(props: MaybeTracked<DialogRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [presenceProps, localProps] = splitPresenceProps(@rest);
   const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);

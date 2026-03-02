@@ -6,15 +6,14 @@ import { MenuItemContext } from './use-menu-item-context';
 import { MenuItemPropsContext } from './use-menu-item-props-context';
 import { createSplitProps } from '../../utils/create-split-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 type PartialOptionItemProps = Omit<OptionItemProps, 'type'>;
 
-export interface MenuCheckboxItemBaseProps extends PartialOptionItemProps {
-  children?: any;
-}
-export type MenuCheckboxItemProps = MenuCheckboxItemBaseProps;
+export interface MenuCheckboxItemBaseProps extends PolymorphicProps<'div'>, PartialOptionItemProps {}
+export interface MenuCheckboxItemProps extends HTMLProps<'div'>, MenuCheckboxItemBaseProps {}
 
-export component MenuCheckboxItem(props: MenuCheckboxItemProps) {
+export component MenuCheckboxItem(props: MaybeTracked<MenuCheckboxItemProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [partialOptionItemProps, localProps] = createSplitProps<PartialOptionItemProps>()(@rest, [
     'checked',

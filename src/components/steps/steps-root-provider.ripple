@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { StepsApiContext } from './use-steps-context';
 import type { UseStepsReturn } from './use-steps.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsRootProviderBaseProps {
-  value: UseStepsReturn;
-  children?: any;
-  [key: string]: any;
+export interface StepsRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseStepsReturn;
 }
-export type StepsRootProviderProps = StepsRootProviderBaseProps;
+export interface StepsRootProviderProps extends HTMLProps<'div'>, StepsRootProviderBaseProps {}
 
-export component StepsRootProvider(props: StepsRootProviderProps) {
+export component StepsRootProvider(props: MaybeTracked<StepsRootProviderProps>) {
   const [stepsApi, children, localProps] = trackSplit(props, ['value', 'children']);
 
   StepsApiContext.set(stepsApi);

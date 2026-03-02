@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useComboboxContext } from './use-combobox-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ComboboxClearTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ComboboxClearTriggerProps = ComboboxClearTriggerBaseProps;
+export interface ComboboxClearTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface ComboboxClearTriggerProps extends HTMLProps<'button'>, ComboboxClearTriggerBaseProps {}
 
-export component ComboboxClearTrigger(props: ComboboxClearTriggerProps) {
+export component ComboboxClearTrigger(props: MaybeTracked<ComboboxClearTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const combobox = useComboboxContext();
 

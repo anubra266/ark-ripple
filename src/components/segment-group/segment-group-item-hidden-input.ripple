@@ -3,13 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useSegmentGroupContext } from './use-segment-group-context';
 import { useSegmentGroupItemPropsContext } from './use-segment-group-item-props-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface SegmentGroupItemHiddenInputBaseProps {
-  [key: string]: any;
-}
-export type SegmentGroupItemHiddenInputProps = SegmentGroupItemHiddenInputBaseProps;
+export interface SegmentGroupItemHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface SegmentGroupItemHiddenInputProps extends HTMLProps<'input'>, SegmentGroupItemHiddenInputBaseProps {}
 
-export component SegmentGroupItemHiddenInput(props: SegmentGroupItemHiddenInputProps) {
+export component SegmentGroupItemHiddenInput(props: MaybeTracked<SegmentGroupItemHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);
   const segmentGroup = useSegmentGroupContext();
   const itemProps = useSegmentGroupItemPropsContext();

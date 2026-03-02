@@ -4,14 +4,12 @@ import { ToggleApiContext } from './use-toggle-context';
 import { useToggle, type UseToggleProps } from './use-toggle.ripple';
 import { splitToggleProps } from './split-toggle-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ToggleRootBaseProps extends UseToggleProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ToggleRootProps = ToggleRootBaseProps;
+export interface ToggleRootBaseProps extends PolymorphicProps<'button'>, UseToggleProps {}
+export interface ToggleRootProps extends HTMLProps<'button'>, ToggleRootBaseProps {}
 
-export component ToggleRoot(props: ToggleRootProps) {
+export component ToggleRoot(props: MaybeTracked<ToggleRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [toggleProps, localProps] = splitToggleProps(@rest);
   const toggle = useToggle(toggleProps);

@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { CarouselApiContext } from './use-carousel-context';
 import type { UseCarouselReturn } from './use-carousel.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CarouselRootProviderBaseProps {
-  value: UseCarouselReturn;
-  children?: any;
-  [key: string]: any;
+export interface CarouselRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseCarouselReturn;
 }
-export type CarouselRootProviderProps = CarouselRootProviderBaseProps;
+export interface CarouselRootProviderProps extends HTMLProps<'div'>, CarouselRootProviderBaseProps {}
 
-export component CarouselRootProvider(props: CarouselRootProviderProps) {
+export component CarouselRootProvider(props: MaybeTracked<CarouselRootProviderProps>) {
   const [carousel, children, rest] = trackSplit(props, ['value', 'children']);
 
   CarouselApiContext.set(carousel);

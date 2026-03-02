@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useFieldContext } from './use-field-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldSelectBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldSelectProps = FieldSelectBaseProps;
+export interface FieldSelectBaseProps extends PolymorphicProps<'select'> {}
+export interface FieldSelectProps extends HTMLProps<'select'>, FieldSelectBaseProps {}
 
-export component FieldSelect(props: FieldSelectProps) {
+export component FieldSelect(props: MaybeTracked<FieldSelectProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const field = useFieldContext();
 

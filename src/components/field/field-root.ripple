@@ -5,14 +5,12 @@ import { useField, type UseFieldProps } from './use-field.ripple';
 import { splitFieldProps } from './split-field-props.ripple';
 import { useId } from '../../utils/use-id';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FieldRootBaseProps extends UseFieldProps {
-  children?: any;
-  [key: string]: any;
-}
-export type FieldRootProps = FieldRootBaseProps;
+export interface FieldRootBaseProps extends PolymorphicProps<'div'>, UseFieldProps {}
+export interface FieldRootProps extends HTMLProps<'div'>, FieldRootBaseProps {}
 
-export component FieldRoot(props: FieldRootProps) {
+export component FieldRoot(props: MaybeTracked<FieldRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [useFieldProps, localProps] = splitFieldProps(@rest);
 

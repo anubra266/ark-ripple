@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { track, trackSplit } from 'ripple';
 import { useClipboardContext } from './use-clipboard-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface ClipboardLabelBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type ClipboardLabelProps = ClipboardLabelBaseProps;
+export interface ClipboardLabelBaseProps extends PolymorphicProps<'label'> {}
+export interface ClipboardLabelProps extends HTMLProps<'label'>, ClipboardLabelBaseProps {}
 
-export component ClipboardLabel(props: ClipboardLabelProps) {
+export component ClipboardLabel(props: MaybeTracked<ClipboardLabelProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const clipboard = useClipboardContext();
 

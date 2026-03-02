@@ -2,14 +2,12 @@ import { mergeProps } from 'zag-ripple';
 import { trackSplit, track } from 'ripple';
 import { useCarouselContext } from './use-carousel-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface CarouselAutoplayTriggerBaseProps {
-  children?: any;
-  [key: string]: any;
-}
-export type CarouselAutoplayTriggerProps = CarouselAutoplayTriggerBaseProps;
+export interface CarouselAutoplayTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface CarouselAutoplayTriggerProps extends HTMLProps<'button'>, CarouselAutoplayTriggerBaseProps {}
 
-export component CarouselAutoplayTrigger(props: CarouselAutoplayTriggerProps) {
+export component CarouselAutoplayTrigger(props: MaybeTracked<CarouselAutoplayTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const carousel = useCarouselContext();
 

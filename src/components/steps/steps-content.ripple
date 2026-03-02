@@ -3,14 +3,12 @@ import { trackSplit, track } from 'ripple';
 import { useStepsContext } from './use-steps-context';
 import type { ItemProps } from '@zag-js/steps';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface StepsContentBaseProps extends ItemProps {
-  children?: any;
-  [key: string]: any;
-}
-export type StepsContentProps = StepsContentBaseProps;
+export interface StepsContentBaseProps extends PolymorphicProps<'div'>, ItemProps {}
+export interface StepsContentProps extends HTMLProps<'div'>, StepsContentBaseProps {}
 
-export component StepsContent(props: StepsContentProps) {
+export component StepsContent(props: MaybeTracked<StepsContentProps>) {
   const [children, index, localProps] = trackSplit(props, ['children', 'index']);
   const stepsApi = useStepsContext();
 

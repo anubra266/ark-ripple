@@ -3,15 +3,14 @@ import { trackSplit, track } from 'ripple';
 import { FileUploadApiContext } from './use-file-upload-context';
 import type { UseFileUploadReturn } from './use-file-upload.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface FileUploadRootProviderBaseProps {
-  value: UseFileUploadReturn;
-  children?: any;
-  [key: string]: any;
+export interface FileUploadRootProviderBaseProps extends PolymorphicProps<'div'> {
+value: UseFileUploadReturn;
 }
-export type FileUploadRootProviderProps = FileUploadRootProviderBaseProps;
+export interface FileUploadRootProviderProps extends HTMLProps<'div'>, FileUploadRootProviderBaseProps {}
 
-export component FileUploadRootProvider(props: FileUploadRootProviderProps) {
+export component FileUploadRootProvider(props: MaybeTracked<FileUploadRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);
 
   FileUploadApiContext.set(value);

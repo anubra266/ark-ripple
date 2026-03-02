@@ -4,14 +4,12 @@ import { RadioGroupApiContext } from './use-radio-group-context';
 import { useRadioGroup, type UseRadioGroupProps } from './use-radio-group.ripple';
 import { splitRadioGroupProps } from './split-radio-group-props.ripple';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface RadioGroupRootBaseProps extends UseRadioGroupProps {
-  children?: any;
-  [key: string]: any;
-}
-export type RadioGroupRootProps = RadioGroupRootBaseProps;
+export interface RadioGroupRootBaseProps extends PolymorphicProps<'div'>, UseRadioGroupProps {}
+export interface RadioGroupRootProps extends HTMLProps<'div'>, RadioGroupRootBaseProps {}
 
-export component RadioGroupRoot(props: RadioGroupRootProps) {
+export component RadioGroupRoot(props: MaybeTracked<RadioGroupRootProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const [radioGroupProps, localProps] = splitRadioGroupProps(@rest);
   const radioGroup = useRadioGroup(radioGroupProps);

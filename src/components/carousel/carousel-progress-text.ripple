@@ -3,17 +3,14 @@ import { trackSplit, track, type Component } from 'ripple';
 import { carouselAnatomy } from './carousel.anatomy';
 import { useCarouselContext } from './use-carousel-context';
 import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 const parts = carouselAnatomy.build();
 
-export interface CarouselProgressTextBaseProps {
-  [key: string]: any;
-}
-export interface CarouselProgressTextProps extends CarouselProgressTextBaseProps {
-  children?: Component;
-}
+export interface CarouselProgressTextBaseProps extends PolymorphicProps<'span'> {}
+export interface CarouselProgressTextProps extends HTMLProps<'span'>, CarouselProgressTextBaseProps {}
 
-export component CarouselProgressText(props: CarouselProgressTextProps) {
+export component CarouselProgressText(props: MaybeTracked<CarouselProgressTextProps>) {
   const [children, rest] = trackSplit(props, ['children']);
   const carousel = useCarouselContext();
 
