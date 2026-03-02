@@ -5,8 +5,8 @@ export component RepeatingText() {
   <p class={styles.Text}>
     <Highlight
       class={styles.Mark}
-      query="@ark-ui.com"
-      text="Contact us at support@ark-ui.com or sales@ark-ui.com for assistance."
+      query="@ark-ui.rip"
+      text="Contact us at support@ark-ui.rip or sales@ark-ui.rip for assistance."
       matchAll
     />
   </p>

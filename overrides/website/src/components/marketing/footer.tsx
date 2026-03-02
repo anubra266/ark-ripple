@@ -10,7 +10,7 @@ const resources = [
   },
   {
     name: 'Ark UI',
-    href: 'https://ark-ui.com',
+    href: 'https://ark-ui.rip',
   },
 ]
 

@@ -4,7 +4,7 @@ import styles from 'styles/clipboard.module.css';
 import button from 'styles/button.module.css';
 
 export component Context() {
-  <Clipboard.Root class={styles.Root} value="https://ark-ui.com">
+  <Clipboard.Root class={styles.Root} value="https://ark-ui.rip">
     <Clipboard.Label class={styles.Label}>{'Copy this link'}</Clipboard.Label>
     <Clipboard.Context>
       component children({ context }) {

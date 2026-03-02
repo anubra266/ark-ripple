@@ -3,7 +3,7 @@ import { Check, Copy } from 'lucide-ripple';
 import styles from 'styles/clipboard.module.css';
 
 export component ValueText() {
-  <Clipboard.Root class={styles.Root} value="https://ark-ui.com">
+  <Clipboard.Root class={styles.Root} value="https://ark-ui.rip">
     <Clipboard.Control class={styles.Control}>
       <Clipboard.ValueText class={styles.ValueText} />
       <Clipboard.Trigger class={styles.Trigger}>

@@ -3,7 +3,7 @@ import { Portal } from 'ark-ripple/portal';
 import { Check, ChevronsUpDown } from 'lucide-ripple';
 import styles from 'styles/combobox.module.css';
 
-const suggestList = ['gmail.com', 'yahoo.com', 'ark-ui.com'];
+const suggestList = ['gmail.com', 'yahoo.com', 'ark-ui.rip'];
 
 export component Dynamic() {
   let { collection, set } = useListCollection<string>(

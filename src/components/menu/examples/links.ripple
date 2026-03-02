@@ -14,7 +14,7 @@ export component Links() {
       <Menu.Content class={styles.Content}>
         <Menu.Item class={styles.Item} value="docs">
           component asChild({ propsFn }) {
-            <a {...propsFn({ href: 'https://ark-ui.com' })}>{'Documentation'}</a>
+            <a {...propsFn({ href: 'https://ark-ui.rip' })}>{'Documentation'}</a>
           }
         </Menu.Item>
         <Menu.Item class={styles.Item} value="github">

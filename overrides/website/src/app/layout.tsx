@@ -39,7 +39,7 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en" className={cx(wixMadeforText.variable, roboto.variable)} suppressHydrationWarning>
       <head>
-        <Script src="https://plausible.io/js/plausible.js" data-domain="ark-ui.com" />
+        <Script src="https://plausible.io/js/plausible.js" data-domain="ark-ui.rip" />
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider attribute="class">

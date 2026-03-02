@@ -138,7 +138,7 @@ export const cleanupPageContent = async (page: Pages, framework: 'react' | 'soli
   res = res.replace(PATTERNS.ANATOMY, '')
   res = res.replace(PATTERNS.COMPONENT_PREVIEW, '')
   res = res.replace(PATTERNS.FAQ, '')
-  res = res.replace(PATTERNS.IMAGES, 'https://ark-ui.com/images')
+  res = res.replace(PATTERNS.IMAGES, 'https://ark-ui.rip/images')
 
   // Replace components with their content
   res = res.replace(/<Quickstart\s*\/>/g, replaceQuickstart())

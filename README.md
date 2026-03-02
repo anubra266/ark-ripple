@@ -106,7 +106,7 @@ export component DialogStatus() {
 
 ## Documentation
 
-Visit [ark-ui.com](https://ark-ui.com) for full documentation, examples, and API
+Visit [ark-ui.rip](https://ark-ui.rip) for full documentation, examples, and API
 reference.
 
 ## Development

@@ -3,7 +3,7 @@ import styles from 'styles/clipboard.module.css';
 import { Check, Copy } from 'lucide-ripple';
 
 export component RootProvider() {
-  const clipboard = useClipboard({ value: 'https://ark-ui.com' });
+  const clipboard = useClipboard({ value: 'https://ark-ui.rip' });
 
   <div class="stack">
     <output>

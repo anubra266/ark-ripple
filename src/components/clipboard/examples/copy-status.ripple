@@ -8,7 +8,7 @@ export component CopyStatus() {
 
   <Clipboard.Root
     class={styles.Root}
-    value="https://ark-ui.com"
+    value="https://ark-ui.rip"
     onStatusChange={(details) => {
       if (details.copied) {
         @copyCount = @copyCount + 1;
