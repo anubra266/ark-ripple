@@ -1,7 +1,7 @@
 {
   "name": "ark-ripple",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "description": "A collection of unstyled, accessible UI components for Ripple TS, powered by Zag.js state machines.",
   "keywords": [
     "accordion",
