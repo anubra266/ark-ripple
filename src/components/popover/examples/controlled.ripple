@@ -1,0 +1,29 @@
+import { Popover } from 'ark-ripple/popover';
+import { Portal } from 'ark-ripple/portal';
+import { track } from 'ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/popover.module.css';
+
+export component Controlled() {
+  let open = track(false);
+
+  <Popover.Root
+    {@open}
+    onOpenChange={(e) => {
+      @open = e.open;
+    }}
+  >
+    <Popover.Trigger class={button.Root}>{'Click Me'}</Popover.Trigger>
+    <Portal>
+      <Popover.Positioner class={styles.Positioner}>
+        <Popover.Content class={styles.Content}>
+          <Popover.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Popover.CloseTrigger>
+          <Popover.Title class={styles.Title}>{'Team Members'}</Popover.Title>
+          <Popover.Description class={styles.Description}>
+            {'Invite colleagues to collaborate on this project.'}
+          </Popover.Description>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Portal>
+  </Popover.Root>
+}

@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { usePopoverContext, type UsePopoverContext } from './use-popover-context';
+
+export interface PopoverContextProps {
+  children: (context: UsePopoverContext) => any;
+}
+
+export component PopoverContext(props: PopoverContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = usePopoverContext();
+
+  <@children {context} />
+}

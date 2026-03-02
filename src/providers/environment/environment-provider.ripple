@@ -1,14 +1,15 @@
 import { getDocument, getWindow } from '@zag-js/dom-query';
-import { trackSplit, track } from 'ripple';
+import { trackSplit, track, type Component, type Tracked } from 'ripple';
 import { runIfFn } from '../../utils/run-if-fn';
-import { EnvironmentContext, type RootNode } from './use-environment-context';
+import { EnvironmentContext, type RootNode, type UseEnvironmentContext } from './use-environment-context';
+import type { MaybeTracked } from '../../types';
 
 export interface EnvironmentProviderProps {
-  children?: any;
-  value?: RootNode | (() => RootNode);
+  children?: Component;
+  value?: Tracked<RootNode> | RootNode | (() => Tracked<RootNode> | RootNode);
 }
 
-export component EnvironmentProvider(props: EnvironmentProviderProps) {
+export component EnvironmentProvider(props: MaybeTracked<EnvironmentProviderProps>) {
   const [children, value] = trackSplit(props, ['children', 'value']);
   let spanRef = track<HTMLSpanElement | null>(null);
 
@@ -17,12 +18,12 @@ export component EnvironmentProvider(props: EnvironmentProviderProps) {
   const environment = track(
     () => ({
       getRootNode,
-      getDocument: () => getDocument(getRootNode()),
-      getWindow: () => getWindow(getRootNode()),
+      getDocument: () => getDocument(getRootNode() as Document),
+      getWindow: () => getWindow(getRootNode() as Document),
     }),
   );
 
-  EnvironmentContext.set(environment);
+  EnvironmentContext.set(environment as Tracked<UseEnvironmentContext>);
 
   <@children />
   if (!@value) {

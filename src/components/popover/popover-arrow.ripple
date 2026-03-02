@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { usePopoverContext } from './use-popover-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface PopoverArrowBaseProps extends PolymorphicProps<'div'> {}
+export interface PopoverArrowProps extends HTMLProps<'div'>, PopoverArrowBaseProps {}
+
+export component PopoverArrow(props: MaybeTracked<PopoverArrowProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const popover = usePopoverContext();
+
+  let mergedProps = track(() => mergeProps(@popover.getArrowProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { usePopoverContext } from './use-popover-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface PopoverPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface PopoverPositionerProps extends HTMLProps<'div'>, PopoverPositionerBaseProps {}
+
+export component PopoverPositioner(props: MaybeTracked<PopoverPositionerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const popover = usePopoverContext();
+  const presence = usePresenceContext();
+
+  let mergedProps = track(() => mergeProps(@popover.getPositionerProps(), @localProps));
+
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
+}

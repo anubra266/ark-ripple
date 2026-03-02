@@ -1,0 +1,30 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { usePopoverContext } from './use-popover-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface PopoverTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface PopoverTriggerProps extends HTMLProps<'button'>, PopoverTriggerBaseProps {}
+
+export component PopoverTrigger(props: MaybeTracked<PopoverTriggerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const popover = usePopoverContext();
+  const presence = usePresenceContext();
+
+  let triggerBaseProps = track(() => @popover.getTriggerProps());
+  let mergedProps = track(
+    () => mergeProps(
+      {
+        ...@triggerBaseProps,
+        'aria-controls': @presence.unmounted ? undefined : @triggerBaseProps['aria-controls'],
+      },
+      @localProps,
+    ),
+  );
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

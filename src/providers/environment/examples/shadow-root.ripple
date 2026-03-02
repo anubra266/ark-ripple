@@ -24,7 +24,7 @@ export component ShadowRoot() {
 component PrintEnvironment() {
   const environment = useEnvironmentContext();
 
-  <Portal container={@environment.getRootNode() as any}>
+  <Portal container={@environment.getRootNode()}>
     <pre>{JSON.stringify(String(@environment.getRootNode()), null, 2)}</pre>
   </Portal>
 }

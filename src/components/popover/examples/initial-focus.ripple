@@ -1,0 +1,35 @@
+import { Popover } from 'ark-ripple/popover';
+import { Portal } from 'ark-ripple/portal';
+import button from 'styles/button.module.css';
+import field from 'styles/field.module.css';
+import styles from 'styles/popover.module.css';
+
+export component InitialFocusEl() {
+  let inputEl: HTMLInputElement;
+
+  <Popover.Root initialFocusEl={() => inputEl}>
+    <Popover.Trigger class={button.Root}>{'Update Profile'}</Popover.Trigger>
+    <Portal>
+      <Popover.Positioner class={styles.Positioner}>
+        <Popover.Content class={styles.Content}>
+          <Popover.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Popover.CloseTrigger>
+          <Popover.Title class={styles.Title}>{'Enter your name'}</Popover.Title>
+          <Popover.Description class={styles.Description}>
+            {'Make changes to your profile here.'}
+          </Popover.Description>
+          <div class={styles.Body}>
+            <input
+              class={field.Input}
+              placeholder="First Name"
+              value="John"
+              {ref (el: HTMLInputElement) => { inputEl = el }}
+            />
+            <input class={field.Input} placeholder="Last Name" />
+            <textarea class={field.Textarea} placeholder="Add details" />
+            <button class={button.Root} data-variant="solid">{'Save'}</button>
+          </div>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Portal>
+  </Popover.Root>
+}

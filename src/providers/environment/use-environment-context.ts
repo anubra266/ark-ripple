@@ -1,4 +1,4 @@
-import { Context } from 'ripple';
+import { Context, type Tracked } from 'ripple';
 
 export type RootNode = ShadowRoot | Document | Node;
 
@@ -21,10 +21,10 @@ export interface UseEnvironmentContext {
   getWindow(): Window & typeof globalThis;
 }
 
-export const EnvironmentContext = new Context<UseEnvironmentContext>({
+export const EnvironmentContext = new Context<Tracked<UseEnvironmentContext>| UseEnvironmentContext>({
   getRootNode: () => document,
   getDocument: () => document,
   getWindow: () => window,
 });
 
-export const useEnvironmentContext = (): UseEnvironmentContext => EnvironmentContext.get();
+export const useEnvironmentContext = (): Tracked<UseEnvironmentContext> | UseEnvironmentContext => EnvironmentContext.get();

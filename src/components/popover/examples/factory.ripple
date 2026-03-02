@@ -1,0 +1,8 @@
+import { ark } from 'ark-ripple/factory';
+
+export component Factory() {
+  <ark.span asChild={component(propsFn) {
+    <a {...propsFn()} href="#">{'Ark UI'}</a>
+  }}>
+  </ark.span>
+}

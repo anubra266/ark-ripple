@@ -26,7 +26,7 @@ export { menuAnatomy } from './menu/menu.anatomy';
 // export { paginationAnatomy } from './pagination/pagination.anatomy';
 // export { passwordInputAnatomy } from './password-input/password-input.anatomy';
 // export { pinInputAnatomy } from './pin-input/pin-input.anatomy';
-// export { popoverAnatomy } from './popover/popover.anatomy';
+export { popoverAnatomy } from './popover/popover.anatomy';
 // export { progressAnatomy } from './progress/progress.anatomy';
 // export { qrCodeAnatomy } from './qr-code/qr-code.anatomy';
 export { radioGroupAnatomy } from './radio-group/radio-group.anatomy';

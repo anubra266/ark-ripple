@@ -33,7 +33,7 @@ export * from './menu';
 // export * from './pagination';
 // export * from './password-input';
 // export * from './pin-input';
-// export * from './popover';
+export * from './popover';
 export * from './portal';
 export * from './presence';
 // export * from './progress';

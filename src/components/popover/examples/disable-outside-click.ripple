@@ -1,0 +1,21 @@
+import { Popover } from 'ark-ripple/popover';
+import { Portal } from 'ark-ripple/portal';
+import button from 'styles/button.module.css';
+import styles from 'styles/popover.module.css';
+
+export component DisableOutsideClick() {
+  <Popover.Root closeOnInteractOutside={false}>
+    <Popover.Trigger class={button.Root}>{'Click Me'}</Popover.Trigger>
+    <Portal>
+      <Popover.Positioner class={styles.Positioner}>
+        <Popover.Content class={styles.Content}>
+          <Popover.CloseTrigger class={styles.CloseTrigger}>{'✕'}</Popover.CloseTrigger>
+          <Popover.Title class={styles.Title}>{'Important Notice'}</Popover.Title>
+          <Popover.Description class={styles.Description}>
+            {'This popover stays open when clicking outside. Use the close button to dismiss.'}
+          </Popover.Description>
+        </Popover.Content>
+      </Popover.Positioner>
+    </Portal>
+  </Popover.Root>
+}

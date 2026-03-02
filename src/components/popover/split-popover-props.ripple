@@ -1,0 +1,27 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UsePopoverProps } from './use-popover.ripple';
+
+const splitProps = createSplitProps<UsePopoverProps>();
+
+export function splitPopoverProps<T extends UsePopoverProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'autoFocus',
+    'closeOnEscape',
+    'closeOnInteractOutside',
+    'defaultOpen',
+    'id',
+    'ids',
+    'initialFocusEl',
+    'modal',
+    'onEscapeKeyDown',
+    'onFocusOutside',
+    'onInteractOutside',
+    'onOpenChange',
+    'onPointerDownOutside',
+    'onRequestDismiss',
+    'open',
+    'persistentElements',
+    'portalled',
+    'positioning',
+  ]);
+}

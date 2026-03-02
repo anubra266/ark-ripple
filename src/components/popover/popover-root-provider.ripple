@@ -1,0 +1,35 @@
+import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
+import { PopoverApiContext } from './use-popover-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import type { UsePopoverReturn } from './use-popover.ripple';
+import {
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+interface RootProviderProps {
+  value: UsePopoverReturn;
+}
+
+export interface PopoverRootProviderBaseProps extends RootProviderProps, UsePresenceProps {
+  children?: any;
+}
+export interface PopoverRootProviderProps extends PopoverRootProviderBaseProps {}
+
+export component PopoverRootProvider(props: MaybeTracked<PopoverRootProviderProps>) {
+  const [children, value, rest] = trackSplit(props, ['children', 'value']);
+  const [presenceProps] = splitPresenceProps(@rest);
+  const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+
+  const present = track(() => @value.open);
+  const presence = usePresence({ present, ...@presenceProps });
+
+  PopoverApiContext.set(value);
+  RenderStrategyContext.set(renderStrategyProps);
+  PresenceApiContext.set(presence);
+
+  <@children />
+}
