@@ -1,0 +1,28 @@
+import type { StageTriggerProps } from '@zag-js/floating-panel';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFloatingPanelContext } from './use-floating-panel-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface FloatingPanelStageTriggerBaseProps
+  extends StageTriggerProps,
+    PolymorphicProps<'button'> {}
+export interface FloatingPanelStageTriggerProps
+  extends HTMLProps<'button'>,
+    FloatingPanelStageTriggerBaseProps {}
+
+export component FloatingPanelStageTrigger(
+  props: MaybeTracked<FloatingPanelStageTriggerProps>,
+) {
+  const [children, stage, localProps] = trackSplit(props, ['children', 'stage']);
+  const floatingPanel = useFloatingPanelContext();
+
+  let mergedProps = track(
+    () => mergeProps(@floatingPanel.getStageTriggerProps({ stage: @stage }), @localProps),
+  );
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

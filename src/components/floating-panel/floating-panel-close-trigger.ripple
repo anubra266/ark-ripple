@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFloatingPanelContext } from './use-floating-panel-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface FloatingPanelCloseTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface FloatingPanelCloseTriggerProps
+  extends HTMLProps<'button'>,
+    FloatingPanelCloseTriggerBaseProps {}
+
+export component FloatingPanelCloseTrigger(
+  props: MaybeTracked<FloatingPanelCloseTriggerProps>,
+) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const floatingPanel = useFloatingPanelContext();
+
+  let mergedProps = track(
+    () => mergeProps(@floatingPanel.getCloseTriggerProps(), @localProps),
+  );
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

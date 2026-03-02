@@ -1,0 +1,21 @@
+import { track } from 'ripple';
+import { FloatingPanel } from 'ark-ripple/floating-panel';
+import { ComponentUnderTest } from './basic.ripple';
+
+export component ControlledComponentUnderTest(props: {
+  open?: boolean;
+  onOpenChange?: (details: { open: boolean }) => void;
+  [key: string]: any;
+}) {
+  let open = track(false);
+
+  <button
+    type="button"
+    onClick={() => {
+      @open = !@open;
+    }}
+  >
+    {'toggle'}
+  </button>
+  <ComponentUnderTest {...props} {@open} />
+}

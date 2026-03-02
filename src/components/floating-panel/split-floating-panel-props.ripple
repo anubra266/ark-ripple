@@ -1,0 +1,40 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseFloatingPanelProps } from './use-floating-panel.ripple';
+
+const splitProps = createSplitProps<UseFloatingPanelProps>();
+
+export function splitFloatingPanelProps<T extends UseFloatingPanelProps & Record<string, any>>(
+  props: T,
+) {
+  return splitProps(props, [
+    'allowOverflow',
+    'closeOnEscape',
+    'defaultOpen',
+    'defaultPosition',
+    'defaultSize',
+    'dir',
+    'disabled',
+    'draggable',
+    'getAnchorPosition',
+    'getBoundaryEl',
+    'gridSize',
+    'id',
+    'ids',
+    'lockAspectRatio',
+    'maxSize',
+    'minSize',
+    'onOpenChange',
+    'onPositionChange',
+    'onPositionChangeEnd',
+    'onSizeChange',
+    'onSizeChangeEnd',
+    'onStageChange',
+    'open',
+    'persistRect',
+    'position',
+    'resizable',
+    'size',
+    'strategy',
+    'translations',
+  ]);
+}

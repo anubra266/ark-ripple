@@ -1,0 +1,16 @@
+import { trackSplit } from 'ripple';
+import {
+  useFloatingPanelContext,
+  type UseFloatingPanelContext,
+} from './use-floating-panel-context';
+
+export interface FloatingPanelContextProps {
+  children: (context: UseFloatingPanelContext) => any;
+}
+
+export component FloatingPanelContext(props: FloatingPanelContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useFloatingPanelContext();
+
+  <@children {context} />
+}

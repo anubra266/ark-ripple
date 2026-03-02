@@ -18,7 +18,7 @@ export * from './factory';
 export * from './field';
 export * from './fieldset';
 export * from './file-upload';
-// export * from './floating-panel';
+export * from './floating-panel';
 export * from './focus-trap';
 export * from './format';
 export * from './frame';

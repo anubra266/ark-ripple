@@ -1,0 +1,34 @@
+import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
+import { FloatingPanelApiContext } from './use-floating-panel-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import { useFloatingPanel, type UseFloatingPanelProps } from './use-floating-panel.ripple';
+import { splitFloatingPanelProps } from './split-floating-panel-props.ripple';
+import {
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+export interface FloatingPanelRootBaseProps extends UseFloatingPanelProps, UsePresenceProps {
+  children?: any;
+}
+export interface FloatingPanelRootProps extends FloatingPanelRootBaseProps {}
+
+export component FloatingPanelRoot(props: MaybeTracked<FloatingPanelRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [presenceProps, localProps] = splitPresenceProps(@rest);
+  const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+  const [floatingPanelProps] = splitFloatingPanelProps(@localProps);
+
+  const floatingPanel = useFloatingPanel(floatingPanelProps);
+  const present = track(() => @floatingPanel.open);
+  const presence = usePresence({ present, ...@presenceProps });
+
+  FloatingPanelApiContext.set(floatingPanel);
+  RenderStrategyContext.set(renderStrategyProps);
+  PresenceApiContext.set(presence);
+
+  <@children />
+}

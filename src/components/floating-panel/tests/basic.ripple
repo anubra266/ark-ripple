@@ -1,0 +1,40 @@
+import { FloatingPanel } from 'ark-ripple/floating-panel';
+
+export component ComponentUnderTest(props: {
+  open?: boolean;
+  defaultOpen?: boolean;
+  lazyMount?: boolean;
+  unmountOnExit?: boolean;
+  onOpenChange?: (details: { open: boolean }) => void;
+  [key: string]: any;
+}) {
+  <FloatingPanel.Root {...props}>
+    <FloatingPanel.Trigger>{'Toggle Panel'}</FloatingPanel.Trigger>
+    <FloatingPanel.Positioner data-testid="positioner">
+      <FloatingPanel.Content>
+        <FloatingPanel.DragTrigger>
+          <FloatingPanel.Header>
+            <FloatingPanel.Title>{'Floating Panel'}</FloatingPanel.Title>
+            <FloatingPanel.Control>
+              <FloatingPanel.StageTrigger stage="minimized">{'minimize'}</FloatingPanel.StageTrigger>
+              <FloatingPanel.StageTrigger stage="maximized">{'maximize'}</FloatingPanel.StageTrigger>
+              <FloatingPanel.StageTrigger stage="default">{'restore'}</FloatingPanel.StageTrigger>
+              <FloatingPanel.CloseTrigger>{'close'}</FloatingPanel.CloseTrigger>
+            </FloatingPanel.Control>
+          </FloatingPanel.Header>
+        </FloatingPanel.DragTrigger>
+        <FloatingPanel.Body>
+          <p>{'Some content'}</p>
+        </FloatingPanel.Body>
+        <FloatingPanel.ResizeTrigger axis="n" />
+        <FloatingPanel.ResizeTrigger axis="e" />
+        <FloatingPanel.ResizeTrigger axis="w" />
+        <FloatingPanel.ResizeTrigger axis="s" />
+        <FloatingPanel.ResizeTrigger axis="ne" />
+        <FloatingPanel.ResizeTrigger axis="se" />
+        <FloatingPanel.ResizeTrigger axis="sw" />
+        <FloatingPanel.ResizeTrigger axis="nw" />
+      </FloatingPanel.Content>
+    </FloatingPanel.Positioner>
+  </FloatingPanel.Root>
+}

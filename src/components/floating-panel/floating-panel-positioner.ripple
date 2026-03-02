@@ -1,0 +1,25 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFloatingPanelContext } from './use-floating-panel-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface FloatingPanelPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface FloatingPanelPositionerProps
+  extends HTMLProps<'div'>,
+    FloatingPanelPositionerBaseProps {}
+
+export component FloatingPanelPositioner(props: MaybeTracked<FloatingPanelPositionerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const floatingPanel = useFloatingPanelContext();
+  const presence = usePresenceContext();
+
+  let mergedProps = track(() => mergeProps(@floatingPanel.getPositionerProps(), @localProps));
+
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
+}

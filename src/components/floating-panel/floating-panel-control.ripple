@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFloatingPanelContext } from './use-floating-panel-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface FloatingPanelControlBaseProps extends PolymorphicProps<'div'> {}
+export interface FloatingPanelControlProps
+  extends HTMLProps<'div'>,
+    FloatingPanelControlBaseProps {}
+
+export component FloatingPanelControl(props: MaybeTracked<FloatingPanelControlProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const floatingPanel = useFloatingPanelContext();
+
+  let mergedProps = track(() => mergeProps(@floatingPanel.getControlProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

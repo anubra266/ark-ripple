@@ -1,0 +1,26 @@
+import type { ResizeTriggerProps } from '@zag-js/floating-panel';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useFloatingPanelContext } from './use-floating-panel-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface FloatingPanelResizeTriggerBaseProps extends ResizeTriggerProps, PolymorphicProps<
+  'div'
+> {}
+export interface FloatingPanelResizeTriggerProps extends HTMLProps<
+  'div'
+>, FloatingPanelResizeTriggerBaseProps {}
+
+export component FloatingPanelResizeTrigger(props: MaybeTracked<FloatingPanelResizeTriggerProps>) {
+  const [children, axis, localProps] = trackSplit(props, ['children','axis']);
+  const floatingPanel = useFloatingPanelContext();
+
+  let mergedProps = track(
+    () => mergeProps(@floatingPanel.getResizeTriggerProps({ axis: @axis }), @localProps),
+  );
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}
