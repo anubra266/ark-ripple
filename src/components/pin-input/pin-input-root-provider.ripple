@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import type { UsePinInputReturn } from './use-pin-input.ripple';
+import { PinInputApiContext } from './use-pin-input-context';
+
+interface RootProviderProps {
+  value: UsePinInputReturn;
+}
+
+export interface PinInputRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
+export interface PinInputRootProviderProps extends HTMLProps<'div'>, PinInputRootProviderBaseProps {}
+
+export component PinInputRootProvider(props: MaybeTracked<PinInputRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+  PinInputApiContext.set(value);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

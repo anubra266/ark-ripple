@@ -1,0 +1,34 @@
+import { PinInput } from 'ark-ripple/pin-input';
+import { Field } from 'ark-ripple/field';
+
+export component ComponentUnderTest(props: {
+  [key: string]: any;
+}) {
+  <PinInput.Root {...props}>
+    <PinInput.Label>{'Label'}</PinInput.Label>
+    <PinInput.Control>
+      for (const index of [0, 1, 2]; key index) {
+        <PinInput.Input {index} />
+      }
+    </PinInput.Control>
+    <PinInput.HiddenInput />
+  </PinInput.Root>
+}
+
+export component PinInputWithField(props: {
+  [key: string]: any;
+}) {
+  <Field.Root {...props}>
+    <PinInput.Root>
+      <PinInput.Label>{'Label'}</PinInput.Label>
+      <PinInput.Control>
+        for (const index of [0, 1, 2]; key index) {
+          <PinInput.Input {index} />
+        }
+      </PinInput.Control>
+      <PinInput.HiddenInput />
+    </PinInput.Root>
+    <Field.HelperText>{'Additional Info'}</Field.HelperText>
+    <Field.ErrorText>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
+}

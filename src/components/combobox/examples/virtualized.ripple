@@ -4,10 +4,10 @@ import { Portal } from 'ark-ripple/portal';
 import { Check, ChevronsUpDown } from 'lucide-ripple';
 import styles from 'styles/combobox.module.css';
 import { createVirtualizer } from '../../../utils/use-virtualizer.ripple';
-import { flushSync } from 'ripple';
+import { flushSync, track } from 'ripple';
 
 export component Virtualized() {
-  let contentRef: HTMLDivElement | null = null;
+  let contentRef = track<HTMLDivElement | null>(null);
 
   const filterApi = useFilter({ sensitivity: 'base' });
 
@@ -23,7 +23,7 @@ export component Virtualized() {
       get count() {
         return @collection.size;
       },
-      getScrollElement: () => contentRef,
+      getScrollElement: () => @contentRef,
       estimateSize: () => 32,
       overscan: 10,
     },
@@ -59,9 +59,9 @@ export component Virtualized() {
         <Combobox.Content class={styles.Content}>
           <div
             {ref (el: HTMLDivElement) => {
-              contentRef = el;
+              @contentRef = el;
               return () => {
-                contentRef = null;
+                @contentRef = null;
               };
             }}
             class={styles.Scroller}

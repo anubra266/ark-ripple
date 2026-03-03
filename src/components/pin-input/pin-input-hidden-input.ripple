@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { usePinInputContext } from './use-pin-input-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface PinInputHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface PinInputHiddenInputProps extends HTMLProps<'input'>, PinInputHiddenInputBaseProps {}
+
+export component PinInputHiddenInput(props: MaybeTracked<PinInputHiddenInputProps>) {
+  const [localProps] = trackSplit(props, []);
+  const pinInput = usePinInputContext();
+  const field = useFieldContext();
+
+  let mergedProps = track(() => mergeProps(@pinInput.getHiddenInputProps(), @localProps));
+
+  <ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+}

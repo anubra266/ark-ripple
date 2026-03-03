@@ -64,7 +64,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'number-input' },
       { id: 'pagination' },
       { id: 'password-input' },
-      // { id: 'pin-input' },
+      { id: 'pin-input' },
       { id: 'popover' },
       // { id: 'progress-circular' },
       // { id: 'progress-linear' },

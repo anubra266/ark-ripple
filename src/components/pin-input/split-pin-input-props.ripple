@@ -1,0 +1,32 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UsePinInputProps } from './use-pin-input.ripple';
+
+const splitProps = createSplitProps<UsePinInputProps>();
+
+export function splitPinInputProps<T extends UsePinInputProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'autoFocus',
+    'blurOnComplete',
+    'count',
+    'defaultValue',
+    'disabled',
+    'form',
+    'id',
+    'ids',
+    'invalid',
+    'mask',
+    'name',
+    'onValueChange',
+    'onValueComplete',
+    'onValueInvalid',
+    'otp',
+    'pattern',
+    'placeholder',
+    'readOnly',
+    'required',
+    'selectOnFocus',
+    'translations',
+    'type',
+    'value',
+  ]);
+}

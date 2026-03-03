@@ -498,9 +498,40 @@ export function useDialog(props?: UseDialogProps): Tracked<UseDialogReturn> {
 }
 ```
 
+### `mergeProps` requires actual values, not tracked values
+
+`mergeProps` reads values to spread onto elements — pass it dereferenced (`@`) values, not tracked signals:
+
+```ripple
+// ✅ CORRECT — all values dereferenced with @
+let mergedProps = track(() => mergeProps(@pinInput.getInputProps({ index: @index }), @localProps));
+
+// ❌ WRONG — passing tracked value to mergeProps
+let mergedProps = track(() => mergeProps(@pinInput.getInputProps(inputProps), localProps));
+```
+
 ### Split props pattern
 
-only using it when there's quite a few props to split, if e.g. it's just id, prefer `trackSplit` right in the component that needs it.
+Only use `createSplitProps` when there are many props to split (5+). For 1-2 props, use `trackSplit` directly in the component:
+
+```ripple
+// ✅ CORRECT — trackSplit for 1-2 props
+export component PinInputInput(props: MaybeTracked<PinInputInputProps>) {
+  const [index, localProps] = trackSplit(props, ['index']);
+  const pinInput = usePinInputContext();
+  let mergedProps = track(() => mergeProps(@pinInput.getInputProps({ index: @index }), @localProps));
+  <ark.input {...@mergedProps} />
+}
+
+// ❌ WRONG — overkill for just one prop
+const splitInputProps = createSplitProps<InputProps>();
+export component PinInputInput(props: MaybeTracked<PinInputInputProps>) {
+  const [inputProps, localProps] = splitInputProps(@props, ['index']);
+  // ...
+}
+```
+
+For many props, use `createSplitProps` in a separate file:
 
 ```ripple
 import { createSplitProps } from '../../utils/create-split-props.ripple'
