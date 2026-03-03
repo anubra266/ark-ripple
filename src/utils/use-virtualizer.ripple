@@ -1,5 +1,4 @@
-import { track, effect } from 'ripple';
-import { onMount } from 'zag-ripple';
+import { track, effect, untrack } from 'ripple';
 import {
   Virtualizer,
   elementScroll,
@@ -36,10 +35,12 @@ function createVirtualizerBase<TScrollElement extends Element | Window, TItemEle
   let virtualItemsSignal = track<any[]>(instance.getVirtualItems());
   let totalSizeSignal = track(instance.getTotalSize());
 
-  onMount(() => {
-    const cleanup = instance._didMount();
-    return () => cleanup();
-  });
+  effect(() => {
+    return untrack(() => {
+      const cleanup = instance._didMount();
+      if (typeof cleanup === "function") return cleanup
+    })
+  })
 
   effect(() => {
     instance.setOptions(
