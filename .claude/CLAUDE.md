@@ -518,8 +518,8 @@ export function splitDialogProps<T extends UseDialogProps & Record<string, any>>
 ### Running tests
 
 ```bash
-# Always use this command (vitest), NOT `bun test`
-cd packages/ripple && bun run test:ci
+# Always use this command (vitest),
+cd packages/ripple && pnpm run test:ci
 ```
 
 ### Short name namespace imports
@@ -616,7 +616,7 @@ Never create an example without also adding its corresponding story export.
 If an example requires a third-party package that isn't already in `package.json` (e.g. `image-conversion` for file-upload's `transform-files` example), install it as a **devDependency** since examples are not shipped in dist:
 
 ```bash
-bun add -d image-conversion
+pnpm i -d image-conversion
 ```
 
 React examples location: `ark/packages/react/src/components/[component]/examples/`
@@ -645,7 +645,7 @@ describe('ComponentName Examples', () => {
 After developing or updating a component's examples, **always** run:
 
 ```bash
-bun run check:examples
+pnpm run check:examples
 ```
 
 This script verifies that every React example has a corresponding Ripple example. Fix any missing examples it reports before considering the component done.

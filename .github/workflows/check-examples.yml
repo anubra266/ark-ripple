@@ -14,8 +14,7 @@ jobs:
         with:
           submodules: true
 
-      - uses: oven-sh/setup-bun@v2
+      - name: Install
+        uses: ./.github/composite-actions/pnpm-install
 
-      - run: bun install --frozen-lockfile
-
-      - run: bun scripts/check-examples-parity.ts
+      - run: pnpm run check:examples

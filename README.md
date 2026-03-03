@@ -113,19 +113,19 @@ reference.
 
 ```bash
 # Install dependencies
-bun install
+pnpm install
 
 # Start Storybook
-bun run dev
+pnpm run dev
 
 # Run tests
-bun run test:ci
+pnpm run test:ci
 
 # Build
-bun run build
+pnpm run build
 
 # Lint
-bun run lint:fix
+pnpm run lint:fix
 ```
 
 ## License
