@@ -1,0 +1,111 @@
+import { useFilter } from 'ark-ripple/locale';
+import { TreeView, createTreeCollection, useTreeViewContext } from 'ark-ripple/tree-view';
+import { ChevronRight, File, Folder, FolderOpen } from 'lucide-ripple';
+import { track } from 'ripple';
+import fieldStyles from 'styles/field.module.css';
+import styles from 'styles/tree-view.module.css';
+
+interface Node {
+  id: string;
+  name: string;
+  children?: Node[];
+}
+
+const initialCollection = createTreeCollection<Node>({
+  nodeToValue: (node) => node.id,
+  nodeToString: (node) => node.name,
+  rootNode: {
+    id: 'ROOT',
+    name: '',
+    children: [
+      {
+        id: 'node_modules',
+        name: 'node_modules',
+        children: [
+          { id: 'node_modules/zag-js', name: 'zag-js' },
+          { id: 'node_modules/pandacss', name: 'panda' },
+          {
+            id: 'node_modules/@types',
+            name: '@types',
+            children: [
+              { id: 'node_modules/@types/react', name: 'react' },
+              { id: 'node_modules/@types/react-dom', name: 'react-dom' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'src',
+        name: 'src',
+        children: [
+          { id: 'src/app.tsx', name: 'app.tsx' },
+          { id: 'src/index.ts', name: 'index.ts' },
+        ],
+      },
+      { id: 'panda.config', name: 'panda.config.ts' },
+      { id: 'package.json', name: 'package.json' },
+      { id: 'renovate.json', name: 'renovate.json' },
+      { id: 'readme.md', name: 'README.md' },
+    ],
+  },
+});
+
+component TreeNode(props: { node: Node; indexPath: number[] }) {
+  const treeView = useTreeViewContext();
+  const nodeState = @treeView.getNodeState({ node: props.node, indexPath: props.indexPath });
+
+  <TreeView.NodeProvider node={props.node} indexPath={props.indexPath}>
+    if (nodeState.isBranch) {
+      <TreeView.Branch class={styles.Branch}>
+        <TreeView.BranchControl class={styles.BranchControl}>
+          <TreeView.BranchIndicator class={styles.BranchIndicator}>
+            <ChevronRight />
+          </TreeView.BranchIndicator>
+          <TreeView.BranchText class={styles.BranchText}>
+            if (nodeState.expanded) {
+              <FolderOpen />
+            } else {
+              <Folder />
+            }
+            {props.node.name}
+          </TreeView.BranchText>
+        </TreeView.BranchControl>
+        <TreeView.BranchContent class={styles.BranchContent}>
+          <TreeView.BranchIndentGuide class={styles.BranchIndentGuide} />
+          for (const child of (props.node.children || []); index i; key child.id) {
+            <TreeNode node={child} indexPath={[...props.indexPath, i]} />
+          }
+        </TreeView.BranchContent>
+      </TreeView.Branch>
+    } else {
+      <TreeView.Item class={styles.Item}>
+        <TreeView.ItemText class={styles.ItemText}>
+          <File />
+          {props.node.name}
+        </TreeView.ItemText>
+      </TreeView.Item>
+    }
+  </TreeView.NodeProvider>
+}
+
+export component Filtering() {
+  const filterApi = useFilter({ sensitivity: 'base' });
+  let collection = track(initialCollection);
+
+  const filter = (value: string) => {
+    @collection = value.length > 0
+      ? initialCollection.filter((node: Node) => @filterApi.contains(node.name, value))
+      : initialCollection;
+  };
+
+  <div class="stack" style={{ maxWidth: '20rem' }}>
+    <input class={fieldStyles.Input} placeholder="Search" onInput={(e: InputEvent) => filter((e.target as HTMLInputElement).value)} />
+    <TreeView.Root class={styles.Root} {collection}>
+      <TreeView.Tree class={styles.Tree}>
+        for (const node of @collection.rootNode.children!; index i; key node.id) {
+          <TreeNode {node} indexPath={[i]} />
+        }
+      </TreeView.Tree>
+    </TreeView.Root>
+  </div>
+}

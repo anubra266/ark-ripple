@@ -209,6 +209,42 @@ Don't use `fallback={<EyeOff />}` (instantiated JSX in prop value). Two patterns
 
 Same applies to any prop that accepts renderable content.
 
+### 9a. `asChild` — render as a different element
+
+Use the `component asChild({ propsFn })` pattern (inside the component body) to merge the component's generated props onto a child element. `propsFn(extraProps?)` returns the merged props to spread onto the child.
+
+```ripple
+// ✅ CORRECT — component asChild inside body (named children pattern)
+<HoverCard.Trigger class={styles.Trigger}>
+  component asChild({ propsFn }) {
+    <a {...propsFn({ href: '#profile' })}>{'@user'}</a>
+  }
+</HoverCard.Trigger>
+
+// ✅ CORRECT — inline prop style (when component has no other children)
+<Popover.Trigger
+  asChild={component(propsFn) {
+    <button {...propsFn()}>{'Open'}</button>
+  }}
+/>
+
+// ✅ CORRECT — spread extra props via propsFn argument
+<Combobox.Item {item}>
+  component asChild({ propsFn }) {
+    <a {...propsFn({ href: item.href })}>
+      <Combobox.ItemText>{item.label}</Combobox.ItemText>
+    </a>
+  }
+</Combobox.Item>
+
+// ❌ WRONG — boolean asChild with child element (React-style, not Ripple)
+<TreeView.Item asChild>
+  <a href="...">...</a>
+</TreeView.Item>
+```
+
+The `asChild` child MUST be a DOM element (e.g. `<a>`, `<button>`, `<div>`). You can also use a Ripple component as the child if it accepts spread props via `{...propsFn()}`.
+
 ### 10. `track` must be imported in examples
 
 Examples that use `track()` must explicitly import it. Component files under `src/components/` get it auto-injected by the compiler, but example files do not.
@@ -271,13 +307,32 @@ Ripple's keyed `for` loop reuses components for matching keys WITHOUT updating p
 
 ```ripple
 // ✅ CORRECT — content-based key
-for (const [index, page] of @context.pages.entries(); key page.value) { ... }
+for (const page of @context.pages; key page.value) { ... }
 
 // ❌ WRONG — index keys cause stale DOM when list content shifts
-for (const [index, page] of @context.pages.entries(); key index) { ... }
+for (const page of @context.pages; key index) { ... }
 ```
 
-Note: `@` in `for` key expressions is parsed as a decorator — avoid it. Use `.entries()` for index access.
+### 14a. Getting the loop index — use `index i`, NOT `.entries()`
+
+Ripple's `for` loop has a built-in `index` keyword to access the current iteration index. **Never use `.entries()`** — it is not supported in Ripple `for` loops.
+
+```ripple
+// ✅ CORRECT — Ripple native index syntax
+for (const item of items; index i; key item.id) {
+  <div>{item.label}{' at index '}{i}</div>
+}
+
+// ✅ CORRECT — index with reactive array
+for (const node of @collection.rootNode.children!; index i; key node.id) {
+  <TreeNode {node} indexPath={[i]} />
+}
+
+// ❌ WRONG — .entries() is NOT supported in Ripple for loops
+for (const [index, node] of arr.entries(); key node.id) { ... }
+```
+
+Note: `@` in `for` key expressions is parsed as a decorator — avoid it in key expressions.
 
 ### 15. Template refs
 

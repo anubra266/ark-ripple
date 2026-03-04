@@ -1,0 +1,104 @@
+import { TreeView, createTreeCollection } from 'ark-ripple/tree-view';
+import { ChevronRight, ExternalLink, File } from 'lucide-ripple';
+import styles from 'styles/tree-view.module.css';
+
+interface Node {
+  id: string;
+  name: string;
+  href?: string;
+  children?: Node[];
+}
+
+const collection = createTreeCollection<Node>({
+  nodeToValue: (node) => node.id,
+  nodeToString: (node) => node.name,
+  rootNode: {
+    id: 'ROOT',
+    name: '',
+    children: [
+      {
+        id: 'docs',
+        name: 'Documentation',
+        children: [
+          { id: 'docs/getting-started', name: 'Getting Started', href: '/docs/getting-started' },
+          { id: 'docs/installation', name: 'Installation', href: '/docs/installation' },
+          {
+            id: 'docs/components',
+            name: 'Components',
+            children: [
+              { id: 'docs/components/accordion', name: 'Accordion', href: '/docs/components/accordion' },
+              { id: 'docs/components/dialog', name: 'Dialog', href: '/docs/components/dialog' },
+              { id: 'docs/components/menu', name: 'Menu', href: '/docs/components/menu' },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'examples',
+        name: 'Examples',
+        children: [
+          { id: 'examples/react', name: 'React Examples', href: '/examples/react' },
+          { id: 'examples/vue', name: 'Vue Examples', href: '/examples/vue' },
+          { id: 'examples/solid', name: 'Solid Examples', href: '/examples/solid' },
+        ],
+      },
+      {
+        id: 'external',
+        name: 'External Links',
+        children: [
+          { id: 'external/github', name: 'GitHub Repository', href: 'https://github.com/chakra-ui/zag' },
+          { id: 'external/npm', name: 'NPM Package', href: 'https://www.npmjs.com/package/@zag-js/core' },
+          { id: 'external/docs', name: 'Official Docs', href: 'https://zagjs.com' },
+        ],
+      },
+      { id: 'readme.md', name: 'README.md', href: '/readme' },
+      { id: 'license', name: 'LICENSE', href: '/license' },
+    ],
+  },
+});
+
+component TreeNode(props: { node: Node; indexPath: number[] }) {
+  <TreeView.NodeProvider node={props.node} indexPath={props.indexPath}>
+    if (props.node.children) {
+      <TreeView.Branch class={styles.Branch}>
+        <TreeView.BranchControl class={styles.BranchControl}>
+          <TreeView.BranchIndicator class={styles.BranchIndicator}>
+            <ChevronRight />
+          </TreeView.BranchIndicator>
+          <TreeView.BranchText class={styles.BranchText}>{props.node.name}</TreeView.BranchText>
+        </TreeView.BranchControl>
+        <TreeView.BranchContent class={styles.BranchContent}>
+          <TreeView.BranchIndentGuide class={styles.BranchIndentGuide} />
+          for (const child of props.node.children; index i; key child.id) {
+            <TreeNode node={child} indexPath={[...props.indexPath, i]} />
+          }
+        </TreeView.BranchContent>
+      </TreeView.Branch>
+    } else {
+      <TreeView.Item class={styles.Item}>
+        component asChild({ propsFn }) {
+          <a {...propsFn({ href: props.node.href })}>
+            <TreeView.ItemText class={styles.ItemText}>
+              <File />
+              {props.node.name}
+            </TreeView.ItemText>
+            if (props.node.href && props.node.href.startsWith('http')) {
+              <ExternalLink size={12} />
+            }
+          </a>
+        }
+      </TreeView.Item>
+    }
+  </TreeView.NodeProvider>
+}
+
+export component Links() {
+  <TreeView.Root class={styles.Root} {collection}>
+    <TreeView.Label class={styles.Label}>{'Docs'}</TreeView.Label>
+    <TreeView.Tree class={styles.Tree}>
+      for (const node of collection.rootNode.children!; index i; key node.id) {
+        <TreeNode {node} indexPath={[i]} />
+      }
+    </TreeView.Tree>
+  </TreeView.Root>
+}

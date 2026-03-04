@@ -87,7 +87,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'toggle-group' },
       // { id: 'tooltip' },
       // { id: 'tour' },
-      // { id: 'tree-view' },
+      { id: 'tree-view' },
     ],
   },
   {

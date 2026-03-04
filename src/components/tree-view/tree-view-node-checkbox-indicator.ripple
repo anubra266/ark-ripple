@@ -1,0 +1,24 @@
+import { type Component } from 'ripple';
+import { trackSplit } from 'ripple';
+import { useTreeViewNodeContext } from './use-tree-view-node-context';
+import type { MaybeTracked } from '../../types';
+
+export interface TreeViewNodeCheckboxIndicatorBaseProps {
+  children?: Component;
+  indeterminate?: Component;
+  fallback?: Component;
+}
+export interface TreeViewNodeCheckboxIndicatorProps extends TreeViewNodeCheckboxIndicatorBaseProps {}
+
+export component TreeViewNodeCheckboxIndicator(props: MaybeTracked<TreeViewNodeCheckboxIndicatorProps>) {
+  const [children, indeterminate, fallback] = trackSplit(props, ['children', 'indeterminate', 'fallback']);
+  const nodeState = useTreeViewNodeContext();
+
+  if (@nodeState.checked === 'indeterminate' && @indeterminate) {
+    <@indeterminate />
+  } else if (@nodeState.checked === true && @children) {
+    <@children />
+  } else if (@fallback) {
+    <@fallback />
+  }
+}

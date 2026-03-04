@@ -1,0 +1,35 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseTreeViewProps } from './use-tree-view.ripple';
+
+const splitProps = createSplitProps<UseTreeViewProps<any>>();
+
+export function splitTreeViewProps<T extends UseTreeViewProps<any> & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'canRename',
+    'checkedValue',
+    'collection',
+    'defaultCheckedValue',
+    'defaultExpandedValue',
+    'defaultFocusedValue',
+    'defaultSelectedValue',
+    'expandedValue',
+    'expandOnClick',
+    'focusedValue',
+    'id',
+    'ids',
+    'loadChildren',
+    'onBeforeRename',
+    'onCheckedChange',
+    'onExpandedChange',
+    'onFocusChange',
+    'onLoadChildrenComplete',
+    'onLoadChildrenError',
+    'onRenameComplete',
+    'onRenameStart',
+    'onSelectionChange',
+    'scrollToIndexFn',
+    'selectedValue',
+    'selectionMode',
+    'typeahead',
+  ]);
+}

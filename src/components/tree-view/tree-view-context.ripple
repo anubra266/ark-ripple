@@ -1,0 +1,16 @@
+import { trackSplit } from 'ripple';
+import { type Component } from 'ripple';
+import { useTreeViewContext, type UseTreeViewContext } from './use-tree-view-context';
+import type { TreeNode } from '../collection';
+import type { MaybeTracked } from '../../types';
+
+export interface TreeViewContextProps<T extends TreeNode> {
+  children: Component<{ context: UseTreeViewContext<T> }>;
+}
+
+export component TreeViewContext(props: MaybeTracked<TreeViewContextProps<TreeNode>>) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useTreeViewContext();
+
+  <@children {context} />
+}

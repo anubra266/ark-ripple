@@ -1,0 +1,22 @@
+import { track, trackSplit } from 'ripple';
+import type { NodeProps } from '@zag-js/tree-view';
+import { useTreeViewContext } from './use-tree-view-context';
+import { TreeViewNodeStateContext } from './use-tree-view-node-context';
+import { TreeViewNodePropsContext } from './use-tree-view-node-props-context';
+import type { MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TreeViewNodeProviderBaseProps extends NodeProps, PolymorphicProps<'div'> {}
+export interface TreeViewNodeProviderProps extends TreeViewNodeProviderBaseProps {}
+
+export component TreeViewNodeProvider(props: MaybeTracked<TreeViewNodeProviderProps>) {
+  const [indexPath, node, children] = trackSplit(props, ['indexPath', 'node', 'children']);
+  const treeView = useTreeViewContext();
+
+  const nodeProps = track(() => ({ indexPath: @indexPath, node: @node }));
+  const nodeState = track(() => @treeView.getNodeState(@nodeProps));
+
+  TreeViewNodeStateContext.set(nodeState);
+  TreeViewNodePropsContext.set(nodeProps);
+
+  <@children />
+}

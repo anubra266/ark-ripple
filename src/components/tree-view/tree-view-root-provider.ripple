@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { TreeViewApiContext } from './use-tree-view-context';
+import type { UseTreeViewReturn } from './use-tree-view.ripple';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TreeViewRootProviderBaseProps extends PolymorphicProps<'div'> {
+  value: UseTreeViewReturn<any>;
+}
+export interface TreeViewRootProviderProps extends HTMLProps<'div'>, TreeViewRootProviderBaseProps {}
+
+export component TreeViewRootProvider(props: MaybeTracked<TreeViewRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+  TreeViewApiContext.set(value);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

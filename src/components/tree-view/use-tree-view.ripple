@@ -1,0 +1,36 @@
+import * as treeView from '@zag-js/tree-view';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor, MaybeTracked } from '../../types';
+import type { TreeCollection, TreeNode } from '../collection';
+
+export interface UseTreeViewProps<T extends TreeNode> extends Optional<
+  Omit<treeView.Props<T>, 'dir' | 'getRootNode' | 'collection'>,
+  'id'
+> {
+  /**
+   * The collection of tree nodes
+   */
+  collection: TreeCollection<T>;
+}
+
+export interface UseTreeViewReturn<T extends TreeNode> extends Accessor<treeView.Api<PropTypes, T>> {}
+
+export function useTreeView<T extends TreeNode>(props: MaybeTracked<UseTreeViewProps<T>>): Tracked<UseTreeViewReturn<T>> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(() => ({
+    id,
+    dir: @locale.dir,
+    getRootNode: @env.getRootNode,
+    ...@props,
+  }));
+
+  const service = useMachine(treeView.machine, machineProps);
+  return track(() => treeView.connect(service, normalizeProps));
+}

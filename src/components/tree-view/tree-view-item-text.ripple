@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTreeViewContext } from './use-tree-view-context';
+import { useTreeViewNodePropsContext } from './use-tree-view-node-props-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TreeViewItemTextBaseProps extends PolymorphicProps<'span'> {}
+export interface TreeViewItemTextProps extends HTMLProps<'span'>, TreeViewItemTextBaseProps {}
+
+export component TreeViewItemText(props: MaybeTracked<TreeViewItemTextProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const treeView = useTreeViewContext();
+  const nodeProps = useTreeViewNodePropsContext();
+
+  let mergedProps = track(() => mergeProps(@treeView.getItemTextProps(@nodeProps), @localProps));
+
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
+}

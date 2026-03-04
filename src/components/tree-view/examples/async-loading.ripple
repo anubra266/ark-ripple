@@ -1,0 +1,111 @@
+import { TreeView, createTreeCollection, useTreeViewNodeContext } from 'ark-ripple/tree-view';
+import { ChevronRight, File, Folder, FolderOpen, Loader } from 'lucide-ripple';
+import { track } from 'ripple';
+import styles from 'styles/tree-view.module.css';
+
+interface Node {
+  id: string;
+  name: string;
+  children?: Node[];
+  childrenCount?: number;
+}
+
+const response: Record<string, Node[]> = {
+  node_modules: [
+    { id: 'zag-js', name: 'zag-js' },
+    { id: 'pandacss', name: 'panda' },
+    { id: '@types', name: '@types', childrenCount: 2 },
+  ],
+  'node_modules/@types': [
+    { id: 'react', name: 'react' },
+    { id: 'react-dom', name: 'react-dom' },
+  ],
+  src: [
+    { id: 'app.tsx', name: 'app.tsx' },
+    { id: 'index.ts', name: 'index.ts' },
+  ],
+};
+
+function loadChildren(details: TreeView.LoadChildrenDetails<Node>): Promise<Node[]> {
+  const value = details.valuePath.join('/');
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(response[value] ?? []);
+    }, 500);
+  });
+}
+
+component TreeBranchIcon() {
+  const nodeState = useTreeViewNodeContext();
+  if (@nodeState.loading) {
+    <Loader class={styles.Loader} />
+  } else if (@nodeState.expanded) {
+    <FolderOpen />
+  } else {
+    <Folder />
+  }
+}
+
+component TreeNode(props: { node: Node; indexPath: number[] }) {
+  <TreeView.NodeProvider node={props.node} indexPath={props.indexPath}>
+    if (props.node.children || props.node.childrenCount) {
+      <TreeView.Branch class={styles.Branch}>
+        <TreeView.BranchControl class={styles.BranchControl}>
+          <TreeView.BranchIndicator class={styles.BranchIndicator}>
+            <ChevronRight />
+          </TreeView.BranchIndicator>
+          <TreeView.BranchText class={styles.BranchText}>
+            <TreeBranchIcon /> {props.node.name}
+          </TreeView.BranchText>
+        </TreeView.BranchControl>
+        <TreeView.BranchContent class={styles.BranchContent}>
+          <TreeView.BranchIndentGuide class={styles.BranchIndentGuide} />
+          for (const child of (props.node.children || []); index i; key child.id) {
+            <TreeNode node={child} indexPath={[...props.indexPath, i]} />
+          }
+        </TreeView.BranchContent>
+      </TreeView.Branch>
+    } else {
+      <TreeView.Item class={styles.Item}>
+        <TreeView.ItemText class={styles.ItemText}>
+          <File />
+          {props.node.name}
+        </TreeView.ItemText>
+      </TreeView.Item>
+    }
+  </TreeView.NodeProvider>
+}
+
+const initialCollection = createTreeCollection<Node>({
+  nodeToValue: (node) => node.id,
+  nodeToString: (node) => node.name,
+  rootNode: {
+    id: 'ROOT',
+    name: '',
+    children: [
+      { id: 'node_modules', name: 'node_modules', childrenCount: 3 },
+      { id: 'src', name: 'src', childrenCount: 2 },
+      { id: 'panda.config', name: 'panda.config.ts' },
+      { id: 'package.json', name: 'package.json' },
+      { id: 'renovate.json', name: 'renovate.json' },
+      { id: 'readme.md', name: 'README.md' },
+    ],
+  },
+});
+
+export component AsyncLoading() {
+  let collection = track(initialCollection);
+  <TreeView.Root
+    class={styles.Root}
+    {collection}
+    {loadChildren}
+    onLoadChildrenComplete={(e) => { @collection = e.collection; }}
+  >
+    <TreeView.Label class={styles.Label}>{'Tree'}</TreeView.Label>
+    <TreeView.Tree class={styles.Tree}>
+      for (const node of @collection.rootNode.children!; index i; key node.id) {
+        <TreeNode {node} indexPath={[i]} />
+      }
+    </TreeView.Tree>
+  </TreeView.Root>
+}

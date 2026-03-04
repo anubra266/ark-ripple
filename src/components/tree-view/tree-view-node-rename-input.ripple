@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTreeViewContext } from './use-tree-view-context';
+import { useTreeViewNodePropsContext } from './use-tree-view-node-props-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TreeViewNodeRenameInputBaseProps extends PolymorphicProps<'input'> {}
+export interface TreeViewNodeRenameInputProps extends HTMLProps<'input'>, TreeViewNodeRenameInputBaseProps {}
+
+export component TreeViewNodeRenameInput(props: MaybeTracked<TreeViewNodeRenameInputProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const treeView = useTreeViewContext();
+  const nodeProps = useTreeViewNodePropsContext();
+
+  let mergedProps = track(() => mergeProps(@treeView.getNodeRenameInputProps(@nodeProps), @localProps));
+
+  <ark.input {...@mergedProps} />
+}
