@@ -2,4 +2,4 @@
 'ark-ripple': patch
 ---
 
-Add Progress (Circular) component
+Add Progress component
