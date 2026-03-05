@@ -1,0 +1,19 @@
+import { Switch, useSwitch } from 'ark-ripple/switch';
+import button from 'styles/button.module.css';
+import styles from 'styles/switch.module.css';
+
+export component RootProvider() {
+  const api = useSwitch();
+
+  <div class="stack">
+    <button class={button.Root} onClick={() => { @api.toggleChecked() }}>{'Toggle'}</button>
+
+    <Switch.RootProvider class={styles.Root} value={api}>
+      <Switch.Control class={styles.Control}>
+        <Switch.Thumb class={styles.Thumb} />
+      </Switch.Control>
+      <Switch.Label class={styles.Label}>{'Label'}</Switch.Label>
+      <Switch.HiddenInput />
+    </Switch.RootProvider>
+  </div>
+}

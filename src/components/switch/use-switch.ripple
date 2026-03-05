@@ -1,0 +1,40 @@
+import * as zagSwitch from '@zag-js/switch';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import { useFieldContext } from '../field/use-field-context';
+import type { Optional, Accessor } from '../../types';
+
+export interface UseSwitchProps extends Optional<
+  Omit<zagSwitch.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
+
+export interface UseSwitchReturn extends Accessor<zagSwitch.Api<PropTypes>> {}
+
+export function useSwitch(props?: UseSwitchProps): Tracked<UseSwitchReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const field = useFieldContext();
+  const id = useId();
+
+  const machineProps = track(() => ({
+    id,
+    ids: {
+      label: @field?.ids.label,
+      hiddenInput: @field?.ids.control,
+    },
+    dir: @locale.dir,
+    getRootNode: @env.getRootNode,
+    disabled: @field?.disabled,
+    readOnly: @field?.readOnly,
+    invalid: @field?.invalid,
+    required: @field?.required,
+    ...@props,
+  }));
+
+  const service = useMachine(zagSwitch.machine, machineProps);
+  return track(() => zagSwitch.connect(service, normalizeProps));
+}

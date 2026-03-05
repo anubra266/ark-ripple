@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSwitchContext } from './use-switch-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface SwitchControlBaseProps extends PolymorphicProps<'span'> {}
+export interface SwitchControlProps extends HTMLProps<'span'>, SwitchControlBaseProps {}
+
+export component SwitchControl(props: MaybeTracked<SwitchControlProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useSwitchContext();
+
+  let mergedProps = track(() => mergeProps(@api.getControlProps(), @localProps));
+
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
+}

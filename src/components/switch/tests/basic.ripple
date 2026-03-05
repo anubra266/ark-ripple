@@ -1,0 +1,30 @@
+import { Switch } from 'ark-ripple/switch';
+import { Field } from 'ark-ripple/field';
+
+export component ComponentUnderTest(props: {
+  [key: string]: any;
+}) {
+  <Switch.Root {...props}>
+    <Switch.Control>
+      <Switch.Thumb />
+    </Switch.Control>
+    <Switch.Label>{'Label'}</Switch.Label>
+    <Switch.HiddenInput />
+  </Switch.Root>
+}
+
+export component SwitchWithField(props: {
+  [key: string]: any;
+}) {
+  <Field.Root {...props}>
+    <Switch.Root>
+      <Switch.Control>
+        <Switch.Thumb />
+      </Switch.Control>
+      <Switch.Label>{'Label'}</Switch.Label>
+      <Switch.HiddenInput />
+    </Switch.Root>
+    <Field.HelperText>{'Additional Info'}</Field.HelperText>
+    <Field.ErrorText>{'Error Info'}</Field.ErrorText>
+  </Field.Root>
+}

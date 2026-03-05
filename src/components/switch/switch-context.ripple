@@ -1,0 +1,13 @@
+import { trackSplit, type Component } from 'ripple';
+import { useSwitchContext, type UseSwitchContext } from './use-switch-context';
+
+export interface SwitchContextProps {
+  children: Component<{ context: UseSwitchContext }>;
+}
+
+export component SwitchContext(props: SwitchContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useSwitchContext();
+
+  <@children {context} />
+}

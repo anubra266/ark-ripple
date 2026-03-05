@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useSwitchContext } from './use-switch-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface SwitchHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface SwitchHiddenInputProps extends HTMLProps<'input'>, SwitchHiddenInputBaseProps {}
+
+export component SwitchHiddenInput(props: MaybeTracked<SwitchHiddenInputProps>) {
+  const [localProps] = trackSplit(props, []);
+  const api = useSwitchContext();
+  const field = useFieldContext();
+
+  let mergedProps = track(() => mergeProps(@api.getHiddenInputProps(), @localProps));
+
+  <ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+}

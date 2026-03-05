@@ -1,0 +1,19 @@
+import { Switch } from 'ark-ripple/switch';
+import { track } from 'ripple';
+import styles from 'styles/switch.module.css';
+
+export component Controlled() {
+  let checked = track(false);
+
+  <Switch.Root
+    class={styles.Root}
+    checked={@checked}
+    onCheckedChange={(e) => { @checked = e.checked }}
+  >
+    <Switch.Control class={styles.Control}>
+      <Switch.Thumb class={styles.Thumb} />
+    </Switch.Control>
+    <Switch.Label class={styles.Label}>{'Label'}</Switch.Label>
+    <Switch.HiddenInput />
+  </Switch.Root>
+}

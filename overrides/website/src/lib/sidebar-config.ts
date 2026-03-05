@@ -78,7 +78,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'slider' },
       { id: 'splitter' },
       { id: 'steps' },
-      // { id: 'switch' },
+      { id: 'switch' },
       // { id: 'tabs' },
       // { id: 'tags-input' },
       { id: 'timer' },

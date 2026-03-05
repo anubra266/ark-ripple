@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { SwitchApiContext } from './use-switch-context';
+import type { UseSwitchReturn } from './use-switch.ripple';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface SwitchRootProviderBaseProps extends PolymorphicProps<'label'> {
+  /** The switch api returned from `useSwitch` */
+  value: UseSwitchReturn;
+}
+export interface SwitchRootProviderProps extends HTMLProps<'label'>, SwitchRootProviderBaseProps {}
+
+export component SwitchRootProvider(props: MaybeTracked<SwitchRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+  SwitchApiContext.set(value);
+
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+  <ark.label {...@mergedProps}>
+    <@children />
+  </ark.label>
+}
