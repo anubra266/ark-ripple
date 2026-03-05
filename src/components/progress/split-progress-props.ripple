@@ -1,0 +1,20 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseProgressProps } from './use-progress.ripple';
+
+const splitProps = createSplitProps<UseProgressProps>();
+
+export function splitProgressProps<T extends UseProgressProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'defaultValue',
+    'formatOptions',
+    'id',
+    'ids',
+    'locale',
+    'max',
+    'min',
+    'onValueChange',
+    'orientation',
+    'translations',
+    'value',
+  ]);
+}

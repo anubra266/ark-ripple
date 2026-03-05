@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useProgress, type UseProgressProps } from './use-progress.ripple';
+import { splitProgressProps } from './split-progress-props.ripple';
+import { ProgressApiContext } from './use-progress-context';
+
+export interface ProgressRootBaseProps extends PolymorphicProps<'div'>, UseProgressProps {}
+export interface ProgressRootProps extends HTMLProps<'div'>, ProgressRootBaseProps {}
+
+export component ProgressRoot(props: MaybeTracked<ProgressRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [progressProps, localProps] = splitProgressProps(@rest);
+
+  const progress = useProgress(progressProps);
+  let mergedProps = track(() => mergeProps(@progress.getRootProps(), @localProps));
+
+  ProgressApiContext.set(progress);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

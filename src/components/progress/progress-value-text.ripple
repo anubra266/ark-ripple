@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useProgressContext } from './use-progress-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface ProgressValueTextBaseProps extends PolymorphicProps<'span'> {}
+export interface ProgressValueTextProps extends HTMLProps<'span'>, ProgressValueTextBaseProps {}
+
+export component ProgressValueText(props: MaybeTracked<ProgressValueTextProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const progress = useProgressContext();
+
+  let mergedProps = track(() => mergeProps(@progress.getValueTextProps(), @localProps));
+
+  <ark.span {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@progress.percentAsString}
+    }
+  </ark.span>
+}

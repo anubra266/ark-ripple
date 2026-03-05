@@ -36,7 +36,7 @@ export * from './pin-input';
 export * from './popover';
 export * from './portal';
 export * from './presence';
-// export * from './progress';
+export * from './progress';
 // export * from './qr-code';
 export * from './radio-group';
 export * from './rating-group';

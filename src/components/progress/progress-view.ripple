@@ -1,0 +1,20 @@
+import type { ViewProps } from '@zag-js/progress';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useProgressContext } from './use-progress-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface ProgressViewBaseProps extends ViewProps, PolymorphicProps<'span'> {}
+export interface ProgressViewProps extends HTMLProps<'span'>, ProgressViewBaseProps {}
+
+export component ProgressView(props: MaybeTracked<ProgressViewProps>) {
+  const [children, state, localProps] = trackSplit(props, ['children', 'state']);
+  const progress = useProgressContext();
+
+  let mergedProps = track(() => mergeProps(@progress.getViewProps({ state: @state }), @localProps));
+
+  <ark.span {...@mergedProps}>
+    <@children />
+  </ark.span>
+}

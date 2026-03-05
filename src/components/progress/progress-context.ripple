@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useProgressContext, type UseProgressContext } from './use-progress-context';
+
+export interface ProgressContextProps {
+  children: (context: UseProgressContext) => any;
+}
+
+export component ProgressContext(props: ProgressContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useProgressContext();
+
+  <@children {context} />
+}

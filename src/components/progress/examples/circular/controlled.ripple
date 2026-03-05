@@ -1,0 +1,17 @@
+import { Progress } from 'ark-ripple/progress';
+import { track } from 'ripple';
+import styles from 'styles/progress-circular.module.css';
+
+export component Controlled() {
+  let value = track<number | null>(42);
+
+  <Progress.Root class={styles.Root} value={value} onValueChange={(e) => { @value = e.value }}>
+    <div class={styles.CircleContainer}>
+      <Progress.Circle class={styles.Circle}>
+        <Progress.CircleTrack class={styles.CircleTrack} />
+        <Progress.CircleRange class={styles.CircleRange} />
+      </Progress.Circle>
+      <Progress.ValueText class={styles.ValueText} />
+    </div>
+  </Progress.Root>
+}

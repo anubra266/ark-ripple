@@ -1,0 +1,30 @@
+import * as progress from '@zag-js/progress';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor } from '../../types';
+
+export interface UseProgressProps extends Optional<
+  Omit<progress.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
+
+export interface UseProgressReturn extends Accessor<progress.Api<PropTypes>> {}
+
+export function useProgress(props?: UseProgressProps): Tracked<UseProgressReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(() => ({
+    id,
+    dir: @locale.dir,
+    getRootNode: @env.getRootNode,
+    ...@props,
+  }));
+
+  const service = useMachine(progress.machine, machineProps);
+  return track(() => progress.connect(service, normalizeProps));
+}
