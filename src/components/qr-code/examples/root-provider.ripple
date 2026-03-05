@@ -1,0 +1,15 @@
+import { QrCode, useQrCode } from 'ark-ripple/qr-code';
+import styles from 'styles/qr-code.module.css';
+
+export component RootProvider() {
+  const qrCode = useQrCode({ value: 'http://ark-ui.com' });
+
+  <div class="stack">
+    <QrCode.RootProvider class={styles.Root} value={qrCode}>
+      <QrCode.Frame class={styles.Frame}>
+        <QrCode.Pattern class={styles.Pattern} />
+      </QrCode.Frame>
+    </QrCode.RootProvider>
+    <output>{@qrCode.value}</output>
+  </div>
+}

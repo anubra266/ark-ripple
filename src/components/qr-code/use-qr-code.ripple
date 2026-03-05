@@ -1,0 +1,28 @@
+import * as qrcode from '@zag-js/qr-code';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, MaybeTracked } from '../../types';
+
+export interface UseQrCodeProps extends Optional<Omit<qrcode.Props, 'dir' | 'getRootNode'>, 'id'> {}
+export interface UseQrCodeReturn extends qrcode.Api<PropTypes> {}
+
+export function useQrCode(props: MaybeTracked<UseQrCodeProps>): Tracked<UseQrCodeReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(() => ({
+    id,
+    dir: @locale.dir,
+    getRootNode: @env.getRootNode,
+    ...@props,
+  }));
+
+  const service = useMachine(qrcode.machine, machineProps);
+  return track(() => qrcode.connect(service, normalizeProps));
+}
+
+export type { QrCodeGenerateOptions as GenerateOptions, QrCodeGenerateResult as GenerateResult } from '@zag-js/qr-code';

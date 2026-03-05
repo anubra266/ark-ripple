@@ -37,7 +37,7 @@ export * from './popover';
 export * from './portal';
 export * from './presence';
 export * from './progress';
-// export * from './qr-code';
+export * from './qr-code';
 export * from './radio-group';
 export * from './rating-group';
 export * from './scroll-area';

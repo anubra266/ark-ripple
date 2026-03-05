@@ -1,0 +1,17 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useQrCodeContext } from './use-qr-code-context';
+
+export interface QrCodePatternBaseProps extends PolymorphicProps<'path'> {}
+export interface QrCodePatternProps extends HTMLProps<'path'>, QrCodePatternBaseProps {}
+
+export component QrCodePattern(props: MaybeTracked<QrCodePatternProps>) {
+  const [localProps] = trackSplit(props, []);
+  const qrCode = useQrCodeContext();
+
+  let mergedProps = track(() => mergeProps(@qrCode.getPatternProps(), @localProps));
+
+  <ark.path {...@mergedProps} />
+}

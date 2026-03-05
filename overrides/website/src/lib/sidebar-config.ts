@@ -68,7 +68,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'popover' },
       { id: 'progress-circular' },
       { id: 'progress-linear' },
-      // { id: 'qr-code', title: 'QR Code' },
+      { id: 'qr-code', title: 'QR Code' },
       { id: 'radio-group' },
       { id: 'rating-group' },
       { id: 'scroll-area' },

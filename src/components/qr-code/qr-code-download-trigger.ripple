@@ -1,0 +1,23 @@
+import type { DownloadTriggerProps } from '@zag-js/qr-code';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useQrCodeContext } from './use-qr-code-context';
+
+export interface QrCodeDownloadTriggerBaseProps extends DownloadTriggerProps, PolymorphicProps<'button'> {}
+export interface QrCodeDownloadTriggerProps extends HTMLProps<'button'>, QrCodeDownloadTriggerBaseProps {}
+
+export component QrCodeDownloadTrigger(props: MaybeTracked<QrCodeDownloadTriggerProps>) {
+  const [children, fileName, mimeType, quality, localProps] = trackSplit(props, ['children', 'fileName', 'mimeType', 'quality']);
+  const qrCode = useQrCodeContext();
+
+  let mergedProps = track(() => mergeProps(
+    @qrCode.getDownloadTriggerProps({ fileName: @fileName, mimeType: @mimeType, quality: @quality }),
+    @localProps
+  ));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

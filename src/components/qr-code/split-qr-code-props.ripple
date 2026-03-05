@@ -1,0 +1,16 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseQrCodeProps } from './use-qr-code.ripple';
+
+const splitProps = createSplitProps<UseQrCodeProps>();
+
+export function splitQrCodeProps<T extends UseQrCodeProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'defaultValue',
+    'encoding',
+    'id',
+    'ids',
+    'onValueChange',
+    'pixelSize',
+    'value',
+  ]);
+}

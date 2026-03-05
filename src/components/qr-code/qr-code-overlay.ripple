@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useQrCodeContext } from './use-qr-code-context';
+
+export interface QrCodeOverlayBaseProps extends PolymorphicProps<'div'> {}
+export interface QrCodeOverlayProps extends HTMLProps<'div'>, QrCodeOverlayBaseProps {}
+
+export component QrCodeOverlay(props: MaybeTracked<QrCodeOverlayProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const qrCode = useQrCodeContext();
+
+  let mergedProps = track(() => mergeProps(@qrCode.getOverlayProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

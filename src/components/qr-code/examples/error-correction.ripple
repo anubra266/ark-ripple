@@ -1,0 +1,33 @@
+import { QrCode } from 'ark-ripple/qr-code';
+import { RadioGroup } from 'ark-ripple/radio-group';
+import { track } from 'ripple';
+import styles from 'styles/qr-code.module.css';
+import radio from 'styles/radio-group.module.css';
+
+export component ErrorCorrection() {
+  let errorLevel = track('L');
+
+  <div class="stack">
+    <QrCode.Root class={styles.Root} defaultValue="http://ark-ui.com" encoding={{ ecc: errorLevel }}>
+      <QrCode.Frame class={styles.Frame}>
+        <QrCode.Pattern class={styles.Pattern} />
+      </QrCode.Frame>
+    </QrCode.Root>
+    <RadioGroup.Root
+      class={radio.Root}
+      defaultValue="L"
+      orientation="horizontal"
+      onValueChange={(e) => { @errorLevel = e.value }}
+    >
+      <div class="hstack">
+        for (const level of ['L', 'M', 'Q', 'H']; key level) {
+          <RadioGroup.Item class={radio.Item} value={level}>
+            <RadioGroup.ItemControl class={radio.ItemControl} />
+            <RadioGroup.ItemText class={radio.ItemText}>{level}</RadioGroup.ItemText>
+            <RadioGroup.ItemHiddenInput />
+          </RadioGroup.Item>
+        }
+      </div>
+    </RadioGroup.Root>
+  </div>
+}

@@ -1,0 +1,14 @@
+import { QrCode } from 'ark-ripple/qr-code';
+import styles from 'styles/qr-code.module.css';
+
+export component Fill() {
+  <div class="hstack">
+    for (const fill of ['#5417D7', '#EC5D5E']; key fill) {
+      <QrCode.Root class={styles.Root} defaultValue="http://ark-ui.com">
+        <QrCode.Frame class={styles.Frame} style={{ fill }}>
+          <QrCode.Pattern class={styles.Pattern} />
+        </QrCode.Frame>
+      </QrCode.Root>
+    }
+  </div>
+}

@@ -28,7 +28,7 @@ export { passwordInputAnatomy } from './password-input/password-input.anatomy';
 export { pinInputAnatomy } from './pin-input/pin-input.anatomy';
 export { popoverAnatomy } from './popover/popover.anatomy';
 export { progressAnatomy } from './progress/progress.anatomy';
-// export { qrCodeAnatomy } from './qr-code/qr-code.anatomy';
+export { qrCodeAnatomy } from './qr-code/qr-code.anatomy';
 export { radioGroupAnatomy } from './radio-group/radio-group.anatomy';
 export { ratingGroupAnatomy } from './rating-group/rating-group.anatomy';
 export { scrollAreaAnatomy } from './scroll-area/scroll-area.anatomy';
