@@ -82,7 +82,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'tabs' },
       { id: 'tags-input' },
       { id: 'timer' },
-      // { id: 'toast' },
+      { id: 'toast' },
       { id: 'toggle' },
       { id: 'toggle-group' },
       { id: 'tooltip' },

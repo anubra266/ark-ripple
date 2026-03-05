@@ -1,0 +1,53 @@
+import { track } from 'ripple';
+import { Toast, Toaster, createToaster } from 'ark-ripple/toast';
+import { Portal } from 'ark-ripple/portal';
+import button from 'styles/button.module.css';
+import styles from 'styles/toast.module.css';
+
+const toaster = createToaster({
+  placement: 'bottom-end',
+  overlap: true,
+  gap: 24,
+});
+
+export component Update() {
+  let id = track<string | undefined>(undefined);
+
+  const createToast = () => {
+    @id = toaster.create({
+      title: 'Sending message...',
+      description: 'Please wait while we deliver your message.',
+      type: 'loading',
+    });
+  };
+
+  const updateToast = () => {
+    if (!@id) {
+      return;
+    }
+    toaster.update(@id, {
+      title: 'Message sent',
+      description: 'Your message has been delivered successfully.',
+      type: 'success',
+    });
+  };
+
+  <div class="hstack">
+    <button type="button" class={button.Root} onClick={createToast}>
+      {'Send message'}
+    </button>
+    <button type="button" class={button.Root} onClick={updateToast}>
+      {'Mark as sent'}
+    </button>
+    <Portal>
+      <Toaster {toaster}>
+        component children({ toast }) {
+          <Toast.Root class={styles.Root}>
+            <Toast.Title class={styles.Title}>{@toast.title}</Toast.Title>
+            <Toast.Description class={styles.Description}>{@toast.description}</Toast.Description>
+          </Toast.Root>
+        }
+      </Toaster>
+    </Portal>
+  </div>
+}

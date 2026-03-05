@@ -1,0 +1,13 @@
+import { trackSplit, type Component } from 'ripple';
+import { useToastContext, type UseToastContext } from './use-toast-context';
+
+export interface ToastContextProps {
+  children: Component<{ context: UseToastContext }>;
+}
+
+export component ToastContext(props: ToastContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useToastContext();
+
+  <@children {context} />
+}

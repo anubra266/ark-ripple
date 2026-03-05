@@ -52,7 +52,7 @@ export * from './switch';
 export * from './tabs';
 export * from './tags-input';
 export * from './timer';
-// export * from './toast';
+export * from './toast';
 export * from './toggle';
 export * from './toggle-group';
 export * from './tooltip';

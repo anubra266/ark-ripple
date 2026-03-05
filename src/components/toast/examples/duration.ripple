@@ -1,0 +1,60 @@
+import { Toast, Toaster, createToaster } from 'ark-ripple/toast';
+import { Portal } from 'ark-ripple/portal';
+import { X, Clock } from 'lucide-ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/toast.module.css';
+
+const toaster = createToaster({
+  overlap: true,
+  placement: 'bottom-end',
+  gap: 16,
+});
+
+const durations = [
+  { label: '1s', value: 1000 },
+  { label: '3s', value: 3000 },
+  { label: '5s', value: 5000 },
+  { label: '∞', value: Infinity },
+];
+
+export component Duration() {
+  <div>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+      for (const duration of durations; key duration.label) {
+        <button
+          type="button"
+          class={button.Root}
+          onClick={() => {
+            toaster.create({
+              title: 'Reminder set',
+              description: `This notification will ${
+                duration.value === Infinity ? 'stay until dismissed' : `disappear in ${duration.label}`
+              }.`,
+              type: 'info',
+              duration: duration.value,
+            });
+          }}
+        >
+          {duration.label}
+        </button>
+      }
+    </div>
+
+    <Portal>
+      <Toaster {toaster}>
+        component children({ toast }) {
+          <Toast.Root class={styles.Root}>
+            <Toast.Title class={styles.Title}>
+              <Clock class={styles.Indicator} />
+              {@toast.title}
+            </Toast.Title>
+            <Toast.Description class={styles.Description}>{@toast.description}</Toast.Description>
+            <Toast.CloseTrigger class={styles.CloseTrigger}>
+              <X />
+            </Toast.CloseTrigger>
+          </Toast.Root>
+        }
+      </Toaster>
+    </Portal>
+  </div>
+}

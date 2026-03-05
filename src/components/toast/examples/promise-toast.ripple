@@ -1,0 +1,67 @@
+import { Toast, Toaster, createToaster } from 'ark-ripple/toast';
+import { Portal } from 'ark-ripple/portal';
+import { X, Loader, CircleCheck, CircleAlert } from 'lucide-ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/toast.module.css';
+
+const toaster = createToaster({
+  overlap: true,
+  placement: 'bottom-end',
+  gap: 16,
+});
+
+const uploadFile = () => {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      Math.random() > 0.5 ? resolve() : reject(new Error('Upload failed'));
+    }, 2000);
+  });
+};
+
+export component PromiseToast() {
+  const handleUpload = async () => {
+    toaster.promise(uploadFile, {
+      loading: {
+        title: 'Uploading file...',
+        description: 'Please wait while we upload your document.',
+      },
+      success: {
+        title: 'Upload complete',
+        description: 'Your file has been uploaded successfully.',
+      },
+      error: {
+        title: 'Upload failed',
+        description: 'Could not upload the file. Please try again.',
+      },
+    });
+  };
+
+  <div>
+    <button type="button" class={button.Root} onClick={handleUpload}>
+      {'Upload file'}
+    </button>
+
+    <Portal>
+      <Toaster {toaster}>
+        component children({ toast }) {
+          <Toast.Root class={styles.Root}>
+            <Toast.Title class={styles.Title}>
+              if (@toast.type === 'loading') {
+                <Loader class={styles.Indicator} data-type="loading" />
+              } else if (@toast.type === 'success') {
+                <CircleCheck class={styles.Indicator} />
+              } else if (@toast.type === 'error') {
+                <CircleAlert class={styles.Indicator} />
+              }
+              {@toast.title}
+            </Toast.Title>
+            <Toast.Description class={styles.Description}>{@toast.description}</Toast.Description>
+            <Toast.CloseTrigger class={styles.CloseTrigger}>
+              <X />
+            </Toast.CloseTrigger>
+          </Toast.Root>
+        }
+      </Toaster>
+    </Portal>
+  </div>
+}

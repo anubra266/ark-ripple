@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useToastContext } from './use-toast-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface ToastRootBaseProps extends PolymorphicProps<'div'> {}
+export interface ToastRootProps extends HTMLProps<'div'>, ToastRootBaseProps {}
+
+export component ToastRoot(props: MaybeTracked<ToastRootProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const toast = useToastContext();
+
+  let mergedProps = track(() => mergeProps(@toast.getRootProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <div {...@toast.getGhostBeforeProps()} />
+    <@children />
+    <div {...@toast.getGhostAfterProps()} />
+  </ark.div>
+}

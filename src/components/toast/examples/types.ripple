@@ -1,0 +1,73 @@
+import { Toast, Toaster, createToaster } from 'ark-ripple/toast';
+import { Portal } from 'ark-ripple/portal';
+import { CircleAlert, TriangleAlert, CircleCheck, Info, X } from 'lucide-ripple';
+import button from 'styles/button.module.css';
+import styles from 'styles/toast.module.css';
+
+const toaster = createToaster({
+  overlap: true,
+  placement: 'bottom-end',
+  gap: 16,
+});
+
+const iconMap = {
+  success: CircleCheck,
+  error: CircleAlert,
+  warning: TriangleAlert,
+  info: Info,
+};
+
+export component Types() {
+  <div>
+    <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => { toaster.success({ title: 'Changes saved', description: 'Your profile has been updated successfully.' }) }}
+      >
+        {'Success'}
+      </button>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => { toaster.error({ title: 'Upload failed', description: 'There was an error uploading your file.' }) }}
+      >
+        {'Error'}
+      </button>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => { toaster.warning({ title: 'Low storage', description: 'You have less than 10% storage remaining.' }) }}
+      >
+        {'Warning'}
+      </button>
+      <button
+        type="button"
+        class={button.Root}
+        onClick={() => { toaster.info({ title: 'Update available', description: 'A new version of the app is ready to install.' }) }}
+      >
+        {'Info'}
+      </button>
+    </div>
+
+    <Portal>
+      <Toaster {toaster}>
+        component children({ toast }) {
+          const ToastIcon = @toast.type ? iconMap[@toast.type as keyof typeof iconMap] : undefined;
+          <Toast.Root class={styles.Root}>
+            <Toast.Title class={styles.Title}>
+              if (ToastIcon) {
+                <ToastIcon class={styles.Indicator} />
+              }
+              {@toast.title}
+            </Toast.Title>
+            <Toast.Description class={styles.Description}>{@toast.description}</Toast.Description>
+            <Toast.CloseTrigger class={styles.CloseTrigger}>
+              <X />
+            </Toast.CloseTrigger>
+          </Toast.Root>
+        }
+      </Toaster>
+    </Portal>
+  </div>
+}
