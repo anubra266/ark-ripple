@@ -18,7 +18,10 @@ export interface TagsInputItemProps extends HTMLProps<'div'>, TagsInputItemBaseP
 
 export component TagsInputItem(props: MaybeTracked<TagsInputItemProps>) {
   const [children, index, value, disabled, localProps] = trackSplit(props, [
-    'children', 'index', 'value', 'disabled',
+    'children',
+    'index',
+    'value',
+    'disabled',
   ]);
   const api = useTagsInputContext();
 

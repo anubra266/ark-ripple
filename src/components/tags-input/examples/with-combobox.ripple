@@ -12,7 +12,15 @@ export component WithCombobox() {
   const { collection, filter } = useListCollection(
     {
       initialItems: [
-        'React', 'Solid', 'Vue', 'Svelte', 'Angular', 'Preact', 'Next.js', 'Astro', 'Nuxt',
+        'React',
+        'Solid',
+        'Vue',
+        'Svelte',
+        'Angular',
+        'Preact',
+        'Next.js',
+        'Astro',
+        'Nuxt',
       ],
       filter: @filterApi.contains,
     },

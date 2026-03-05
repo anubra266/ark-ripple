@@ -56,7 +56,10 @@ interface ToastActorProps {
 
 component ToastActor(props: MaybeTracked<ToastActorProps>) {
   const [children, value, service, index] = trackSplit(props, [
-    'children', 'value', 'service', 'index',
+    'children',
+    'value',
+    'service',
+    'index',
   ]);
 
   const env = useEnvironmentContext();
