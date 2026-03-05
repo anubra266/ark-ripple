@@ -1,0 +1,32 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { TabsApiContext } from './use-tabs-context';
+import { useTabs, type UseTabsProps } from './use-tabs.ripple';
+import { splitTabsProps } from './split-tabs-props.ripple';
+import {
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+  type RenderStrategyProps,
+} from '../../utils/render-strategy.ripple';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TabsRootBaseProps extends UseTabsProps, RenderStrategyProps, PolymorphicProps<'div'> {}
+export interface TabsRootProps extends HTMLProps<'div'>, TabsRootBaseProps {}
+
+export component TabsRoot(props: MaybeTracked<TabsRootProps>) {
+  const [children, rest] = trackSplit(props, ['children']);
+  const [renderStrategyProps, tabsAndLocal] = splitRenderStrategyProps(@rest);
+  const [tabsProps, localProps] = splitTabsProps(@tabsAndLocal);
+
+  const api = useTabs(tabsProps);
+
+  TabsApiContext.set(api);
+  RenderStrategyContext.set(renderStrategyProps);
+
+  let mergedProps = track(() => mergeProps(@api.getRootProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

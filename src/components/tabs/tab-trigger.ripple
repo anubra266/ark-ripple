@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTabsContext } from './use-tabs-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TabTriggerBaseProps extends PolymorphicProps<'button'> {
+  /** The value of the tab */
+  value: string;
+  /** Whether the tab is disabled */
+  disabled?: boolean;
+}
+export interface TabTriggerProps extends HTMLProps<'button'>, TabTriggerBaseProps {}
+
+export component TabTrigger(props: MaybeTracked<TabTriggerProps>) {
+  const [children, value, disabled, localProps] = trackSplit(props, ['children', 'value', 'disabled']);
+  const api = useTabsContext();
+
+  let mergedProps = track(() => mergeProps(@api.getTriggerProps({ value: @value, disabled: @disabled }), @localProps));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

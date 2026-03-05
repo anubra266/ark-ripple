@@ -1,0 +1,13 @@
+import { trackSplit, type Component } from 'ripple';
+import { useTabsContext, type UseTabsContext } from './use-tabs-context';
+
+export interface TabsContextProps {
+  children: Component<{ context: UseTabsContext }>;
+}
+
+export component TabsContext(props: TabsContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useTabsContext();
+
+  <@children {context} />
+}

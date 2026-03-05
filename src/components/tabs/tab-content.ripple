@@ -1,0 +1,37 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTabsContext } from './use-tabs-context';
+import { usePresence } from '../presence/use-presence.ripple';
+import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TabContentBaseProps extends PolymorphicProps<'div'> {
+  /** The value of the tab this content belongs to */
+  value: string;
+}
+export interface TabContentProps extends HTMLProps<'div'>, TabContentBaseProps {}
+
+export component TabContent(props: MaybeTracked<TabContentProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  const api = useTabsContext();
+  const renderStrategy = useRenderStrategyContext();
+
+  const present = track(() => @api.value === @value);
+  const presence = usePresence({ present, immediate: true, ...@renderStrategy });
+
+  let mergedProps = track(() =>
+    mergeProps(@api.getContentProps({ value: @value }), @presence.getPresenceProps(), @localProps),
+  );
+
+  if (!@presence.unmounted) {
+    <ark.div
+      {...@mergedProps}
+      {ref (el: HTMLDivElement) => {
+        @presence.setNode(el);
+      }}
+    >
+      <@children />
+    </ark.div>
+  }
+}

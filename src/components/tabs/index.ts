@@ -1,0 +1,12 @@
+export * from './tab-content.ripple';
+export * from './tab-indicator.ripple';
+export * from './tab-list.ripple';
+export * from './tab-trigger.ripple';
+export * from './tabs-context.ripple';
+export * from './tabs-root.ripple';
+export * from './tabs-root-provider.ripple';
+export * from './tabs.anatomy';
+export * from './use-tabs.ripple';
+export * from './use-tabs-context';
+export type { FocusChangeDetails, ValueChangeDetails } from '@zag-js/tabs';
+export * as Tabs from './tabs';

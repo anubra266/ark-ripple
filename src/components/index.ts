@@ -49,7 +49,7 @@ export * from './splitter';
 export * from './steps';
 export * from './swap';
 export * from './switch';
-// export * from './tabs';
+export * from './tabs';
 // export * from './tags-input';
 export * from './timer';
 // export * from './toast';

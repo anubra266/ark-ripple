@@ -1,0 +1,22 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseTabsProps } from './use-tabs.ripple';
+
+const splitProps = createSplitProps<UseTabsProps>();
+
+export function splitTabsProps<T extends UseTabsProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'activationMode',
+    'composite',
+    'defaultValue',
+    'deselectable',
+    'id',
+    'ids',
+    'loopFocus',
+    'navigate',
+    'onFocusChange',
+    'onValueChange',
+    'orientation',
+    'translations',
+    'value',
+  ]);
+}

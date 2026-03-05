@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTabsContext } from './use-tabs-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TabListBaseProps extends PolymorphicProps<'div'> {}
+export interface TabListProps extends HTMLProps<'div'>, TabListBaseProps {}
+
+export component TabList(props: MaybeTracked<TabListProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTabsContext();
+
+  let mergedProps = track(() => mergeProps(@api.getListProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

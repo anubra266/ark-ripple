@@ -79,7 +79,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'splitter' },
       { id: 'steps' },
       { id: 'switch' },
-      // { id: 'tabs' },
+      { id: 'tabs' },
       // { id: 'tags-input' },
       { id: 'timer' },
       // { id: 'toast' },
