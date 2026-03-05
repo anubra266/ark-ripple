@@ -78,8 +78,10 @@ describe('Tabs Examples', () => {
   describe('Links', () => {
     it('should render tab triggers as links', async () => {
       const { container } = render(Links);
-      const accountLink = await within(container).findByRole('link', { name: 'Account' });
-      expect(accountLink).toHaveAttribute('href', '#account');
+      // asChild renders <a> elements with role="tab" from the tabs API
+      const accountTab = await within(container).findByRole('tab', { name: 'Account' });
+      expect(accountTab.tagName.toLowerCase()).toBe('a');
+      expect(accountTab).toHaveAttribute('href', '#account');
     });
   });
 

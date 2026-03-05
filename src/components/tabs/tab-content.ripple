@@ -20,8 +20,12 @@ export component TabContent(props: MaybeTracked<TabContentProps>) {
   const present = track(() => @api.value === @value);
   const presence = usePresence({ present, immediate: true, ...@renderStrategy });
 
-  let mergedProps = track(() =>
-    mergeProps(@api.getContentProps({ value: @value }), @presence.getPresenceProps(), @localProps),
+  let mergedProps = track(
+    () => mergeProps(
+      @api.getContentProps({ value: @value }),
+      @presence.getPresenceProps(),
+      @localProps,
+    ),
   );
 
   if (!@presence.unmounted) {

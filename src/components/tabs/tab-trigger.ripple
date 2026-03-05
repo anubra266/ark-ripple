@@ -13,10 +13,14 @@ export interface TabTriggerBaseProps extends PolymorphicProps<'button'> {
 export interface TabTriggerProps extends HTMLProps<'button'>, TabTriggerBaseProps {}
 
 export component TabTrigger(props: MaybeTracked<TabTriggerProps>) {
-  const [children, value, disabled, localProps] = trackSplit(props, ['children', 'value', 'disabled']);
+  const [children, value, disabled, localProps] = trackSplit(props, [
+    'children', 'value', 'disabled',
+  ]);
   const api = useTabsContext();
 
-  let mergedProps = track(() => mergeProps(@api.getTriggerProps({ value: @value, disabled: @disabled }), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@api.getTriggerProps({ value: @value, disabled: @disabled }), @localProps),
+  );
 
   <ark.button {...@mergedProps}>
     <@children />

@@ -14,14 +14,16 @@ export component ComponentUnderTest(props: {
     <Tabs.List>
       for (const item of items; key item.value) {
         <Tabs.Trigger value={item.value} disabled={item.disabled}>
-          {item.value}{' Trigger'}
+          {item.value}
+          {' Trigger'}
         </Tabs.Trigger>
       }
       <Tabs.Indicator />
     </Tabs.List>
     for (const item of items; key item.value) {
       <Tabs.Content value={item.value}>
-        {item.value}{' Content'}
+        {item.value}
+        {' Content'}
       </Tabs.Content>
     }
   </Tabs.Root>

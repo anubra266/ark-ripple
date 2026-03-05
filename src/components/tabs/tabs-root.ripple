@@ -11,7 +11,9 @@ import {
 import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
-export interface TabsRootBaseProps extends UseTabsProps, RenderStrategyProps, PolymorphicProps<'div'> {}
+export interface TabsRootBaseProps extends UseTabsProps, RenderStrategyProps, PolymorphicProps<
+  'div'
+> {}
 export interface TabsRootProps extends HTMLProps<'div'>, TabsRootBaseProps {}
 
 export component TabsRoot(props: MaybeTracked<TabsRootProps>) {

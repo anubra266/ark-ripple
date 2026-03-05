@@ -17,7 +17,7 @@ export component SplitterResizeTrigger(props: MaybeTracked<SplitterResizeTrigger
   const [children, id, disabled, localProps] = trackSplit(props, ['children', 'id', 'disabled']);
   const splitter = useSplitterContext();
 
-  const triggerProps = track(() => { id: @id, disabled: @disabled } as ResizeTriggerProps);
+  const triggerProps = track(() => ({ id: @id, disabled: @disabled }));
   let mergedProps = track(
     () => mergeProps(@splitter.getResizeTriggerProps(@triggerProps), @localProps),
   );
