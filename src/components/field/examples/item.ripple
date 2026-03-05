@@ -1,0 +1,19 @@
+import { Field } from 'ark-ripple/field';
+import styles from 'styles/field.module.css';
+
+export component Item() {
+  <Field.Root class={styles.Root} target="amount">
+    <Field.Label class={styles.Label}>{'Amount'}</Field.Label>
+    <Field.Item value="currency">
+      <Field.Select class={styles.Select}>
+        <option value="USD">{'USD'}</option>
+        <option value="EUR">{'EUR'}</option>
+      </Field.Select>
+    </Field.Item>
+    <Field.Item value="amount">
+      <Field.Input class={styles.Input} />
+    </Field.Item>
+    <Field.HelperText class={styles.HelperText}>{'Enter the amount'}</Field.HelperText>
+    <Field.ErrorText class={styles.ErrorText}>{'Invalid amount'}</Field.ErrorText>
+  </Field.Root>
+}

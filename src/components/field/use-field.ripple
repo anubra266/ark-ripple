@@ -39,6 +39,10 @@ export interface UseFieldProps {
  * Indicates whether the field is read-only.
  */
   readOnly?: boolean | undefined;
+  /**
+   * The target field item value the label should point to.
+   */
+  target?: string;
 }
 
 export type UseFieldReturn = ReturnType<typeof useField>;
@@ -60,6 +64,7 @@ export function useField(inProps: UseFieldProps = {}) {
   const invalid = track(() => @props.@invalid);
   const readOnly = track(() => @props.@readOnly);
   const required = track(() => @props.@required);
+  const target = track(() => @props.@target);
 
   let hasErrorText = track(false);
   let hasHelperText = track(false);
@@ -116,6 +121,8 @@ export function useField(inProps: UseFieldProps = {}) {
     'data-readonly': dataAttr(@readOnly),
   });
 
+  const targetControlId = track(() => @target ? `field::${@id}::item::${@target}` : undefined);
+
   const getLabelProps = () => ({
     ...parts.label.attrs,
     id: @labelId,
@@ -124,6 +131,8 @@ export function useField(inProps: UseFieldProps = {}) {
     'data-invalid': dataAttr(@invalid),
     'data-readonly': dataAttr(@readOnly),
     'data-required': dataAttr(@required),
+    htmlFor: targetControlId ?? @id,
+
   });
 
   const getControlProps = () => ({

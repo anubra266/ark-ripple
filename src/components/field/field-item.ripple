@@ -1,0 +1,62 @@
+import { trackSplit, track, type Component } from 'ripple';
+import { parts } from './field.anatomy';
+import { FieldApiContext, useFieldContext } from './use-field-context';
+
+export interface FieldItemBaseProps {
+  /** 
+ * The value used to generate item-specific IDs for the field control. 
+ */
+  value: string;
+}
+
+export interface FieldItemProps extends FieldItemBaseProps {
+  children?: Component;
+}
+
+export component FieldItem(props: FieldItemProps) {
+  const [children, value] = trackSplit(props, ['children', 'value']);
+  const parentField = useFieldContext();
+
+  const itemField = track(() => {
+    const parent = @parentField;
+    if (!parent) throw new Error('Field.Item must be used within Field.Root');
+
+    const controlId = `field::${parent.ids.control}::item::${@value}`;
+    const labelId = `${controlId}::label`;
+
+    const getControlProps = () => ({
+      ...parent.getControlProps(),
+      id: controlId,
+    });
+
+    return {
+      ...parent,
+      ids: {
+        ...parent.ids,
+        control: controlId,
+        label: labelId,
+      },
+      getLabelProps: () => ({
+        ...parent.getLabelProps(),
+        id: labelId,
+        htmlFor: controlId,
+      }),
+      getInputProps: () => ({
+        ...getControlProps(),
+        ...parts.input.attrs,
+      }),
+      getSelectProps: () => ({
+        ...getControlProps(),
+        ...parts.select.attrs,
+      }),
+      getTextareaProps: () => ({
+        ...getControlProps(),
+        ...parts.textarea.attrs,
+      }),
+    };
+  });
+
+  FieldApiContext.set(itemField as any);
+
+  <@children />
+}

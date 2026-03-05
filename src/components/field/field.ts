@@ -18,6 +18,11 @@ export {
   type FieldInputProps as InputProps,
 } from './field-input.ripple';
 export {
+  FieldItem as Item,
+  type FieldItemBaseProps as ItemBaseProps,
+  type FieldItemProps as ItemProps,
+} from './field-item.ripple';
+export {
   FieldLabel as Label,
   type FieldLabelBaseProps as LabelBaseProps,
   type FieldLabelProps as LabelProps,

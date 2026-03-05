@@ -3,6 +3,7 @@ import { CustomControl as CustomControlExample } from './examples/custom-control
 import { Disabled as DisabledExample } from './examples/disabled.ripple';
 import { Input as InputExample } from './examples/input.ripple';
 import { Invalid as InvalidExample } from './examples/invalid.ripple';
+import { Item as ItemExample } from './examples/item.ripple';
 import { RequiredIndicator as RequiredIndicatorExample } from './examples/required-indicator.ripple';
 import { RootProvider as RootProviderExample } from './examples/root-provider.ripple';
 import { Select as SelectExample } from './examples/select.ripple';
@@ -30,6 +31,10 @@ export const Input = {
 
 export const Invalid = {
   render: () => ({ Component: InvalidExample }),
+};
+
+export const Item = {
+  render: () => ({ Component: ItemExample }),
 };
 
 export const RequiredIndicator = {

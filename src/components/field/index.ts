@@ -10,6 +10,7 @@ export {
   type FieldHelperTextProps,
 } from './field-helper-text.ripple';
 export { FieldInput, type FieldInputBaseProps, type FieldInputProps } from './field-input.ripple';
+export { FieldItem, type FieldItemBaseProps, type FieldItemProps } from './field-item.ripple';
 export { FieldLabel, type FieldLabelBaseProps, type FieldLabelProps } from './field-label.ripple';
 export {
   FieldRequiredIndicator,
