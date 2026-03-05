@@ -7,7 +7,7 @@ export component Controlled() {
 
   <Switch.Root
     class={styles.Root}
-    {@checked}
+    {checked}
     onCheckedChange={(e) => {
       @checked = e.checked;
     }}

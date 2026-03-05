@@ -7,7 +7,7 @@ export component Controlled() {
 
   <Tabs.Root
     class={styles.Root}
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}

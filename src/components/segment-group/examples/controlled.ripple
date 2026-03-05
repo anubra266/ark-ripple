@@ -9,7 +9,7 @@ export component Controlled() {
 
   <SegmentGroup.Root
     class={styles.Root}
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}
