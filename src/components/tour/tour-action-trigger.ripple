@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { StepActionTriggerProps } from '@zag-js/tour';
+import { useTourContext } from './use-tour-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourActionTriggerBaseProps extends PolymorphicProps<'button'>, StepActionTriggerProps {}
+export interface TourActionTriggerProps extends HTMLProps<'button'>, TourActionTriggerBaseProps {}
+
+export component TourActionTrigger(props: MaybeTracked<TourActionTriggerProps>) {
+  const [children, action, localProps] = trackSplit(props, ['children', 'action']);
+  const api = useTourContext();
+
+  let mergedProps = track(() => mergeProps(@api.getActionTriggerProps({ action: @action }), @localProps));
+
+  <ark.button {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@action.label}
+    }
+  </ark.button>
+}

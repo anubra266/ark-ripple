@@ -1,0 +1,13 @@
+import type { StepAction } from '@zag-js/tour';
+import { track, type Component, type Tracked } from 'ripple';
+import { useTourContext } from './use-tour-context';
+
+export interface TourActionsProps {
+  children: Component<{ actions: Tracked<StepAction[]> }>;
+}
+
+export component TourActions(props: TourActionsProps) {
+  const api = useTourContext();
+  const actions = track(() => @api.step?.actions ?? []);
+  <props.children {actions} />
+}

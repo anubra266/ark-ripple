@@ -1,0 +1,56 @@
+import { Tour, useTour } from 'ark-ripple/tour';
+
+const steps: Tour.StepDetails[] = [
+  {
+    id: 'step-1',
+    type: 'dialog',
+    title: 'Step 1',
+    description: 'First step description',
+    actions: [{ label: 'Next', action: 'next' }],
+  },
+  {
+    id: 'step-2',
+    type: 'tooltip',
+    title: 'Step 2',
+    description: 'Second step description',
+    target: () => document.querySelector<HTMLElement>('#target-el'),
+    actions: [
+      { label: 'Back', action: 'prev' },
+      { label: 'Finish', action: 'dismiss' },
+    ],
+  },
+];
+
+export component ComponentUnderTest(props: {
+  onStepChange?: (details: Tour.StepChangeDetails) => void;
+  onStatusChange?: (details: Tour.StatusChangeDetails) => void;
+  [key: string]: any;
+}) {
+  const tour = useTour({ steps, ...props });
+
+  <div>
+    <div id="target-el" data-testid="target">{'Target Element'}</div>
+    <button type="button" onClick={() => { @tour.start() }} data-testid="start-btn">{'Start Tour'}</button>
+
+    <Tour.Root {tour}>
+      <Tour.Backdrop data-testid="backdrop" />
+      <Tour.Positioner data-testid="positioner">
+        <Tour.Content data-testid="content">
+          <Tour.CloseTrigger data-testid="close-trigger">{'Close'}</Tour.CloseTrigger>
+          <Tour.ProgressText data-testid="progress-text" />
+          <Tour.Title data-testid="title" />
+          <Tour.Description data-testid="description" />
+          <Tour.Control>
+            <Tour.Actions>
+              component children({ actions }) {
+                for (const action of @actions; key action.label) {
+                  <Tour.ActionTrigger {action} />
+                }
+              }
+            </Tour.Actions>
+          </Tour.Control>
+        </Tour.Content>
+      </Tour.Positioner>
+    </Tour.Root>
+  </div>
+}

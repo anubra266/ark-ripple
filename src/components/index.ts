@@ -56,5 +56,5 @@ export * from './timer';
 export * from './toggle';
 export * from './toggle-group';
 export * from './tooltip';
-// export * from './tour';
+export * from './tour';
 export * from './tree-view';

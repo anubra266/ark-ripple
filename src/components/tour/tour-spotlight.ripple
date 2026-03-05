@@ -1,0 +1,35 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTourContext } from './use-tour-context';
+import { usePresence } from '../presence/use-presence.ripple';
+import { useRenderStrategyContext } from '../../utils/render-strategy.ripple';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourSpotlightBaseProps extends PolymorphicProps<'div'> {}
+export interface TourSpotlightProps extends HTMLProps<'div'>, TourSpotlightBaseProps {}
+
+export component TourSpotlight(props: MaybeTracked<TourSpotlightProps>) {
+  const [localProps] = trackSplit(props, []);
+  const api = useTourContext();
+  const renderStrategyProps = useRenderStrategyContext();
+
+  const present = track(() => @api.open);
+  const presence = usePresence({ present, ...@renderStrategyProps });
+
+  let mergedProps = track(
+    () => mergeProps(@api.getSpotlightProps(), @presence.getPresenceProps(), @localProps),
+  );
+
+  const hidden = track(() => !@api.open || !@api.step?.target?.());
+
+  if (!@presence.unmounted) {
+    <ark.div
+      {...@mergedProps}
+      hidden={@hidden}
+      {ref (el: HTMLDivElement) => {
+        @presence.setNode(el);
+      }}
+    />
+  }
+}

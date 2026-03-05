@@ -68,6 +68,20 @@ const IntersectionObserverMock = vi.fn(function () {
 
 vi.stubGlobal('IntersectionObserver', IntersectionObserverMock);
 
+if (!global.visualViewport) {
+  vi.stubGlobal('visualViewport', {
+    width: 1024,
+    height: 768,
+    offsetLeft: 0,
+    offsetTop: 0,
+    pageLeft: 0,
+    pageTop: 0,
+    scale: 1,
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+  });
+}
+
 afterEach(() => {
   const elements = document.querySelectorAll('[id*="[object Object]"]');
   expect(elements.length).toBe(0);

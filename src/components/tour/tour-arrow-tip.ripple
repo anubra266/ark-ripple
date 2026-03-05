@@ -1,0 +1,17 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTourContext } from './use-tour-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourArrowTipBaseProps extends PolymorphicProps<'div'> {}
+export interface TourArrowTipProps extends HTMLProps<'div'>, TourArrowTipBaseProps {}
+
+export component TourArrowTip(props: MaybeTracked<TourArrowTipProps>) {
+  const [localProps] = trackSplit(props, []);
+  const api = useTourContext();
+
+  let mergedProps = track(() => mergeProps(@api.getArrowTipProps(), @localProps));
+
+  <ark.div {...@mergedProps} />
+}

@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTourContext } from './use-tour-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourDescriptionBaseProps extends PolymorphicProps<'div'> {}
+export interface TourDescriptionProps extends HTMLProps<'div'>, TourDescriptionBaseProps {}
+
+export component TourDescription(props: MaybeTracked<TourDescriptionProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTourContext();
+
+  let mergedProps = track(() => mergeProps(@api.getDescriptionProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    if (@children) {
+      <@children />
+    } else {
+      {@api.step?.description}
+    }
+  </ark.div>
+}

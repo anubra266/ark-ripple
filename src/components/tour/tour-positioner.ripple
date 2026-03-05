@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTourContext } from './use-tour-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface TourPositionerProps extends HTMLProps<'div'>, TourPositionerBaseProps {}
+
+export component TourPositioner(props: MaybeTracked<TourPositionerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTourContext();
+  const presence = usePresenceContext();
+
+  let mergedProps = track(() => mergeProps(@api.getPositionerProps(), @localProps));
+
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
+}

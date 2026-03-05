@@ -1,0 +1,11 @@
+import { useTourContext, type UseTourtContext } from './use-tour-context';
+import type { Component } from 'ripple';
+
+export interface TourContextProps {
+  children: Component<{ context: UseTourtContext }>;
+}
+
+export component TourContext(props: TourContextProps) {
+  const context = useTourContext();
+  <props.children {context} />
+}

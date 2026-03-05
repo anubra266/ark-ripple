@@ -1,0 +1,15 @@
+import { trackSplit } from 'ripple';
+import { tourAnatomy } from './tour.anatomy';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TourControlBaseProps extends PolymorphicProps<'div'> {}
+export interface TourControlProps extends HTMLProps<'div'>, TourControlBaseProps {}
+
+export component TourControl(props: MaybeTracked<TourControlProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+
+  <ark.div {...tourAnatomy.build().control.attrs} {...@localProps}>
+    <@children />
+  </ark.div>
+}
