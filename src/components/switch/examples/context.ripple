@@ -8,7 +8,10 @@ export component Context() {
     </Switch.Control>
     <Switch.Context>
       component children({ context }) {
-        <Switch.Label class={styles.Label}>{'Feature is '}{ @context.checked ? 'enabled' : 'disabled'}</Switch.Label>
+        <Switch.Label class={styles.Label}>
+          {'Feature is '}
+          {@context.checked ? 'enabled' : 'disabled'}
+        </Switch.Label>
       }
     </Switch.Context>
     <Switch.HiddenInput />

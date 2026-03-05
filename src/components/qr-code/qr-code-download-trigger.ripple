@@ -14,7 +14,10 @@ export interface QrCodeDownloadTriggerProps extends HTMLProps<
 
 export component QrCodeDownloadTrigger(props: MaybeTracked<QrCodeDownloadTriggerProps>) {
   const [children, fileName, mimeType, quality, localProps] = trackSplit(props, [
-    'children', 'fileName', 'mimeType', 'quality',
+    'children',
+    'fileName',
+    'mimeType',
+    'quality',
   ]);
   const qrCode = useQrCodeContext();
 

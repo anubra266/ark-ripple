@@ -17,13 +17,15 @@ export component DynamicCollapsible() {
 
   const isBelowMd = track(() => @rootSize != null && @rootSize < 600);
 
-  const splitterProps = track(() => ({
-    panels: [
-      { id: 'a', collapsible: @isBelowMd, collapsedSize: 5, minSize: 20, maxSize: 40 },
-      { id: 'b' },
-    ] as const,
-    defaultSize: [15, 85],
-  }));
+  const splitterProps = track(
+    () => ({
+      panels: [
+        { id: 'a', collapsible: @isBelowMd, collapsedSize: 5, minSize: 20, maxSize: 40 },
+        { id: 'b' },
+      ] as const,
+      defaultSize: [15, 85],
+    }),
+  );
 
   const splitter = useSplitter(splitterProps);
 
@@ -35,7 +37,9 @@ export component DynamicCollapsible() {
   <Splitter.RootProvider
     class={styles.Root}
     value={splitter}
-    {ref (el: HTMLDivElement) => { rootEl = el }}
+    {ref (el: HTMLDivElement) => {
+      rootEl = el;
+    }}
   >
     <Splitter.Panel class={styles.Panel} id="a">{'A'}</Splitter.Panel>
     <Splitter.ResizeTrigger class={styles.ResizeTrigger} id="a:b" aria-label="Resize panels">

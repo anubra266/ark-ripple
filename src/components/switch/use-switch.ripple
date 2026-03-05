@@ -20,20 +20,22 @@ export function useSwitch(props?: UseSwitchProps): Tracked<UseSwitchReturn> {
   const field = useFieldContext();
   const id = useId();
 
-  const machineProps = track(() => ({
-    id,
-    ids: {
-      label: @field?.ids.label,
-      hiddenInput: @field?.ids.control,
-    },
-    dir: @locale.dir,
-    getRootNode: @env.getRootNode,
-    disabled: @field?.disabled,
-    readOnly: @field?.readOnly,
-    invalid: @field?.invalid,
-    required: @field?.required,
-    ...@props,
-  }));
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        hiddenInput: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      disabled: @field?.disabled,
+      readOnly: @field?.readOnly,
+      invalid: @field?.invalid,
+      required: @field?.required,
+      ...@props,
+    }),
+  );
 
   const service = useMachine(zagSwitch.machine, machineProps);
   return track(() => zagSwitch.connect(service, normalizeProps));

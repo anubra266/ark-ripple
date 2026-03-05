@@ -7,8 +7,10 @@ export component Controlled() {
 
   <Switch.Root
     class={styles.Root}
-    checked={@checked}
-    onCheckedChange={(e) => { @checked = e.checked }}
+    {@checked}
+    onCheckedChange={(e) => {
+      @checked = e.checked;
+    }}
   >
     <Switch.Control class={styles.Control}>
       <Switch.Thumb class={styles.Thumb} />

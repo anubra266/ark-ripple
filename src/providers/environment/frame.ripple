@@ -1,7 +1,6 @@
 import { trackSplit, track } from 'ripple';
 import { Portal } from '../../components/portal';
 
-
 const INITIAL_CONTENT = '<!DOCTYPE html><html><head></head><body><div class="frame-root"></div></body></html>';
 
 function copyStyles(sourceDoc: Document, targetDoc: Document) {

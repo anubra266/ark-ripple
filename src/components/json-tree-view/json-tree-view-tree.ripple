@@ -10,7 +10,9 @@ export interface JsonTreeViewTreeProps extends HTMLProps<'div'>, JsonTreeViewTre
 
 export component JsonTreeViewTree(props: MaybeTracked<JsonTreeViewTreeProps>) {
   const [arrow, indentGuide, renderValue, localProps] = trackSplit(props, [
-    'arrow', 'indentGuide', 'renderValue',
+    'arrow',
+    'indentGuide',
+    'renderValue',
   ]);
   const tree = useTreeViewContext();
 

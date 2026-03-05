@@ -6,15 +6,21 @@ import { ark } from '../factory';
 import { useSplitterContext } from './use-splitter-context';
 import { SplitterResizeTriggerPropsContext } from './use-splitter-resize-trigger-props-context';
 
-export interface SplitterResizeTriggerBaseProps extends ResizeTriggerProps, PolymorphicProps<'button'> {}
-export interface SplitterResizeTriggerProps extends HTMLProps<'button'>, SplitterResizeTriggerBaseProps {}
+export interface SplitterResizeTriggerBaseProps extends ResizeTriggerProps, PolymorphicProps<
+  'button'
+> {}
+export interface SplitterResizeTriggerProps extends HTMLProps<
+  'button'
+>, SplitterResizeTriggerBaseProps {}
 
 export component SplitterResizeTrigger(props: MaybeTracked<SplitterResizeTriggerProps>) {
   const [children, id, disabled, localProps] = trackSplit(props, ['children', 'id', 'disabled']);
   const splitter = useSplitterContext();
 
-  const triggerProps = track(() => ({ id: @id, disabled: @disabled }) as ResizeTriggerProps);
-  let mergedProps = track(() => mergeProps(@splitter.getResizeTriggerProps(@triggerProps), @localProps));
+  const triggerProps = track(() => { id: @id, disabled: @disabled } as ResizeTriggerProps);
+  let mergedProps = track(
+    () => mergeProps(@splitter.getResizeTriggerProps(@triggerProps), @localProps),
+  );
 
   SplitterResizeTriggerPropsContext.set(triggerProps);
 

@@ -2,13 +2,18 @@ import { Splitter, useSplitter } from 'ark-ripple/splitter';
 import styles from 'styles/splitter.module.css';
 
 export component RootProvider() {
-  const splitter = useSplitter({
-    defaultSize: [50, 50],
-    panels: [{ id: 'a' }, { id: 'b' }],
-  });
+  const splitter = useSplitter(
+    {
+      defaultSize: [50, 50],
+      panels: [{ id: 'a' }, { id: 'b' }],
+    },
+  );
 
   <div class="stack">
-    <output>{'current size: '}{JSON.stringify(@splitter.getSizes())}</output>
+    <output>
+      {'current size: '}
+      {JSON.stringify(@splitter.getSizes())}
+    </output>
 
     <Splitter.RootProvider class={styles.Root} value={splitter}>
       <Splitter.Panel class={styles.Panel} id="a">{'A'}</Splitter.Panel>

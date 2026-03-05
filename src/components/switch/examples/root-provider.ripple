@@ -6,7 +6,14 @@ export component RootProvider() {
   const api = useSwitch();
 
   <div class="stack">
-    <button class={button.Root} onClick={() => { @api.toggleChecked() }}>{'Toggle'}</button>
+    <button
+      class={button.Root}
+      onClick={() => {
+        @api.toggleChecked();
+      }}
+    >
+      {'Toggle'}
+    </button>
 
     <Switch.RootProvider class={styles.Root} value={api}>
       <Switch.Control class={styles.Control}>

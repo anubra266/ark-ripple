@@ -12,7 +12,9 @@ export interface TreeViewNodeCheckboxIndicatorProps extends TreeViewNodeCheckbox
 
 export component TreeViewNodeCheckboxIndicator(props: MaybeTracked<TreeViewNodeCheckboxIndicatorProps>) {
   const [children, indeterminate, fallback] = trackSplit(props, [
-    'children', 'indeterminate', 'fallback',
+    'children',
+    'indeterminate',
+    'fallback',
   ]);
   const nodeState = useTreeViewNodeContext();
 

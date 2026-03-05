@@ -10,7 +10,9 @@ interface RootProviderProps {
 }
 
 export interface SplitterRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
-export interface SplitterRootProviderProps extends HTMLProps<'div'>, SplitterRootProviderBaseProps {}
+export interface SplitterRootProviderProps extends HTMLProps<
+  'div'
+>, SplitterRootProviderBaseProps {}
 
 export component SplitterRootProvider(props: MaybeTracked<SplitterRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

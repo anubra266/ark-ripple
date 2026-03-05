@@ -18,15 +18,17 @@ export function useSplitter(props?: UseSplitterProps): Tracked<UseSplitterReturn
   const env = useEnvironmentContext();
   const id = useId();
 
-  const machineProps = track(() => ({
-    id,
-    dir: @locale.dir,
-    getRootNode: @env.getRootNode,
-    ...@props,
-  }));
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
 
   const service = useMachine(splitter.machine, machineProps);
   return track(() => splitter.connect(service, normalizeProps));
 }
 
-export type { ExpandCollapseDetails, PanelData, ResizeDetails, ResizeEndDetails } from '@zag-js/splitter';
+export { ExpandCollapseDetails, PanelData, ResizeDetails, ResizeEndDetails } from '@zag-js/splitter';

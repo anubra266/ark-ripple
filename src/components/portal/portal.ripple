@@ -23,7 +23,7 @@ export component Portal(props: PortalProps) {
   if (@disabled) {
     <@children />
   } else if (@target) {
-    <RipplePortal target={@target}>
+    <RipplePortal {@target}>
       <@children />
     </RipplePortal>
   }
