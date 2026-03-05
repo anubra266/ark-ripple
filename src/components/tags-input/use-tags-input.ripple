@@ -1,0 +1,42 @@
+import * as tagsInput from '@zag-js/tags-input';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import { useFieldContext } from '../field/use-field-context';
+import type { Optional, Accessor } from '../../types';
+
+export interface UseTagsInputProps extends Optional<
+  Omit<tagsInput.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
+
+export interface UseTagsInputReturn extends Accessor<tagsInput.Api<PropTypes>> {}
+
+export function useTagsInput(props?: UseTagsInputProps): Tracked<UseTagsInputReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+  const field = useFieldContext();
+
+  const machineProps = track(
+    () => ({
+      id,
+      ids: {
+        label: @field?.ids.label,
+        hiddenInput: @field?.ids.control,
+      },
+      dir: @locale.dir,
+      disabled: @field?.disabled,
+      invalid: @field?.invalid,
+      readOnly: @field?.readOnly,
+      required: @field?.required,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
+
+  const service = useMachine(tagsInput.machine, machineProps);
+  return track(() => tagsInput.connect(service, normalizeProps));
+}

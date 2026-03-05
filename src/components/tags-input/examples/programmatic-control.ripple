@@ -1,0 +1,43 @@
+import { TagsInput, useTagsInput } from 'ark-ripple/tags-input';
+import { X } from 'lucide-ripple';
+import styles from 'styles/tags-input.module.css';
+import button from 'styles/button.module.css';
+
+export component ProgrammaticControl() {
+  const tagsInput = useTagsInput();
+
+  <div class="stack">
+    <div style={{ display: 'flex', gap: '8px' }}>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('React')}>{'Add React'}</button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('Solid')}>{'Add Solid'}</button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.setValue(['Vue', 'Svelte'])}>{'Set to Vue & Svelte'}</button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.clearValue()}>{'Clear All'}</button>
+    </div>
+
+    <TagsInput.RootProvider class={styles.Root} value={tagsInput}>
+      <TagsInput.Context>
+        component children({ context }) {
+          <TagsInput.Label class={styles.Label}>{'Frameworks'}</TagsInput.Label>
+          <TagsInput.Control class={styles.Control}>
+            for (const value of @context.value; index i; key value) {
+              <TagsInput.Item class={styles.Item} index={i} {value}>
+                <TagsInput.ItemPreview class={styles.ItemPreview}>
+                  <TagsInput.ItemText class={styles.ItemText}>{value}</TagsInput.ItemText>
+                  <TagsInput.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                    <X />
+                  </TagsInput.ItemDeleteTrigger>
+                </TagsInput.ItemPreview>
+                <TagsInput.ItemInput class={styles.ItemInput} />
+              </TagsInput.Item>
+            }
+            <TagsInput.Input placeholder="Add Framework" class={styles.Input} />
+            <TagsInput.ClearTrigger class={styles.ClearTrigger}>
+              <X />
+            </TagsInput.ClearTrigger>
+          </TagsInput.Control>
+        }
+      </TagsInput.Context>
+      <TagsInput.HiddenInput />
+    </TagsInput.RootProvider>
+  </div>
+}

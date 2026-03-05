@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTagsInputContext } from './use-tags-input-context';
+import { useFieldContext } from '../field/use-field-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TagsInputHiddenInputBaseProps extends PolymorphicProps<'input'> {}
+export interface TagsInputHiddenInputProps extends HTMLProps<'input'>, TagsInputHiddenInputBaseProps {}
+
+export component TagsInputHiddenInput(props: MaybeTracked<TagsInputHiddenInputProps>) {
+  const [localProps] = trackSplit(props, []);
+  const api = useTagsInputContext();
+  const field = useFieldContext();
+
+  let mergedProps = track(() => mergeProps(@api.getHiddenInputProps(), @localProps));
+
+  <ark.input aria-describedby={@field?.ariaDescribedby} {...@mergedProps} />
+}

@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTagsInputContext } from './use-tags-input-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TagsInputControlBaseProps extends PolymorphicProps<'div'> {}
+export interface TagsInputControlProps extends HTMLProps<'div'>, TagsInputControlBaseProps {}
+
+export component TagsInputControl(props: MaybeTracked<TagsInputControlProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTagsInputContext();
+
+  let mergedProps = track(() => mergeProps(@api.getControlProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

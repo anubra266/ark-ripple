@@ -1,0 +1,34 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTagsInputContext } from './use-tags-input-context';
+import { TagsInputItemApiContext } from './use-tags-input-item-context';
+import { TagsInputItemPropsApiContext } from './use-tags-input-item-props-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TagsInputItemBaseProps extends PolymorphicProps<'div'> {
+  /** The index of the tag */
+  index: number;
+  /** The value of the tag */
+  value: string;
+  /** Whether the tag is disabled */
+  disabled?: boolean;
+}
+export interface TagsInputItemProps extends HTMLProps<'div'>, TagsInputItemBaseProps {}
+
+export component TagsInputItem(props: MaybeTracked<TagsInputItemProps>) {
+  const [children, index, value, disabled, localProps] = trackSplit(props, ['children', 'index', 'value', 'disabled']);
+  const api = useTagsInputContext();
+
+  const itemProps = track(() => ({ index: @index, value: @value, disabled: @disabled }));
+  const itemState = track(() => @api.getItemState(@itemProps));
+
+  TagsInputItemPropsApiContext.set(itemProps);
+  TagsInputItemApiContext.set(itemState);
+
+  let mergedProps = track(() => mergeProps(@api.getItemProps(@itemProps), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

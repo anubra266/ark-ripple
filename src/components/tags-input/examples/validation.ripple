@@ -1,0 +1,36 @@
+import { TagsInput } from 'ark-ripple/tags-input';
+import { X } from 'lucide-ripple';
+import styles from 'styles/tags-input.module.css';
+
+const TAG_PATTERN = /^[a-zA-Z0-9-]+$/;
+
+const validateTag = ({ value, inputValue }: { value: string[]; inputValue: string }) =>
+  !!inputValue?.trim() && !value.includes(inputValue) && inputValue.length >= 3 && TAG_PATTERN.test(inputValue);
+
+export component Validation() {
+  <TagsInput.Root class={styles.Root} validate={validateTag}>
+    <TagsInput.Context>
+      component children({ context }) {
+        <TagsInput.Label class={styles.Label}>{'Frameworks (Min 3 chars, alphanumeric)'}</TagsInput.Label>
+        <TagsInput.Control class={styles.Control}>
+          for (const value of @context.value; index i; key value) {
+            <TagsInput.Item class={styles.Item} index={i} {value}>
+              <TagsInput.ItemPreview class={styles.ItemPreview}>
+                <TagsInput.ItemText class={styles.ItemText}>{value}</TagsInput.ItemText>
+                <TagsInput.ItemDeleteTrigger class={styles.ItemDeleteTrigger}>
+                  <X />
+                </TagsInput.ItemDeleteTrigger>
+              </TagsInput.ItemPreview>
+              <TagsInput.ItemInput class={styles.ItemInput} />
+            </TagsInput.Item>
+          }
+          <TagsInput.Input placeholder="Add Framework" class={styles.Input} />
+          <TagsInput.ClearTrigger class={styles.ClearTrigger}>
+            <X />
+          </TagsInput.ClearTrigger>
+        </TagsInput.Control>
+      }
+    </TagsInput.Context>
+    <TagsInput.HiddenInput />
+  </TagsInput.Root>
+}

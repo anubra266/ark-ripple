@@ -1,0 +1,11 @@
+import { useTagsInputContext, type UseTagsInputContext } from './use-tags-input-context';
+import type { Component } from 'ripple';
+
+export interface TagsInputContextProps {
+  children: Component<{ context: UseTagsInputContext }>;
+}
+
+export component TagsInputContext(props: TagsInputContextProps) {
+  const context = useTagsInputContext();
+  <props.children {context} />
+}

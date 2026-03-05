@@ -41,7 +41,7 @@ export { stepsAnatomy } from './steps/steps.anatomy';
 export { swapAnatomy } from './swap/swap.anatomy';
 export { switchAnatomy } from './switch/switch.anatomy';
 export { tabsAnatomy } from './tabs/tabs.anatomy';
-// export { tagsInputAnatomy } from './tags-input/tags-input.anatomy';
+export { tagsInputAnatomy } from './tags-input/tags-input.anatomy';
 export { timerAnatomy } from './timer/timer.anatomy';
 // export { toastAnatomy } from './toast/toast.anatomy';
 export { toggleAnatomy } from './toggle/toggle.anatomy';

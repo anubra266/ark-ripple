@@ -1,0 +1,21 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTagsInputContext } from './use-tags-input-context';
+import { useTagsInputItemPropsContext } from './use-tags-input-item-props-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TagsInputItemDeleteTriggerBaseProps extends PolymorphicProps<'button'> {}
+export interface TagsInputItemDeleteTriggerProps extends HTMLProps<'button'>, TagsInputItemDeleteTriggerBaseProps {}
+
+export component TagsInputItemDeleteTrigger(props: MaybeTracked<TagsInputItemDeleteTriggerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTagsInputContext();
+  const itemProps = useTagsInputItemPropsContext();
+
+  let mergedProps = track(() => mergeProps(@api.getItemDeleteTriggerProps(@itemProps), @localProps));
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

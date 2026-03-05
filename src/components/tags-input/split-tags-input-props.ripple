@@ -1,0 +1,39 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseTagsInputProps } from './use-tags-input.ripple';
+
+const splitProps = createSplitProps<UseTagsInputProps>();
+
+export function splitTagsInputProps<T extends UseTagsInputProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'addOnPaste',
+    'allowOverflow',
+    'autoFocus',
+    'blurBehavior',
+    'defaultInputValue',
+    'defaultValue',
+    'delimiter',
+    'disabled',
+    'editable',
+    'form',
+    'id',
+    'ids',
+    'inputValue',
+    'invalid',
+    'max',
+    'maxLength',
+    'name',
+    'onFocusOutside',
+    'onHighlightChange',
+    'onInputValueChange',
+    'onInteractOutside',
+    'onPointerDownOutside',
+    'onValueChange',
+    'onValueInvalid',
+    'placeholder',
+    'readOnly',
+    'required',
+    'translations',
+    'validate',
+    'value',
+  ]);
+}
