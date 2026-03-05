@@ -18,7 +18,7 @@ export component Controlled() {
     </button>
 
     <Drawer.Root
-      {@open}
+      {open}
       onOpenChange={(details) => {
         @open = details.open;
       }}

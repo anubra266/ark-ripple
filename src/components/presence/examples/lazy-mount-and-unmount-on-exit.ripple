@@ -15,6 +15,6 @@ export component LazyMountAndUnmountOnExit() {
     >
       {'Toggle'}
     </button>
-    <Presence class={styles.Box} lazyMount unmountOnExit {@present}>{'Lazy + Unmount'}</Presence>
+    <Presence class={styles.Box} lazyMount unmountOnExit {present}>{'Lazy + Unmount'}</Presence>
   </div>
 }

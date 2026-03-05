@@ -9,7 +9,7 @@ export component Controlled() {
   let value = track([parseDate('2022-01-01')]);
   <DatePicker.Root
     class={styles.Root}
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}

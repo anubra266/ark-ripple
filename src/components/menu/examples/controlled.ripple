@@ -18,7 +18,7 @@ export component Controlled() {
       {'Toggle'}
     </button>
     <Menu.Root
-      {@open}
+      {open}
       onOpenChange={(e) => {
         @open = e.open;
       }}

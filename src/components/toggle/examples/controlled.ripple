@@ -8,7 +8,7 @@ export component Controlled() {
 
   <Toggle.Root
     class={styles.Root}
-    {@pressed}
+    {pressed}
     onPressedChange={(value) => {
       @pressed = value;
     }}

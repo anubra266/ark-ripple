@@ -7,7 +7,7 @@ export component Controlled() {
   let value = track<string[]>(['left']);
 
   <ToggleGroup.Root
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}

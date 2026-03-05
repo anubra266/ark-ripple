@@ -19,7 +19,7 @@ export component DynamicQuery() {
     <p class={styles.Text}>
       <Highlight
         class={styles.Mark}
-        {@query}
+        {query}
         text="With Ark UI, you can build accessible, custom components. Each component is fully typed and works seamlessly with React, Solid, Svelte, and Vue."
       />
     </p>

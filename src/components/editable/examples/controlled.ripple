@@ -9,7 +9,7 @@ export component Controlled() {
   <Editable.Root
     class={styles.Root}
     placeholder="Enter text..."
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}

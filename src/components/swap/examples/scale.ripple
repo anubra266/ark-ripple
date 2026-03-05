@@ -13,7 +13,7 @@ export component Scale() {
       @swapped = !@swapped;
     }}
   >
-    <Swap.Root swap={@swapped}>
+    <Swap.Root swap={swapped}>
       <Swap.Indicator type="on" class={styles.ScaleIndicator}>
         <Volume2 />
       </Swap.Indicator>

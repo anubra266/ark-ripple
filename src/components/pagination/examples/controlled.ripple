@@ -10,7 +10,7 @@ export component Controlled() {
     count={5000}
     pageSize={10}
     siblingCount={2}
-    page={@currentPage}
+    page={currentPage}
     onPageChange={(details) => {
       @currentPage = details.page;
     }}

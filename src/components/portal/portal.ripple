@@ -8,7 +8,7 @@ export interface PortalProps {
   /**
  * The container to render the portal into.
  */
-  container?: Tracked<HTMLElement> | HTMLElement;
+  container?: Tracked<HTMLElement | null> | HTMLElement | null;
   /**
  * The children to render in the portal.
  */
@@ -23,7 +23,7 @@ export component Portal(props: PortalProps) {
   if (@disabled) {
     <@children />
   } else if (@target) {
-    <RipplePortal {@target}>
+    <RipplePortal target={@target}>
       <@children />
     </RipplePortal>
   }

@@ -8,7 +8,7 @@ export component ControlledOpen() {
   let open = track(false);
 
   <FloatingPanel.Root
-    {@open}
+    {open}
     onOpenChange={(e) => {
       @open = e.open;
     }}

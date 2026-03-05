@@ -17,7 +17,7 @@ export component RootProvider() {
       {@stepsApi.value + 1}
     </output>
 
-    <Steps.RootProvider class={styles.Root} value={@stepsApi}>
+    <Steps.RootProvider class={styles.Root} value={stepsApi}>
       <Steps.List class={styles.List}>
         for (const item of items; index index; key item.value) {
           <Steps.Item class={styles.Item} {index}>

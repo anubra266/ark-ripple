@@ -18,7 +18,7 @@ export component CheckboxItems() {
       <Menu.Content class={styles.Content}>
         <Menu.CheckboxItem
           class={styles.CheckboxItem}
-          checked={@showToolbar}
+          checked={showToolbar}
           onCheckedChange={(v) => {
             @showToolbar = v;
           }}
@@ -31,7 +31,7 @@ export component CheckboxItems() {
         </Menu.CheckboxItem>
         <Menu.CheckboxItem
           class={styles.CheckboxItem}
-          checked={@showStatusBar}
+          checked={showStatusBar}
           onCheckedChange={(v) => {
             @showStatusBar = v;
           }}

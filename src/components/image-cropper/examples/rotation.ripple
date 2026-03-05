@@ -35,7 +35,7 @@ export component Rotation() {
 
     <ImageCropper.Root
       class={styles.Root}
-      {@rotation}
+      {rotation}
       onRotationChange={(e) => {
         @rotation = e.rotation;
       }}

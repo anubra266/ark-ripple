@@ -38,7 +38,7 @@ export component MenuItemDialog() {
   </Menu.Root>
 
   <Dialog.Root
-    open={@dialogOpen}
+    open={dialogOpen}
     onOpenChange={(e) => {
       @dialogOpen = e.open;
     }}

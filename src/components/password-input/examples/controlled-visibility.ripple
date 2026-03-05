@@ -8,7 +8,7 @@ export component ControlledVisibility() {
 
   <PasswordInput.Root
     class={styles.Root}
-    {@visible}
+    {visible}
     onVisibilityChange={(e) => {
       @visible = e.visible;
     }}

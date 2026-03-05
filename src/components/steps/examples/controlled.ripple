@@ -21,7 +21,7 @@ export component Controlled() {
     <Steps.Root
       class={styles.Root}
       count={items.length}
-      {@step}
+      {step}
       onStepChange={(details) => {
         @step = details.step;
       }}

@@ -8,7 +8,7 @@ export component Controlled() {
   let open = track(false);
 
   <Popover.Root
-    {@open}
+    {open}
     onOpenChange={(e) => {
       @open = e.open;
     }}

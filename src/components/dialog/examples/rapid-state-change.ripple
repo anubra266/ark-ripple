@@ -21,7 +21,7 @@ export component RapidStateChange() {
       {String(@open)}
     </button>
     <Dialog.Root
-      {@open}
+      {open}
       onOpenChange={(e) => {
         @open = e.open;
       }}

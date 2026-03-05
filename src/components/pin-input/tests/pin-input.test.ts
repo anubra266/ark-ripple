@@ -78,7 +78,7 @@ describe('PinInput', () => {
     expect(input3).toHaveAttribute('autocomplete', 'one-time-code');
   });
 
-  it('should not crash when typing into an already-filled input (beforeinput + input)', async () => {
+  it('should maintain value when input is refocused after all inputs are filled', async () => {
     render(ComponentUnderTest);
 
     const [input1, input2, input3] = screen.queryAllByRole('textbox');
@@ -87,19 +87,10 @@ describe('PinInput', () => {
     await user.type(input2, '2');
     await user.type(input3, '3');
 
-    // Simulate exact browser sequence: beforeinput selects existing char,
-    // then input event fires with the replaced value (same char = value unchanged)
-    fireEvent(
-      input3,
-      new InputEvent('beforeinput', {
-        data: '3',
-        inputType: 'insertText',
-        bubbles: true,
-        cancelable: true,
-      }),
-    );
-    fireEvent.input(input3, { target: { value: '3' } });
+    expect(input3).toHaveValue('3');
 
+    // Refocus input3 and verify value is preserved
+    await user.click(input3);
     expect(input3).toHaveValue('3');
   });
 

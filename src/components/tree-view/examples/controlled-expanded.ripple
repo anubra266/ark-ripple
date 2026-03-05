@@ -95,7 +95,7 @@ export component ControlledExpanded() {
   <TreeView.Root
     class={styles.Root}
     {collection}
-    {@expandedValue}
+    {expandedValue}
     onExpandedChange={(details) => {
       @expandedValue = details.expandedValue;
     }}

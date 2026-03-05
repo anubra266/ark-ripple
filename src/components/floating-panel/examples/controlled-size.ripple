@@ -8,7 +8,7 @@ export component ControlledSize() {
   let size = track({ width: 400, height: 300 });
 
   <FloatingPanel.Root
-    {@size}
+    {size}
     onSizeChange={(e) => {
       @size = e.size;
     }}

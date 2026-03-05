@@ -20,7 +20,7 @@ export component Controlled() {
   <Listbox.Root
     class={styles.Root}
     {collection}
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value;
     }}

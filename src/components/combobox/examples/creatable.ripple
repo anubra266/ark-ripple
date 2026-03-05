@@ -49,7 +49,7 @@ export component Creatable() {
   <Combobox.Root
     class={styles.Root}
     {collection}
-    value={@selectedValue}
+    value={selectedValue}
     allowCustomValue
     onInputValueChange={(details) => {
       if (details.reason === 'input-change' || details.reason === 'item-select') {

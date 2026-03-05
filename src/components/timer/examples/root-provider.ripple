@@ -11,7 +11,7 @@ export component RootProvider() {
       {'timer: '}
       {JSON.stringify(@timer.time)}
     </output>
-    <Timer.RootProvider class={styles.Root} value={@timer}>
+    <Timer.RootProvider class={styles.Root} value={timer}>
       <Timer.Area class={styles.Area}>
         <div class={styles.ItemGroup}>
           <Timer.Item class={styles.Item} type="hours" />

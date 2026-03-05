@@ -18,7 +18,7 @@ export component Controlled() {
       {'Toggle'}
     </button>
     <HoverCard.Root
-      {@open}
+      {open}
       onOpenChange={(e) => {
         @open = e.open;
       }}

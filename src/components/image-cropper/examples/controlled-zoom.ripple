@@ -35,7 +35,7 @@ export component ControlledZoom() {
 
     <ImageCropper.Root
       class={styles.Root}
-      {@zoom}
+      {zoom}
       onZoomChange={(e) => {
         @zoom = e.zoom;
       }}

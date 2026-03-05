@@ -13,7 +13,7 @@ export component Flip() {
       @swapped = !@swapped;
     }}
   >
-    <Swap.Root swap={@swapped} style={{ perspective: '200px' }}>
+    <Swap.Root swap={swapped} style={{ perspective: '200px' }}>
       <Swap.Indicator type="on" class={styles.FlipIndicator}>
         <Play />
       </Swap.Indicator>

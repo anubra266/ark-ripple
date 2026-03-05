@@ -35,7 +35,7 @@ export component Flip() {
 
     <ImageCropper.Root
       class={styles.Root}
-      {@flip}
+      {flip}
       onFlipChange={(e) => {
         @flip = e.flip;
       }}

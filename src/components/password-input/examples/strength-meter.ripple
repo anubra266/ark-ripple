@@ -24,7 +24,7 @@ export component StrengthMeter() {
     <PasswordInput.Control class={styles.Control}>
       <PasswordInput.Input
         class={styles.Input}
-        value={@password}
+        value={password}
         onInput={(e) => {
           @password = e.currentTarget.value;
         }}

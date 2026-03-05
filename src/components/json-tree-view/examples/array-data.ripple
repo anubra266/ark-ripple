@@ -8,6 +8,13 @@ Object.defineProperties(testArray, {
   anotherProperty: { value: 42, enumerable: false, writable: false },
 });
 
+const getSparseArray = () => {
+  const sparse: any[] = [];
+  sparse[0] = 'first';
+  sparse[5] = 'sixth';
+  return sparse;
+};
+
 export component ArrayData() {
   <JsonTreeView.Root
     defaultExpandedDepth={1}
@@ -15,12 +22,7 @@ export component ArrayData() {
     data={{
       normalArray: [1, 2, 3],
       arrayWithNonEnumerableProperties: testArray,
-      sparseArray: () => {
-        const sparse: any[] = [];
-        sparse[0] = 'first';
-        sparse[5] = 'sixth';
-        return sparse;
-      }(),
+      sparseArray: getSparseArray(),
     }}
   >
     <JsonTreeView.Tree class={styles.Tree} arrow={ChevronRight} />

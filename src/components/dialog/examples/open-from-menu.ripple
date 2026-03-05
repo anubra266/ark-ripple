@@ -37,7 +37,7 @@ export component OpenFromMenu() {
   </Menu.Root>
 
   <Dialog.Root
-    {@open}
+    {open}
     onOpenChange={(e) => {
       @open = e.open;
     }}

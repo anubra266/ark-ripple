@@ -95,7 +95,7 @@ export component ControlledSelected() {
   <TreeView.Root
     class={styles.Root}
     {collection}
-    {@selectedValue}
+    {selectedValue}
     onSelectionChange={(details) => {
       @selectedValue = details.selectedValue;
     }}

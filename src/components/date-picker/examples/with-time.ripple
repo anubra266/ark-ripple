@@ -9,7 +9,7 @@ export component WithTime() {
   let value = track<CalendarDateTime[]>([]);
   <DatePicker.Root
     class={styles.Root}
-    {@value}
+    {value}
     onValueChange={(e) => {
       @value = e.value as CalendarDateTime[];
     }}

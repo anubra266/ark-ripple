@@ -13,7 +13,7 @@ export component Fade() {
       @swapped = !@swapped;
     }}
   >
-    <Swap.Root swap={@swapped}>
+    <Swap.Root swap={swapped}>
       <Swap.Indicator type="on" class={styles.FadeIndicator}>
         <Check />
       </Swap.Indicator>
