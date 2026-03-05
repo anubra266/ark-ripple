@@ -1,15 +1,8 @@
 import type { ItemState } from '@zag-js/steps';
-import { Context } from 'ripple';
+import { Context, type Tracked } from 'ripple';
 
 export type UseStepsItemContext = ItemState;
 
-export const StepsItemApiContext = new Context<UseStepsItemContext>({
-  current: false,
-  completed: false,
-  incomplete: false,
-  invalid: false,
-  first: false,
-  last: false,
-});
+export const StepsItemApiContext = new Context<Tracked<UseStepsItemContext>>();
 
-export const useStepsItemContext = (): UseStepsItemContext => StepsItemApiContext.get();
+export const useStepsItemContext = (): Tracked<UseStepsItemContext> => StepsItemApiContext.get();

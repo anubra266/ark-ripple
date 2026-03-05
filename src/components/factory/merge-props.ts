@@ -51,7 +51,7 @@ export function mergeProps(
       ) {
         var prev_fn = existing;
         var next_fn = raw_value;
-        result[key] = (...args) => {
+        result[key] = (...args: any[]) => {
           prev_fn(...args);
           next_fn(...args);
         };
