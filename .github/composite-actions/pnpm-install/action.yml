@@ -20,6 +20,7 @@ runs:
       run: |
         git config --global user.email "anubra266@gmail.com"
         git config --global user.name "Abraham Anuoluwapo"
+        git config --global push.autoSetupRemote true
 
     - name: Install dependencies
       shell: bash
