@@ -103,7 +103,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'format-relative-time' },
       { id: 'frame' },
       { id: 'highlight' },
-      // { id: 'json-tree-view', title: 'JSON Tree View' },
+      { id: 'json-tree-view', title: 'JSON Tree View' },
       { id: 'locale' },
       { id: 'presence' },
       { id: 'swap' },

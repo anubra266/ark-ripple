@@ -1,0 +1,100 @@
+import {
+  type JsonNode,
+  type JsonNodeHastElement,
+  getAccessibleDescription,
+  jsonNodeToElement,
+  keyPathToKey,
+} from '@zag-js/json-tree-utils';
+import { track, trackSplit } from 'ripple';
+import type { Component } from 'ripple';
+import { TreeView, useTreeViewContext } from '../tree-view';
+import { JsonTreeViewKeyNode } from './json-tree-view-key-node.ripple';
+import { useJsonTreeViewPropsContext } from './json-tree-view-props-context';
+import { JsonTreeViewValueNode } from './json-tree-view-value-node.ripple';
+import type { MaybeTracked } from '../../types';
+
+export interface JsonTreeViewNodeBaseProps {
+  /**
+ * The icon to use for the branch indicator arrow.
+ */
+  arrow?: Component;
+  /**
+ * Whether to show indent guides. Pass `true` for default or a Component for custom.
+ */
+  indentGuide?: boolean | Component;
+  /**
+ * Custom renderer for leaf text values.
+ */
+  renderValue?: Component<{ node: JsonNodeHastElement }>;
+}
+
+export interface JsonTreeViewNodeProps extends JsonTreeViewNodeBaseProps {
+  node: JsonNode;
+  indexPath: number[];
+}
+
+const scopeProps = { 'data-scope': 'json-tree-view' };
+
+export component JsonTreeViewNode(props: MaybeTracked<JsonTreeViewNodeProps>) {
+  const [node, indexPath, arrow, indentGuide, renderValue] = trackSplit(props, [
+    'node',
+    'indexPath',
+    'arrow',
+    'indentGuide',
+    'renderValue',
+  ]);
+  const options = useJsonTreeViewPropsContext();
+  const tree = useTreeViewContext();
+
+  const nodeState = track(() => @tree.getNodeState({ node: @node, indexPath: @indexPath }));
+  const key = track(() => keyPathToKey(@node.keyPath, { excludeRoot: true }));
+  const valueNode = track(() => jsonNodeToElement(@node, @options));
+
+  const nodeProps = track(
+    () => ({
+      ...scopeProps,
+      'aria-label': getAccessibleDescription(@node),
+      'data-line': @indexPath.reduce((acc, curr) => acc + curr, 1),
+      style: { '--line-length': @indexPath.length - 1 },
+    }),
+  );
+
+  <TreeView.NodeProvider {node} {indexPath}>
+    if (@nodeState.isBranch) {
+      <TreeView.Branch {...scopeProps}>
+        <TreeView.BranchControl {...@nodeProps}>
+          if (@arrow) {
+            <TreeView.BranchIndicator {...scopeProps}>
+              <@arrow />
+            </TreeView.BranchIndicator>
+          }
+          <TreeView.BranchText {...scopeProps}>
+            if (@key) {
+              <JsonTreeViewKeyNode {node} showQuotes={@options.quotesOnKeys} />
+            }
+            <JsonTreeViewValueNode node={valueNode} {renderValue} />
+          </TreeView.BranchText>
+        </TreeView.BranchControl>
+        <TreeView.BranchContent {...scopeProps}>
+          if (@indentGuide === true) {
+            <TreeView.BranchIndentGuide />
+          } else if (@indentGuide) {
+            <@indentGuide />
+          }
+          for (const child of @node.children!; index i; key i) {
+            <JsonTreeViewNode {...props} node={child} indexPath={[...@indexPath, i]} />
+          }
+        </TreeView.BranchContent>
+      </TreeView.Branch>
+    } else {
+      <TreeView.Item {...@nodeProps}>
+        <TreeView.ItemText {...scopeProps}>
+          if (@key) {
+            <JsonTreeViewKeyNode {node} showQuotes={@options.quotesOnKeys} />
+          }
+          <JsonTreeViewValueNode node={valueNode} {renderValue} />
+        </TreeView.ItemText>
+      </TreeView.Item>
+    }
+  </TreeView.NodeProvider>
+}

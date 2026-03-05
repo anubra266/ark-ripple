@@ -1,0 +1,67 @@
+import { type JsonNode, getRootNode, nodeToString, nodeToValue } from '@zag-js/json-tree-utils';
+import { track, trackSplit } from 'ripple';
+import { createTreeCollection } from '../collection';
+import { TreeView } from '../tree-view';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { getBranchValues } from './get-branch-value';
+import { type JsonTreeViewOptions, JsonTreeViewPropsContext } from './json-tree-view-props-context';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+
+export interface JsonTreeViewRootBaseProps extends PolymorphicProps<'div'>, JsonTreeViewOptions {
+  /**
+ * The data to display in the tree.
+ */
+  data: unknown;
+  /**
+ * The default expand level.
+ * @default 1
+ */
+  defaultExpandedDepth?: number;
+}
+export interface JsonTreeViewRootProps extends HTMLProps<'div'>, JsonTreeViewRootBaseProps {}
+
+const splitJsonTreeViewProps = createSplitProps<JsonTreeViewOptions>();
+
+export component JsonTreeViewRoot(props: MaybeTracked<JsonTreeViewRootProps>) {
+  const [children, data, defaultExpandedDepth, localProps] = trackSplit(props, [
+    'children',
+    'data',
+    'defaultExpandedDepth',
+  ]);
+
+  const [jsonTreeProps, restProps] = splitJsonTreeViewProps(@localProps, [
+    'maxPreviewItems',
+    'collapseStringsAfterLength',
+    'quotesOnKeys',
+    'groupArraysAfterLength',
+    'showNonenumerable',
+  ]);
+
+  const collection = track(
+    () => createTreeCollection<JsonNode>(
+      {
+        nodeToValue,
+        nodeToString,
+        rootNode: getRootNode(@data),
+      },
+    ),
+  );
+
+  const defaultExpandedValue = track(
+    () => @defaultExpandedDepth != null
+      ? getBranchValues(@collection, @defaultExpandedDepth)
+      : undefined,
+  );
+
+  JsonTreeViewPropsContext.set(jsonTreeProps);
+
+  <TreeView.Root
+    data-scope="json-tree-view"
+    {collection}
+    {defaultExpandedValue}
+    typeahead={false}
+    {...@restProps}
+  >
+    <@children />
+  </TreeView.Root>
+}

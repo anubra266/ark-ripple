@@ -1,0 +1,31 @@
+import type { JsonNodeHastElement } from '@zag-js/json-tree-utils';
+import { trackSplit, track, type Component } from 'ripple';
+import type { MaybeTracked } from '../../types';
+
+interface JsonTreeViewValueNodeProps {
+  node: JsonNodeHastElement;
+  renderValue?: Component<{ node: JsonNodeHastElement }>;
+}
+
+export component JsonTreeViewValueNode(props: MaybeTracked<JsonTreeViewValueNodeProps>) {
+  const [node, renderValue] = trackSplit(props, ['node', 'renderValue']);
+  if (@node.type === 'text') {
+    if (@renderValue) {
+      <@renderValue {node} />
+    } else {
+      {@node.value}
+    }
+  } else {
+    const element = track(() => @node.tagName);
+
+    <@element
+      data-root={@node.properties.root ? '' : undefined}
+      data-type={@node.properties.nodeType}
+      data-kind={@node.properties.kind}
+    >
+      for (const child of @node.children; index i; key i) {
+        <JsonTreeViewValueNode node={child} {renderValue} />
+      }
+    </@element>
+  }
+}

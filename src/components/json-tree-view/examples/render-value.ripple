@@ -1,0 +1,41 @@
+import { JsonTreeView } from 'ark-ripple/json-tree-view';
+import type { JsonNodeHastElement } from '@zag-js/json-tree-utils';
+import { ChevronRight } from 'lucide-ripple';
+import styles from 'styles/json-tree-view.module.css';
+
+
+
+export component RenderValue() {
+  <JsonTreeView.Root
+    class={styles.Root}
+    defaultExpandedDepth={2}
+    data={{
+      name: 'John Doe',
+      age: 30,
+      number: Number.NaN,
+      email: 'john.doe@example.com',
+      address: {
+        street: '123 Main St',
+        city: 'Anytown',
+        state: 'CA',
+        zip: '12345',
+      },
+    }}
+  >
+    <JsonTreeView.Tree class={styles.Tree} arrow={ChevronRight}>
+      component renderValue({ node }) {
+        if (@node.type === 'text' && typeof @node.value === 'string' && isEmail(@node.value)) {
+          const email = @node.value.replace(/^"(.*)"$/, '$1');
+          <a href={`mailto:${email}`} target="_blank" rel="noreferrer">{email}</a>
+        } else {
+          {@node.value}
+        }
+      }
+    </JsonTreeView.Tree>
+  </JsonTreeView.Root>
+}
+
+const isEmail = (value: string) => {
+  const strippedValue = value.replace(/^"(.*)"$/, '$1');
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(strippedValue);
+};

@@ -1,0 +1,25 @@
+import { track, trackSplit } from 'ripple';
+import { TreeView } from '../tree-view';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { JsonTreeViewPropsContext } from './json-tree-view-props-context';
+import type { UseJsonTreeViewReturn } from './use-json-tree-view.ripple';
+
+export interface JsonTreeViewRootProviderBaseProps extends PolymorphicProps<'div'> {
+  value: UseJsonTreeViewReturn;
+}
+export interface JsonTreeViewRootProviderProps extends HTMLProps<
+  'div'
+>, JsonTreeViewRootProviderBaseProps {}
+
+export component JsonTreeViewRootProvider(props: MaybeTracked<JsonTreeViewRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+
+  const options = track(() => @value.options);
+  const treeView = track(() => @value.treeView);
+
+  JsonTreeViewPropsContext.set(options);
+
+  <TreeView.RootProvider data-scope="json-tree-view" value={treeView} {...@localProps}>
+    <@children />
+  </TreeView.RootProvider>
+}

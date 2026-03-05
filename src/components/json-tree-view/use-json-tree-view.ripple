@@ -1,0 +1,71 @@
+import { type JsonNode, getRootNode, nodeToString, nodeToValue } from '@zag-js/json-tree-utils';
+import { track, trackSplit, type Tracked } from 'ripple';
+import { createTreeCollection } from '../collection';
+import { useTreeView, type UseTreeViewProps, type UseTreeViewReturn } from '../tree-view';
+import { getBranchValues } from './get-branch-value';
+import type { JsonTreeViewOptions } from './json-tree-view-props-context';
+import type { MaybeTracked } from '../../types';
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+
+export interface UseJsonTreeViewProps extends Omit<
+  UseTreeViewProps<JsonNode>,
+  'collection'
+>, JsonTreeViewOptions {
+  /**
+ * The data to display in the tree.
+ */
+  data: unknown;
+  /**
+ * The default expand level.
+ * @default 1
+ */
+  defaultExpandedDepth?: number;
+}
+
+export interface UseJsonTreeViewReturn {
+  treeView: Tracked<UseTreeViewReturn<JsonNode>>;
+  options: JsonTreeViewOptions;
+}
+
+const splitJsonTreeViewProps = createSplitProps<JsonTreeViewOptions>();
+
+export function useJsonTreeView(props: MaybeTracked<UseJsonTreeViewProps>): Tracked<UseJsonTreeViewReturn> {
+  const [data, defaultExpandedDepth, localProps] = trackSplit(props, [
+    'data', 'defaultExpandedDepth',
+  ]);
+
+  const [jsonTreeProps, restProps] = splitJsonTreeViewProps(@localProps, [
+    'maxPreviewItems',
+    'collapseStringsAfterLength',
+    'quotesOnKeys',
+    'groupArraysAfterLength',
+    'showNonenumerable',
+  ]);
+
+  const collection = track(
+    () => createTreeCollection<JsonNode>(
+      {
+        nodeToValue,
+        nodeToString,
+        rootNode: getRootNode(@data),
+      },
+    ),
+  );
+
+  const defaultExpandedValue = track(
+    () => @defaultExpandedDepth != null
+      ? getBranchValues(@collection, @defaultExpandedDepth)
+      : undefined,
+  );
+
+  const treeView = useTreeView(
+    {
+      defaultExpandedValue,
+      typeahead: false,
+      ...@restProps,
+      collection,
+    },
+  );
+
+  return track(() => ({ treeView: @treeView, options: @jsonTreeProps }));
+}
