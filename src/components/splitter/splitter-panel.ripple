@@ -1,0 +1,20 @@
+import type { PanelProps } from '@zag-js/splitter';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useSplitterContext } from './use-splitter-context';
+
+export interface SplitterPanelBaseProps extends PanelProps, PolymorphicProps<'div'> {}
+export interface SplitterPanelProps extends HTMLProps<'div'>, SplitterPanelBaseProps {}
+
+export component SplitterPanel(props: MaybeTracked<SplitterPanelProps>) {
+  const [children, id, localProps] = trackSplit(props, ['children', 'id']);
+  const splitter = useSplitterContext();
+
+  let mergedProps = track(() => mergeProps(@splitter.getPanelProps({ id: @id }), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

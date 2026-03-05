@@ -45,7 +45,7 @@ export * from './segment-group';
 export * from './select';
 export * from './signature-pad';
 export * from './slider';
-// export * from './splitter';
+export * from './splitter';
 export * from './steps';
 export * from './swap';
 // export * from './switch';

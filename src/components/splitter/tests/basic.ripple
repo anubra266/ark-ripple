@@ -1,0 +1,11 @@
+import { Splitter } from 'ark-ripple/splitter';
+
+export component ComponentUnderTest(props: {
+  [key: string]: any;
+}) {
+  <Splitter.Root defaultSize={[50, 50]} panels={[{ id: 'a' }, { id: 'b' }]} {...props}>
+    <Splitter.Panel id="a">{'A'}</Splitter.Panel>
+    <Splitter.ResizeTrigger id="a:b" aria-label="Resize" />
+    <Splitter.Panel id="b">{'B'}</Splitter.Panel>
+  </Splitter.Root>
+}

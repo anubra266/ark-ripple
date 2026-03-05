@@ -1,0 +1,24 @@
+import type { ResizeTriggerProps } from '@zag-js/splitter';
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import { useSplitterContext } from './use-splitter-context';
+import { SplitterResizeTriggerPropsContext } from './use-splitter-resize-trigger-props-context';
+
+export interface SplitterResizeTriggerBaseProps extends ResizeTriggerProps, PolymorphicProps<'button'> {}
+export interface SplitterResizeTriggerProps extends HTMLProps<'button'>, SplitterResizeTriggerBaseProps {}
+
+export component SplitterResizeTrigger(props: MaybeTracked<SplitterResizeTriggerProps>) {
+  const [children, id, disabled, localProps] = trackSplit(props, ['children', 'id', 'disabled']);
+  const splitter = useSplitterContext();
+
+  const triggerProps = track(() => ({ id: @id, disabled: @disabled }) as ResizeTriggerProps);
+  let mergedProps = track(() => mergeProps(@splitter.getResizeTriggerProps(@triggerProps), @localProps));
+
+  SplitterResizeTriggerPropsContext.set(triggerProps);
+
+  <ark.button {...@mergedProps}>
+    <@children />
+  </ark.button>
+}

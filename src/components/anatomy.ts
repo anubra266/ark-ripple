@@ -36,7 +36,7 @@ export { segmentGroupAnatomy } from './segment-group/segment-group.anatomy';
 export { selectAnatomy } from './select/select.anatomy';
 export { signaturePadAnatomy } from './signature-pad/signature-pad.anatomy';
 export { sliderAnatomy } from './slider/slider.anatomy';
-// export { splitterAnatomy } from './splitter/splitter.anatomy';
+export { splitterAnatomy } from './splitter/splitter.anatomy';
 export { stepsAnatomy } from './steps/steps.anatomy';
 export { swapAnatomy } from './swap/swap.anatomy';
 // export { switchAnatomy } from './switch/switch.anatomy';

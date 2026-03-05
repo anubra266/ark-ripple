@@ -1,0 +1,24 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+import { ark } from '../factory';
+import type { UseSplitterReturn } from './use-splitter.ripple';
+import { SplitterApiContext } from './use-splitter-context';
+
+interface RootProviderProps {
+  value: UseSplitterReturn;
+}
+
+export interface SplitterRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
+export interface SplitterRootProviderProps extends HTMLProps<'div'>, SplitterRootProviderBaseProps {}
+
+export component SplitterRootProvider(props: MaybeTracked<SplitterRootProviderProps>) {
+  const [children, value, localProps] = trackSplit(props, ['children', 'value']);
+  let mergedProps = track(() => mergeProps(@value.getRootProps(), @localProps));
+
+  SplitterApiContext.set(value);
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

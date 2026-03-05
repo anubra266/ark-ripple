@@ -76,7 +76,7 @@ export const sidebarConfig: SidebarGroupConfig[] = [
       { id: 'select' },
       { id: 'signature-pad' },
       { id: 'slider' },
-      // { id: 'splitter' },
+      { id: 'splitter' },
       { id: 'steps' },
       // { id: 'switch' },
       // { id: 'tabs' },

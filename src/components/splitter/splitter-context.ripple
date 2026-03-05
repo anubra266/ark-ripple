@@ -1,0 +1,13 @@
+import { trackSplit } from 'ripple';
+import { useSplitterContext, type UseSplitterContext } from './use-splitter-context';
+
+export interface SplitterContextProps {
+  children: (context: UseSplitterContext) => any;
+}
+
+export component SplitterContext(props: SplitterContextProps) {
+  const [children] = trackSplit(props, ['children']);
+  const context = useSplitterContext();
+
+  <@children {context} />
+}

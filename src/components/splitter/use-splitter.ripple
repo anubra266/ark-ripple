@@ -1,0 +1,32 @@
+import * as splitter from '@zag-js/splitter';
+import { useMachine, normalizeProps, type PropTypes } from 'zag-ripple';
+import { track, type Tracked } from 'ripple';
+import { useEnvironmentContext } from '../../providers/environment';
+import { useLocaleContext } from '../../providers/locale';
+import { useId } from '../../utils/use-id';
+import type { Optional, Accessor } from '../../types';
+
+export interface UseSplitterProps extends Optional<
+  Omit<splitter.Props, 'dir' | 'getRootNode'>,
+  'id'
+> {}
+
+export interface UseSplitterReturn extends Accessor<splitter.Api<PropTypes>> {}
+
+export function useSplitter(props?: UseSplitterProps): Tracked<UseSplitterReturn> {
+  const locale = useLocaleContext();
+  const env = useEnvironmentContext();
+  const id = useId();
+
+  const machineProps = track(() => ({
+    id,
+    dir: @locale.dir,
+    getRootNode: @env.getRootNode,
+    ...@props,
+  }));
+
+  const service = useMachine(splitter.machine, machineProps);
+  return track(() => splitter.connect(service, normalizeProps));
+}
+
+export type { ExpandCollapseDetails, PanelData, ResizeDetails, ResizeEndDetails } from '@zag-js/splitter';

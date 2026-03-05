@@ -1,0 +1,22 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseSplitterProps } from './use-splitter.ripple';
+
+const splitProps = createSplitProps<UseSplitterProps>();
+
+export function splitSplitterProps<T extends UseSplitterProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'defaultSize',
+    'id',
+    'ids',
+    'keyboardResizeBy',
+    'nonce',
+    'onCollapse',
+    'onExpand',
+    'onResize',
+    'onResizeEnd',
+    'onResizeStart',
+    'orientation',
+    'panels',
+    'size',
+  ]);
+}
