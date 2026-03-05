@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '../../test-utils';
+import { render, screen } from '../../test-utils';
 import user from '@testing-library/user-event';
 import { axe } from 'vitest-axe';
 import { ComponentUnderTest, FileUploadWithField } from './tests/basic.ripple';

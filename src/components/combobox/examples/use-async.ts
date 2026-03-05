@@ -1,4 +1,4 @@
-import { track, get, set } from 'ripple';
+import { track, set } from 'ripple';
 import { onMount } from 'zag-ripple';
 
 export function useAsync<T>(fn: (signal: AbortSignal | null) => Promise<T>) {
