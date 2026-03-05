@@ -1,0 +1,35 @@
+import { trackSplit, track } from 'ripple';
+import type { MaybeTracked } from '../../types';
+import { TooltipApiContext } from './use-tooltip-context';
+import { PresenceApiContext } from '../presence/use-presence-context';
+import { splitPresenceProps } from '../presence/split-presence-props.ripple';
+import { usePresence, type UsePresenceProps } from '../presence/use-presence.ripple';
+import type { UseTooltipReturn } from './use-tooltip.ripple';
+import {
+  splitRenderStrategyProps,
+  RenderStrategyContext,
+} from '../../utils/render-strategy.ripple';
+
+interface RootProviderProps {
+  value: UseTooltipReturn;
+}
+
+export interface TooltipRootProviderBaseProps extends RootProviderProps, UsePresenceProps {
+  children?: any;
+}
+export interface TooltipRootProviderProps extends TooltipRootProviderBaseProps {}
+
+export component TooltipRootProvider(props: MaybeTracked<TooltipRootProviderProps>) {
+  const [children, value, rest] = trackSplit(props, ['children', 'value']);
+  const [presenceProps] = splitPresenceProps(@rest);
+  const [renderStrategyProps] = splitRenderStrategyProps(@presenceProps);
+
+  const present = track(() => @value.open);
+  const presence = usePresence({ present, ...@presenceProps });
+
+  TooltipApiContext.set(value);
+  RenderStrategyContext.set(renderStrategyProps);
+  PresenceApiContext.set(presence);
+
+  <@children />
+}

@@ -1,0 +1,19 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTooltipContext } from './use-tooltip-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TooltipArrowBaseProps extends PolymorphicProps<'div'> {}
+export interface TooltipArrowProps extends HTMLProps<'div'>, TooltipArrowBaseProps {}
+
+export component TooltipArrow(props: MaybeTracked<TooltipArrowProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTooltipContext();
+
+  let mergedProps = track(() => mergeProps(@api.getArrowProps(), @localProps));
+
+  <ark.div {...@mergedProps}>
+    <@children />
+  </ark.div>
+}

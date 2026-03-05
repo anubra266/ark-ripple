@@ -1,0 +1,23 @@
+import { mergeProps } from 'zag-ripple';
+import { trackSplit, track } from 'ripple';
+import { useTooltipContext } from './use-tooltip-context';
+import { usePresenceContext } from '../presence/use-presence-context';
+import { ark } from '../factory';
+import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
+
+export interface TooltipPositionerBaseProps extends PolymorphicProps<'div'> {}
+export interface TooltipPositionerProps extends HTMLProps<'div'>, TooltipPositionerBaseProps {}
+
+export component TooltipPositioner(props: MaybeTracked<TooltipPositionerProps>) {
+  const [children, localProps] = trackSplit(props, ['children']);
+  const api = useTooltipContext();
+  const presence = usePresenceContext();
+
+  let mergedProps = track(() => mergeProps(@api.getPositionerProps(), @localProps));
+
+  if (!@presence.unmounted) {
+    <ark.div {...@mergedProps}>
+      <@children />
+    </ark.div>
+  }
+}

@@ -1,0 +1,21 @@
+import { Tooltip } from 'ark-ripple/tooltip';
+import { Portal } from 'ark-ripple/portal';
+import { track } from 'ripple';
+import styles from 'styles/tooltip.module.css';
+import button from 'styles/button.module.css';
+
+export component Controlled() {
+  let open = track(false);
+
+  <div class="stack">
+    <button type="button" onClick={() => { @open = !@open }} class={button.Root}>{'Toggle'}</button>
+    <Tooltip.Root {open} onOpenChange={(e) => { @open = e.open }}>
+      <Tooltip.Trigger class={styles.Trigger}>{'Hover Me'}</Tooltip.Trigger>
+      <Portal>
+        <Tooltip.Positioner>
+          <Tooltip.Content class={styles.Content}>{'I am a tooltip!'}</Tooltip.Content>
+        </Tooltip.Positioner>
+      </Portal>
+    </Tooltip.Root>
+  </div>
+}

@@ -1,0 +1,19 @@
+import { Tooltip } from 'ark-ripple/tooltip';
+import { Portal } from 'ark-ripple/portal';
+import styles from 'styles/tooltip.module.css';
+
+export component Arrow() {
+  <Tooltip.Root>
+    <Tooltip.Trigger class={styles.Trigger}>{'Hover Me'}</Tooltip.Trigger>
+    <Portal>
+      <Tooltip.Positioner>
+        <Tooltip.Content class={styles.Content}>
+          <Tooltip.Arrow class={styles.Arrow}>
+            <Tooltip.ArrowTip class={styles.ArrowTip} />
+          </Tooltip.Arrow>
+          {'I am a tooltip!'}
+        </Tooltip.Content>
+      </Tooltip.Positioner>
+    </Portal>
+  </Tooltip.Root>
+}

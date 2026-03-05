@@ -1,0 +1,11 @@
+import { useTooltipContext, type UseTooltipContext } from './use-tooltip-context';
+import type { Component } from 'ripple';
+
+export interface TooltipContextProps {
+  children: Component<{ context: UseTooltipContext }>;
+}
+
+export component TooltipContext(props: TooltipContextProps) {
+  const context = useTooltipContext();
+  <props.children {context} />
+}

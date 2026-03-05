@@ -46,6 +46,6 @@ export { timerAnatomy } from './timer/timer.anatomy';
 // export { toastAnatomy } from './toast/toast.anatomy';
 export { toggleAnatomy } from './toggle/toggle.anatomy';
 export { toggleGroupAnatomy } from './toggle-group/toggle-group.anatomy';
-// export { tooltipAnatomy } from './tooltip/tooltip.anatomy';
+export { tooltipAnatomy } from './tooltip/tooltip.anatomy';
 // export { tourAnatomy } from './tour/tour.anatomy';
 export { treeViewAnatomy } from './tree-view/tree-view.anatomy';

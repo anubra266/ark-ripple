@@ -1,0 +1,25 @@
+import { createSplitProps } from '../../utils/create-split-props.ripple';
+import type { UseTooltipProps } from './use-tooltip.ripple';
+
+const splitProps = createSplitProps<UseTooltipProps>();
+
+export function splitTooltipProps<T extends UseTooltipProps & Record<string, any>>(props: T) {
+  return splitProps(props, [
+    'closeDelay',
+    'closeOnEscape',
+    'closeOnPointerDown',
+    'closeOnScroll',
+    'defaultOpen',
+    'disabled',
+    'id',
+    'ids',
+    'interactive',
+    'onFocusOutside',
+    'onInteractOutside',
+    'onOpenChange',
+    'onPointerDownOutside',
+    'open',
+    'openDelay',
+    'positioning',
+  ]);
+}
