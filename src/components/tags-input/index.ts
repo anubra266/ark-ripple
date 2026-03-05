@@ -1,11 +1,11 @@
 export type {
-  FocusOutsideEvent,
-  HighlightChangeDetails,
-  InputValueChangeDetails,
-  InteractOutsideEvent,
-  PointerDownOutsideEvent,
-  ValidityChangeDetails,
-  ValueChangeDetails,
+  FocusOutsideEvent as TagsInputFocusOutsideEvent,
+  HighlightChangeDetails as TagsInputHighlightChangeDetails,
+  InputValueChangeDetails as TagsInputInputValueChangeDetails,
+  InteractOutsideEvent as TagsInputInteractOutsideEvent,
+  PointerDownOutsideEvent as TagsInputPointerDownOutsideEvent,
+  ValidityChangeDetails as TagsInputValidityChangeDetails,
+  ValueChangeDetails as TagsInputValueChangeDetails,
 } from '@zag-js/tags-input';
 export {
   TagsInputClearTrigger,
