@@ -138,10 +138,14 @@ describe('JsonTreeView Examples', () => {
       const tagsBtn = screen.getByRole('button', { name: /tags/ });
       // expand tags
       fireEvent.click(tagsBtn);
-      await waitFor(() => expect(hasVisibleNonPreviewMatch(screen.getAllByText(/tag1/))).toBe(true));
+      await waitFor(() =>
+        expect(hasVisibleNonPreviewMatch(screen.getAllByText(/tag1/))).toBe(true),
+      );
       // collapse tags
       fireEvent.click(tagsBtn);
-      await waitFor(() => expect(hasVisibleNonPreviewMatch(screen.getAllByText(/tag1/))).toBe(false));
+      await waitFor(() =>
+        expect(hasVisibleNonPreviewMatch(screen.getAllByText(/tag1/))).toBe(false),
+      );
     });
   });
 

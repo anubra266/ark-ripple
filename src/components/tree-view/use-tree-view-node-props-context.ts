@@ -5,4 +5,5 @@ export interface UseTreeViewNodePropsContext extends NodeProps {}
 
 export const TreeViewNodePropsContext = new Context<Tracked<UseTreeViewNodePropsContext>>();
 
-export const useTreeViewNodePropsContext = (): Tracked<UseTreeViewNodePropsContext> => TreeViewNodePropsContext.get();
+export const useTreeViewNodePropsContext = (): Tracked<UseTreeViewNodePropsContext> =>
+  TreeViewNodePropsContext.get();

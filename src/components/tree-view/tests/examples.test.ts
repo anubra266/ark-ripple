@@ -221,13 +221,17 @@ describe('TreeView Examples', () => {
     it('should show collapse all button after expanding', async () => {
       render(ExpandCollapseAll);
       fireEvent.click(screen.getByRole('button', { name: 'Expand all' }));
-      await waitFor(() => expect(screen.getByRole('button', { name: 'Collapse all' })).toBeVisible());
+      await waitFor(() =>
+        expect(screen.getByRole('button', { name: 'Collapse all' })).toBeVisible(),
+      );
     });
 
     it('should collapse all on collapse all click', async () => {
       render(ExpandCollapseAll);
       fireEvent.click(screen.getByRole('button', { name: 'Expand all' }));
-      await waitFor(() => expect(screen.getByRole('button', { name: 'Collapse all' })).toBeVisible());
+      await waitFor(() =>
+        expect(screen.getByRole('button', { name: 'Collapse all' })).toBeVisible(),
+      );
 
       fireEvent.click(screen.getByRole('button', { name: 'Collapse all' }));
       await waitFor(() => expect(screen.queryByText('app.tsx')).not.toBeVisible());
@@ -254,10 +258,14 @@ describe('TreeView Examples', () => {
       render(Filtering);
       const input = screen.getByPlaceholderText('Search');
       fireEvent.input(input, { target: { value: 'app' } });
-      await waitFor(() => expect(screen.queryByRole('treeitem', { name: 'README.md' })).not.toBeInTheDocument());
+      await waitFor(() =>
+        expect(screen.queryByRole('treeitem', { name: 'README.md' })).not.toBeInTheDocument(),
+      );
 
       fireEvent.input(input, { target: { value: '' } });
-      await waitFor(() => expect(screen.getByRole('treeitem', { name: 'README.md' })).toBeVisible());
+      await waitFor(() =>
+        expect(screen.getByRole('treeitem', { name: 'README.md' })).toBeVisible(),
+      );
     });
   });
 

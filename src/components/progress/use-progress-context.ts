@@ -1,8 +1,8 @@
-import { Context } from 'ripple'
-import type { UseProgressReturn } from './use-progress.ripple'
+import { Context } from 'ripple';
+import type { UseProgressReturn } from './use-progress.ripple';
 
-export type UseProgressContext = UseProgressReturn
+export type UseProgressContext = UseProgressReturn;
 
-export const ProgressApiContext = new Context<UseProgressContext>()
+export const ProgressApiContext = new Context<UseProgressContext>();
 
-export const useProgressContext = (): UseProgressContext => ProgressApiContext.get()
+export const useProgressContext = (): UseProgressContext => ProgressApiContext.get();

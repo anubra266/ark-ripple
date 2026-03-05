@@ -6,9 +6,7 @@ export component RootProvider() {
   const progress = useProgress();
 
   <div class="stack">
-    <button class={button.Root} onClick={() => @progress.setToMax()}>
-      {'Set to Max'}
-    </button>
+    <button class={button.Root} onClick={() => @progress.setToMax()}>{'Set to Max'}</button>
     <Progress.RootProvider class={styles.Root} value={progress}>
       <div class={styles.CircleContainer}>
         <Progress.Circle class={styles.Circle}>

@@ -8,7 +8,11 @@ export component ErrorCorrection() {
   let errorLevel = track('L');
 
   <div class="stack">
-    <QrCode.Root class={styles.Root} defaultValue="http://ark-ui.com" encoding={{ ecc: errorLevel }}>
+    <QrCode.Root
+      class={styles.Root}
+      defaultValue="http://ark-ui.com"
+      encoding={{ ecc: errorLevel }}
+    >
       <QrCode.Frame class={styles.Frame}>
         <QrCode.Pattern class={styles.Pattern} />
       </QrCode.Frame>
@@ -17,7 +21,9 @@ export component ErrorCorrection() {
       class={radio.Root}
       defaultValue="L"
       orientation="horizontal"
-      onValueChange={(e) => { @errorLevel = e.value }}
+      onValueChange={(e) => {
+        @errorLevel = e.value;
+      }}
     >
       <div class="hstack">
         for (const level of ['L', 'M', 'Q', 'H']; key level) {

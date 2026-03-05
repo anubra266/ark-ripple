@@ -6,8 +6,17 @@ import styles from 'styles/password-input.module.css';
 export component ControlledVisibility() {
   let visible = track(false);
 
-  <PasswordInput.Root class={styles.Root} visible={@visible} onVisibilityChange={(e) => { @visible = e.visible }}>
-    <PasswordInput.Label class={styles.Label}>{'Password is '}{@visible ? 'visible' : 'hidden'}</PasswordInput.Label>
+  <PasswordInput.Root
+    class={styles.Root}
+    {@visible}
+    onVisibilityChange={(e) => {
+      @visible = e.visible;
+    }}
+  >
+    <PasswordInput.Label class={styles.Label}>
+      {'Password is '}
+      {@visible ? 'visible' : 'hidden'}
+    </PasswordInput.Label>
     <PasswordInput.Control class={styles.Control}>
       <PasswordInput.Input class={styles.Input} />
       <PasswordInput.VisibilityTrigger class={styles.VisibilityTrigger}>

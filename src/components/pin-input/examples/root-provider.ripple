@@ -2,7 +2,9 @@ import { PinInput, usePinInput } from 'ark-ripple/pin-input';
 import styles from 'styles/pin-input.module.css';
 
 export component RootProvider() {
-  const pinInput = usePinInput({ onValueComplete: (e: PinInput.ValueChangeDetails) => alert(e.valueAsString) });
+  const pinInput = usePinInput(
+    { onValueComplete: (e: PinInput.ValueChangeDetails) => alert(e.valueAsString) },
+  );
 
   <div class="stack">
     <button onClick={() => @pinInput.focus()}>{'Focus'}</button>

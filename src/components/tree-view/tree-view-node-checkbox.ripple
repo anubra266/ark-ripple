@@ -6,14 +6,18 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TreeViewNodeCheckboxBaseProps extends PolymorphicProps<'span'> {}
-export interface TreeViewNodeCheckboxProps extends HTMLProps<'span'>, TreeViewNodeCheckboxBaseProps {}
+export interface TreeViewNodeCheckboxProps extends HTMLProps<
+  'span'
+>, TreeViewNodeCheckboxBaseProps {}
 
 export component TreeViewNodeCheckbox(props: MaybeTracked<TreeViewNodeCheckboxProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const treeView = useTreeViewContext();
   const nodeProps = useTreeViewNodePropsContext();
 
-  let mergedProps = track(() => mergeProps(@treeView.getNodeCheckboxProps(@nodeProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@treeView.getNodeCheckboxProps(@nodeProps), @localProps),
+  );
 
   <ark.span {...@mergedProps}>
     <@children />

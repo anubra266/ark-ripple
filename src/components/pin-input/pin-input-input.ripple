@@ -12,7 +12,9 @@ export component PinInputInput(props: MaybeTracked<PinInputInputProps>) {
   const [index, localProps] = trackSplit(props, ['index']);
   const pinInput = usePinInputContext();
 
-  let mergedProps = track(() => mergeProps(@pinInput.getInputProps({ index: @index }), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@pinInput.getInputProps({ index: @index }), @localProps),
+  );
 
   <ark.input {...@mergedProps} />
 }

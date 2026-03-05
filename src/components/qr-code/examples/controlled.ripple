@@ -7,12 +7,23 @@ export component Controlled() {
   let value = track('http://ark-ui.com');
 
   <div class="stack">
-    <QrCode.Root class={styles.Root} {value} onValueChange={(e) => { @value = e.value }}>
+    <QrCode.Root
+      class={styles.Root}
+      {value}
+      onValueChange={(e) => {
+        @value = e.value;
+      }}
+    >
       <QrCode.Frame class={styles.Frame}>
         <QrCode.Pattern class={styles.Pattern} />
       </QrCode.Frame>
     </QrCode.Root>
-    <button class={button.Root} onClick={() => { @value = 'https://chakra-ui.com' }}>
+    <button
+      class={button.Root}
+      onClick={() => {
+        @value = 'https://chakra-ui.com';
+      }}
+    >
       {'Set to chakra-ui.com'}
     </button>
   </div>

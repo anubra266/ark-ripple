@@ -12,7 +12,9 @@ export interface ListboxItemProps extends HTMLProps<'div'>, ListboxItemBaseProps
 
 export component ListboxItem(props: MaybeTracked<ListboxItemProps>) {
   const [item, highlightOnHover, children, rest] = trackSplit(props, [
-    'item', 'highlightOnHover', 'children',
+    'item',
+    'highlightOnHover',
+    'children',
   ]);
   const listbox = useListboxContext();
 

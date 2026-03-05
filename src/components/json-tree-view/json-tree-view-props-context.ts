@@ -8,6 +8,9 @@ export interface JsonTreeViewOptions extends Partial<JsonNodePreviewOptions> {
   quotesOnKeys?: boolean;
 }
 
-export const JsonTreeViewPropsContext = new Context<Tracked<JsonTreeViewOptions>>({} as Tracked<JsonTreeViewOptions>);
+export const JsonTreeViewPropsContext = new Context<Tracked<JsonTreeViewOptions>>(
+  {} as Tracked<JsonTreeViewOptions>,
+);
 
-export const useJsonTreeViewPropsContext = (): Tracked<JsonTreeViewOptions> => JsonTreeViewPropsContext.get();
+export const useJsonTreeViewPropsContext = (): Tracked<JsonTreeViewOptions> =>
+  JsonTreeViewPropsContext.get();

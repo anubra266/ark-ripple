@@ -11,7 +11,9 @@ export interface TreeViewNodeCheckboxIndicatorBaseProps {
 export interface TreeViewNodeCheckboxIndicatorProps extends TreeViewNodeCheckboxIndicatorBaseProps {}
 
 export component TreeViewNodeCheckboxIndicator(props: MaybeTracked<TreeViewNodeCheckboxIndicatorProps>) {
-  const [children, indeterminate, fallback] = trackSplit(props, ['children', 'indeterminate', 'fallback']);
+  const [children, indeterminate, fallback] = trackSplit(props, [
+    'children', 'indeterminate', 'fallback',
+  ]);
   const nodeState = useTreeViewNodeContext();
 
   if (@nodeState.checked === 'indeterminate' && @indeterminate) {

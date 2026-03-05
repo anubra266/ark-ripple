@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface PinInputHiddenInputBaseProps extends PolymorphicProps<'input'> {}
-export interface PinInputHiddenInputProps extends HTMLProps<'input'>, PinInputHiddenInputBaseProps {}
+export interface PinInputHiddenInputProps extends HTMLProps<
+  'input'
+>, PinInputHiddenInputBaseProps {}
 
 export component PinInputHiddenInput(props: MaybeTracked<PinInputHiddenInputProps>) {
   const [localProps] = trackSplit(props, []);

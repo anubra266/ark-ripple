@@ -2,7 +2,10 @@ import { type JsonNode, keyPathToKey } from '@zag-js/json-tree-utils';
 import { trackSplit, track } from 'ripple';
 import type { MaybeTracked } from '../../types';
 
-export component JsonTreeViewKeyNode(props: MaybeTracked<{ node: JsonNode; showQuotes?: boolean }>) {
+export component JsonTreeViewKeyNode(props: MaybeTracked<{
+  node: JsonNode;
+  showQuotes?: boolean;
+}>) {
   const [node, showQuotes] = trackSplit(props, ['node', 'showQuotes']);
   const key = track(() => keyPathToKey(@node.keyPath));
   <span data-kind="key" data-non-enumerable={@node.isNonEnumerable ? '' : undefined}>

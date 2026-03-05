@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface ProgressCircleRangeBaseProps extends PolymorphicProps<'circle'> {}
-export interface ProgressCircleRangeProps extends HTMLProps<'circle'>, ProgressCircleRangeBaseProps {}
+export interface ProgressCircleRangeProps extends HTMLProps<
+  'circle'
+>, ProgressCircleRangeBaseProps {}
 
 export component ProgressCircleRange(props: MaybeTracked<ProgressCircleRangeProps>) {
   const [localProps] = trackSplit(props, []);

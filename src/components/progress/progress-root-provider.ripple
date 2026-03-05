@@ -10,7 +10,9 @@ interface RootProviderProps {
 }
 
 export interface ProgressRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
-export interface ProgressRootProviderProps extends HTMLProps<'div'>, ProgressRootProviderBaseProps {}
+export interface ProgressRootProviderProps extends HTMLProps<
+  'div'
+>, ProgressRootProviderBaseProps {}
 
 export component ProgressRootProvider(props: MaybeTracked<ProgressRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

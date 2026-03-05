@@ -5,4 +5,5 @@ export interface UseTreeViewNodeContext extends NodeState {}
 
 export const TreeViewNodeStateContext = new Context<Tracked<UseTreeViewNodeContext>>();
 
-export const useTreeViewNodeContext = (): Tracked<UseTreeViewNodeContext> => TreeViewNodeStateContext.get();
+export const useTreeViewNodeContext = (): Tracked<UseTreeViewNodeContext> =>
+  TreeViewNodeStateContext.get();

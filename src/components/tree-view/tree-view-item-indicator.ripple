@@ -6,14 +6,18 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TreeViewItemIndicatorBaseProps extends PolymorphicProps<'div'> {}
-export interface TreeViewItemIndicatorProps extends HTMLProps<'div'>, TreeViewItemIndicatorBaseProps {}
+export interface TreeViewItemIndicatorProps extends HTMLProps<
+  'div'
+>, TreeViewItemIndicatorBaseProps {}
 
 export component TreeViewItemIndicator(props: MaybeTracked<TreeViewItemIndicatorProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const treeView = useTreeViewContext();
   const nodeProps = useTreeViewNodePropsContext();
 
-  let mergedProps = track(() => mergeProps(@treeView.getItemIndicatorProps(@nodeProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@treeView.getItemIndicatorProps(@nodeProps), @localProps),
+  );
 
   <ark.div {...@mergedProps}>
     <@children />

@@ -18,12 +18,14 @@ export function useProgress(props?: UseProgressProps): Tracked<UseProgressReturn
   const env = useEnvironmentContext();
   const id = useId();
 
-  const machineProps = track(() => ({
-    id,
-    dir: @locale.dir,
-    getRootNode: @env.getRootNode,
-    ...@props,
-  }));
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
 
   const service = useMachine(progress.machine, machineProps);
   return track(() => progress.connect(service, normalizeProps));

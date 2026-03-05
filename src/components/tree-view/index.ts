@@ -11,7 +11,12 @@ export type {
   RenameStartDetails as TreeViewRenameStartDetails,
   SelectionChangeDetails as TreeViewSelectionChangeDetails,
 } from '@zag-js/tree-view';
-export { createFileTreeCollection, createTreeCollection, type TreeCollection, type TreeNode } from '../collection';
+export {
+  createFileTreeCollection,
+  createTreeCollection,
+  type TreeCollection,
+  type TreeNode,
+} from '../collection';
 export {
   TreeViewBranch,
   type TreeViewBranchBaseProps,
@@ -78,7 +83,10 @@ export {
   type TreeViewNodeCheckboxIndicatorBaseProps,
   type TreeViewNodeCheckboxIndicatorProps,
 } from './tree-view-node-checkbox-indicator.ripple';
-export { TreeViewNodeContext, type TreeViewNodeContextProps } from './tree-view-node-context.ripple';
+export {
+  TreeViewNodeContext,
+  type TreeViewNodeContextProps,
+} from './tree-view-node-context.ripple';
 export {
   TreeViewNodeProvider,
   type TreeViewNodeProviderBaseProps,

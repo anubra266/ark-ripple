@@ -3,8 +3,6 @@ import type { JsonNodeHastElement } from '@zag-js/json-tree-utils';
 import { ChevronRight } from 'lucide-ripple';
 import styles from 'styles/json-tree-view.module.css';
 
-
-
 export component RenderValue() {
   <JsonTreeView.Root
     class={styles.Root}

@@ -1,8 +1,8 @@
-import { Context } from 'ripple'
-import type { UsePasswordInputReturn } from './use-password-input.ripple'
+import { Context } from 'ripple';
+import type { UsePasswordInputReturn } from './use-password-input.ripple';
 
-export type UsePasswordInputContext = UsePasswordInputReturn
+export type UsePasswordInputContext = UsePasswordInputReturn;
 
-export const PasswordInputApiContext = new Context<UsePasswordInputContext>()
+export const PasswordInputApiContext = new Context<UsePasswordInputContext>();
 
-export const usePasswordInputContext = (): UsePasswordInputContext => PasswordInputApiContext.get()
+export const usePasswordInputContext = (): UsePasswordInputContext => PasswordInputApiContext.get();

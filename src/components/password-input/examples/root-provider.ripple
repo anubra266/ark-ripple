@@ -6,7 +6,10 @@ export component RootProvider() {
   const passwordInput = usePasswordInput();
 
   <div class="stack">
-    <output>{'password input is '}{@passwordInput.visible ? 'visible' : 'hidden'}</output>
+    <output>
+      {'password input is '}
+      {@passwordInput.visible ? 'visible' : 'hidden'}
+    </output>
     <PasswordInput.RootProvider class={styles.Root} value={passwordInput}>
       <PasswordInput.Label class={styles.Label}>{'Password'}</PasswordInput.Label>
       <PasswordInput.Control class={styles.Control}>

@@ -31,7 +31,8 @@ const splitJsonTreeViewProps = createSplitProps<JsonTreeViewOptions>();
 
 export function useJsonTreeView(props: MaybeTracked<UseJsonTreeViewProps>): Tracked<UseJsonTreeViewReturn> {
   const [data, defaultExpandedDepth, localProps] = trackSplit(props, [
-    'data', 'defaultExpandedDepth',
+    'data',
+    'defaultExpandedDepth',
   ]);
 
   const [jsonTreeProps, restProps] = splitJsonTreeViewProps(@localProps, [

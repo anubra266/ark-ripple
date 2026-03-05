@@ -3,11 +3,15 @@ import { TreeView, useTreeViewContext } from '../tree-view';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 import { JsonTreeViewNode, type JsonTreeViewNodeBaseProps } from './json-tree-view-node.ripple';
 
-export interface JsonTreeViewTreeBaseProps extends PolymorphicProps<'div'>, JsonTreeViewNodeBaseProps {}
+export interface JsonTreeViewTreeBaseProps extends PolymorphicProps<
+  'div'
+>, JsonTreeViewNodeBaseProps {}
 export interface JsonTreeViewTreeProps extends HTMLProps<'div'>, JsonTreeViewTreeBaseProps {}
 
 export component JsonTreeViewTree(props: MaybeTracked<JsonTreeViewTreeProps>) {
-  const [arrow, indentGuide, renderValue, localProps] = trackSplit(props, ['arrow', 'indentGuide', 'renderValue']);
+  const [arrow, indentGuide, renderValue, localProps] = trackSplit(props, [
+    'arrow', 'indentGuide', 'renderValue',
+  ]);
   const tree = useTreeViewContext();
 
   const rootChildren = @tree.collection.getNodeChildren(@tree.collection.rootNode);

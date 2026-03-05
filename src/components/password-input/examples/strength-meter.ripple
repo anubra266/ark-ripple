@@ -25,7 +25,9 @@ export component StrengthMeter() {
       <PasswordInput.Input
         class={styles.Input}
         value={@password}
-        onInput={(e) => { @password = e.currentTarget.value }}
+        onInput={(e) => {
+          @password = e.currentTarget.value;
+        }}
         placeholder="Enter your password"
       />
       <PasswordInput.VisibilityTrigger class={styles.VisibilityTrigger}>
@@ -39,7 +41,10 @@ export component StrengthMeter() {
         <div class={styles.StrengthBar}>
           <div class={styles.StrengthFill} data-strength={@strength} />
         </div>
-        <div class={styles.StrengthLabel}>{@strength}{' password'}</div>
+        <div class={styles.StrengthLabel}>
+          {@strength}
+          {' password'}
+        </div>
       </div>
     }
   </PasswordInput.Root>

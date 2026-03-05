@@ -6,14 +6,18 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TreeViewBranchTriggerBaseProps extends PolymorphicProps<'div'> {}
-export interface TreeViewBranchTriggerProps extends HTMLProps<'div'>, TreeViewBranchTriggerBaseProps {}
+export interface TreeViewBranchTriggerProps extends HTMLProps<
+  'div'
+>, TreeViewBranchTriggerBaseProps {}
 
 export component TreeViewBranchTrigger(props: MaybeTracked<TreeViewBranchTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const treeView = useTreeViewContext();
   const nodeProps = useTreeViewNodePropsContext();
 
-  let mergedProps = track(() => mergeProps(@treeView.getBranchTriggerProps(@nodeProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@treeView.getBranchTriggerProps(@nodeProps), @localProps),
+  );
 
   <ark.div {...@mergedProps}>
     <@children />

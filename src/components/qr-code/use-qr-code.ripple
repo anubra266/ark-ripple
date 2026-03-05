@@ -14,15 +14,17 @@ export function useQrCode(props: MaybeTracked<UseQrCodeProps>): Tracked<UseQrCod
   const env = useEnvironmentContext();
   const id = useId();
 
-  const machineProps = track(() => ({
-    id,
-    dir: @locale.dir,
-    getRootNode: @env.getRootNode,
-    ...@props,
-  }));
+  const machineProps = track(
+    () => ({
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+      ...@props,
+    }),
+  );
 
   const service = useMachine(qrcode.machine, machineProps);
   return track(() => qrcode.connect(service, normalizeProps));
 }
 
-export type { QrCodeGenerateOptions as GenerateOptions, QrCodeGenerateResult as GenerateResult } from '@zag-js/qr-code';
+export { QrCodeGenerateOptions as GenerateOptions, QrCodeGenerateResult as GenerateResult } from '@zag-js/qr-code';

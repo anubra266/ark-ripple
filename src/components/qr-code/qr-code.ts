@@ -1,35 +1,38 @@
-export type { QrCodeGenerateOptions as GenerateOptions, QrCodeGenerateResult as GenerateResult } from '@zag-js/qr-code'
+export type {
+  QrCodeGenerateOptions as GenerateOptions,
+  QrCodeGenerateResult as GenerateResult,
+} from '@zag-js/qr-code';
 export {
   QrCodeContext as Context,
   type QrCodeContextProps as ContextProps,
-} from './qr-code-context.ripple'
+} from './qr-code-context.ripple';
 export {
   QrCodeDownloadTrigger as DownloadTrigger,
   type QrCodeDownloadTriggerBaseProps as DownloadTriggerBaseProps,
   type QrCodeDownloadTriggerProps as DownloadTriggerProps,
-} from './qr-code-download-trigger.ripple'
+} from './qr-code-download-trigger.ripple';
 export {
   QrCodeFrame as Frame,
   type QrCodeFrameBaseProps as FrameBaseProps,
   type QrCodeFrameProps as FrameProps,
-} from './qr-code-frame.ripple'
+} from './qr-code-frame.ripple';
 export {
   QrCodeOverlay as Overlay,
   type QrCodeOverlayBaseProps as OverlayBaseProps,
   type QrCodeOverlayProps as OverlayProps,
-} from './qr-code-overlay.ripple'
+} from './qr-code-overlay.ripple';
 export {
   QrCodePattern as Pattern,
   type QrCodePatternBaseProps as PatternBaseProps,
   type QrCodePatternProps as PatternProps,
-} from './qr-code-pattern.ripple'
+} from './qr-code-pattern.ripple';
 export {
   QrCodeRoot as Root,
   type QrCodeRootBaseProps as RootBaseProps,
   type QrCodeRootProps as RootProps,
-} from './qr-code-root.ripple'
+} from './qr-code-root.ripple';
 export {
   QrCodeRootProvider as RootProvider,
   type QrCodeRootProviderBaseProps as RootProviderBaseProps,
   type QrCodeRootProviderProps as RootProviderProps,
-} from './qr-code-root-provider.ripple'
+} from './qr-code-root-provider.ripple';

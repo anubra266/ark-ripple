@@ -8,7 +8,9 @@ import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 export interface TreeViewRootProviderBaseProps extends PolymorphicProps<'div'> {
   value: UseTreeViewReturn<any>;
 }
-export interface TreeViewRootProviderProps extends HTMLProps<'div'>, TreeViewRootProviderBaseProps {}
+export interface TreeViewRootProviderProps extends HTMLProps<
+  'div'
+>, TreeViewRootProviderBaseProps {}
 
 export component TreeViewRootProvider(props: MaybeTracked<TreeViewRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

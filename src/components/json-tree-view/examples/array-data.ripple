@@ -15,12 +15,12 @@ export component ArrayData() {
     data={{
       normalArray: [1, 2, 3],
       arrayWithNonEnumerableProperties: testArray,
-      sparseArray: (() => {
+      sparseArray: () => {
         const sparse: any[] = [];
         sparse[0] = 'first';
         sparse[5] = 'sixth';
         return sparse;
-      })(),
+      }(),
     }}
   >
     <JsonTreeView.Tree class={styles.Tree} arrow={ChevronRight} />

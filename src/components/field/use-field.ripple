@@ -40,8 +40,8 @@ export interface UseFieldProps {
  */
   readOnly?: boolean | undefined;
   /**
-   * The target field item value the label should point to.
-   */
+ * The target field item value the label should point to.
+ */
   target?: string;
 }
 
@@ -132,7 +132,6 @@ export function useField(inProps: UseFieldProps = {}) {
     'data-readonly': dataAttr(@readOnly),
     'data-required': dataAttr(@required),
     htmlFor: targetControlId ?? @id,
-
   });
 
   const getControlProps = () => ({

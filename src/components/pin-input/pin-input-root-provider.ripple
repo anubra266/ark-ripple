@@ -10,7 +10,9 @@ interface RootProviderProps {
 }
 
 export interface PinInputRootProviderBaseProps extends RootProviderProps, PolymorphicProps<'div'> {}
-export interface PinInputRootProviderProps extends HTMLProps<'div'>, PinInputRootProviderBaseProps {}
+export interface PinInputRootProviderProps extends HTMLProps<
+  'div'
+>, PinInputRootProviderBaseProps {}
 
 export component PinInputRootProvider(props: MaybeTracked<PinInputRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

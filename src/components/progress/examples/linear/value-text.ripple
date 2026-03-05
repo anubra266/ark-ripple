@@ -6,8 +6,8 @@ export component ValueText() {
     class={styles.Root}
     translations={{
       value({ value, max }) {
-        if (value === null) return 'Loading...'
-        return `${value} of ${max} items loaded`
+        if (value === null) return 'Loading...';
+        return `${value} of ${max} items loaded`;
       },
     }}
   >

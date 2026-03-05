@@ -11,44 +11,46 @@ interface Node {
   children?: Node[];
 }
 
-const initialCollection = createTreeCollection<Node>({
-  nodeToValue: (node) => node.id,
-  nodeToString: (node) => node.name,
-  rootNode: {
-    id: 'ROOT',
-    name: '',
-    children: [
-      {
-        id: 'node_modules',
-        name: 'node_modules',
-        children: [
-          { id: 'node_modules/zag-js', name: 'zag-js' },
-          { id: 'node_modules/pandacss', name: 'panda' },
-          {
-            id: 'node_modules/@types',
-            name: '@types',
-            children: [
-              { id: 'node_modules/@types/react', name: 'react' },
-              { id: 'node_modules/@types/react-dom', name: 'react-dom' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'src',
-        name: 'src',
-        children: [
-          { id: 'src/app.tsx', name: 'app.tsx' },
-          { id: 'src/index.ts', name: 'index.ts' },
-        ],
-      },
-      { id: 'panda.config', name: 'panda.config.ts' },
-      { id: 'package.json', name: 'package.json' },
-      { id: 'renovate.json', name: 'renovate.json' },
-      { id: 'readme.md', name: 'README.md' },
-    ],
+const initialCollection = createTreeCollection<Node>(
+  {
+    nodeToValue: (node) => node.id,
+    nodeToString: (node) => node.name,
+    rootNode: {
+      id: 'ROOT',
+      name: '',
+      children: [
+        {
+          id: 'node_modules',
+          name: 'node_modules',
+          children: [
+            { id: 'node_modules/zag-js', name: 'zag-js' },
+            { id: 'node_modules/pandacss', name: 'panda' },
+            {
+              id: 'node_modules/@types',
+              name: '@types',
+              children: [
+                { id: 'node_modules/@types/react', name: 'react' },
+                { id: 'node_modules/@types/react-dom', name: 'react-dom' },
+              ],
+            },
+          ],
+        },
+        {
+          id: 'src',
+          name: 'src',
+          children: [
+            { id: 'src/app.tsx', name: 'app.tsx' },
+            { id: 'src/index.ts', name: 'index.ts' },
+          ],
+        },
+        { id: 'panda.config', name: 'panda.config.ts' },
+        { id: 'package.json', name: 'package.json' },
+        { id: 'renovate.json', name: 'renovate.json' },
+        { id: 'readme.md', name: 'README.md' },
+      ],
+    },
   },
-});
+);
 
 component TreeNode(props: { node: Node; indexPath: number[] }) {
   const treeView = useTreeViewContext();
@@ -72,7 +74,7 @@ component TreeNode(props: { node: Node; indexPath: number[] }) {
         </TreeView.BranchControl>
         <TreeView.BranchContent class={styles.BranchContent}>
           <TreeView.BranchIndentGuide class={styles.BranchIndentGuide} />
-          for (const child of (props.node.children || []); index i; key child.id) {
+          for (const child of props.node.children || []; index i; key child.id) {
             <TreeNode node={child} indexPath={[...props.indexPath, i]} />
           }
         </TreeView.BranchContent>
@@ -99,7 +101,11 @@ export component Filtering() {
   };
 
   <div class="stack" style={{ maxWidth: '20rem' }}>
-    <input class={fieldStyles.Input} placeholder="Search" onInput={(e: InputEvent) => filter((e.target as HTMLInputElement).value)} />
+    <input
+      class={fieldStyles.Input}
+      placeholder="Search"
+      onInput={(e: InputEvent) => filter((e.target as HTMLInputElement).value)}
+    />
     <TreeView.Root class={styles.Root} {collection}>
       <TreeView.Tree class={styles.Tree}>
         for (const node of @collection.rootNode.children!; index i; key node.id) {

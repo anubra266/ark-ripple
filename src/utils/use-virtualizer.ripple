@@ -38,9 +38,9 @@ function createVirtualizerBase<TScrollElement extends Element | Window, TItemEle
   effect(() => {
     return untrack(() => {
       const cleanup = instance._didMount();
-      if (typeof cleanup === "function") return cleanup
-    })
-  })
+      if (typeof cleanup === 'function') return cleanup;
+    });
+  });
 
   effect(() => {
     instance.setOptions(

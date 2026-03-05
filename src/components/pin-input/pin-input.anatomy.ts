@@ -1,1 +1,1 @@
-export { anatomy as pinInputAnatomy } from '@zag-js/pin-input'
+export { anatomy as pinInputAnatomy } from '@zag-js/pin-input';

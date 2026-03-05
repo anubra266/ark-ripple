@@ -13,7 +13,9 @@ export component WithValidation() {
       <PasswordInput.Input
         class={styles.Input}
         value={@password}
-        onInput={(e) => { @password = e.target.value }}
+        onInput={(e) => {
+          @password = e.target.value;
+        }}
         placeholder="Enter your password"
       />
       <PasswordInput.VisibilityTrigger class={styles.VisibilityTrigger}>
@@ -28,9 +30,7 @@ export component WithValidation() {
       </p>
     }
     if (@isValid && @password.length > 0) {
-      <p class={styles.ValidationMessage} data-valid="true">
-        {'Password is valid'}
-      </p>
+      <p class={styles.ValidationMessage} data-valid="true">{'Password is valid'}</p>
     }
   </PasswordInput.Root>
 }
