@@ -8,7 +8,7 @@ export interface RenderStrategyProps {
 
 const splitRenderStrategy = createSplitProps<RenderStrategyProps>();
 
-export function splitRenderStrategyProps<T extends RenderStrategyProps>(props: T ) {
+export function splitRenderStrategyProps<T extends RenderStrategyProps>(props: T) {
   return splitRenderStrategy(props, ['lazyMount', 'unmountOnExit']);
 }
 

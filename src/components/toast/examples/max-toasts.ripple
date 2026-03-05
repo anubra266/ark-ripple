@@ -4,12 +4,14 @@ import { X, Info } from 'lucide-ripple';
 import button from 'styles/button.module.css';
 import styles from 'styles/toast.module.css';
 
-const toaster = createToaster({
-  max: 3,
-  overlap: true,
-  placement: 'bottom-end',
-  gap: 16,
-});
+const toaster = createToaster(
+  {
+    max: 3,
+    overlap: true,
+    placement: 'bottom-end',
+    gap: 16,
+  },
+);
 
 export component MaxToasts() {
   <div>
@@ -18,11 +20,13 @@ export component MaxToasts() {
         type="button"
         class={button.Root}
         onClick={() => {
-          toaster.create({
-            title: 'New notification',
-            description: 'You have a new message in your inbox.',
-            type: 'info',
-          });
+          toaster.create(
+            {
+              title: 'New notification',
+              description: 'You have a new message in your inbox.',
+              type: 'info',
+            },
+          );
         }}
       >
         {'Add notification'}
@@ -39,11 +43,13 @@ export component MaxToasts() {
             'Meeting reminder in 15 minutes',
           ];
           messages.forEach((msg) => {
-            toaster.create({
-              title: 'Notification',
-              description: msg,
-              type: 'info',
-            });
+            toaster.create(
+              {
+                title: 'Notification',
+                description: msg,
+                type: 'info',
+              },
+            );
           });
         }}
       >

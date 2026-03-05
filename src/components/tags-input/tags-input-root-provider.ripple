@@ -9,7 +9,9 @@ export interface TagsInputRootProviderBaseProps extends PolymorphicProps<'div'> 
   /** The tags input API */
   value: UseTagsInputReturn;
 }
-export interface TagsInputRootProviderProps extends HTMLProps<'div'>, TagsInputRootProviderBaseProps {}
+export interface TagsInputRootProviderProps extends HTMLProps<
+  'div'
+>, TagsInputRootProviderBaseProps {}
 
 export component TagsInputRootProvider(props: MaybeTracked<TagsInputRootProviderProps>) {
   const [children, value, localProps] = trackSplit(props, ['children', 'value']);

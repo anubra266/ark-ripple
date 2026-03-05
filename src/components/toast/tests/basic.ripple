@@ -1,19 +1,23 @@
 import { Toast, Toaster, createToaster } from 'ark-ripple/toast';
 
-const toaster = createToaster({
-  placement: 'bottom-end',
-});
+const toaster = createToaster(
+  {
+    placement: 'bottom-end',
+  },
+);
 
 export component ComponentUnderTest() {
   <div>
     <button
       type="button"
       onClick={() => {
-        toaster.create({
-          title: 'Title',
-          description: 'Description',
-          type: 'info',
-        });
+        toaster.create(
+          {
+            title: 'Title',
+            description: 'Description',
+            type: 'info',
+          },
+        );
       }}
     >
       {'Create Toast'}

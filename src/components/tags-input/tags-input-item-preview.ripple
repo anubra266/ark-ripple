@@ -6,7 +6,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TagsInputItemPreviewBaseProps extends PolymorphicProps<'div'> {}
-export interface TagsInputItemPreviewProps extends HTMLProps<'div'>, TagsInputItemPreviewBaseProps {}
+export interface TagsInputItemPreviewProps extends HTMLProps<
+  'div'
+>, TagsInputItemPreviewBaseProps {}
 
 export component TagsInputItemPreview(props: MaybeTracked<TagsInputItemPreviewProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

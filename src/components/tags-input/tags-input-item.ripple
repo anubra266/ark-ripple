@@ -17,7 +17,9 @@ export interface TagsInputItemBaseProps extends PolymorphicProps<'div'> {
 export interface TagsInputItemProps extends HTMLProps<'div'>, TagsInputItemBaseProps {}
 
 export component TagsInputItem(props: MaybeTracked<TagsInputItemProps>) {
-  const [children, index, value, disabled, localProps] = trackSplit(props, ['children', 'index', 'value', 'disabled']);
+  const [children, index, value, disabled, localProps] = trackSplit(props, [
+    'children', 'index', 'value', 'disabled',
+  ]);
   const api = useTagsInputContext();
 
   const itemProps = track(() => ({ index: @index, value: @value, disabled: @disabled }));

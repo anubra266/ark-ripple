@@ -1,4 +1,7 @@
-import { useTagsInputItemContext, type UseTagsInputItemContext } from './use-tags-input-item-context';
+import {
+  useTagsInputItemContext,
+  type UseTagsInputItemContext,
+} from './use-tags-input-item-context';
 import type { Component } from 'ripple';
 
 export interface TagsInputItemContextProps {

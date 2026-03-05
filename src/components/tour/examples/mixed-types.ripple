@@ -10,7 +10,9 @@ const steps: Tour.StepDetails[] = [
     type: 'dialog',
     title: 'Welcome!',
     description: 'This tour demonstrates different step types: dialog, tooltip, and floating.',
-    actions: [{ label: 'Start Tour', action: 'next' }],
+    actions: [
+      { label: 'Start Tour', action: 'next' },
+    ],
   },
   {
     id: 'tooltip-step',
@@ -39,7 +41,9 @@ const steps: Tour.StepDetails[] = [
     type: 'dialog',
     title: 'Tour Complete!',
     description: 'You have seen all the different step types available.',
-    actions: [{ label: 'Done', action: 'dismiss' }],
+    actions: [
+      { label: 'Done', action: 'dismiss' },
+    ],
   },
 ];
 
@@ -47,8 +51,16 @@ export component MixedTypes() {
   const tour = useTour({ steps });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <div id="target-element" class={styles.Target}>{'Target Element'}</div>

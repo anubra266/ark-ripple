@@ -4,11 +4,13 @@ import { X, Loader, CircleCheck, CircleAlert } from 'lucide-ripple';
 import button from 'styles/button.module.css';
 import styles from 'styles/toast.module.css';
 
-const toaster = createToaster({
-  overlap: true,
-  placement: 'bottom-end',
-  gap: 16,
-});
+const toaster = createToaster(
+  {
+    overlap: true,
+    placement: 'bottom-end',
+    gap: 16,
+  },
+);
 
 const uploadFile = () => {
   return new Promise<void>((resolve, reject) => {
@@ -37,9 +39,7 @@ export component PromiseToast() {
   };
 
   <div>
-    <button type="button" class={button.Root} onClick={handleUpload}>
-      {'Upload file'}
-    </button>
+    <button type="button" class={button.Root} onClick={handleUpload}>{'Upload file'}</button>
 
     <Portal>
       <Toaster {toaster}>

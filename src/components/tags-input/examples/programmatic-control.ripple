@@ -8,10 +8,22 @@ export component ProgrammaticControl() {
 
   <div class="stack">
     <div style={{ display: 'flex', gap: '8px' }}>
-      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('React')}>{'Add React'}</button>
-      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('Solid')}>{'Add Solid'}</button>
-      <button class={button.Root} type="button" onClick={() => @tagsInput.setValue(['Vue', 'Svelte'])}>{'Set to Vue & Svelte'}</button>
-      <button class={button.Root} type="button" onClick={() => @tagsInput.clearValue()}>{'Clear All'}</button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('React')}>
+        {'Add React'}
+      </button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.addValue('Solid')}>
+        {'Add Solid'}
+      </button>
+      <button
+        class={button.Root}
+        type="button"
+        onClick={() => @tagsInput.setValue(['Vue', 'Svelte'])}
+      >
+        {'Set to Vue & Svelte'}
+      </button>
+      <button class={button.Root} type="button" onClick={() => @tagsInput.clearValue()}>
+        {'Clear All'}
+      </button>
     </div>
 
     <TagsInput.RootProvider class={styles.Root} value={tagsInput}>

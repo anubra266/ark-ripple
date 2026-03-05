@@ -10,7 +10,9 @@ const steps: Tour.StepDetails[] = [
     type: 'dialog',
     title: 'Interactive Tutorial',
     description: 'This tour will guide you through actions. You must complete each step to proceed.',
-    actions: [{ label: 'Begin', action: 'next' }],
+    actions: [
+      { label: 'Begin', action: 'next' },
+    ],
   },
   {
     id: 'click-add',
@@ -56,7 +58,9 @@ const steps: Tour.StepDetails[] = [
     type: 'dialog',
     title: 'Well Done!',
     description: 'You completed all the interactive steps.',
-    actions: [{ label: 'Finish', action: 'dismiss' }],
+    actions: [
+      { label: 'Finish', action: 'dismiss' },
+    ],
   },
 ];
 
@@ -64,8 +68,16 @@ export component WaitForClick() {
   const tour = useTour({ steps });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Interactive Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Interactive Tour'}
     </button>
 
     <div class={styles.ActionButtons}>

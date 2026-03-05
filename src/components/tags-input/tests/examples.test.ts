@@ -67,7 +67,9 @@ describe('TagsInput Examples', () => {
   describe('Delimiter', () => {
     it('should render with delimiter label', async () => {
       const { container } = render(Delimiter);
-      expect(await within(container).findByText('Frameworks (add with comma, semicolon, or space)')).toBeInTheDocument();
+      expect(
+        await within(container).findByText('Frameworks (add with comma, semicolon, or space)'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -98,7 +100,9 @@ describe('TagsInput Examples', () => {
   describe('MaxTagLength', () => {
     it('should render with max tag length label', async () => {
       const { container } = render(MaxTagLength);
-      expect(await within(container).findByText('Frameworks (Max 10 characters)')).toBeInTheDocument();
+      expect(
+        await within(container).findByText('Frameworks (Max 10 characters)'),
+      ).toBeInTheDocument();
     });
   });
 
@@ -128,9 +132,7 @@ describe('TagsInput Examples', () => {
       const { container } = render(ProgrammaticControl);
       await within(container).findByText('Add React');
       fireEvent.click(within(container).getByText('Add React'));
-      await waitFor(() =>
-        expect(within(container).getByText('React')).toBeInTheDocument(),
-      );
+      await waitFor(() => expect(within(container).getByText('React')).toBeInTheDocument());
     });
   });
 
@@ -154,7 +156,9 @@ describe('TagsInput Examples', () => {
   describe('Validation', () => {
     it('should render with validation label', async () => {
       const { container } = render(Validation);
-      expect(await within(container).findByText('Frameworks (Min 3 chars, alphanumeric)')).toBeInTheDocument();
+      expect(
+        await within(container).findByText('Frameworks (Min 3 chars, alphanumeric)'),
+      ).toBeInTheDocument();
     });
   });
 

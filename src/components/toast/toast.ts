@@ -18,7 +18,10 @@ export {
   type ToastCloseTriggerBaseProps as CloseTriggerBaseProps,
   type ToastCloseTriggerProps as CloseTriggerProps,
 } from './toast-close-trigger.ripple';
-export { ToastContext as Context, type ToastContextProps as ContextProps } from './toast-context.ripple';
+export {
+  ToastContext as Context,
+  type ToastContextProps as ContextProps,
+} from './toast-context.ripple';
 export {
   ToastDescription as Description,
   type ToastDescriptionBaseProps as DescriptionBaseProps,

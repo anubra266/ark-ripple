@@ -1,1 +1,1 @@
-export { anatomy as toastAnatomy } from '@zag-js/toast'
+export { anatomy as toastAnatomy } from '@zag-js/toast';

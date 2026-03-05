@@ -11,7 +11,9 @@ const steps: Tour.StepDetails[] = [
     title: 'Progress Tracking',
     description: 'Watch the progress bar at the bottom as you navigate.',
     target: () => document.querySelector<HTMLElement>('#progress-1'),
-    actions: [{ label: 'Next', action: 'next' }],
+    actions: [
+      { label: 'Next', action: 'next' },
+    ],
   },
   {
     id: 'step-2',
@@ -52,8 +54,16 @@ export component ProgressBar() {
   const tour = useTour({ steps });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <div class={styles.ActionButtons}>
@@ -88,7 +98,10 @@ export component ProgressBar() {
               </Tour.Actions>
             </Tour.Control>
             <div class={styles.ProgressBarBottom}>
-              <div class={styles.ProgressFill} style={{ width: `${@tour.getProgressPercent()}%` }} />
+              <div
+                class={styles.ProgressFill}
+                style={{ width: `${@tour.getProgressPercent()}%` }}
+              />
             </div>
           </Tour.Content>
         </Tour.Positioner>

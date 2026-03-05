@@ -14,7 +14,9 @@ export interface TabTriggerProps extends HTMLProps<'button'>, TabTriggerBaseProp
 
 export component TabTrigger(props: MaybeTracked<TabTriggerProps>) {
   const [children, value, disabled, localProps] = trackSplit(props, [
-    'children', 'value', 'disabled',
+    'children',
+    'value',
+    'disabled',
   ]);
   const api = useTabsContext();
 

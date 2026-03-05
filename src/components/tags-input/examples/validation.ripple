@@ -4,14 +4,22 @@ import styles from 'styles/tags-input.module.css';
 
 const TAG_PATTERN = /^[a-zA-Z0-9-]+$/;
 
-const validateTag = ({ value, inputValue }: { value: string[]; inputValue: string }) =>
-  !!inputValue?.trim() && !value.includes(inputValue) && inputValue.length >= 3 && TAG_PATTERN.test(inputValue);
+const validateTag = ({
+  value,
+  inputValue,
+}: {
+  value: string[];
+  inputValue: string;
+}) => !!inputValue?.trim() && !value.includes(inputValue) && inputValue.length >= 3 &&
+  TAG_PATTERN.test(inputValue);
 
 export component Validation() {
   <TagsInput.Root class={styles.Root} validate={validateTag}>
     <TagsInput.Context>
       component children({ context }) {
-        <TagsInput.Label class={styles.Label}>{'Frameworks (Min 3 chars, alphanumeric)'}</TagsInput.Label>
+        <TagsInput.Label class={styles.Label}>
+          {'Frameworks (Min 3 chars, alphanumeric)'}
+        </TagsInput.Label>
         <TagsInput.Control class={styles.Control}>
           for (const value of @context.value; index i; key value) {
             <TagsInput.Item class={styles.Item} index={i} {value}>

@@ -6,7 +6,9 @@ const steps: Tour.StepDetails[] = [
     type: 'dialog',
     title: 'Step 1',
     description: 'First step description',
-    actions: [{ label: 'Next', action: 'next' }],
+    actions: [
+      { label: 'Next', action: 'next' },
+    ],
   },
   {
     id: 'step-2',
@@ -30,7 +32,15 @@ export component ComponentUnderTest(props: {
 
   <div>
     <div id="target-el" data-testid="target">{'Target Element'}</div>
-    <button type="button" onClick={() => { @tour.start() }} data-testid="start-btn">{'Start Tour'}</button>
+    <button
+      type="button"
+      onClick={() => {
+        @tour.start();
+      }}
+      data-testid="start-btn"
+    >
+      {'Start Tour'}
+    </button>
 
     <Tour.Root {tour}>
       <Tour.Backdrop data-testid="backdrop" />

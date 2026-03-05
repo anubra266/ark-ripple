@@ -11,7 +11,9 @@ const steps: Tour.StepDetails[] = [
     title: 'Keyboard Navigation',
     description: 'Press the right arrow key (→) to go to the next step.',
     target: () => document.querySelector<HTMLElement>('#key-1'),
-    actions: [{ label: 'Next', action: 'next' }],
+    actions: [
+      { label: 'Next', action: 'next' },
+    ],
   },
   {
     id: 'step-2',
@@ -41,12 +43,21 @@ export component KeyboardNavigation() {
   const tour = useTour({ steps, keyboardNavigation: true });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <p class={styles.Hint}>
-      <Keyboard />{'Use arrow keys to navigate, Escape to close'}
+      <Keyboard />
+      {'Use arrow keys to navigate, Escape to close'}
     </p>
 
     <div class={styles.ActionButtons}>

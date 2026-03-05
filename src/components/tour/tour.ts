@@ -47,7 +47,10 @@ export {
   type TourContentBaseProps as ContentBaseProps,
   type TourContentProps as ContentProps,
 } from './tour-content.ripple';
-export { TourContext as Context, type TourContextProps as ContextProps } from './tour-context.ripple';
+export {
+  TourContext as Context,
+  type TourContextProps as ContextProps,
+} from './tour-context.ripple';
 export {
   TourControl as Control,
   type TourControlBaseProps as ControlBaseProps,

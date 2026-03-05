@@ -36,11 +36,7 @@ export {
   type TooltipTriggerProps,
 } from './tooltip-trigger.ripple';
 export { tooltipAnatomy } from './tooltip.anatomy';
-export {
-  useTooltip,
-  type UseTooltipProps,
-  type UseTooltipReturn,
-} from './use-tooltip.ripple';
+export { useTooltip, type UseTooltipProps, type UseTooltipReturn } from './use-tooltip.ripple';
 export { useTooltipContext, type UseTooltipContext } from './use-tooltip-context';
 
 export * as Tooltip from './tooltip';

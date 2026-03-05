@@ -8,7 +8,9 @@ export component Delimiter() {
   <TagsInput.Root class={styles.Root} delimiter={DELIMITER_PATTERN}>
     <TagsInput.Context>
       component children({ context }) {
-        <TagsInput.Label class={styles.Label}>{'Frameworks (add with comma, semicolon, or space)'}</TagsInput.Label>
+        <TagsInput.Label class={styles.Label}>
+          {'Frameworks (add with comma, semicolon, or space)'}
+        </TagsInput.Label>
         <TagsInput.Control class={styles.Control}>
           for (const value of @context.value; index i; key value) {
             <TagsInput.Item class={styles.Item} index={i} {value}>

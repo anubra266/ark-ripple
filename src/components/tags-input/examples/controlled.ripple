@@ -6,7 +6,13 @@ import styles from 'styles/tags-input.module.css';
 export component Controlled() {
   let value = track<string[]>(['React', 'Solid']);
 
-  <TagsInput.Root class={styles.Root} {value} onValueChange={(details) => { @value = details.value }}>
+  <TagsInput.Root
+    class={styles.Root}
+    {value}
+    onValueChange={(details) => {
+      @value = details.value;
+    }}
+  >
     <TagsInput.Context>
       component children({ context }) {
         <TagsInput.Label class={styles.Label}>{'Frameworks'}</TagsInput.Label>

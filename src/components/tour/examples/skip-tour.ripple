@@ -45,8 +45,16 @@ export component SkipTour() {
   const tour = useTour({ steps });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <div class={styles.ActionButtons}>

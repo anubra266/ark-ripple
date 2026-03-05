@@ -9,8 +9,10 @@ const steps: Tour.StepDetails[] = [
     id: 'welcome',
     type: 'dialog',
     title: 'Welcome to the App!',
-    description: "Let's take a quick tour to get you started with the main features.",
-    actions: [{ label: 'Start Tour', action: 'next' }],
+    description: 'Let\'s take a quick tour to get you started with the main features.',
+    actions: [
+      { label: 'Start Tour', action: 'next' },
+    ],
   },
   {
     id: 'upload',
@@ -48,9 +50,11 @@ const steps: Tour.StepDetails[] = [
   {
     id: 'complete',
     type: 'dialog',
-    title: "You're all set!",
+    title: 'You\'re all set!',
     description: 'You now know the basics. Enjoy using the app!',
-    actions: [{ label: 'Finish', action: 'dismiss' }],
+    actions: [
+      { label: 'Finish', action: 'dismiss' },
+    ],
   },
 ];
 
@@ -58,19 +62,30 @@ export component Basic() {
   const tour = useTour({ steps });
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <div class={styles.ActionButtons}>
       <button id="btn-upload" type="button" class={button.Root}>
-        <Upload />{'Upload'}
+        <Upload />
+        {'Upload'}
       </button>
       <button id="btn-save" type="button" class={button.Root}>
-        <Save />{'Save'}
+        <Save />
+        {'Save'}
       </button>
       <button id="btn-more" type="button" class={button.Root}>
-        <Ellipsis />{'More'}
+        <Ellipsis />
+        {'More'}
       </button>
     </div>
 

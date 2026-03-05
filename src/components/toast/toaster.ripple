@@ -26,12 +26,14 @@ export component Toaster(props: MaybeTracked<ToasterProps>) {
   const env = useEnvironmentContext();
   const id = useId();
 
-  const machineProps = track(() => ({
-    store: @toaster,
-    id,
-    dir: @locale.dir,
-    getRootNode: @env.getRootNode,
-  }));
+  const machineProps = track(
+    () => ({
+      store: @toaster,
+      id,
+      dir: @locale.dir,
+      getRootNode: @env.getRootNode,
+    }),
+  );
 
   const service = useMachine(toast.group.machine, machineProps);
   const api = track(() => toast.group.connect(service, normalizeProps));
@@ -53,16 +55,20 @@ interface ToastActorProps {
 }
 
 component ToastActor(props: MaybeTracked<ToastActorProps>) {
-  const [children, value, service, index] = trackSplit(props, ['children', 'value', 'service', 'index']);
+  const [children, value, service, index] = trackSplit(props, [
+    'children', 'value', 'service', 'index',
+  ]);
 
   const env = useEnvironmentContext();
 
-  const machineProps = track(() => ({
-    ...@value,
-    parent: @service,
-    index: @index,
-    getRootNode: @env.getRootNode,
-  }));
+  const machineProps = track(
+    () => ({
+      ...@value,
+      parent: @service,
+      index: @index,
+      getRootNode: @env.getRootNode,
+    }),
+  );
 
   const actorService = useMachine(toast.machine, machineProps);
   const api = track(() => toast.connect(actorService, normalizeProps));

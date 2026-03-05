@@ -12,7 +12,9 @@ const steps: Tour.StepDetails[] = [
     title: 'First Step',
     description: 'Watch the event log below as you navigate.',
     target: () => document.querySelector<HTMLElement>('#event-1'),
-    actions: [{ label: 'Next', action: 'next' }],
+    actions: [
+      { label: 'Next', action: 'next' },
+    ],
   },
   {
     id: 'step-2',
@@ -41,19 +43,29 @@ const steps: Tour.StepDetails[] = [
 export component Events() {
   let logs = track<string[]>([]);
 
-  const tour = useTour({
-    steps,
-    onStepChange(details) {
-      @logs = [...@logs, `Step changed: ${details.stepId}`];
+  const tour = useTour(
+    {
+      steps,
+      onStepChange(details) {
+        @logs = [...@logs, `Step changed: ${details.stepId}`];
+      },
+      onStatusChange(details) {
+        @logs = [...@logs, `Status: ${details.status}`];
+      },
     },
-    onStatusChange(details) {
-      @logs = [...@logs, `Status: ${details.status}`];
-    },
-  });
+  );
 
   <div class={styles.Root}>
-    <button type="button" data-variant="surface" class={button.Root} onClick={() => { @tour.start() }}>
-      <Sparkles />{'Start Tour'}
+    <button
+      type="button"
+      data-variant="surface"
+      class={button.Root}
+      onClick={() => {
+        @tour.start();
+      }}
+    >
+      <Sparkles />
+      {'Start Tour'}
     </button>
 
     <div class={styles.ActionButtons}>

@@ -33,7 +33,10 @@ export {
   type TagsInputItemBaseProps,
   type TagsInputItemProps,
 } from './tags-input-item.ripple';
-export { TagsInputItemContext, type TagsInputItemContextProps } from './tags-input-item-context.ripple';
+export {
+  TagsInputItemContext,
+  type TagsInputItemContextProps,
+} from './tags-input-item-context.ripple';
 export {
   TagsInputItemDeleteTrigger,
   type TagsInputItemDeleteTriggerBaseProps,
@@ -70,7 +73,14 @@ export {
   type TagsInputRootProviderProps,
 } from './tags-input-root-provider.ripple';
 export { tagsInputAnatomy } from './tags-input.anatomy';
-export { useTagsInput, type UseTagsInputProps, type UseTagsInputReturn } from './use-tags-input.ripple';
+export {
+  useTagsInput,
+  type UseTagsInputProps,
+  type UseTagsInputReturn,
+} from './use-tags-input.ripple';
 export { useTagsInputContext, type UseTagsInputContext } from './use-tags-input-context';
-export { useTagsInputItemContext, type UseTagsInputItemContext } from './use-tags-input-item-context';
+export {
+  useTagsInputItemContext,
+  type UseTagsInputItemContext,
+} from './use-tags-input-item-context';
 export * as TagsInput from './tags-input';

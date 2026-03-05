@@ -14,7 +14,10 @@ export {
   type TooltipContentBaseProps as ContentBaseProps,
   type TooltipContentProps as ContentProps,
 } from './tooltip-content.ripple';
-export { TooltipContext as Context, type TooltipContextProps as ContextProps } from './tooltip-context.ripple';
+export {
+  TooltipContext as Context,
+  type TooltipContextProps as ContextProps,
+} from './tooltip-context.ripple';
 export {
   TooltipPositioner as Positioner,
   type TooltipPositionerBaseProps as PositionerBaseProps,

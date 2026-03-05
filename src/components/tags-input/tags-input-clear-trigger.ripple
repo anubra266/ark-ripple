@@ -5,7 +5,9 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TagsInputClearTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface TagsInputClearTriggerProps extends HTMLProps<'button'>, TagsInputClearTriggerBaseProps {}
+export interface TagsInputClearTriggerProps extends HTMLProps<
+  'button'
+>, TagsInputClearTriggerBaseProps {}
 
 export component TagsInputClearTrigger(props: MaybeTracked<TagsInputClearTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);

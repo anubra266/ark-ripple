@@ -22,7 +22,9 @@ describe('TagsInput', () => {
     expect(screen.queryByText('angular')).toHaveAttribute('data-part', 'item-text');
 
     await user.type(input, '[ArrowLeft]', { delay: 10 });
-    await waitFor(() => expect(screen.getByText('angular')).toHaveAttribute('data-highlighted', ''));
+    await waitFor(() =>
+      expect(screen.getByText('angular')).toHaveAttribute('data-highlighted', ''),
+    );
 
     await user.type(input, '[Delete]');
     expect(screen.queryByText('angular')).not.toBeInTheDocument();

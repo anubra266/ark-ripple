@@ -5,4 +5,5 @@ export type UseTagsInputItemPropsContext = ItemProps;
 
 export const TagsInputItemPropsApiContext = new Context<UseTagsInputItemPropsContext>();
 
-export const useTagsInputItemPropsContext = (): UseTagsInputItemPropsContext => TagsInputItemPropsApiContext.get();
+export const useTagsInputItemPropsContext = (): UseTagsInputItemPropsContext =>
+  TagsInputItemPropsApiContext.get();

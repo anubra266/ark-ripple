@@ -18,15 +18,8 @@ export {
   type TourActionTriggerBaseProps,
   type TourActionTriggerProps,
 } from './tour-action-trigger.ripple';
-export {
-  TourActions,
-  type TourActionsProps,
-} from './tour-actions.ripple';
-export {
-  TourArrow,
-  type TourArrowBaseProps,
-  type TourArrowProps,
-} from './tour-arrow.ripple';
+export { TourActions, type TourActionsProps } from './tour-actions.ripple';
+export { TourArrow, type TourArrowBaseProps, type TourArrowProps } from './tour-arrow.ripple';
 export {
   TourArrowTip,
   type TourArrowTipBaseProps,
@@ -68,27 +61,15 @@ export {
   type TourProgressTextBaseProps,
   type TourProgressTextProps,
 } from './tour-progress-text.ripple';
-export {
-  TourRoot,
-  type TourRootBaseProps,
-  type TourRootProps,
-} from './tour-root.ripple';
+export { TourRoot, type TourRootBaseProps, type TourRootProps } from './tour-root.ripple';
 export {
   TourSpotlight,
   type TourSpotlightBaseProps,
   type TourSpotlightProps,
 } from './tour-spotlight.ripple';
-export {
-  TourTitle,
-  type TourTitleBaseProps,
-  type TourTitleProps,
-} from './tour-title.ripple';
+export { TourTitle, type TourTitleBaseProps, type TourTitleProps } from './tour-title.ripple';
 export { tourAnatomy } from './tour.anatomy';
-export {
-  useTour,
-  type UseTourProps,
-  type UseTourReturn,
-} from './use-tour.ripple';
+export { useTour, type UseTourProps, type UseTourReturn } from './use-tour.ripple';
 export { useTourContext, type UseTourtContext } from './use-tour-context';
 export { waitForEvent, type WaitForEventOptions } from './wait-for-event';
 export { waitForElement, waitForPromise, waitForElementValue } from '@zag-js/tour';

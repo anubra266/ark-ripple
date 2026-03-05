@@ -32,6 +32,9 @@ export component RootProvider() {
       <TagsInput.HiddenInput />
     </TagsInput.RootProvider>
 
-    <output>{'values: '}{JSON.stringify(@tagsInput.value)}</output>
+    <output>
+      {'values: '}
+      {JSON.stringify(@tagsInput.value)}
+    </output>
   </div>
 }

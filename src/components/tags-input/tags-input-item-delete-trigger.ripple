@@ -6,14 +6,18 @@ import { ark } from '../factory';
 import type { HTMLProps, MaybeTracked, PolymorphicProps } from '../../types';
 
 export interface TagsInputItemDeleteTriggerBaseProps extends PolymorphicProps<'button'> {}
-export interface TagsInputItemDeleteTriggerProps extends HTMLProps<'button'>, TagsInputItemDeleteTriggerBaseProps {}
+export interface TagsInputItemDeleteTriggerProps extends HTMLProps<
+  'button'
+>, TagsInputItemDeleteTriggerBaseProps {}
 
 export component TagsInputItemDeleteTrigger(props: MaybeTracked<TagsInputItemDeleteTriggerProps>) {
   const [children, localProps] = trackSplit(props, ['children']);
   const api = useTagsInputContext();
   const itemProps = useTagsInputItemPropsContext();
 
-  let mergedProps = track(() => mergeProps(@api.getItemDeleteTriggerProps(@itemProps), @localProps));
+  let mergedProps = track(
+    () => mergeProps(@api.getItemDeleteTriggerProps(@itemProps), @localProps),
+  );
 
   <ark.button {...@mergedProps}>
     <@children />

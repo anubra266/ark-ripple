@@ -36,7 +36,9 @@ describe('Tour', () => {
     render(ComponentUnderTest);
     fireEvent.click(screen.getByTestId('start-btn'));
 
-    await waitFor(() => expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument(),
+    );
     fireEvent.click(screen.getByText('Next', { selector: 'button' }));
 
     await waitFor(() => expect(screen.getByTestId('title')).toHaveTextContent('Step 2'));
@@ -52,20 +54,28 @@ describe('Tour', () => {
     await waitFor(() => expect(screen.getByTestId('title')).toHaveTextContent('Step 1'));
     fireEvent.click(screen.getByTestId('close-trigger'));
 
-    await waitFor(() => expect(screen.getByTestId('content')).toHaveAttribute('data-state', 'closed'));
+    await waitFor(() =>
+      expect(screen.getByTestId('content')).toHaveAttribute('data-state', 'closed'),
+    );
   });
 
   it('should close the tour when dismiss action is triggered', async () => {
     render(ComponentUnderTest);
     fireEvent.click(screen.getByTestId('start-btn'));
 
-    await waitFor(() => expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument(),
+    );
     fireEvent.click(screen.getByText('Next', { selector: 'button' }));
 
-    await waitFor(() => expect(screen.getByText('Finish', { selector: 'button' })).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByText('Finish', { selector: 'button' })).toBeInTheDocument(),
+    );
     fireEvent.click(screen.getByText('Finish', { selector: 'button' }));
 
-    await waitFor(() => expect(screen.getByTestId('content')).toHaveAttribute('data-state', 'closed'));
+    await waitFor(() =>
+      expect(screen.getByTestId('content')).toHaveAttribute('data-state', 'closed'),
+    );
   });
 
   it('should show progress text', async () => {
@@ -81,7 +91,9 @@ describe('Tour', () => {
     render(ComponentUnderTest, { onStepChange });
     fireEvent.click(screen.getByTestId('start-btn'));
 
-    await waitFor(() => expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument());
+    await waitFor(() =>
+      expect(screen.getByText('Next', { selector: 'button' })).toBeInTheDocument(),
+    );
     fireEvent.click(screen.getByText('Next', { selector: 'button' }));
 
     await waitFor(() => expect(onStepChange).toHaveBeenCalled());

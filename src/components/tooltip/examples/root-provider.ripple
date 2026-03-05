@@ -5,7 +5,10 @@ import styles from 'styles/tooltip.module.css';
 export component RootProvider() {
   const tooltip = useTooltip();
 
-  <output>{'Open: '}{String(@tooltip.open)}</output>
+  <output>
+    {'Open: '}
+    {String(@tooltip.open)}
+  </output>
   <Tooltip.RootProvider value={tooltip}>
     <Tooltip.Trigger class={styles.Trigger}>{'Hover Me'}</Tooltip.Trigger>
     <Portal>

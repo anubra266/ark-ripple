@@ -9,32 +9,40 @@ import styles from 'styles/tags-input.module.css';
 export component WithCombobox() {
   const filterApi = useFilter({ sensitivity: 'base' });
 
-  const { collection, filter } = useListCollection({
-    initialItems: ['React', 'Solid', 'Vue', 'Svelte', 'Angular', 'Preact', 'Next.js', 'Astro', 'Nuxt'],
+  const { collection, filter } = useListCollection(
+    {
+      initialItems: [
+        'React', 'Solid', 'Vue', 'Svelte', 'Angular', 'Preact', 'Next.js', 'Astro', 'Nuxt',
+      ],
       filter: @filterApi.contains,
-  });
+    },
+  );
 
   const sharedId = 'tags-combobox-1';
 
-  const tagsInput = useTagsInput({
-    ids: { input: `input_${sharedId}`, control: `control_${sharedId}` },
-  });
+  const tagsInput = useTagsInput(
+    {
+      ids: { input: `input_${sharedId}`, control: `control_${sharedId}` },
+    },
+  );
 
-  const comboboxApi = useCombobox({
-    ids: { input: `input_${sharedId}`, control: `control_${sharedId}` },
-    collection,
-    onInputValueChange(details) {
-      filter(details.inputValue);
+  const comboboxApi = useCombobox(
+    {
+      ids: { input: `input_${sharedId}`, control: `control_${sharedId}` },
+      collection,
+      onInputValueChange(details) {
+        filter(details.inputValue);
+      },
+      value: [],
+      allowCustomValue: true,
+      onValueChange: (details) => {
+        if (details.value[0]) {
+          @tagsInput.addValue(details.value[0]);
+        }
+      },
+      selectionBehavior: 'clear',
     },
-    value: [],
-    allowCustomValue: true,
-    onValueChange: (details) => {
-      if (details.value[0]) {
-        @tagsInput.addValue(details.value[0]);
-      }
-    },
-    selectionBehavior: 'clear',
-  });
+  );
 
   <Combobox.RootProvider value={comboboxApi}>
     <TagsInput.RootProvider class={styles.Root} value={tagsInput}>

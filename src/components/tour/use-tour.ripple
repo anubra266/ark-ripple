@@ -6,10 +6,7 @@ import { useLocaleContext } from '../../providers/locale';
 import { useId } from '../../utils/use-id';
 import type { Optional, Accessor } from '../../types';
 
-export interface UseTourProps extends Optional<
-  Omit<tour.Props, 'dir' | 'getRootNode'>,
-  'id'
-> {}
+export interface UseTourProps extends Optional<Omit<tour.Props, 'dir' | 'getRootNode'>, 'id'> {}
 
 export interface UseTourReturn extends Accessor<tour.Api<PropTypes>> {}
 
