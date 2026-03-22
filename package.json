@@ -171,7 +171,7 @@
     "image-conversion": "^2.1.1",
     "jsdom": "^26.0.0",
     "lucide-ripple": "0.0.7",
-    "next": "15.5.12",
+    "next": "15.5.14",
     "prettier": "^3.8.1",
     "resize-observer-polyfill": "^1.5.1",
     "ripple": "https://pkg.pr.new/Ripple-TS/ripple/ripple@70d5af2",
